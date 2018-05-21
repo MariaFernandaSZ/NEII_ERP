@@ -1,4 +1,4 @@
-<table class='tabla'>
+table class='tabla'>
     <tr><td align='center' class='form-group'>
             <form autocomplete='off' method="POST" id="formContratarEmpleado" action="../../Servlet_contratarEmpleado">
             <table style="margin: 0 auto;">
@@ -17,7 +17,11 @@
                         </select>
                     </td>
                 </tr>
+                <tr><td>Licencia Médica</td><td><input type='text' id='licenciaMedica' name='licenciaMedica' class='form-control form-control-sm' required></td></tr>
+
                 <tr><td>Sueldo</td><td><input type='number' id='contratarSueldo' name='contratarSueldo' class='form-control form-control-sm' required></td></tr>
+                 <tr><td>Sueldo por día</td><td><input type='number' id='contratarSueldoDiario' name='contratarSueldoDiario' class='form-control form-control-sm' required></td></tr>
+               
                 <tr><td>&Aacute;rea</td>
                     <td><select id='contratarArea' name="contratarArea" class='form-control form-control-sm' required>
                             <option value='' selected='selected'>Selecciona&nbsp;una&nbsp;opci&oacute;n...</option>
