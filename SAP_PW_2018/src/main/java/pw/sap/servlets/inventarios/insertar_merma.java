@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
-
-
+import pw.sap.pojo.Inventarios.registro;
 /**
  *
  * @author migue_f4t6hjx
@@ -45,7 +44,7 @@ public class insertar_merma extends HttpServlet {
         String observaciones = request.getParameter("Obser");
         
         registro rg = new registro();
-        registrado = rg.agregarMerma(codigo, fecha, tipo, cantidad, observaciones);
+        //registrado = rg.agregarMerma(codigo, fecha, tipo, cantidad, observaciones);
  
         
         if(registrado=true){
