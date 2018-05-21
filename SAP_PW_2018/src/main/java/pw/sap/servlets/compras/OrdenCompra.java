@@ -1,0 +1,119 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pw.sap.servlets.compras;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import pw.sap.pojo.Compras.OrdenCBean;
+import pw.sap.pojo.Compras.QuerysCompras;
+
+/**
+ *
+ * @author Nesto
+ */
+@WebServlet(name = "OrdenCompra", urlPatterns = {"/OrdenCompra"})
+public class OrdenCompra extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        
+        QuerysCompras c = new QuerysCompras();
+        
+        String id_requisicion = request.getParameter("id_requisicion");
+        String fecha_orden = request.getParameter("fecha_orden");
+        String estatus = request.getParameter("estatus");
+        String forma_pago = request.getParameter("forma_pago");
+        
+        OrdenCBean ordenBean = new OrdenCBean(id_requisicion, fecha_orden, estatus, forma_pago);
+        
+        boolean sw = c.agregarOrdenCompra(ordenBean);
+        
+        if (sw) {
+            PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
+            out.print("window.location='Compras/CompraOrden.jsp'");
+            out.println("</script>");
+        }else{
+            PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
+            out.print("window.location='Compras/CompraOrden.jsp'");
+            out.println("</script>");
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
