@@ -1,4 +1,4 @@
-
+import pw.sap.pojo.Inventarios.registro;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.Inventarios.registro;
 
 /**
  *
