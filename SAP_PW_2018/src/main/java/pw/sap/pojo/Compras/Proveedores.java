@@ -7,80 +7,97 @@ package pw.sap.pojo.Compras;
  */
 public class Proveedores
 {
-    private String nuevo_rfc;
-    private String nuevo_nomemp;
-    private String nuevo_nomenc;
-    private String nuevo_correo;
-    private String nuevo_tel;
-    private String zona;
+    private String prov_rfc;
+    private String prov_nom_emp;
+    private String prov_nom_cont;
+    private String prov_correo;
+    private String prov_tel;
+    private String prov_estado;
+    private String prov_muni;
+    private String prov_cp;
 
-    public String getNuevo_rfc()
-    {
-        return nuevo_rfc;
+    public Proveedores() {
     }
 
-    public void setNuevo_rfc(String nuevo_rfc)
-    {
-        this.nuevo_rfc = nuevo_rfc;
+    public Proveedores(String prov_rfc, String prov_nom_emp, String prov_nom_cont, String prov_correo, String prov_tel, String prov_estado, String prov_muni, String prov_cp) {
+        this.prov_rfc = prov_rfc;
+        this.prov_nom_emp = prov_nom_emp;
+        this.prov_nom_cont = prov_nom_cont;
+        this.prov_correo = prov_correo;
+        this.prov_tel = prov_tel;
+        this.prov_estado = prov_estado;
+        this.prov_muni = prov_muni;
+        this.prov_cp = prov_cp;
     }
 
-    public String getNuevo_nomemp()
-    {
-        return nuevo_nomemp;
+    public String getProv_rfc() {
+        return prov_rfc;
     }
 
-    public void setNuevo_nomemp(String nuevo_nomemp)
-    {
-        this.nuevo_nomemp = nuevo_nomemp;
+    public void setProv_rfc(String prov_rfc) {
+        this.prov_rfc = prov_rfc;
     }
 
-    public String getNuevo_nomenc()
-    {
-        return nuevo_nomenc;
+    public String getProv_nom_emp() {
+        return prov_nom_emp;
     }
 
-    public void setNuevo_nomenc(String nuevo_nomenc)
-    {
-        this.nuevo_nomenc = nuevo_nomenc;
+    public void setProv_nom_emp(String prov_nom_emp) {
+        this.prov_nom_emp = prov_nom_emp;
     }
 
-    public String getNuevo_correo()
-    {
-        return nuevo_correo;
+    public String getProv_nom_cont() {
+        return prov_nom_cont;
     }
 
-    public void setNuevo_correo(String nuevo_correo)
-    {
-        this.nuevo_correo = nuevo_correo;
+    public void setProv_nom_cont(String prov_nom_cont) {
+        this.prov_nom_cont = prov_nom_cont;
     }
 
-    public String getNuevo_tel()
-    {
-        return nuevo_tel;
+    public String getProv_correo() {
+        return prov_correo;
     }
 
-    public void setNuevo_tel(String nuevo_tel)
-    {
-        this.nuevo_tel = nuevo_tel;
+    public void setProv_correo(String prov_correo) {
+        this.prov_correo = prov_correo;
     }
 
-    public String getZona()
-    {
-        return zona;
+    public String getProv_tel() {
+        return prov_tel;
     }
 
-    public void setZona(String zona)
-    {
-        this.zona = zona;
+    public void setProv_tel(String prov_tel) {
+        this.prov_tel = prov_tel;
     }
 
-    public Proveedores(String nuevo_rfc, String nuevo_nomemp, String nuevo_nomenc, String nuevo_correo, String nuevo_tel, String zona)
-    {
-        this.nuevo_rfc = nuevo_rfc;
-        this.nuevo_nomemp = nuevo_nomemp;
-        this.nuevo_nomenc = nuevo_nomenc;
-        this.nuevo_correo = nuevo_correo;
-        this.nuevo_tel = nuevo_tel;
-        this.zona = zona;
+    public String getProv_estado() {
+        return prov_estado;
     }
+
+    public void setProv_estado(String prov_estado) {
+        this.prov_estado = prov_estado;
+    }
+
+    public String getProv_muni() {
+        return prov_muni;
+    }
+
+    public void setProv_muni(String prov_muni) {
+        this.prov_muni = prov_muni;
+    }
+
+    public String getProv_cp() {
+        return prov_cp;
+    }
+
+    public void setProv_cp(String prov_cp) {
+        this.prov_cp = prov_cp;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString(prov_rfc); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }
