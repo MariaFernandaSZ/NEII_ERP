@@ -43,7 +43,7 @@ public class Reporte {
 
     Connection conn;
 
-    private static String FILE = "c:/Users/maxim/Desktop/respaldo/nuevo.pdf";
+    private static String FILE = "c:/Users/maxim/Desktop/respaldo/reporte-gerencial.pdf";
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -95,7 +95,7 @@ public class Reporte {
     }
     
     private static void addMetaData(Document document) {
-        document.addTitle("My first PDF");
+        document.addTitle("Reporte Gerencial");
         document.addSubject("Using iText");
         document.addKeywords("Java, PDF, iText");
         document.addAuthor("Lars Vogel");
