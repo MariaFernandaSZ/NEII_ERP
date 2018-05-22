@@ -5,7 +5,6 @@ import pw.sap.pojo.Inventarios.registro;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.inventarios;
 
 import java.io.IOException;
 import java.io.PrintWriter;

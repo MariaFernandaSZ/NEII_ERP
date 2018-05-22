@@ -4,6 +4,22 @@
  * and open the template in the editor.
  */
 package pw.sap.pojo.Compras;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Properties;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -11,14 +27,29 @@ package pw.sap.pojo.Compras;
  */
 public class OrdenCompraPojo {
     
+    Connection conn;
+    
+    public OrdenCompraPojo() throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+    }
+    
+    public void openDB() throws SQLException {
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:8485/sap", connProp);
+    }
+    
+    public void closeDB() throws SQLException {
+        conn.close();
+    }
+    
     private String ord_folio;
     private requisicionPojo requisicionpojo;
     private Proveedores proveedores;
     private String ord_fecha;
     private String ord_pago;
 
-    public OrdenCompraPojo() {
-    }
 
     public OrdenCompraPojo(String ord_folio, requisicionPojo requisicionpojo, Proveedores proveedores, String ord_fecha, String ord_pago) {
         this.ord_folio = ord_folio;

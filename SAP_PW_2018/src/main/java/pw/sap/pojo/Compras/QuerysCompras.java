@@ -44,7 +44,7 @@ public class QuerysCompras {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO producto (id_producto, nombre_producto, unidad, maximo, minimo) VALUES ('"+proBean.getCodigo_nuevoprod()+"','"+proBean.getNom_producto()+"','"+proBean.getUnidad()+"',"+proBean.getMaxproducto()+","+proBean.getMinproducto()+")");
+                        //st.executeUpdate("INSERT INTO producto (id_producto, nombre_producto, unidad, maximo, minimo) VALUES ('"+proBean.getCodigo_nuevoprod()+"','"+proBean.getNom_producto()+"','"+proBean.getUnidad()+"',"+proBean.getMaxproducto()+","+proBean.getMinproducto()+")");
                         agregado=true;
                         st.close();
                     }
@@ -64,7 +64,7 @@ public class QuerysCompras {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO proveedor (rfc_proveedor, nombre_prov, telefono, correo_prov) VALUES ('"+proBean.getNuevo_rfc()+"','"+proBean.getNuevo_nomemp()+"',"+proBean.getNuevo_tel()+",'"+proBean.getNuevo_correo()+"')");
+//                        st.executeUpdate("INSERT INTO proveedor (rfc_proveedor, nombre_prov, telefono, correo_prov) VALUES ('"+proBean.getNuevo_rfc()+"','"+proBean.getNuevo_nomemp()+"',"+proBean.getNuevo_tel()+",'"+proBean.getNuevo_correo()+"')");
                         agregado=true;
                         st.close();
                     }
@@ -76,7 +76,7 @@ public class QuerysCompras {
             return agregado;
         }
     
-    public boolean agregarOrdenCompra(OrdenCBean proBean) throws SQLException, ClassNotFoundException{
+    public boolean agregarOrdenCompra(OrdenCompraPojo proBean) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
             Genera_IDCom idorden = new Genera_IDCom();
             openDB();
@@ -85,7 +85,7 @@ public class QuerysCompras {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO orden_compra VALUES('"+idorden.idOrdenCompra()+"','"+proBean.getId_requisicion()+"',"+proBean.getFecha_orden()+",'"+proBean.getEstatus()+"','"+proBean.getForma_pago()+"')");
+//                        st.executeUpdate("INSERT INTO orden_compra VALUES('"+idorden.idOrdenCompra()+"','"+proBean.getId_requisicion()+"',"+proBean.getFecha_orden()+",'"+proBean.getEstatus()+"','"+proBean.getForma_pago()+"')");
                         agregado=true;
                         st.close();
                     }
@@ -114,8 +114,8 @@ public class QuerysCompras {
          return id;
         }
     
-    public OrdenCBean detalleOrdenCompra(){
-         OrdenCBean ordenBean = null;
+    public OrdenCompraPojo detalleOrdenCompra(){
+         OrdenCompraPojo ordenBean = null;
         String id_ordencompra; 
         String id_requisicion = null;
         String fecha_orden = null;
@@ -123,23 +123,23 @@ public class QuerysCompras {
         String forma_pago = null;
         
         
-         try{
-          openDB();
-          Statement st=conn.createStatement();
-          ResultSet rs=st.executeQuery("select id_ordencompra from orden_compra order by id_ordencompra desc limit 1");
-          while(rs.next()){
-           id_ordencompra = rs.getString(1);
-           id_requisicion = rs.getString(2);
-           fecha_orden = rs.getString(3);
-           estatus = rs.getString(4);
-           forma_pago = rs.getString(5);
-          }
-          ordenBean = new OrdenCBean(id_requisicion, fecha_orden, estatus, forma_pago);
-          rs.close();
-          st.close();
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
+//         try{
+//          openDB();
+//          Statement st=conn.createStatement();
+//          ResultSet rs=st.executeQuery("select id_ordencompra from orden_compra order by id_ordencompra desc limit 1");
+//          while(rs.next()){
+//           id_ordencompra = rs.getString(1);
+//           id_requisicion = rs.getString(2);
+//           fecha_orden = rs.getString(3);
+//           estatus = rs.getString(4);
+//           forma_pago = rs.getString(5);
+//          }
+//          ordenBean = new OrdenCBean(id_requisicion, fecha_orden, estatus, forma_pago);
+//          rs.close();
+//          st.close();
+//         }catch(SQLException se){
+//          se.printStackTrace();
+//         }
          
          return ordenBean;
         } 

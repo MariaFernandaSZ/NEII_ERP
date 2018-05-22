@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.pojo.Compras.OrdenCBean;
+import pw.sap.pojo.Compras.OrdenCompraPojo;
 import pw.sap.pojo.Compras.QuerysCompras;
 
 /**
@@ -46,7 +46,7 @@ public class OrdenCompra extends HttpServlet {
         String estatus = request.getParameter("estatus");
         String forma_pago = request.getParameter("forma_pago");
         
-        OrdenCBean ordenBean = new OrdenCBean(id_requisicion, fecha_orden, estatus, forma_pago);
+        OrdenCompraPojo ordenBean = new OrdenCompraPojo();
         
         boolean sw = c.agregarOrdenCompra(ordenBean);
         

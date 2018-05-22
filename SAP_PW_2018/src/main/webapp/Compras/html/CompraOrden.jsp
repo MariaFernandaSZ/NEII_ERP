@@ -104,7 +104,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <input type="text" name="id_ordencompra" placeholder="id&nbsp;orden&nbsp;de&nbsp;compra" id="nom_producto" required/> 
+                                    <input type="text" name="ord_folio" placeholder="id&nbsp;orden&nbsp;de&nbsp;compra" id="nom_producto" required/> 
                                 </div>
                                 
                                 <div class="form-style-5">
@@ -114,22 +114,22 @@
                         <tr>
                             <td><fieldset>
                                     <legend>id&nbsp;requisici&oacute;n</legend>
-                            <input type="text" name="id_requisicion" id="descrip" required>
+                            <input type="text" name="req_folio" id="descrip" required>
                                 </fieldset>
                             </td>
                             <td><fieldset><legend>Fecha&nbsp;de&nbsp;orden</legend>
-                            <input type="date" name="fecha_orden" id="canPed" min="0" required>
+                            <input type="date" name="ord_fecha" id="canPed" min="0" required>
                                 </fieldset>
                             </td>
                         </tr>
                         <tr>
                             <td><fieldset>
-                                <legend>estatus</legend>
-                            <input type="text" name="estatus" id="unidad" min="0" required>
+                                    <legend>RFC&nbsp;proveedor</legend>
+                            <input type="text" name="prov_rfc" id="unidad" min="0" required>
                                 </fieldset>
                             </td>
                             <td><fieldset><legend>Forma&nbsp;de&nbsp;pago</legend>
-                            <input type="text" name="forma_pago" id="canRec" min="0" required>
+                            <input type="text" name="ord_pago" id="canRec" min="0" required>
                                 </fieldset>
                             </td>
                         </tr>

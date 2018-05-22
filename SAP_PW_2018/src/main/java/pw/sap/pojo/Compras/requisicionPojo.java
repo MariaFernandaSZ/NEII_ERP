@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package pw.sap.pojo.Compras;
-package pw.sap.pojo.Compras.Productos;
 /**
  *
  * @author Nesto
