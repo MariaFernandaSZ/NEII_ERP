@@ -3,14 +3,14 @@
     <head>
         <title>Contabilidad</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../SAP_PW/css/estilos.css" type="text/css">
-        <link href="../../SAP_PW/css/laterales.css" rel="stylesheet" type="text/css"/>
-        <link href="../../SAP_PW/Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="../../SAP_PW/Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="../../SAP_PW/Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../SAP_PW/Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
-        <script src="../../SAP_PW/js/Contabilidad/validacion.js" type="text/javascript"></script>
-        <script src="../../SAP_PW/js/Contabilidad/modales.js"    type="text/javascript"></script>
+        <link rel="stylesheet" href="../css/estilos.css" type="text/css">
+        <link href="../css/laterales.css" rel="stylesheet" type="text/css"/>
+        <link href="../Recursos/bootstrap/css/bootstrap.min.css"rel="stylesheet" type="text/css"/>
+        <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
+        <script src="../js/Contabilidad/validacion.js" type="text/javascript"></script>
+        <script src="../js/Contabilidad/modales.js"    type="text/javascript"></script>
     </head>
     <body>
          <header class="sticky-top">
