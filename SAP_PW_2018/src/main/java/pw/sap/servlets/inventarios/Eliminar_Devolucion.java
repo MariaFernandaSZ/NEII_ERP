@@ -1,4 +1,4 @@
-import pw.sap.pojo.Inventarios.registro;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
