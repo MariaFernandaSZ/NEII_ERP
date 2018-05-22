@@ -15,7 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.clases.Gerencia.generarPdf;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.Gerencia.Reporte;
 
 /**
  *
@@ -39,24 +41,12 @@ public class ig_reporte extends HttpServlet {
 
         Conexion con = new Conexion();
         
-
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ig_reporte</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ig_reporte at " + request.getContextPath() + "</h1>");
-            if (con.consultaEspecifica(1, "prueba", "prueba") == 1) {
-                out.println("si hay datos");
-            } else {
-                out.println("no hay datos");
-            }
-            out.println("</body>");
-            out.println("</html>");
-        }
+        Reporte pdf = new Reporte();
+        pdf.generarReporte();
+        
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
