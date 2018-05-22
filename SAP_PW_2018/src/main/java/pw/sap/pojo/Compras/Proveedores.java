@@ -96,7 +96,7 @@ public class Proveedores
 
     @Override
     public String toString() {
-        return super.toString(prov_rfc); //To change body of generated methods, choose Tools | Templates.
+        return prov_rfc; //To change body of generated methods, choose Tools | Templates.
     }
 
     
