@@ -6,6 +6,8 @@
 package pw.sap.pojo.Inventarios;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -28,8 +30,8 @@ Connection conn;
     public void openDB() throws SQLException {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "monse");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PWBDD2", connProp);
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
     
      public void closeDB() throws SQLException {
@@ -37,26 +39,31 @@ Connection conn;
     }
     
     
-            public boolean modificarMerma(int IDMerma, String tipo, int cantidad, String observaciones) throws SQLException, ClassNotFoundException{
-         
-            boolean agregado=false;
-            
-            
-            try {
-                
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("UPDATE merma set tipo_merma='"+tipo+"', cantidad_merma="+ cantidad+", observaciones='"+observaciones+"' where id_merma="+IDMerma);
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
+            public void modificarMerma(String IDMerma, String tipo,  String cantidad, String observaciones) throws SQLException, ClassNotFoundException{
+   
+//            boolean agregado=false;
+//            try {
+//                
+//                    if(conn!=null){
+//                        Statement st;
+//                        st = conn.createStatement();
+//                        st.executeUpdate("UPDATE merma set tipo_merma='"+tipo+"', cantidad_merma="+ cantidad+", motivo='"+observaciones+"' where id_merma="+IDMerma);
+//                        agregado=true;
+//                        st.close();
+//                    }
+//                closeDB();
+//                    } catch (SQLException e) {
+//                        agregado=false;
+//                        e.printStackTrace();
+//                    }c
+//            return agregado;
+openDB();
+PreparedStatement ps;
+                    
+                    ps = conn.prepareStatement("UPDATE merma set tipo_merma='"+tipo+"', cantidad_merma="+ cantidad+", motivo='"+observaciones+"' where id_merma="+IDMerma);
+                    ResultSet rs= ps.executeQuery();
+                    System.out.println(ps);
+closeDB();
         }
 }
 
