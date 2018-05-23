@@ -33,26 +33,24 @@ public class insertar_merma extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-           
-        Conexion c = new Conexion();       
-        boolean registrado; 
         
-        String codigo = request.getParameter("CoBa");
-        String fecha = request.getParameter("FechaMerma");
-        String tipo = request.getParameter("tip");
-        String cantidad = request.getParameter("cantidad");
-        String observaciones = request.getParameter("Obser");
+        String codigo = request.getParameter("id_producto");
+        String fecha = request.getParameter("fecha_mer");
+        String tipo = request.getParameter("tipo_merma");
+        String cantidad = request.getParameter("cant_mer");
+        String motivo = request.getParameter("motivo_mer");
         
         registro rg = new registro();
-        //registrado = rg.agregarMerma(codigo, fecha, tipo, cantidad, observaciones);
- 
         
-        if(registrado=true){
-        response.sendRedirect("Inventarios/Inventario/merma.jsp");
- }else{
-  response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
+       rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
  
- }
+        response.sendRedirect("Inventarios/Inventario/merma.jsp");
+//        if(registrado=true){
+//        response.sendRedirect("Inventarios/Inventario/merma.jsp");
+// }else{
+//  response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
+// 
+// }
         
     }
 

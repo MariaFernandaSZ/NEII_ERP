@@ -44,21 +44,18 @@ public class Modificar_Merma extends HttpServlet {
         Conexion c = new Conexion();       
         boolean registrado; 
         
-        String codigo = request.getParameter("CoBa");
-        String tipo = request.getParameter("Tip");
-        String cantidad = request.getParameter("cantidad1");
-        String observaciones = request.getParameter("Obser");
+        String codigo = request.getParameter("id_merma");
+        String tipo = request.getParameter("tipo_merma");
+        String cantidad = request.getParameter("cant_mer");
+        String observaciones = request.getParameter("motivo_mer");
         
         Modificar m= new Modificar();
-        registrado = m.modificarMerma(Integer.parseInt("CoBa"),"Tip", Integer.parseInt("cantidad1"),"obser");
+        m.modificarMerma(codigo, tipo, cantidad, observaciones);
  
         
-        if(registrado=true){
+   
         response.sendRedirect("Inventarios/Inventario/merma.jsp");
- }else{
-  response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
  
- }
         
     }
 
