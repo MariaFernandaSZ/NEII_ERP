@@ -35,19 +35,68 @@ public class OrdenCompraPojo {
     
     
     private String ord_folio;
+    private String req_folio;
     private requisicionPojo requisicionpojo;
     private Proveedores proveedores;
+    private String prov_rfc;
     private String ord_fecha;
-    private String ord_pago;
+    private String ord_pagotot;
 
+    public String getReq_folio() {
+        return req_folio;
+    }
 
-    public OrdenCompraPojo(String ord_folio, requisicionPojo requisicionpojo, Proveedores proveedores, String ord_fecha, String ord_pago) {
+    public void setReq_folio(String req_folio) {
+        this.req_folio = req_folio;
+    }
+
+    public String getProv_rfc() {
+        return prov_rfc;
+    }
+
+    public void setProv_rfc(String prov_rfc) {
+        this.prov_rfc = prov_rfc;
+    }
+    
+
+    public OrdenCompraPojo(String ord_folio, String req_folio, String prov_rfc, String ord_fecha, String ord_pagotot) {
+        this.ord_folio = ord_folio;
+        this.req_folio = req_folio;
+        this.prov_rfc = prov_rfc;
+        this.ord_fecha = ord_fecha;
+        this.ord_pagotot = ord_pagotot;
+    }
+
+    
+    public OrdenCompraPojo(String req_folio, String prov_rfc, String ord_fecha, String ord_pagotot) {
+        this.req_folio = req_folio;
+        this.prov_rfc = prov_rfc;
+        this.ord_fecha = ord_fecha;
+        this.ord_pagotot = ord_pagotot;
+    }
+    
+    
+
+    
+
+    public OrdenCompraPojo(String ord_folio, requisicionPojo requisicionpojo, Proveedores proveedores, String ord_fecha, String ord_pagotot) {
         this.ord_folio = ord_folio;
         this.requisicionpojo = requisicionpojo;
         this.proveedores = proveedores;
         this.ord_fecha = ord_fecha;
-        this.ord_pago = ord_pago;
+        this.ord_pagotot = ord_pagotot;
     }
+    
+    
+
+    public OrdenCompraPojo(requisicionPojo requisicionpojo, Proveedores proveedores, String ord_fecha, String ord_pagotot) {
+        this.requisicionpojo = requisicionpojo;
+        this.proveedores = proveedores;
+        this.ord_fecha = ord_fecha;
+        this.ord_pagotot = ord_pagotot;
+    }
+    
+    
 
     public String getOrd_folio() {
         return ord_folio;
@@ -81,12 +130,12 @@ public class OrdenCompraPojo {
         this.ord_fecha = ord_fecha;
     }
 
-    public String getOrd_pago() {
-        return ord_pago;
+    public String getOrd_pagotot() {
+        return ord_pagotot;
     }
 
-    public void setOrd_pago(String ord_pago) {
-        this.ord_pago = ord_pago;
+    public void setOrd_pagotot(String ord_pagotot) {
+        this.ord_pagotot = ord_pagotot;
     }
 
     @Override

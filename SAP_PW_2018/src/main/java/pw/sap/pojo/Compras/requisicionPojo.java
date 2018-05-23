@@ -18,6 +18,11 @@ public class requisicionPojo {
     public requisicionPojo() {
     }
 
+    public requisicionPojo(String req_folio) {
+        this.req_folio = req_folio;
+    }
+    
+
     public requisicionPojo(String req_folio, Productos productos, String req_cantidad, String req_fecha) {
         this.req_folio = req_folio;
         this.productos = productos;

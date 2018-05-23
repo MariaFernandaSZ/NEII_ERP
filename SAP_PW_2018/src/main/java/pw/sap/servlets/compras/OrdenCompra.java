@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Compras.OrdenCompraPojo;
 import pw.sap.pojo.Compras.QuerysCompras;
+import pw.sap.pojo.Compras.requisicionPojo;
 
 /**
  *
@@ -41,12 +42,13 @@ public class OrdenCompra extends HttpServlet {
         
         QuerysCompras c = new QuerysCompras();
         
-        String id_requisicion = request.getParameter("id_requisicion");
-        String fecha_orden = request.getParameter("fecha_orden");
-        String estatus = request.getParameter("estatus");
-        String forma_pago = request.getParameter("forma_pago");
+        String ord_folio = request.getParameter("ord_folio");
+        String req_folio = request.getParameter("req_folio");
+        String prov_rfc = request.getParameter("prov_rfc");
+        String ord_fecha = request.getParameter("ord_fecha");
+        String ord_pagotot = request.getParameter("ord_pagotot");
         
-        OrdenCompraPojo ordenBean = new OrdenCompraPojo();
+        OrdenCompraPojo ordenBean = new OrdenCompraPojo(ord_folio, req_folio, prov_rfc, ord_fecha, ord_pagotot);
         
         boolean sw = c.agregarOrdenCompra(ordenBean);
         

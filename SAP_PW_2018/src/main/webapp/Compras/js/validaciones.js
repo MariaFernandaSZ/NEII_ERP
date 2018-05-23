@@ -140,31 +140,31 @@ function vali_codigo(){
         
     function vali_nuevoproducto(){
        
-       var cod_prod= document.getElementById('codigo_nuevoprod').value;          
+       var ord_folio= document.getElementById('ord_folio').value;          
+            
+            if(!(/^\d{7}$/.test(cod_prod))){
+                alert("Favor de ingresar el código de barras de 7 números");
+                
+                return false;
+            }
+            
+       var req_folio= document.getElementById('req_folio').value;
             
             if(!(/^\d{13}$/.test(cod_prod))){
                 alert("Favor de ingresar el código de barras de 13 números");
                 
                 return false;
             }
-            
-       var costo_prod= document.getElementById('codigo_nuevoprod').value;
-            
-            if(costo_prod =='0'){
-                alert("Favor de ingresar el costo del producto");
-                
-                return false;
-            }
         
-        var nom_producto= document.getElementById('nom_producto').value;          
+        var prov_rfc= document.getElementById('prov_rfc').value;          
             
             if(!(/^[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*$/.test(nom_producto))){
-                    alert("Favor de ingresar el nombre del producto de manera correcta");
+                    alert("Favor de ingresar el RFC de manera correcta");
 
                     return false;
             }
         
-        var unidad= document.getElementById('unidad').value;
+        var ord_pagotot= document.getElementById('ord_pagotot').value;
             
             if(unidad =='@'){
                 alert("Favor de elegir una unidad");
