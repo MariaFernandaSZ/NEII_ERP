@@ -11,14 +11,14 @@
         <script src="../js/general.js" type="text/javascript"></script>
         <script>
             function fecha(){
-            var valor = document.getElementById('fechaDev');
+            var valor = document.getElementById('fecha_dev');
             var fecha = new Date();
             var dia;
             var mes;
             if (fecha.getDate() < 10){dia = '0' + fecha.getDate(); } else{dia = fecha.getDate(); }
             if (fecha.getMonth() + 1 < 10){mes = '0' + (fecha.getMonth() + 1); } else{mes = fecha.getMonth() + 1; }
             valor.value = (dia + '/' + mes + '/' + fecha.getFullYear());
-            document.getElementById('fechaDev').innerHTML = valor.value;
+            document.getElementById('fecha_dev').innerHTML = valor.value;
             }
             function InsertarDev(){
             alert("Se han insertado los datos correctamente");
@@ -108,18 +108,18 @@
                     <form action="../../Producto_Re.jsp" method="POST">
                         
                             <span id="titulo"><span class="number">1</span> Consultar registro</span><br><br>
-                            <br><span class="idemp"><input type="text" name="CoBa" id="CoBa" placeholder="Id de producto" required="required" maxlength="13" pattern="[0-9]{13}"title="El ide de producto debe ser de 13 digitos numericos)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
+                            <br><span class="idemp"><input type="text" name="id_devolucion" id="id_devolucion" placeholder="Id de devoluci&oacute;n" required="required" maxlength="7" pattern="[0-9]{7}"title="El ide de producto debe ser de 7 digitos numericos"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                             <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
                             <center>
                             <button type="button" name="ConEs" data-toggle="modal" data-target="#ConsultaEsp" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
                             </center>
                             </form>
                     </div>
-                 <div class="form-style-5">
-                       <form action="../../Eliminar_Devolucion" method="POST" onsubmit="return EliminarDev()">
+                <div class="form-style-5">
+                    <form action="../../Eliminar_Devolucion" method="POST" onsubmit="return EliminarDev()">
                             <span id="titulo"><span class="number">3</span>Eliminar registro</span><br><br>
                             
-                            <span class="idemp"><input type="text" name="IDDev" id="IDDevolucion" placeholder="ID de Devoluci&oacute;n" pattern="[0-9]{7}" maxlength="7" required="required" title="El id de devoluci&oacute;n debe ser de 7 digitos numericos)"/></span> <input type="submit" name="EliminaM" id="EliminaM" style="background-color: #9F150D" class="btn btn-danger" value="Eliminar" onsubmit="return EliminaDev()"/><br><br>
+                            <span class="idemp"><input type="text" name="id_devolucion" id="id_devolucion" placeholder="ID de Devoluci&oacute;n" pattern="[0-9]{7}" maxlength="7" required="required" title="El id de devoluci&oacute;n debe ser de 7 digitos numericos)"/></span> <input type="submit" name="EliminaM" id="EliminaM" style="background-color: #9F150D" class="btn btn-danger" value="Eliminar" onsubmit="return EliminaDev()"/><br><br>
                             <span id="titulo"><span class="number">4</span>Registro de producto rechazado</span><br><br> 
                             <center>
                             <button type="button" name="agregaProd" data-toggle="modal" data-target="#agregaProductos" style="background-color: #9F150D" class="btn btn-danger">Agregar producto</button><br>
@@ -147,9 +147,9 @@
             <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
+                                    <th>Id de devoluci&oacute;n</th>
                                     <th>Id orden de compra</th>
                                     <th>Id orden de producto</th>
-                                    <th>Id de devoluci&oacute;n</th>
                                     <th>Cantidad devuelta</th>
                                     <th>Fecha de devoluci&oacute;n</th>
                                     <th>Motivo</th>
@@ -158,9 +158,9 @@
                                 </tr>
                                 <tr>
                                     
+                                <td><%= request.getAttribute("id_devolucion")%></td>
                                 <td><%= request.getAttribute("id_ordencompra")%></td>
                                 <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("id_devolucion")%></td>
                                 <td><%= request.getAttribute("canitidad_devuelta")%></td>
                                 <td><%= request.getAttribute("fecha_devolucion")%></td>
                                 <td><%= request.getAttribute("motivo")%></td>
@@ -185,15 +185,13 @@
               </div>
               <div class="modal-body">
                 <div class="form-style-5">
-                    <
-                            <form method="POST" action="../../insertar_devolucion" onsubmit="return InsertarDev()">
-                        <span id="titulo"><span class="number">1</span>Inserte el C&oacute;digo de Barras del producto a insertar (Nota: El id debe ser existente)</span><br>
-                            
-                        <span>Id de producto:&nbsp;&nbsp;</span><span><input  type="text" name="CoBa" id="CoBa" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos numericos" required="required"/></span>
+                        <form method="POST" action="../../insertar_devolucion" onsubmit="return InsertarDev()">
+                        <span id="titulo"><span class="number">1</span>Inserte el id de compra (Nota: el id debe existir)</span><br>
+                        <span>Id de compra:&nbsp;&nbsp;</span><span><input  type="text" name="id_compra" id="id_compra" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de compra debe ser de 7 digitos numericos" required="required"/></span>
                         <span id="titulo"><span class="number">2</span>Inserte Datos</span><br>
-                        <span >Cantidad devuelta:&nbsp;&nbsp;</span><span><input type="number" name="cantidadDev" id="cantidadDev" placeholder="1" min="1" max="9999999" pattern="[0-9]{1,9999999}" title="La cantidad devuelta debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
-                        <span >Fecha de devoluci&oacute;n:&nbsp;&nbsp;</span><span><input type="text" id="fechaDev" name="fechaDev" disabled="disabled"/></span>
-                        <span >Motivo:&nbsp;&nbsp;</span><span><input type="text" name="motivo" id="motivo" placeholder="Descripci&oacute;n" required="required" maxlength="250" pattern="[A-Za-z0-9]{1,250}" title="El motivo debe contener de 1 a 250 car&aacute;cteres (n&uacute;meros y letras))"/></span>
+                        <span >Cantidad devuelta:&nbsp;&nbsp;</span><span><input type="number" name="cant_dev" id="cant_dev" placeholder="1" min="1" max="999999999" pattern="[0-9]{1,999999999}" title="La cantidad devuelta debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
+                        <span >Fecha de devoluci&oacute;n:&nbsp;&nbsp;</span><span><input type="text" id="fecha_dev" name="fecha_dev" disabled="disabled"/></span>
+                        <span >Motivo:&nbsp;&nbsp;</span><span><input type="text" name="motivo_dev" id="motivo_dev" placeholder="Descripci&oacute;n" required="required" maxlength="150" pattern="[A-Za-z0-9]{1,150}" title="El motivo debe contener de 1 a 150 car&aacute;cteres (n&uacute;meros y letras))"/></span>
                         <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" value="Agregar" style="background-color: #9F150D" class="btn btn-danger" onsubmit="return InsertarDev() location.href='Producto_Re.jsp'"/>
                     </form>
@@ -216,9 +214,9 @@
                             <span id="titulo"><span class="number">1</span>Elige e ingresa los datos de los registros que desea consultar</span>
                             
                             
-                            <br><br><span>ID de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="CoBa" id="CoBa" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos numericos" required/></span>
-                            <br><br><span>ID de devoluci&oacute;n:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDDevolucion" id="IDDevolucion" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de devoluci&oacute;n debe ser de 7 digitos numericos" required/></span>
-                            <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDOrdenCom" id="IDOrdenCom" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos numericos" required/></span>
+                            <br><br><span>ID de producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_producto" id="id_producto" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos numericos" required/></span>
+                            <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_compra" id="id_compra" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos numericos" required/></span>
+                            <br><br><span>Fecha de devoluci&oacute;n:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="date" name="fecha_dev" id="fecha_dev" placeholder="dd/mm/aaaa" title="La fecha de devoluci&oacute;n debe contener el formato 'dd/mm/aaaa'" required/></span>
                             <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs"><br>
                     </form>
