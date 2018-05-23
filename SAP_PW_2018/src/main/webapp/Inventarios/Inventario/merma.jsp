@@ -10,16 +10,16 @@
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <script>
             function fecha(){
-            var valor = document.getElementById('fecha');
+            var valor = document.getElementById('fecha_mer');
             var fecha = new Date();
             var dia;
             var mes;
             if (fecha.getDate() < 10){dia = '0' + fecha.getDate(); } else{dia = fecha.getDate(); }
             if (fecha.getMonth() + 1 < 10){mes = '0' + (fecha.getMonth() + 1); } else{mes = fecha.getMonth() + 1; }
             valor.value = (dia + '/' + mes + '/' + fecha.getFullYear());
-            document.getElementById('fecha').innerHTML = valor.value;
+            document.getElementById('fecha_mer').innerHTML = valor.value;
             }
-             function InsertarMe(){
+            function InsertarMe(){
             alert("Se han insertado los datos correctamente");
             }
             function EliminarMe(){
@@ -93,19 +93,7 @@
                     <form action="merma.jsp" method="POST" onsubmit="return EliminarMe()">
                            
                            <span id="titulo"><span class="number">2</span>Eliminar producto merma</span><br><br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="EliMerm" id="mermacon" value="Merma conocida" checked>
-                                <label style="font-size: 18px" class="form-check-label" for="mermacon">
-		        	    Merma Conocida
-                                </label>
-                            </div><br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="EliMerm" id="mermadesc" value="Merma desconocida" checked>
-                                <label style="font-size: 18px" class="form-check-label" for="mermadesc">
-		        	    Merma Desconocida
-                                </label>
-                            </div><br>
-                            <span class="idemp"><input type="text" name="IDMerma"  id="IDMerma" placeholder="ID de Merma" maxlength="7" pattern="[0-9]{7}" title="El id de orden de merma debe ser de 7 digitos (n&uacute;meros)" required="required"></span> <input type="submit" name="EliminaM" style="background-color: #9F150D" class="btn btn-danger" value="Eliminar" onclick="return formularioIzq2()"/><br><br>                
+                            <span class="idemp"><input type="text" name="id_merma"  id="id_merma" placeholder="ID de Merma" maxlength="7" pattern="[0-9]{7}" title="El id de orden de merma debe ser de 7 digitos (n&uacute;meros)" required="required"></span> <input type="submit" name="EliminaM" style="background-color: #9F150D" class="btn btn-danger" value="Eliminar" /><br><br>                
                             <span id="titulo"><span class="number">3</span>Modificar</span><br><br>
                             <center>
                                 <button type="button" name="ModificaProd" data-toggle="modal" data-target="#ModificaProductos" style="background-color: #9F150D" class="btn btn-danger" onsubmit="return EliminarMe()">Modificar</button><br>
@@ -143,18 +131,18 @@
 		<form method="POST" action="../../insertar_merma" onsubmit="return InsertarMe()">
                
                          <span id="titulo"><span class="number">1</span>Inserte el Id del producto (Nota: el id debe existir)</span>
-                         <br><span>Id de producto:&nbsp;&nbsp;</span><span ><input type="text" name="CoBa" id="CoBa" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required="required"/></span>
+                         <br><span>Id de producto:&nbsp;&nbsp;</span><span ><input type="text" name="id_producto" id="id_producto" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required="required"/></span>
                             <span id="titulo"><span class="number">2</span>Inserte Datos</span>
-                            <br><br><span >Fecha de merma:&nbsp;&nbsp;</span><span><input type="text" name="fecha" id="fecha" disabled/></span>
+                            <br><br><span >Fecha de merma:&nbsp;&nbsp;</span><span><input type="text" name="fecha_mer" id="fecha_mer" disabled/></span>
                             <label>Tipo de merma:</label>
-                            <select id="job" name="field4" required="required">
+                            <select id="tipo_merma" name="tipo_merma" required="required">
                             <optgroup label="Merma">
                                 <option value="MermaConocida">Merma Conocida </option>
                                 <option value="MermaDesconocida">Merma Desconocida </option>
                             </optgroup>
                             </select>
-                                <span>Cantidad merma:&nbsp;&nbsp;</span><span><input type="number" id="cantidadMerma" name="cantidadMerma" placeholder="1" min="1" max="9999999" pattern="[0-9]{1,9999999}" title="La cantidad merma debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
-                                <span >Observaciones:&nbsp;&nbsp;</span><span><input type="text" id="observaciones" name="Obser"  placeholder="Comentarios" maxlength="250" pattern="[A-Za-z0-9]{1,250}" title="El motivo debe contener de 1 a 250 car&aacute;cteres (n&uacute;meros y letras))" required="required"/></span><br><br>
+                                <span>Cantidad merma:&nbsp;&nbsp;</span><span><input type="number" id="cant_mer" name="cant_mer" placeholder="1" min="1" max="999999999" pattern="[0-9]{1,999999999}" title="La cantidad merma debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
+                                <span >Observaciones:&nbsp;&nbsp;</span><span><input type="text" id="motivo_mer" name="motivo_mer"  placeholder="Comentarios" maxlength="150" pattern="[A-Za-z0-9]{1,150}" title="El motivo debe contener de 1 a 150 car&aacute;cteres (n&uacute;meros y letras))" required="required"/></span><br><br>
                                 <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Ingresar" id="IngresarM" onsubmit="return InsertarMe() location.href='merma.jsp'"><br>
                     </form>
@@ -175,17 +163,17 @@
                 <div class="form-style-5">
                     <form method="POST" action="../../ConsultaE_Merma" onsubmit="return formularioModifica()">
                             <span id="titulo"><span class="number">1</span>Inserte el id del merma a modificar (Nota: el id debe existir)</span>
-                            <br><br><span>ID de merma:&nbsp;&nbsp;</span><span ><input type="number" min="1" max="999999999999" pattern="[0-9]{7}" title="El id de merma debe ser de 7 digitos numericos" name="IDMerma" id="IDMerma" placeholder="##########" disabled="disabled"/></span>
+                            <br><br><span>ID de merma:&nbsp;&nbsp;</span><span ><input type="text" name="id_merma" id="id_merma" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de merma debe ser de 7 digitos (n&uacute;meros)"/></span>
                             <span id="titulo"><span class="number">2</span>Inserte Datos a modificar</span>
                             <br><label>Tipo de merma:</label>
-                            <select id="Tip" name="field4" required="required">
+                            <select id="tipo_merma" name="tipo_merma" required="required">
                             <optgroup label="Merma">
                                 <option value="MermaConocida">Merma Conocida </option>
                                 <option value="MermaDesconocida">Merma Desconocida </option>
                             </optgroup>
                             </select>
-                                <br><span>Cantidad:&nbsp;&nbsp;</span><span><input type="number" id="cantidad1" name="cantidad" placeholder="1" min="1" max="999999" step="1" required="required"/></span>
-                                <span >Observaciones:&nbsp;&nbsp;</span><span><input type="text" id="observaciones" name="Obser" pattern="[A-Za-z0-9]{1,250}" title="Debe contener de 1 a 250 car&aacute;cteres" placeholder="Comentarios" required="required" /></span><br><br>
+                                <br><span>Cantidad de merma:&nbsp;&nbsp;</span><span><input type="number" id="cant_mer" name="cant_mer" placeholder="1" min="1" max="999999999" pattern="[0-9]{1,999999999}" title="La cantidad merma debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
+                                <span >Observaciones:&nbsp;&nbsp;</span><span><input type="text" id="motivo_mer" name="motivo_mer" pattern="[A-Za-z0-9]{1,150}" title="Debe contener de 1 a 150 car&aacute;cteres" placeholder="Comentarios" required="required" /></span><br><br>
                                 <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Modificar" id="ModificarM" onclick="return formularioModifica() location.href='merma.jsp'"><br>
                     

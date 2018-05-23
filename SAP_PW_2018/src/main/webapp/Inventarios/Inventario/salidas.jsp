@@ -102,21 +102,20 @@
                 <div class="form-style-5">
                     <form action="../../Consulta_Salidas" method="POST">
                         
-                            <span id="titulo"><span class="number">1</span> Consultar registro</span><br><br>
-                           <br><span class="idemp"><input type="text" name="IDSalida" id="IDSalida" placeholder="Id de Salida" required="required" pattern="[0-9]{7}" maxlength="7" title="El id_Salida debe ser de 7 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
-                            <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
-                            <center>
-                            <button type="button" name="ConEs" data-toggle="modal" data-target="#ConsultaEsp" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
-                            </center>
+                           <span id="titulo"><span class="number">1</span> Consultar registro por id de producto</span><br><br>
+                           <span class="idemp"><input type="text" name="id_producto" id="id_producto" placeholder="Id de producto" required="required" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
+                    </form>
+                    <form action="../../Consulta_Salidas" method="POST">  
+                           <span id="titulo"><span class="number">2</span> Consulta registro por orden de venta</span><br><br>
+                           <span class="idemp"><input type="text" name="id_venta" id="id_venta" placeholder="Orden de venta" maxlength="7" pattern="[0-9]{7}" title="El id de orden de venta debe ser de 7 digitos (n&uacute;meros)" required/></span><input type="submit" name="Busca" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
+                            
                             </form>
                     </div>
                  <div class="form-style-5">
                     <form action="salidas.jsp" method="POST">
                          
-                         <span id="titulo"><span class="number">5</span>Insertar</span><br><br>
-                         <button type="button" name="Insertar" data-toggle="modal" data-target="#Insertar" style="background-color: #9F150D; width:185px;" class="btn btn-danger" >Registrar salida</button><br><br>
                          
-                         <span id="titulo"><span class="number">6</span>Imprimir</span><br><br>
+                         <span id="titulo"><span class="number">3</span>Imprimir</span><br><br>
                             
                            <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_Re.pdf'">Generar PDF</button><br><br>
                            <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_RE.ods'">Generar Excel</button><br><br>
@@ -131,21 +130,17 @@
            <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
-                                    
-                                   
-                                    <th>C&oacute;digo de barras</th>
-                                    <th>Id de salida</th>
+                                    <th>Id de producto</th>
                                     <th>Id de orden de venta</th>
-                                    <th>Fecha de salida</th>
                                     <th>Cantidad vendida</th>
-                                   
+                                    <th>Monto total de venta</th>
+                               
                                 </tr>
                                 <tr>
                                 <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("id_salida")%></td>
                                 <td><%= request.getAttribute("id_ordenventa")%></td>
-                                <td><%= request.getAttribute("fecha_salida")%></td>
                                 <td><%= request.getAttribute("cantidad_vendida")%></td>
+                                <td><%= request.getAttribute("total_mon")%></td>
                                    
                                    
                                 </tr>
@@ -156,60 +151,6 @@
             
             </div>
             </div>
-         
-         
-           <!-- Modal Busqueda Especifica-->
-                <div class="modal fade" id="ConsultaEsp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title" id="myModalLabel">Consulta Espec&iacute;fica</h4>
-              </div>
-              <div class="modal-body">
-                <div class="form-style-5">
-                    <form method="POST" action="../../ConsultaE_Salidas" onsubmit="return EspecificaSal()">
-                            <span id="titulo"><span class="number">1</span>Elige e ingresa los datos de los registros que desea consultar</span>
-                            
-                            
-                            <br><br><span>ID de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="CoBa" id="CoBa" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required/></span>
-                           <br><br><span>ID de salida:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDSalida" id="IDSalida" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de salida debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                           <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDOrdenCom" id="IDOrdenCom" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                           <br><br>
-                           <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                           <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaSal() location.href='salidas.jsp'"><br>
-                    </form>
-                </div>
-              </div></div>
-          </div>
-        </div>      
-            <div class="modal fade" id="Insertar"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Insertar datos</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-style-5">
-                            <form method="POST" action="salidas.jsp" onsubmit="return InsertarSal()">
-                                <span id="titulo"><span class="number">1</span>Ingresa el n&uacute;mero de compra</span><br>
-
-                                <span>Id orden de venta</span><span><input type="text" name="IDOrdenVen" id="IDOrdenVen" placeholder="##########" maxlength="7" pattern="[A-Za-z0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros y letras))" required="required"/></span>
-                                <span>C&oacute;digo de barras</span><span><input type="text" name="CoBa" id="CoBa" placeholder="##########" required="required" maxlength="13" pattern="[A-Za-z0-9]{13}" title="El c&oacute;digo de barras debe ser de 13 digitos (n&uacute;meros y letras))"/></span>
-                                <span>Cantidad vendida</span><span><input type="number" name="cantidadVen" id="cantidadVen" placeholder="1" min="1" max="9999999" pattern="[0-9]{1,9999999}" title="La cantidad recibida debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
-                                <span>Fecha de salida</span><span><input type="text" id="fechaSal" name="fechaSal" disabled="disabled"/></span>
-                                <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                <input type="submit" style="background-color: #9F150D" value="Insertar" class="btn btn-danger" onsubmit="return InsertarSal() location.href='salidas.jsp'"/>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-          
-          
-          
-          
                
        <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
            <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>

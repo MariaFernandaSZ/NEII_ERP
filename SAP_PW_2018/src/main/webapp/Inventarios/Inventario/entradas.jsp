@@ -11,14 +11,14 @@
         <script src="../js/validaciones.js"></script>
         <script>
             function fecha(){
-            var valor = document.getElementById('fechaEnt');
+            var valor = document.getElementById('fecha_ingreso');
             var fecha = new Date();
             var dia;
             var mes;
             if (fecha.getDate() < 10){dia = '0' + fecha.getDate(); } else{dia = fecha.getDate(); }
             if (fecha.getMonth() + 1 < 10){mes = '0' + (fecha.getMonth() + 1); } else{mes = fecha.getMonth() + 1; }
             valor.value = (dia + '/' + mes + '/' + fecha.getFullYear());
-            document.getElementById('fechaEnt').innerHTML = valor.value;
+            document.getElementById('fecha_ingreso').innerHTML = valor.value;
             }
             function InsertarEnt(){
             var fechaEnt = document.getElementById('fechaEnt');
@@ -109,7 +109,7 @@
                         <form action="../../Consulta_Entradas" method="POST">
 
                             <span id="titulo"><span class="number">1</span> Consultar registro</span><br><br>
-                            <br><span class="idemp"><input type="text" name="IDEntrada" id="IDEntrada" placeholder="Id_Entrada" required="required" pattern="[0-9]{7}" maxlength="7" title="El id_entrada debe ser de 7 digitos (n&uacute;meros))"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
+                            <br><span class="idemp"><input type="text" name="no_lote" id="no_lote" placeholder="N&uacute;mero de lote" required="required" pattern="[0-9]{7}" maxlength="7" title="El n&uacute;mero de lote debe ser de 7 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                             <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
                             <center>
                                 <button type="button" name="ConEs" data-toggle="modal" data-target="#ConsultaEsp" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
@@ -132,26 +132,20 @@
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tr>
-                                <th>id de entrada</th>
-                                <th>id orden de compra</th>
-                                <th>C&oacute;digo de barras</th>
-                                <th>id de lote</th>
-                                <th>Tipo de producto</th>
+                                <th>N&uacute;mero de lote</th>
+                                <th>Id orden de compra</th>
+                                <th>Id de producto</th>
                                 <th>Cantidad recibida</th>
                                 <th>Fecha de registro</th>
-                                <th>Fecha de caducidad</th>
 
                             </tr>
                             <tr>
-                                <td><%= request.getAttribute("id_entrada")%></td>
+                                <td><%= request.getAttribute("no_lote")%></td>
                                 <td><%= request.getAttribute("id_compra")%></td>
                                 <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("id_lote")%></td>
-                                <td><%= request.getAttribute("tipo_producto")%></td>
                                 <td><%= request.getAttribute("cantidad_recibido")%></td>
                                 <td><%= request.getAttribute("fecha_registro")%></td>
-                                <td><%= request.getAttribute("fecha_caducidad")%></td>
-
+                                
                             </tr>
                         </table>    
                     </div> 
@@ -170,19 +164,76 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-style-5">
+                            <form method="POST" action="entradas.jsp" >
+                                <span id="titulo"><span class="number">1</span>Ingresa el id de orden de compra</span><br>
+                                <span>Id orden de compra</span><span><input type="text" name="IDOrdenCom" id="IDOrdenCom" placeholder="##########" maxlength="7" pattern="[A-Za-z0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros y letras))" required="required"/></span>
+                                <input type="submit" style="background-color: #9F150D; width: 140px" value="continuar" class="btn btn-danger"/>
+                                <br>
+                            </form>
+                            <br>
+                           <form method="POST" action="entradas.jsp" onsubmit="return InsertarEnt()">
+                              
+                                <span id="titulo"><span class="number">2</span>Visualiza lso productos y selecciona los productos a ingresar</span><br>
+                                 <br><div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Selecciona</th>
+                                            <th>Id de producto</th>
+                                            <th>Proveedor</th>
+                                            <th>Nombre del producto</th>
+                                            <th>Tipo de producto</th>
+                                            <th>Cantidad en existencia</th>
+                                            <th>M&iacute;nimo</th>
+                                            <th>M&aacute;ximo</th>
+                                            <th>Costo unitario</th>
+                                            <th>Costo total</th>
+                                            <th>Unidad de medida</th>
+                                            
+                                         </tr>
+                                         <tr>
+                                            <td class="seleccion"><input type="radio" id="producto" name="Producto"></td>
+                                            <td><%= request.getAttribute("id_producto")%></td>
+                                            <td><%= request.getAttribute("proveedor")%></td>
+                                            <td><%= request.getAttribute("nombre_pro")%></td>
+                                            <td><%= request.getAttribute("tipo_pro")%></td>
+                                            <td><%= request.getAttribute("cant_exist")%></td>
+                                            <td><%= request.getAttribute("min_pro")%></td>
+                                            <td><%= request.getAttribute("max_pro")%></td>
+                                            <td><%= request.getAttribute("costo_uni")%></td>
+                                            <td><%= request.getAttribute("costo_ven")%></td>
+                                            <td><%= request.getAttribute("uni_med")%></td>
+                                            
+                                         </tr>
+                              
+                                     </table>    
+                        </div>
+                                <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <input type="submit" style="background-color: #9F150D; width: 140px" value="Confirmar compra" class="btn btn-danger" onsubmit="return InsertarEnt()"/>
+                                <button type="button" name="Registrar entrada" data-toggle="modal" data-target="#Registrar" style="background-color: #9F150D; width:185px;" class="btn btn-danger" >Registrar Entrada</button><br><br>
+                  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+         <!-- Insertar Datos-->
+        <div class="modal fade" id="Registrar"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Insertar datos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-style-5">
                             <form method="POST" action="entradas.jsp" onsubmit="return InsertarEnt()">
                                 <span id="titulo"><span class="number">1</span>Ingresa el n&uacute;mero de compra</span><br>
 
-                                <span>Id orden de compra</span><span><input type="text" name="IDOrdenCom" id="IDOrdenCom" placeholder="##########" maxlength="7" pattern="[A-Za-z0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros y letras))" required="required"/></span>
-                                <span>C&oacute;digo de barras</span><span><input type="text" name="CoBa" id="CoBa" placeholder="##########" required="required" maxlength="13" pattern="[A-Za-z0-9]{13}" title="El c&oacute;digo de barras debe ser de 13 digitos (n&uacute;meros y letras))"/></span>
-                                <span>Id de lote</span><span><input type="text" name="IDEntrada" id="IDEntrada" placeholder="##########" maxlength="7" pattern="[A-Za-z0-9]{7}" title="El id de entrada debe ser de 7 digitos (n&uacute;meros y letras))" required="required"/></span>
-                                <span>Tipo de producto</span><span><input type="text" name="TipoPro" id="TipoPro" placeholder="Botana" maxlength="100" pattern="[A-Za-z0-9]{1,100}" title="El tipo de producto debe contener de 1 a 100 car&aacute;cteres (n&uacute;meros y letras))" required="required"/></span>
-                                <span>Cantidad recibida</span><span><input type="number" name="cantidadDev" id="cantidadRec" placeholder="1" min="1" max="9999999" pattern="[0-9]{1,9999999}" title="La cantidad recibida debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
-                                <span>Fecha de registro</span><span><input type="text" id="fechaEnt" name="fechaEnt" disabled="disabled"/></span>
-                                <span>Fecha de caducidad</span><span><input type="date" name="fechaCad" id="fechaCad" placeholder="dd/mm/aaaa" required="required"/></span>
+                                <span>Id orden de compra</span><span><input type="text" name="id_compra" id="id_compra" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required="required"/></span>
+                                <span>Fecha de registro</span><span><input type="text" id="fecha_ingreso" name="fecha_ingreso" disabled="disabled"/></span>
                                 <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                <input type="submit" style="background-color: #9F150D" value="Insertar" class="btn btn-danger" onsubmit="return InsertarEnt() location.href = 'entradas.jsp'"/>
-
+                                <input type="submit" style="background-color: #9F150D; width: 90px" value="Insertar" class="btn btn-danger" onsubmit="return InsertarEnt() location.href = 'entradas.jsp'"/>
+                          
                         </form>
                     </div>
                 </div>
@@ -203,10 +254,9 @@
                         <form method="POST" action="../../EntradasConsulta_E" onsubmit="return EspecificaEnt()">
                             <span id="titulo"><span class="number">1</span>Elige e ingresa los datos de los registros que desea consultar</span>
 
-                            <br><br><span>ID de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="CoBa" id="CoBa" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>ID de entrada:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDEntrada" id="IDEntrada" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de entrada debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDOrdenCom" id="IDOrdenCom" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>Tipo de Producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="TipoPro" id="TipoPro" placeholder="Botana" maxlength="100" pattern="[A-Za-z0-9]{1,100}" title="El tipo de producto debe contener de 1 a 100 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
+                            <br><br><span>ID de producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_producto" id="id_producto" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required/></span>
+                            <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_compra" id="id_compra" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required/></span>
+                            <br><br><span>Fecha de ingreso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="date" name="fecha_ingreso" placeholder="dd/mm/aaaa" maxlength="100" title="El El formato de fecha debe ser dd/mm/aaaa" required/></span>
                             <br><br>
                             <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaEnt()"><br>
