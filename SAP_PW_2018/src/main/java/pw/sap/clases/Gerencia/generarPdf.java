@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pw.sap.pojo.Gerencia;
+
+package pw.sap.clases.Gerencia;
+
+import java.io.FileOutputStream;
+import java.util.Date;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
@@ -21,30 +20,11 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Properties;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-public class Reporte {
-
-    Connection conn;
-
-    private static String FILE = "c:/Users/maxim/Desktop/respaldo/reporte-gerencial.pdf";
-
+public class generarPdf {
+    
+    private static String FILE = "c:/Users/maxim/Desktop/respaldo/nuevo.pdf";
+    
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
@@ -54,33 +34,7 @@ public class Reporte {
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.BOLD);
 
-    public Reporte() throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-    }
-
-    /**
-     * inicio de conexion de la base de datos con postgres
-     *
-     * @throws SQLException
-     */
-    public void openDB() throws SQLException {
-        Properties connProp = new Properties();
-        connProp.put("user", "postgres");
-        connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sap", connProp);
-    }
-
-    /**
-     * Cierra la conexión con la base de datos
-     *
-     * @throws SQLException
-     */
-    public void closeDB() throws SQLException {
-        conn.close();
-    }
-
-    public void generarReporte() {
-
+    public static void main(String[] args) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
@@ -93,9 +47,12 @@ public class Reporte {
             e.printStackTrace();
         }
     }
-    
+
+    // iText allows to add metadata to the PDF which can be viewed in your Adobe
+    // Reader
+    // under File -> Properties
     private static void addMetaData(Document document) {
-        document.addTitle("Reporte Gerencial");
+        document.addTitle("My first PDF");
         document.addSubject("Using iText");
         document.addKeywords("Java, PDF, iText");
         document.addAuthor("Lars Vogel");
@@ -222,5 +179,5 @@ public class Reporte {
             paragraph.add(new Paragraph(" "));
         }
     }
-
+    
 }
