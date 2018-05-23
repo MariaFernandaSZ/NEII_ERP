@@ -33,16 +33,6 @@ public class OrdenCompraPojo {
         Class.forName("org.postgresql.Driver");
     }
     
-    public void openDB() throws SQLException {
-        Properties connProp = new Properties();
-        connProp.put("user", "postgres");
-        connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:8485/sap", connProp);
-    }
-    
-    public void closeDB() throws SQLException {
-        conn.close();
-    }
     
     private String ord_folio;
     private requisicionPojo requisicionpojo;

@@ -35,7 +35,7 @@ public class QuerysVentas {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PWS", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SAP_PW", connProp);
     }
 
     /**

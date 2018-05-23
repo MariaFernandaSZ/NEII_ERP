@@ -29,32 +29,13 @@ public class QuerysCompras {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PWS", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SAP_PW", connProp);
     }
     
     public void closeDB() throws SQLException {
         conn.close();
     }
     
-    public boolean agregarProducto(Productos proBean) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            openDB();
-            try {
-                
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        //st.executeUpdate("INSERT INTO producto (id_producto, nombre_producto, unidad, maximo, minimo) VALUES ('"+proBean.getCodigo_nuevoprod()+"','"+proBean.getNom_producto()+"','"+proBean.getUnidad()+"',"+proBean.getMaxproducto()+","+proBean.getMinproducto()+")");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
     
     public boolean agregarProveedores(Proveedores proBean) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
@@ -76,7 +57,7 @@ public class QuerysCompras {
             return agregado;
         }
     
-    public boolean agregarOrdenCompra(OrdenCompraPojo proBean) throws SQLException, ClassNotFoundException{
+    public boolean agregarOrdenCompra(OrdenCompraPojo ordenPojo) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
             Genera_IDCom idorden = new Genera_IDCom();
             openDB();
@@ -85,7 +66,7 @@ public class QuerysCompras {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-//                        st.executeUpdate("INSERT INTO orden_compra VALUES('"+idorden.idOrdenCompra()+"','"+proBean.getId_requisicion()+"',"+proBean.getFecha_orden()+",'"+proBean.getEstatus()+"','"+proBean.getForma_pago()+"')");
+                        st.executeUpdate("INSERT INTO orden_compra VALUES('"+idorden.idOrdenCompra()+"','"+ordenPojo.getRequisicionpojo()+"',"+ordenPojo.getProveedores()+",'"+ordenPojo.getOrd_fecha()+"','"+ordenPojo.getOrd_pago()+"')");
                         agregado=true;
                         st.close();
                     }
