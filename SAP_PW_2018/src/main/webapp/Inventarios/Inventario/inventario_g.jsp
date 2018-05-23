@@ -17,15 +17,8 @@ and open the template in the editor.
         <script src="../js/validaciones.js" type="text/javascript"></script>
    <script>
         function EspecificaIG(){
-            var coba = document.getElementById('CoBa');
-            var IDEnt = document.getElementById('IDEnt');
-            var IDOrdenCom = document.getElementById('IDOrdenCom');
-            var TipoPro = document.getElementById('TipoPro');
-            if (coba.length===0 && IDEnt.length===0 && IDOrdenCom.length===0 && TipoPro.length===0){
-            alert("Consulta vacia");
-            }else{
-            alert("Consultando"); 
-        }
+           alert("Consultando");
+            
             }
         </script>
     </head>
@@ -93,7 +86,7 @@ and open the template in the editor.
                 <div class="form-style-5">
                     <form action="../../Consulta_G" method="POST">
                             <span id="titulo"><span class="number">1</span> Consultas</span><br><br>
-                            <span class="idemp"><input type="text" name="IDEntrada" id="IDEntrada" placeholder="Id_entrada" pattern="[0-9]{7}" maxlength="7" title="El id debe ser de 7 digitos (n&uacute;meros)" required></span> 
+                            <span class="idemp"><input type="text" name="id_producto" id="id_producto" placeholder="Id de producto" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required></span> 
                             
                             <input type="submit" name="ConsultaInvg" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
                             <br><br>
@@ -120,39 +113,39 @@ and open the template in the editor.
 
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
              <div class="table-responsive">
-                            <table class="table table-bordered">
-                                 <tr>
-                                <th>id de entrada</th>
-                                <th>id orden de compra</th>
-                                <th>C&oacute;digo de barras</th>
-                                <th>id de lote</th>
-                                <th>Tipo de producto</th>
-                                <th>Cantidad recibida</th>
-                                <th>Fecha de registro</th>
-                                <th>Fecha de caducidad</th>
-
-                            </tr>
-                            <tr>
-                                <td><%= request.getAttribute("id_entrada")%></td>
-                                <td><%= request.getAttribute("id_compra")%></td>
-                                <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("id_lote")%></td>
-                                <td><%= request.getAttribute("tipo_producto")%></td>
-                                <td><%= request.getAttribute("cantidad_recibido")%></td>
-                                <td><%= request.getAttribute("fecha_registro")%></td>
-                                <td><%= request.getAttribute("fecha_caducidad")%></td>
-
-                            </tr>
-                            </table>    
+                        <table class="table table-bordered">
+                              <tr>
+                                  <th>Id de producto</th>
+                                  <th>Proveedor</th>
+                                  <th>Nombre del producto</th>
+                                  <th>Tipo de producto</th>
+                                  <th>Cantidad en existencia</th>
+                                  <th>M&iacute;nimo</th>
+                                  <th>M&aacute;ximo</th>
+                                  <th>Costo unitario</th>
+                                  <th>Costo total</th>
+                                  <th>Unidad de medida</th>
+                                            
+                              </tr>
+                              <tr>
+                                  <td><%= request.getAttribute("id_producto")%></td>
+                                  <td><%= request.getAttribute("proveedor")%></td>
+                                  <td><%= request.getAttribute("nombre_pro")%></td>
+                                  <td><%= request.getAttribute("tipo_pro")%></td>
+                                  <td><%= request.getAttribute("cant_exist")%></td>
+                                  <td><%= request.getAttribute("min_pro")%></td>
+                                  <td><%= request.getAttribute("max_pro")%></td>
+                                  <td><%= request.getAttribute("costo_uni")%></td>
+                                  <td><%= request.getAttribute("costo_ven")%></td>
+                                  <td><%= request.getAttribute("uni_med")%></td>
+                                            
+                             </tr>
+                        </table>    
                         </div>    
             </div>
             
             </div>  
             </div>
-            
-          
-        
-        
         
          <!-- Modal Consulta especifica-->
         <div class="modal fade" id="ConsultaIG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -166,10 +159,9 @@ and open the template in the editor.
                      <form method="POST" action="../../ConsultaE_G" onsubmit="return EspecificaIG()">
                             <span id="titulo"><span class="number">1</span>Ingrese los Datos a consultar</span>
                             
-                            <br><br><span>C&oacute;digo de barras:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="CoBa" id="CoBa" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El c&oacute;digo de barras debe ser de 13 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>ID de entrada:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDEntrada" id="IDEntrada" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de entrada debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="IDOrdenCom" id="IDOrdenCom" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>Tipo de Producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="TipoPro" id="TipoPro" placeholder="Botana" maxlength="100" pattern="[A-Za-z0-9]{1,100}" title="El tipo de producto debe contener de 1 a 100 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
+                            <br><br><span>Proveedor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="proveedor" id="proveedor" placeholder="FEMSA" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El proveedor de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
+                            <br><br><span>Nombre del producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="nombre_pro" id="nombre_pro" placeholder="Coca-cola" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El nombre de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
+                            <br><br><span>Tipo de Producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="tipo_pro" id="tipo_pro" placeholder="Refresco" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El tipo de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
                             <br><br>
                             <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaIG()"><br>
