@@ -40,15 +40,18 @@ public class Consulta_Merma extends HttpServlet {
         
         Conexion c=new Conexion();
         
-        ArrayList l=c.consultaMermac(Integer.parseInt(request.getParameter("IDMerma")));
+        ArrayList l=c.consultaMermac(request.getParameter("id_merma"));
         
-     
+        System.out.println(l.get(0));
+         System.out.println(l.get(1));
+          System.out.println(l.get(2));
+           System.out.println(l.get(3));
         request.setAttribute("id_producto", l.get(0));
         request.setAttribute("id_merma", l.get(1));
-        request.setAttribute("fecha_merma", l.get(2));
+        request.setAttribute("fecha_mer", l.get(2));
         request.setAttribute("tipo_merma", l.get(3));
-        request.setAttribute("cantidad_merma", l.get(4));
-        request.setAttribute("observaciones", l.get(5));
+        request.setAttribute("cant_mer", l.get(4));
+        request.setAttribute("motivo_mer", l.get(5));
         
         request.getRequestDispatcher("Inventarios/Inventario/merma_con.jsp").forward(request, response);
         
@@ -56,18 +59,7 @@ public class Consulta_Merma extends HttpServlet {
         
         
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Consulta_Merma</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Consulta_Merma at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
