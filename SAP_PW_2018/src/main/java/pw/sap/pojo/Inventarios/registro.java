@@ -29,8 +29,8 @@ public class registro {
     public void openDB() throws SQLException {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "pdvkyk");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PWBDD2", connProp);
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
     
      public void closeDB() throws SQLException {
@@ -38,13 +38,13 @@ public class registro {
     }
     
     
-            public void agregarMerma(String codigo, String fecha, String tipo, String cantidad, String observaciones) throws SQLException, ClassNotFoundException{
+            public void agregarMerma(String codigo, String fecha, String tipo, String cantidad, String motivo) throws SQLException, ClassNotFoundException{
          
-             openDB();
+                 openDB();
                   PreparedStatement ps;
                     
-                     ps = conn.prepareStatement("INSERT INTO merma(id_producto,fecha_merma,tipo_merma,cantidad_merma,observaciones) "
-                                       + " VALUES ('"+codigo+"','"+fecha+"','"+tipo+"',"+cantidad+",'"+observaciones+"')");
+                     ps = conn.prepareStatement("INSERT INTO merma(id_producto,fecha_merma,tipo_merma,cantidad_merma,motivo) "
+                                       + " VALUES ('"+codigo+"','now()','"+tipo+"',"+cantidad+",'"+motivo+"')");
                     ResultSet rs= ps.executeQuery();
           
                     System.out.println(ps);
@@ -64,6 +64,8 @@ public class registro {
         
             closeDB();
         }
+    
+    
                
    
    
@@ -81,6 +83,17 @@ public class registro {
             closeDB();
         }
           
-   
+    public void eliminarMerma (String codigo) throws SQLException, ClassNotFoundException{
+         
+            openDB();
+            
+                     PreparedStatement ps;
+                    
+                    ps = conn.prepareStatement("delete from merma where id_merma="+codigo);
+                    ResultSet rs= ps.executeQuery();
+                    System.out.println(ps);
+        
+            closeDB();
+        }   
    
 }
