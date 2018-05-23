@@ -62,7 +62,7 @@ public class AgregaProducto extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws IOException{
         response.setContentType("text/plain");
-        String codprod = request.getParameter("action");
+        String codprod = request.getParameter("codprod");
 
          QuerysVentas c = null;
         try {
@@ -87,12 +87,13 @@ public class AgregaProducto extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AgregaProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (codprod.equalsIgnoreCase("demo1")) {
-            Gson gson = new Gson();
-            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
-            out.flush();
-            out.close();
-        }
+                out.print(nombre);
+//        if (codprod.equalsIgnoreCase("demo1")) {
+//            Gson gson = new Gson();
+//            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
+//            out.flush();
+//            out.close();
+//        }
     }
 
     /**
@@ -105,7 +106,7 @@ public class AgregaProducto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         response.setContentType("text/plain");
-        String codprod = request.getParameter("action");
+        String codprod = request.getParameter("codprod");
 //        String codigo = codprod.
 
          QuerysVentas c = null;
@@ -131,13 +132,13 @@ public class AgregaProducto extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AgregaProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (codprod.equalsIgnoreCase("demo1")) {
-            Gson gson = new Gson();
-            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
-            out.flush();
-            out.close();
-        }
+        out.print(nombre);
+//        if (codprod.equalsIgnoreCase("demo1")) {
+//            Gson gson = new Gson();
+//            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
+//            out.flush();
+//            out.close();
+//        }
     }
     
     

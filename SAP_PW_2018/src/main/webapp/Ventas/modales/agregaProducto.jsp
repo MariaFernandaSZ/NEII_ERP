@@ -40,15 +40,13 @@
 
             }else{
                 $.ajax({
-                    type:'GET',
-                    url: '../AgregaProducto?action=demo1',
-                    headers : {
-                        Accept: "application/json; charset=utf-8",
-                        "Content-Type" : "application/json; charset=utf-8"
-                    },
+                    type:'POST',
+                    url: '../AgregaProducto',
+                    data: {codprod:codprod},
                     success: function (result) {
-                        var producto = $.parseJSON(result);
-                        alert(producto.nombre);
+                        $('#nomprod').val(result);
+                        //var producto = $.parseJSON(result);
+                        //alert(producto.nombre);
                         //document.getElementById("text").innerHTML = 'Name: ' + json.name + ' & Phone:' + json.phone;
                         
                     }
