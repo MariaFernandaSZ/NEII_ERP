@@ -29,7 +29,7 @@ public class Conexion {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SAP_PW", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
 
     /**
@@ -169,22 +169,7 @@ public class Conexion {
      
      
      
-     
-     public void Eliminardev(int IDDevolucion)throws SQLException {
-        openDB();    
-        ArrayList r=new ArrayList();
-        //Statement stmt;
-        PreparedStatement ps;
-        //stmt = conn.createStatement();
-        ps=conn.prepareStatement("DELETE  FROM devolucion where id_devolucion=?");
-       
-        ps.setInt(1, IDDevolucion);
-        ResultSet rs= ps.executeQuery();
-        System.out.println(ps);
-        int coba2= ps.executeUpdate();
-        closeDB();
-        
-    }
+   
      
      
      public ArrayList consultaSalidas(int CoBa) throws SQLException {
@@ -241,19 +226,23 @@ public class Conexion {
      
      
      
-     public ArrayList consultaMermac(int IDMerma) throws SQLException {
+     public ArrayList consultaMermac(String IDMerma) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
-        ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,observaciones FROM merma WHERE id_merma=?");
-        ps.setInt(1, IDMerma);
+        ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo FROM merma WHERE id_merma=? and tipo_merma='MermaConocida'");
+        ps.setString(1, IDMerma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
+          System.out.println(rs.getString(1));
+          System.out.println(rs.getString(2));
+          System.out.println(rs.getString(3));
+          System.out.println(rs.getString(4));
             while (rs.next()) {                
                 //System.out.println(rs.getInt(1));
-                r.add(rs.getInt(1));
+                r.add(rs.getString(1));
                 r.add(rs.getString(2));
                 r.add(rs.getString(3));
                 r.add(rs.getString(4));
