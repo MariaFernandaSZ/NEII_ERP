@@ -35,7 +35,7 @@ public class QuerysVentas {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SAP_PW", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/pw_sap", connProp);
     }
 
     /**
@@ -56,7 +56,7 @@ public class QuerysVentas {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO empresa_cliente VALUES ('"+idcli.idClientes()+"','"+cliBean.getNombreEmpresa()+"',"+cliBean.getPostalDomEmpresa()+",'"+cliBean.getEstadoDomEmpresa()+"','"+cliBean.getMuniDomEmpresa()+"','"+cliBean.getCallenumDomEmpresa()+"','"+cliBean.getRfcEmpresa()+"')");
+                        st.executeUpdate("INSERT INTO empresa_cliente VALUES ('"+idcli.idClientes()+"','"+cliBean.getNombreEmpresa()+"','"+cliBean.getRfcEmpresa()+"','"+cliBean.getEstadoDomEmpresa()+"','"+cliBean.getMuniDomEmpresa()+"','"+cliBean.getCallenumDomEmpresa()+"','"+cliBean.getPostalDomEmpresa()+"')");
                         agregado=true;
                         st.close();
                     }
@@ -76,7 +76,7 @@ public class QuerysVentas {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO interm_cliente VALUES ('"+idcli.idIntermediario()+"','"+interBean.getIntermNom()+"',"+interBean.getIntermTel()+",'"+interBean.getIntermMail()+"','"+interBean.getIntermApellidos()+"','pag1','"+interBean.getIdEmpresa()+"')");
+                        st.executeUpdate("INSERT INTO interm_cliente VALUES ('"+idcli.idIntermediario()+"','"+interBean.getIntermNom()+"','"+interBean.getIntermApellidos()+"','"+interBean.getIntermTel()+"','"+interBean.getIntermMail()+"','"+interBean.getIdEmpresa()+"')");
                         agregado=true;
                         st.close();
                     }
@@ -184,7 +184,7 @@ public class QuerysVentas {
          try{
           openDB();
           Statement st=conn.createStatement();
-          rs=st.executeQuery("select id_producto, nombre_producto, iva, precio from producto where id_producto='"+codigo+"'");
+          rs=st.executeQuery("select id_producto, nombre, costo_venta from producto where id_producto='"+codigo+"'");
          }catch(SQLException se){
           se.printStackTrace();
          }
