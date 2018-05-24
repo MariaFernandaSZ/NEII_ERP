@@ -176,14 +176,14 @@ public class Conexion {
    
      
      
-     public ArrayList consultaSalidas(int CoBa) throws SQLException {
+     public ArrayList consultaSalidasId(int id_producto) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
-        ps=conn.prepareStatement("SELECT id_producto, id_salida,id_ordenventa,fecha_salida,cantidad_vendida FROM salida WHERE id_salida=?");
-        ps.setInt(1, CoBa);
+        ps=conn.prepareStatement("SELECT id_producto,id_ordenventa,monto,cantidad FROM venta_por_prod WHERE id_producto=?");
+        ps.setInt(1, id_producto);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
             while (rs.next()) {                
@@ -192,8 +192,27 @@ public class Conexion {
                 r.add(rs.getString(2));
                 r.add(rs.getString(3));
                 r.add(rs.getString(4));
-                r.add(rs.getString(5));
-                
+            }
+            
+        closeDB();        
+        return r;
+    }
+     public ArrayList consultaSalidasOrden(int id_ordenventa) throws SQLException {
+        openDB();    
+        ArrayList r=new ArrayList();
+        //Statement stmt;
+        PreparedStatement ps;
+        //stmt = conn.createStatement();
+        ps=conn.prepareStatement("SELECT id_producto,id_ordenventa,monto,cantidad FROM venta_por_prod WHERE id_ordenventa=?");
+        ps.setInt(2, id_ordenventa);
+        //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
+          ResultSet rs= ps.executeQuery();
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+                r.add(rs.getString(1));
+                r.add(rs.getInt(2));
+                r.add(rs.getString(3));
+                r.add(rs.getString(4));
             }
             
         closeDB();        
