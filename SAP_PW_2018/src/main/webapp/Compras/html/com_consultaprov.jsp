@@ -1,9 +1,10 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    if(request.getSession().getAttribute("usuario") == null){
+    if (request.getSession().getAttribute("usuario") == null) {
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Compras")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+    } else {
+        if (!request.getSession().getAttribute("area").equals("Compras") && !request.getSession().getAttribute("area").equals("Gerencia")) {
             response.sendRedirect("../../archivos/errorSesion.jsp");
         }
     }
@@ -72,7 +73,7 @@
                         <form method="POST" action="com_consultaprov.jsp" onsubmit="return vali_almacen();">
                             <div id="titulo" class="col-12">
                                 <span class="number">1</span>B&uacute;squeda de<br>proveedor por estado</div>
-                             <select id="nuevo_estado" name="field4">
+                            <select id="nuevo_estado" name="field4">
                                 <optgroup label="Estado">
                                     <option value="@">Seleccione una estado</option>
                                     <option value=”Aguascalientes">Aguascalientes</option>
@@ -167,37 +168,36 @@
                                         <tr>
                                             <th scope="col">RFC</th>
                                             <th scope="col">Nombre empresa</th>
-                                            <th scope="col">Producto</th>
+                                            <th scope="col">Nombre contacto</th>
                                             <th scope="col">Correo</th>
                                             <th scope="col">Teléfono</th>
-                                            <th scope="col">Zona</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Municipio</th>
+                                            <th scope="col">CP</th>
                                         </tr>
                                     </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                    <%
+                                        ResultSet rsTabla = interTabla.consultaProveedor();
+
+                                    %> 
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">5244ER56HJ89l</th>
-                                            <td>Empresa 1</td>
-                                            <td>producto 2</td>
-                                            <td>correo@empresa1.com</td>
-                                            <td>1234567890</td>
-                                            <td>Zona A</td>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(7)%></td>
+                                            <td><%=rsTabla.getString(8)%></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">09JM54FD345GH</th>
-                                            <td>Empresa 2</td>
-                                            <td>producto 3</td>
-                                            <td>correo@empresa2.com</td>
-                                            <td>960874321</td>
-                                            <td>Zona A</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">PO56LÑP2345ML</th>
-                                            <td>Empresa 3</td>
-                                            <td>producto 1</td>
-                                            <td>correo@empresa3.com</td>
-                                            <td>4567890123</td>
-                                            <td>Zona A</td>
-                                        </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
                                 </table></div>              
                             <center><input type="submit" value="Generar PDF" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">
@@ -216,7 +216,7 @@
                             <input  type="text" name="uniproducto" placeholder="Nombre encargado" id="nuevo_nomenc" required>
                             <input  type="text" name="costoproducto" placeholder="Correo" id="nuevo_correo" required>
                             <input  type="number" name="provproducto" placeholder="Teléfono" id="nuevo_tel" required>
-                             <select id="nuevo_estado" name="field4">
+                            <select id="nuevo_estado" name="field4">
                                 <optgroup label="Estado">
                                     <option value="@">Seleccione una estado</option>
                                     <option value=”Aguascalientes">Aguascalientes</option>
