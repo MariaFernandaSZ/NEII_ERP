@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="form-style-5">
-                    <form action="../../Producto_Re.jsp" method="POST">
+                    <form action="../../Consulta_Devolucion" method="POST">
                         
                             <span id="titulo"><span class="number">1</span> Consultar registro</span><br><br>
                             <br><span class="idemp"><input type="text" name="id_devolucion" id="id_devolucion" placeholder="Id de devoluci&oacute;n" required="required" maxlength="7" pattern="[0-9]{7}"title="El ide de producto debe ser de 7 digitos numericos"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
@@ -149,7 +149,6 @@
                                 <tr>
                                     <th>Id de devoluci&oacute;n</th>
                                     <th>Id orden de compra</th>
-                                    <th>Id orden de producto</th>
                                     <th>Cantidad devuelta</th>
                                     <th>Fecha de devoluci&oacute;n</th>
                                     <th>Motivo</th>
@@ -159,8 +158,7 @@
                                 <tr>
                                     
                                 <td><%= request.getAttribute("id_devolucion")%></td>
-                                <td><%= request.getAttribute("id_ordencompra")%></td>
-                                <td><%= request.getAttribute("id_producto")%></td>
+                                <td><%= request.getAttribute("id_compra")%></td>
                                 <td><%= request.getAttribute("canitidad_devuelta")%></td>
                                 <td><%= request.getAttribute("fecha_devolucion")%></td>
                                 <td><%= request.getAttribute("motivo")%></td>
