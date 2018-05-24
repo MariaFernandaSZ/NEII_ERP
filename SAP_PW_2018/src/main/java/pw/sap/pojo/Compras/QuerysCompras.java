@@ -72,7 +72,19 @@ public class QuerysCompras {
                     }
             return agregado;
         }
-    
+     public ResultSet consultaProveedor() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select * from proveedor;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
     public String consultarOrdenC(){
          String id="";
          try{
