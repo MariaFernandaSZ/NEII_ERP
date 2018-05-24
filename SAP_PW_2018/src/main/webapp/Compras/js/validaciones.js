@@ -254,10 +254,10 @@ function vali_codigo(){
                      return false;
                  }
                  
-            var zona= document.getElementById('zona').value;
+        var estado= document.getElementById('nuevo_estado').value;
             
-            if(zona =='@'){
-                alert("Favor de elegir una zona");
+            if(estado =='@'){
+                alert("Favor de elegir un estado");
                 
                 return false;
             }
