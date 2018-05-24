@@ -155,29 +155,29 @@
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
-                        <form method="POST" action="com_proveedor.jsp" onsubmit="return vali_nuevoproveedor();">
+                        <form method="POST" action="../../proveedor" onsubmit="return vali_nuevoproveedor();">
 
                             <span id="titulo"><span class="number">3</span>Agregar<br>nuevo proveedor</span><br>
                             <br>
-                            <input  type="text" name="codprodnuevo" placeholder="RFC" id="nuevo_rfc" required>                             
-                            <input  type="text" name="nomproducto" placeholder="Nombre de la empresa" id="nuevo_nomemp" required>
-                            <input  type="text" name="uniproducto" placeholder="Nombre encargado" id="nuevo_nomenc" required>
-                            <input  type="text" name="costoproducto" placeholder="Correo" id="nuevo_correo" required>
-                            <input  type="number" name="provproducto" placeholder="Teléfono" id="nuevo_tel" required>
-                            <select id="nuevo_estado" name="field4">
+                            <input  type="text" name="nuevo_rfc" placeholder="RFC" id="nuevo_rfc" required>                             
+                            <input  type="text" name="nuevo_nomemp" placeholder="Nombre de la empresa" id="nuevo_nomemp" required>
+                            <input  type="text" name="nuevo_nomenc" placeholder="Nombre encargado" id="nuevo_nomenc" required>
+                            <input  type="text" name="nuevo_correo" placeholder="Correo" id="nuevo_correo" required>
+                            <input  type="number" name="nuevo_tel" placeholder="Teléfono" id="nuevo_tel" required>
+                            <select id="nuevo_estado" name="nuevo_estado">
                                 <optgroup label="Estado">
                                     <option value="@">Seleccione una estado</option>
                                     <option value=”Aguascalientes">Aguascalientes</option>
-                                    <option value="Baja California">Baja California </option>
-                                    <option value="Baja California Sur">Baja California Sur </option>
+                                    <option value="BajaCalifornia">Baja California </option>
+                                    <option value="BajaCalifornia Sur">Baja California Sur </option>
                                     <option value="Campeche">Campeche </option>
                                     <option value="Chiapas">Chiapas </option>
                                     <option value="Chihuahua">Chihuahua </option>
                                     <option value="Coahuila">Coahuila </option>
                                     <option value="Colima">Colima </option>
-                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="DistritoFederal">Distrito Federal</option>
                                     <option value="Durango">Durango </option>
-                                    <option value="Estado de M&eacute;xico">Estado de México </option>
+                                    <option value="EstadoDeMexico">Estado de Mexico</option>
                                     <option value="Guanajuato">Guanajuato </option>
                                     <option value="Guerrero">Guerrero </option>
                                     <option value="Hidalgo">Hidalgo </option>
@@ -201,8 +201,8 @@
                                     <option value="Zacatecas">Zacatecas</option>
                                 </optgroup>
                             </select>
-                            <input  type="text" name="minicipo" placeholder="Municipio" id="minicipio_prov" required>
-                            <input  type="number" name="cp_prov" placeholder="Código Postal" id="nuevo_tel" required>
+                            <input  type="text" name="minicipio_prov" placeholder="Municipio" id="minicipio_prov" required>
+                            <input  type="number" name="nuevo_cp" placeholder="Código Postal" id="nuevo_cp" required>
                             <center><input type="submit" value="Agregar" style="background-color: #9F150D" name="nuevo" class="btn btn-danger"></center>                       
 
                         </form>
