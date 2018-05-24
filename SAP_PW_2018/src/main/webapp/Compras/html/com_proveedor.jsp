@@ -84,12 +84,12 @@
                                     <option value="Michoac&aacute;n">Michoacán </option>
                                     <option value="Morelos">Morelos </option>
                                     <option value="Nayarit">Nayarit </option>
-                                    <option value="Nuevo Le&oacute;n">Nuevo León </option>
+                                    <option value="Nuevo leon">Nuevo León </option>
                                     <option value="Oaxaca">Oaxaca </option>
                                     <option value="Puebla">Puebla </option>
-                                    <option value="Quer&eacute;taro">Querétaro </option>
+                                    <option value="Queretaro">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
-                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
+                                    <option value="San Luis Potosi;">San Luis Potosí </option>
                                     <option value="Sinaloa">Sinaloa </option>
                                     <option value="Sonora">Sonora </option>
                                     <option value="Tabasco">Tabasco </option>
@@ -188,16 +188,16 @@
                                     <option value="Nuevo Le&oacute;n">Nuevo León </option>
                                     <option value="Oaxaca">Oaxaca </option>
                                     <option value="Puebla">Puebla </option>
-                                    <option value="Quer&eacute;taro">Querétaro </option>
+                                    <option value="Queretaroo">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
-                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
+                                    <option value="San Luis Potosi">San Luis Potosí </option>
                                     <option value="Sinaloa">Sinaloa </option>
                                     <option value="Sonora">Sonora </option>
                                     <option value="Tabasco">Tabasco </option>
                                     <option value="Tamaulipas">Tamaulipas </option>
                                     <option value="Tlaxcala">Tlaxcala </option>
                                     <option value="Veracruz">Veracruz </option>
-                                    <option value="Yucat&aacute;n">Yucatán </option>
+                                    <option value="Yucatan">Yucatán </option>
                                     <option value="Zacatecas">Zacatecas</option>
                                 </optgroup>
                             </select>
