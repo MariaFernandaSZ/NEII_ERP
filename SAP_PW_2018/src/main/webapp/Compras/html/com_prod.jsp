@@ -123,7 +123,7 @@
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
-                        <form method="POST" action="com_imprimir.html" target="_blank">
+                        <form method="POST" action="../../Excel1">
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -136,35 +136,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">5244</th>
-                                            <td>Producto 1</td>
-                                            <td>$00.00</td>
-                                            <td>unidad 1</td>
-                                            <td>provedor 1</td>
-                                            <td>almacen 1</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4678</th>
-                                            <td>Producto 2</td>
-                                            <td>$00.00</td>
-                                            <td>unidad 1</td>
-                                            <td>provedor 2</td>
-                                            <td>almacen 1</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5244</th>
-                                            <td>Producto 3</td>
-                                            <td>$00.00</td>
-                                            <td>unidad 3</td>
-                                            <td>provedor 1</td>
-                                            <td>almacen 1</td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table></div>              
-                            <center><input type="submit" value="Generar PDF" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">
-                                <input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"> </center> 
-
+                            <center><input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"> </center> 
                         </form>
                     </div>
 
