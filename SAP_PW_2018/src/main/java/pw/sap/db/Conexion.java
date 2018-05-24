@@ -7,8 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import pw.sap.pojo.Contabilidad.Calen_Contable;
 import pw.sap.pojo.Ventas.ClienteBean;
 import pw.sap.pojo.Ventas.QuerysVentas;
 
@@ -39,6 +41,8 @@ public class Conexion {
     public void closeDB() throws SQLException {
         conn.close();
     }
+    
+    
     
     public ArrayList consultaAsientos(String clave) throws SQLException {
         openDB();    

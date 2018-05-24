@@ -38,8 +38,8 @@ public class PlanCuentas {
     public void openDB() throws SQLException {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "max1m1l1an0");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:8485/sap", connProp);
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
 
     /**
@@ -55,7 +55,7 @@ public class PlanCuentas {
         openDB();
         ArrayList r = new ArrayList();
         PreparedStatement ps;
-        ps = conn.prepareStatement("SELECT codigosat, descripcion FROM cuenta_sat WHERE codigosat=?");
+        ps = conn.prepareStatement("SELECT cuenta, descripcion FROM cuenta_sat WHERE id=?");
         ps.setString(1, clave);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
@@ -148,55 +148,4 @@ public class PlanCuentas {
         return existendatos;
     }
 
-    /**
-     * Este método actualiza datos de una tabla siempre y cuando el campo a
-     * modificar sea texto
-     *
-     * @param tabla
-     * @param campoMod
-     * @param valor1
-     * @param campocriterio
-     * @param valor2
-     * @return
-     * @throws SQLException
-     */
-    public int actualizarCampoTexto(String tabla, String campoMod, String valor1, String campocriterio, int valor2) throws SQLException {
-        openDB();
-        System.out.println("V2 Conexión: " + conn);
-        PreparedStatement ps = conn.prepareStatement("UPDATE " + tabla + " SET " + campoMod + "= " + valor1 + " WHERE " + campocriterio + "=" + valor2 + ";");
-        System.out.println(ps);
-        int r = ps.executeUpdate();
-        closeDB();
-        return r;
-    }
-
-    //METODO DE INSERCION DE DATOS Fer
-//    public int ingresarRegistro(String tabla, String valores) throws SQLException {
-//        openDB();
-////        System.out.println("V2 Conexión: " + conn);
-//        PreparedStatement ps= conn.prepareStatement("INSERT INTO "+tabla+" VALUES ("+valores+")");
-//        int r=ps.executeUpdate();
-//        closeDB();
-//        return r;
-//    }
-    //METODO DE ELIMINACION DE REGISTROS Lalo
-    /**
-     * elimina un registro siempre por medio de una valor numérico
-     *
-     * @param tabla
-     * @param campocriterio
-     * @param valor1
-     * @return
-     * @throws SQLException
-     */
-    public int eliminaRegistro(String tabla, String campocriterio, int valor1) throws SQLException {
-        openDB();
-        System.out.println("V2 Conexión: " + conn);
-        PreparedStatement ps = conn.prepareStatement("DELETE FROM " + tabla + " WHERE " + campocriterio + "=?");
-        ps.setInt(1, valor1);
-        System.out.println(ps);
-        int r = ps.executeUpdate();
-        closeDB();
-        return r;
-    }
 }

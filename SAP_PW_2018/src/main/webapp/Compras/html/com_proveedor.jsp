@@ -62,15 +62,42 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
                         <form method="POST" action="com_consultaprov.jsp" onsubmit="return vali_almacen();">
                             <div id="titulo" class="col-12">
-                                <span class="number">1</span>B&uacute;squeda de<br>proveedor por zona</div>
+                                <span class="number">1</span>B&uacute;squeda de<br>proveedor por estado</div>
                             <select id="zona" name="field4">
-                                <optgroup label="Zona">
+                                <optgroup label="Estado">
                                     <option value="@">Seleccione una opci&oacute;n</option>
-                                    <option value="zonaa">Zona&nbsp;A</option>
-                                    <option value="zonab">Zona&nbsp;B</option>
-                                    <option value="zonac">Zona&nbsp;C</option>
-                                    <option value="zonad">Zona&nbsp;D</option>
-                                    <option value="todos">Todos</option>
+                                    <option value=”Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California </option>
+                                    <option value="Baja California Sur">Baja California Sur </option>
+                                    <option value="Campeche">Campeche </option>
+                                    <option value="Chiapas">Chiapas </option>
+                                    <option value="Chihuahua">Chihuahua </option>
+                                    <option value="Coahuila">Coahuila </option>
+                                    <option value="Colima">Colima </option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Durango">Durango </option>
+                                    <option value="Estado de M&eacute;xico">Estado de México </option>
+                                    <option value="Guanajuato">Guanajuato </option>
+                                    <option value="Guerrero">Guerrero </option>
+                                    <option value="Hidalgo">Hidalgo </option>
+                                    <option value="Jalisco">Jalisco </option>
+                                    <option value="Michoac&aacute;n">Michoacán </option>
+                                    <option value="Morelos">Morelos </option>
+                                    <option value="Nayarit">Nayarit </option>
+                                    <option value="Nuevo Le&oacute;n">Nuevo León </option>
+                                    <option value="Oaxaca">Oaxaca </option>
+                                    <option value="Puebla">Puebla </option>
+                                    <option value="Quer&eacute;taro">Querétaro </option>
+                                    <option value="Quintana Roo">Quintana Roo </option>
+                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
+                                    <option value="Sinaloa">Sinaloa </option>
+                                    <option value="Sonora">Sonora </option>
+                                    <option value="Tabasco">Tabasco </option>
+                                    <option value="Tamaulipas">Tamaulipas </option>
+                                    <option value="Tlaxcala">Tlaxcala </option>
+                                    <option value="Veracruz">Veracruz </option>
+                                    <option value="Yucatan">Yucatán </option>
+                                    <option value="Zacatecas">Zacatecas</option>
                                 </optgroup>
                             </select>
                             <span style="font-size: 18px">Ordenar&nbsp;por:</span>
@@ -94,6 +121,8 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord8">Correo</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord9" value="telefono">
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Teléfono</label>
+                                <input class="form-check-input" type="checkbox" name="busprov" id="ord9" value="estado">
+                                <label style="font-size: 18px" class="form-check-label" for="ord9">Estado</label>
                             </div>
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
@@ -107,8 +136,8 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord5" value="proveedor">
                                 <label style="font-size: 18px" class="form-check-label" for="ord5">Nombre de la empresa</label>
-                                <input class="form-check-input" type="checkbox" name="busprov" id="ord6" value="zona">
-                                <label style="font-size: 18px" class="form-check-label" for="ord6">Zona</label>
+                                <input class="form-check-input" type="checkbox" name="busprov" id="ord6" value="estado">
+                                <label style="font-size: 18px" class="form-check-label" for="ord6">Estado</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord7" value="producto">
                                 <label style="font-size: 18px" class="form-check-label" for="ord7">Producto</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord8" value="correo">
@@ -135,16 +164,45 @@
                             <input  type="text" name="uniproducto" placeholder="Nombre encargado" id="nuevo_nomenc" required>
                             <input  type="text" name="costoproducto" placeholder="Correo" id="nuevo_correo" required>
                             <input  type="number" name="provproducto" placeholder="Teléfono" id="nuevo_tel" required>
-                            <select id="zona" name="field4">
-                                <optgroup label="Zona">
-                                    <option value="@">Seleccione una zona</option>
-                                    <option value="zonaa">Zona&nbsp;A</option>
-                                    <option value="zonab">Zona&nbsp;B</option>
-                                    <option value="zonac">Zona&nbsp;C</option>
-                                    <option value="zonad">Zona&nbsp;D</option>
-                                    <option value="todos">Todos</option>
+                            <select id="nuevo_estado" name="field4">
+                                <optgroup label="Estado">
+                                    <option value="@">Seleccione una estado</option>
+                                    <option value=”Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California </option>
+                                    <option value="Baja California Sur">Baja California Sur </option>
+                                    <option value="Campeche">Campeche </option>
+                                    <option value="Chiapas">Chiapas </option>
+                                    <option value="Chihuahua">Chihuahua </option>
+                                    <option value="Coahuila">Coahuila </option>
+                                    <option value="Colima">Colima </option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Durango">Durango </option>
+                                    <option value="Estado de M&eacute;xico">Estado de México </option>
+                                    <option value="Guanajuato">Guanajuato </option>
+                                    <option value="Guerrero">Guerrero </option>
+                                    <option value="Hidalgo">Hidalgo </option>
+                                    <option value="Jalisco">Jalisco </option>
+                                    <option value="Michoac&aacute;n">Michoacán </option>
+                                    <option value="Morelos">Morelos </option>
+                                    <option value="Nayarit">Nayarit </option>
+                                    <option value="Nuevo Le&oacute;n">Nuevo León </option>
+                                    <option value="Oaxaca">Oaxaca </option>
+                                    <option value="Puebla">Puebla </option>
+                                    <option value="Quer&eacute;taro">Querétaro </option>
+                                    <option value="Quintana Roo">Quintana Roo </option>
+                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
+                                    <option value="Sinaloa">Sinaloa </option>
+                                    <option value="Sonora">Sonora </option>
+                                    <option value="Tabasco">Tabasco </option>
+                                    <option value="Tamaulipas">Tamaulipas </option>
+                                    <option value="Tlaxcala">Tlaxcala </option>
+                                    <option value="Veracruz">Veracruz </option>
+                                    <option value="Yucat&aacute;n">Yucatán </option>
+                                    <option value="Zacatecas">Zacatecas</option>
                                 </optgroup>
                             </select>
+                            <input  type="text" name="minicipo" placeholder="Municipio" id="minicipio_prov" required>
+                            <input  type="number" name="cp_prov" placeholder="Código Postal" id="nuevo_tel" required>
                             <center><input type="submit" value="Agregar" style="background-color: #9F150D" name="nuevo" class="btn btn-danger"></center>                       
 
                         </form>
