@@ -611,4 +611,19 @@ public class Conexion {
         closeDB();
         return rs;
     }
+    
+    public ArrayList sesion(int usuario, String pass) throws SQLException{
+        openDB();
+        ArrayList r = new ArrayList();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("SELECT area_emp FROM empleado WHERE id_emp=? AND password=?;");
+        ps.setInt(1, usuario);
+        ps.setString(2, pass);
+        ResultSet rs= ps.executeQuery();
+        while(rs.next()){
+            r.add(rs.getString(1));
+        }
+        closeDB();        
+        return r;
+    }
 }

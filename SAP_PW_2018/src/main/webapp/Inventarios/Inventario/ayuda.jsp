@@ -1,5 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    if(request.getSession().getAttribute("usuario") == null){
+        response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
+    }else{
+        if(!request.getSession().getAttribute("area").equals("Inventarios")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+            response.sendRedirect("../../archivos/errorSesion.jsp");
+        }
+    }
+%>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates

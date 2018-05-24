@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.getSession().invalidate(); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,30 +16,30 @@
         <script src="Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
+        <script src="js/index.js" type="text/javascript"></script>
     </head>
     <body>
-        
+        <body onload="regreso();">
         <div class="rounded" id="login">
-            
-            <form class="rounded" id="form-login" action="validador.jsp" method="post">
+            <form class="rounded" id="form-login" autocomplete="off" method="POST" action="IniciarSesion">
                 <fieldset class="rounded" id="campo-login">
-                    <legend class="rounded"><h1>Bienvenido</h1></legend>
+                    <legend class="rounded"><h1>Inicio&nbsp;de&nbsp;sesi&oacute;n</h1></legend>
                     <table id="acceso">
                         <tr>
-                            <td>Usuario:</td>
-                            <td><p><input type="text" name="user" id="user" required="required" /></p></td>                                                    
+                            <td><label>Usuario:&nbsp;&nbsp;</label></td>
+                            <td><input type="text" class="form-control form-control-sm" id="user" name="user" required="required" /></td>
                         </tr>
                         <tr>
-                            <td>Contrase&#241;a:</td>
-                            <td><p><input type="password" name="pass" id="pass" required="required" /></p></td>
-                        </tr>   
+                            <td><label>Contrase&ntilde;a:&nbsp;</label></td>
+                            <td><input type="password" class="form-control form-control-sm" id="pswd" name="pswd" required="required" /></td>
+                        </tr>
                         <tr>
-                            <td class="boton"><p><input type="reset" value="Cancelar"  /></p></td>
-                            <td class="boton"><p><input type="submit" name="entrar" id="entrar" value="entrar" /></p></td>
-                        </tr>   
-                    </table>  
+                            <td align="center"><input type="submit" class="btn" id="ingresar" name="ingresar" value="Ingresar" /></td>
+                            <td align="center"><input type="reset" class="btn" id="reiniciar" name="reiniciar" value="Reiniciar" /></td>
+                        </tr>
+                    </table>
                 </fieldset>
-            </form>              
+            </form>
         </div>
     </body>
 </html>

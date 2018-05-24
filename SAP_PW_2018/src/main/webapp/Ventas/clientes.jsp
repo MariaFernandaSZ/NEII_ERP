@@ -2,6 +2,15 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    if(request.getSession().getAttribute("usuario") == null){
+        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
+    }else{
+        if(!request.getSession().getAttribute("area").equals("Ventas")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+            response.sendRedirect("../archivos/errorSesion.jsp");
+        }
+    }
+%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.

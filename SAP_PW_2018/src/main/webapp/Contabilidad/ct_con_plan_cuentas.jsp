@@ -1,3 +1,12 @@
+<%
+    if(request.getSession().getAttribute("usuario") == null){
+        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
+    }else{
+        if(!request.getSession().getAttribute("area").equals("Contabilidad")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+            response.sendRedirect("../archivos/errorSesion.jsp");
+        }
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
