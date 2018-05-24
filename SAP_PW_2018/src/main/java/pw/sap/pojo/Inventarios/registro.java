@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 import pw.sap.db.Conexion;
-import pw.sap.pojo.Ventas.ClienteBean;
+
 
 /**
  *
@@ -75,8 +75,8 @@ public class registro {
             
                      PreparedStatement ps;
                     
-                     ps = conn.prepareStatement("INSERT INTO devolucion(id_producto,fecha_devolucion,cantidad_devuelta,motivo) "
-                                       + " VALUES ('"+codigo+"','now()',"+cantidad+",'"+observaciones+"')");
+                     ps = conn.prepareStatement("INSERT INTO devolucion(id_compra,cantidad_devuelta,fecha_devolucion,motivo) "
+                                       + " VALUES ("+codigo+","+cantidad+",'now()','"+observaciones+"')");
                     ResultSet rs= ps.executeQuery();
                     System.out.println(ps);
         
