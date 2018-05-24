@@ -25,7 +25,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            h
                             <a class="nav-link" href="com_index.jsp" style="color: white">Productos</a>
                         </li>
                         <li class="nav-item">
