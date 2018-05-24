@@ -42,10 +42,6 @@ public class Consulta_Merma extends HttpServlet {
         
         ArrayList l=c.consultaMermac(request.getParameter("id_merma"));
         
-        System.out.println(l.get(0));
-         System.out.println(l.get(1));
-          System.out.println(l.get(2));
-           System.out.println(l.get(3));
         request.setAttribute("id_producto", l.get(0));
         request.setAttribute("id_merma", l.get(1));
         request.setAttribute("fecha_mer", l.get(2));
