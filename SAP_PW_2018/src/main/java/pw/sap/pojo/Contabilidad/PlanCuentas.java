@@ -15,12 +15,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Properties;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
 
 public class PlanCuentas {
 
@@ -50,6 +52,34 @@ public class PlanCuentas {
     public void closeDB() throws SQLException {
         conn.close();
     }
+    
+    public static  LinkedList  consultaTodoPlan() throws SQLException, ClassNotFoundException {
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        
+        LinkedList <ObjPlanDeCuentas> l=new LinkedList<ObjPlanDeCuentas>();
+        PreparedStatement ps;
+        ps = conn.prepareStatement("SELECT ce.id, cs.cuenta, cs.descripcion, ce.tipo_cuenta, ce.clase_cuenta, cs.cuenta||'-'||cs.descripcion as \"Clase_SAT\", ce.naturaleza FROM cuentas_empresa as ce, cuenta_sat as cs where cs.id = ce.id_cuenta;");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+                ObjPlanDeCuentas pc=new ObjPlanDeCuentas();
+                pc.setId(rs.getInt("id"));
+                pc.setId_cuenta(rs.getInt("cuenta"));
+                pc.setDescripcion(rs.getString("descripcion"));
+                pc.setTipo_cuenta(rs.getString("tipo_cuenta"));
+                pc.setClase_cuenta(rs.getString("clase_cuenta"));
+                pc.setClase_sat(rs.getString("Clase_SAT"));
+                pc.setNaturaleza(rs.getString("naturaleza"));              
+                l.add(pc);
+            }   
+
+        conn.close();
+        return l;
+    }
 
     public ArrayList consultaPlan(String clave) throws SQLException {
         openDB();
@@ -68,19 +98,7 @@ public class PlanCuentas {
         return r;
     }
 
-    public ArrayList consultaTodoPlan() throws SQLException {
-        openDB();
-        ArrayList r = new ArrayList();
-        PreparedStatement ps;
-        ps = conn.prepareStatement("SELECT codigosat, descripcion FROM cuenta_sat");
-        ResultSet rs = ps.executeQuery();
-        for (int i = 0; rs.next(); i++) {
-            r.add(rs.getString(i));
-        }
-
-        closeDB();
-        return r;
-    }
+  
     
     public ArrayList agregaPlan(String id) throws SQLException {
         openDB();

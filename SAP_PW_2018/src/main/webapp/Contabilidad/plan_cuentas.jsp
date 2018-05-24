@@ -1,3 +1,7 @@
+<%@page import="pw.sap.obj.Contabilidad.ObjPlanDeCuentas"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="pw.sap.pojo.Contabilidad.PlanCuentas"%>
+
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -125,7 +129,6 @@
                                 <tr>
                                     <th>Selecciona</th>
                                     <th>Cuenta</th>
-                                    <th>Cuenta Superior</th>
                                     <th>Descripcion</th>
                                     <th>Tipo de cuenta</th>
                                     <th>Clase cuenta</th>
@@ -133,24 +136,21 @@
                                     <th>Tipo Naturaleza</th>
                                 </tr>
                                 <tr>
-                                    <td class="seleccion"><input type="checkbox"/></td>
-                                    <td><%= request.getSession().getAttribute("codigosat")%></td>
-                                    <td>&nbsp;</td>
-                                    <td><%= request.getSession().getAttribute("descripcion")%></td>
-                                    <td>titulo</td>
-                                    <td>Sintetica</td>
-                                    <td>100-Activo</td>
-                                    <td>DEUDORA</td>
-                                </tr>
-                                <tr>
-                                    <td class="seleccion"><input type="checkbox"/></td>
-                                    <td>100.1</td>
-                                    <td>100</td>
-                                    <td>Activo a corto plazo</td>
-                                    <td>Mayor</td>
-                                    <td>Sintetica</td>
-                                    <td>100.01-Activo a corto plazo</td>
-                                    <td>DEUDORA</td>
+                                    <%
+                                        LinkedList<ObjPlanDeCuentas> lista =PlanCuentas.consultaTodoPlan();
+                                        for (int i=0;i<lista.size();i++)
+                                        {
+                                           out.println("<tr>");
+                                           out.println("<td class='seleccion'><input type='checkbox'></td>");                                           
+                                           out.println("<td>"+lista.get(i).getId_cuenta()+"</td>");
+                                           out.println("<td>"+lista.get(i). getDescripcion()+"</td>");
+                                           out.println("<td>"+lista.get(i).getTipo_cuenta()+"</td>");
+                                           out.println("<td>"+lista.get(i).getClase_cuenta()+"</td>");
+                                            out.println("<td>"+lista.get(i).getClase_sat()+"</td>");
+                                           out.println("<td>"+lista.get(i).getNaturaleza()+"</td>");
+                                            out.println("<tr>");
+                                           }
+                                    %>
                                 </tr>
                             </table>    
                         </div>
