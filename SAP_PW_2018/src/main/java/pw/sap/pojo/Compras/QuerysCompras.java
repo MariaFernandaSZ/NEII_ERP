@@ -125,6 +125,25 @@ public class QuerysCompras {
          return ordenBean;
         } 
     
+    public String consultaRequiscicion() {
+        String id="";
+        try{
+            openDB();
+            Statement st=conn.createStatement();
+            ResultSet rs = st.executeQuery("select * from requisicion desc");
+            
+            while(rs.next()){
+                id = rs.getString(1);
+            }
+            
+            rs.close();
+            st.close();
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+        return id;
+    }
+    
     public ResultSet consultarIDEMP(){
          ResultSet rs = null;
          try{

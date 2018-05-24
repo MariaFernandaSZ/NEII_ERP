@@ -11,6 +11,7 @@ package pw.sap.pojo.Compras;
 public class requisicionPojo {
     
     private String req_folio;
+    private String id_producto;
     private Productos productos;
     private String req_cantidad;
     private String req_fecha;
@@ -18,6 +19,13 @@ public class requisicionPojo {
     public requisicionPojo() {
     }
 
+    public requisicionPojo(String req_folio, String id_producto, String req_cantidad, String req_fecha) {
+        this.req_folio = req_folio;
+        this.id_producto = id_producto;
+        this.req_cantidad = req_cantidad;
+        this.req_fecha = req_fecha;
+    }
+    
     public requisicionPojo(String req_folio) {
         this.req_folio = req_folio;
     }
@@ -61,6 +69,15 @@ public class requisicionPojo {
     public void setReq_fecha(String req_fecha) {
         this.req_fecha = req_fecha;
     }
+
+    public String getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(String id_producto) {
+        this.id_producto = id_producto;
+    }
+    
 
     @Override
     public String toString() {

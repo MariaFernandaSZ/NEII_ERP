@@ -62,7 +62,11 @@
                 </div>
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
+                        
+                        
                         <form method="POST" action="com_prod.jsp" onsubmit="return vali_almacen();">
+                            
+                            
                             <span id="titulo"><span class="number">1</span>Requisición</span><br>
                             <div class="row">
                                 <div class="table-responsive"><table class="table table-striped">
