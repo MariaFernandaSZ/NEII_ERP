@@ -27,7 +27,7 @@ public class ConsultasGenerales {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sap", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
         Statement stmt;        
         stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM calen_contable order by clave asc");
