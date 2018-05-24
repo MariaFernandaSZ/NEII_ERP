@@ -6,7 +6,6 @@
 package pw.sap.servlets.Ventas;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -89,10 +88,10 @@ public class AgregaProducto extends HttpServlet {
         }
                 out.print(nombre);
 //        if (codprod.equalsIgnoreCase("demo1")) {
-//            Gson gson = new Gson();
-//            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
-//            out.flush();
-//            out.close();
+            Gson gson = new Gson();
+            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
+            out.flush();
+            out.close();
 //        }
     }
 
@@ -125,20 +124,17 @@ public class AgregaProducto extends HttpServlet {
         try {
             while(rs.next()){
                nombre = rs.getString(2);
-               iva = rs.getDouble(3);
-               precio = rs.getDouble(4);
+               precio = rs.getDouble(3);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(AgregaProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        out.print(nombre);
-//        if (codprod.equalsIgnoreCase("demo1")) {
-//            Gson gson = new Gson();
-//            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
-//            out.flush();
-//            out.close();
-//        }
+            iva = precio*0.16;
+            Gson gson = new Gson();
+            out.print(gson.toJson(new ProductoBean(nombre,precio,iva)));
+            out.flush();
+            out.close();
     }
     
     

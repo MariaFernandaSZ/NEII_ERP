@@ -17,45 +17,6 @@
         <link rel="stylesheet" type="text/css" href="../css/VenTabla.css">
     </head>
     <body>    
-    <script type="text/javascript"> 
-        
-     
-        function searchKeyPress(e)
-    {
-        if (e.keyCode == 13)
-        {
-            var codprod = $('#codprod').val();
-            var Max_codigo = 13;
-            var lengthcodigo = document.getElementById("codprod").value.length;
-            
-            if(codprod == "" || codprod == null || codprod.length == 0 || /^\s+$/.test(codprod)){
-       
-            alert("ingrese un codigo");
-            return false;
-        
-            } else if (lengthcodigo != Max_codigo) {
-
-                alert("el numero de caracteres para el codigo del producto debe ser de 13");
-                return false;
-
-            }else{
-                $.ajax({
-                    type:'POST',
-                    url: '../AgregaProducto',
-                    data: {codprod:codprod},
-                    success: function (result) {
-                        $('#nomprod').val(result);
-                        //var producto = $.parseJSON(result);
-                        //alert(producto.nombre);
-                        //document.getElementById("text").innerHTML = 'Name: ' + json.name + ' & Phone:' + json.phone;
-                        
-                    }
-
-                });
-            } 
-        }
-    }
-    </script>
         
         <div class="modal fade" id="agregaProductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -71,7 +32,7 @@
                             
                                 <br><br><span>C&oacute;digo de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" onkeypress="return searchKeyPress(event);" id="codprod" type="text" name="codprod" placeholder="###############"/></span>
 
-                                <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return SoloNumeros(event);" id="cant" type="text" name="cantidad" placeholder="0"/></span>
+                                <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return cantOnPress(event);" id="cant" type="text" name="cantidad" placeholder="0"/></span>
                                 <br><br>
                     </form>
                     <form>
@@ -80,7 +41,7 @@
                                 <br><br>
                                 <span id="nom">Nombre producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text"  name="nomProd" id="nomprod" readonly="readonly" placeholder="Nombre"/></span>
                                 <br><br>
-                                <span >Precio unitario:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text"  name="Total" id="preciopod" readonly="readonly" placeholder="$000.00"/></span>
+                                <span >Precio unitario:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text"  name="Total" id="precioprod" readonly="readonly" placeholder="$000.00"/></span>
                                 <br><br>
                                 <span>IVA:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="iva" id="ivaprod" readonly="readonly" placeholder="$000.00"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 
@@ -103,6 +64,7 @@
     <script src="../../js/Ventas/VenGeneral.js"></script>
     <script src="../../js/Ventas/VenValidaciones.js"></script>
     <script src="../../js/Ventas/muestraModales.js"></script>
+    <script src="../../js/Ventas/ajaxFunctions.js" type="text/javascript"></script>
 
     </body>
 </html>
