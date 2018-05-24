@@ -146,14 +146,14 @@ public class Conexion {
     }
      
      
-     public ArrayList consultaMermad(int IDMerma) throws SQLException {
+     public ArrayList consultaMermad(int id_merma) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
-        ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,observaciones FROM merma WHERE id_merma=?");
-        ps.setInt(1, IDMerma);
+        ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo FROM merma WHERE id_merma=? and tipo_merma='MermaDesconocida'");
+        ps.setInt(2, id_merma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
             while (rs.next()) {                
@@ -229,14 +229,14 @@ public class Conexion {
      
      
      
-     public ArrayList consultaMermac(String IDMerma) throws SQLException {
+     public ArrayList consultaMermac(String id_merma) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
         ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo FROM merma WHERE id_merma=? and tipo_merma='MermaConocida'");
-        ps.setString(1, IDMerma);
+        ps.setString(2, id_merma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
           System.out.println(rs.getString(1));
@@ -366,15 +366,14 @@ public class Conexion {
         return r;
     }
      
-      public ArrayList consultaEMermad(int CoBa, int IDMerma) throws SQLException {
+      public ArrayList consultaEMermad(int id_merma) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
-        ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,observaciones FROM merma WHERE tipo_merma='Merma Desconocida' and id_producto=? or id_merma=?");
-        ps.setInt(1, CoBa);
-        ps.setInt(2, IDMerma);
+        ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo FROM merma WHERE tipo_merma='MermaDesconocida' and id_merma=?");
+        ps.setInt(2, id_merma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
             while (rs.next()) {                
