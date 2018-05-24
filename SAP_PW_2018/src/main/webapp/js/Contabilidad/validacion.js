@@ -528,8 +528,8 @@ function calencontaagregar(){
     
    var fechaini=new Date(document.getElementById('fechaini').value);    
     var hoy= new Date();
-    if (fechaini<hoy){
-        alert('la fecha inicial no puede ser anterior a la actual');
+    if (fechaini<fechafin){
+        alert('la fecha inicial no puede ser anterior a la fecha final');
         document.getElementById('fechaini').value="";
         return false;
     }
@@ -541,8 +541,8 @@ function calencontaagregar(){
   
    var fechafin=new Date(document.getElementById('fechafin').value);    
     var hoy= new Date();
-    if (fechafin<hoy){
-        alert('la fecha final no puede ser anterior a la actual');
+    if (fechafin<fechaini){
+        alert('la fecha final no puede ser anterior a fecha inicial');
         document.getElementById('fechafin').value="";
         return false;
     }
