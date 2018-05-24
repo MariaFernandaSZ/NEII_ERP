@@ -37,24 +37,19 @@ public class QuerysCompras {
     }
     
     
-    public boolean agregarProveedores(Proveedores proBean) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            openDB();
-            try {
-                
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-//                        st.executeUpdate("INSERT INTO proveedor (rfc_proveedor, nombre_prov, telefono, correo_prov) VALUES ('"+proBean.getNuevo_rfc()+"','"+proBean.getNuevo_nomemp()+"',"+proBean.getNuevo_tel()+",'"+proBean.getNuevo_correo()+"')");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
+   public void agregarProveedor(String rfc, String nom_emp, String nom_cont, String correo, String tel, String estado, String muni, String cp) throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("INSERT INTO proveedor(prov_rfc,prov_nom_emp,prov_nom_cont,prov_correo,prov_tel,prov_estado,prov_muni,prov_cp ) "
+                                       + " VALUES ('"+rfc+"','"+nom_emp+"','"+nom_cont+"','"+correo+"',"+tel+",'"+estado+"','"+muni+"',"+cp+");");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  
         }
     
     public boolean agregarOrdenCompra(OrdenCompraPojo ordenPojo) throws SQLException, ClassNotFoundException{
