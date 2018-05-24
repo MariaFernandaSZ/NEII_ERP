@@ -71,15 +71,13 @@
                                 <a class="nav-link text-white color" href="ct_resultados.jsp">Estado de resultados</a>
                             </div>
                         </li>
-                    </ul>
-                    <ul>
                         <li class="nav-item">
                             
-                            <a id="btn_gerencia" class="nav-link" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
+                            <a id="btn_gerencia" class="nav-link color" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
                             <script src="../js/gerencia.js"></script>
                                 
                         </li>
-                    </ul>
+                    </ul>                    
                     <form class="form-inline my-2 my-lg-0" action="../index.jsp">                
                         <button class="btn barra text-white my-2 my-sm-0" id="cerrarSesion" type="submit">Cerrar Sesi&oacute;n</button>
                     </form>

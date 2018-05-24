@@ -73,7 +73,7 @@
                       </div>
                     </li>
                     <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
+                        <a id="btn_gerencia" class="nav-link color" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
                         <script src="../js/gerencia.js"></script>
                     </li>
                   </ul>

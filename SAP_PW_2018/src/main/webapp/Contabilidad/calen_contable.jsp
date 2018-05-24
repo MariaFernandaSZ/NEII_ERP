@@ -4,6 +4,7 @@
 <%@page import="pw.sap.db.Conexion"%>
 <%@page import="pw.sap.pojo.Contabilidad.Calen_Contable"%>
 <%@page import="java.util.ArrayList"%>
+
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -78,10 +79,10 @@
                                 <a class="nav-link text-white color" href="ct_resultados.jsp">Estado de resultados</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                             <a id="btn_gerencia" class="nav-link" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                        <script src="../js/gerencia.js"></script>
-                    </li>
+                        <li class="nav-item">                            
+                             <a id="btn_gerencia" class="nav-link color" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
+                             <script src="../js/gerencia.js"></script>
+                        </li>
                     </ul>
                   
                     <form class="form-inline my-2 my-lg-0" action="../index.jsp">                

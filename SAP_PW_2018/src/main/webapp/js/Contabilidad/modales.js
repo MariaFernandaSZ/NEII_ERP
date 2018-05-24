@@ -4,6 +4,13 @@ function agregaCCmodal() {
     });
 }
 
+function consultacalen(){
+    $('#consultaespecifica').modal({
+        show: true
+    });
+}
+
+
 function editaCCmodal() {
     $('#editacc').modal({
         show: true
