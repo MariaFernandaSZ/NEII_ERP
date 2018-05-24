@@ -1,5 +1,4 @@
-
-
+package pw.sap.servlets.inventarios;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,37 +37,15 @@ public class Eliminar_Devolucion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
  
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c=new Conexion();
-       
-        
+         String codigo = request.getParameter("id_devolucion");
          
-          String codigo = request.getParameter("IDDev");
-        
-        out.println("Dato eliminado");
-        registro rg= new registro ();
-        rg.eliminarDevolucion(codigo);
-        
-        out.println("Dato eliminado");
-        
-        request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
-              
-        
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Eliminar_Devolucion</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Eliminar_Devolucion at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+         registro rg= new registro();
+         
+         rg.eliminarDevolucion(codigo);
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
