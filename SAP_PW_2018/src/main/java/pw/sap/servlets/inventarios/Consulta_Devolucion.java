@@ -40,34 +40,18 @@ public class Consulta_Devolucion extends HttpServlet {
         
          Conexion c=new Conexion();
         
-        ArrayList l=c.consultaDevolucion(Integer.parseInt(request.getParameter("CoBa")));
+        ArrayList l=c.consultaDevolucion(Integer.parseInt(request.getParameter("id_devolucion")));
         
      
-        request.setAttribute("id_ordencompra", l.get(0));
-        request.setAttribute("id_producto", l.get(1));
-        request.setAttribute("id_devolucion", l.get(2));
-        request.setAttribute("cantidad_devuelta", l.get(3));
-        request.setAttribute("fecha_devolucion", l.get(4));
-        request.setAttribute("motivo", l.get(5));
+        request.setAttribute("id_devolucion", l.get(0));
+        request.setAttribute("id_compra", l.get(1));
+        request.setAttribute("cantidad_devuelta", l.get(2));
+        request.setAttribute("fecha_devolucion", l.get(3));
+        request.setAttribute("motivo", l.get(4));
         
         request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
         
-        
-        
-        
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Consulta_Devolucion</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Consulta_Devolucion at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
