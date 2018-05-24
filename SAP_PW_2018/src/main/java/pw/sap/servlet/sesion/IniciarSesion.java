@@ -41,7 +41,7 @@ public class IniciarSesion extends HttpServlet {
             response.sendRedirect(validador.redireccionar((String)query.get(0)));
         }else{
             response.sendRedirect("index.jsp");
-        }
+        }//sdf
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
