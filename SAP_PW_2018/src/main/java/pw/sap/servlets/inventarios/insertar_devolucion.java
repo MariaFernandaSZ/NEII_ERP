@@ -32,18 +32,18 @@ public class insertar_devolucion extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
               
-        String codigo = request.getParameter("CoBa");
-        String fecha = request.getParameter("fechaDev");
+        String codigo = request.getParameter("id_compra");
+        String fecha = request.getParameter("fecha_dev");
         
-        String cantidad = request.getParameter("cantidadDev");
-        String observaciones = request.getParameter("motivo");
+        String cantidad = request.getParameter("cant_dev");
+        String observaciones = request.getParameter("motivo_dev");
         
         registro rg = new registro();
         rg.agregarDevolucion(codigo, fecha, cantidad, observaciones);
  
         
       
-        response.sendRedirect("Inventarios/Inventario/merma.jsp");
+        response.sendRedirect("Inventarios/Inventario/Producto_Re.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
