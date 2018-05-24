@@ -8,10 +8,10 @@ package pw.sap.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +21,8 @@ import pw.sap.db.Conexion;
  *
  * @author fgb
  */
-public class CalenContable extends HttpServlet {
+@WebServlet(name = "CalenElimina", urlPatterns = {"/CalenElimina"})
+public class CalenElimina extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,19 +36,12 @@ public class CalenContable extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c=new Conexion();              
+        Conexion c=new Conexion();
+        System.out.println("clave a eliminar:"+request.getParameter("nclave")); 
+        String campo=request.getParameter("nclave");
+        c.eliminaCalen(campo);        
+        response.sendRedirect("Contabilidad/calen_contable.jsp");
         
-        System.out.println("clave:"+request.getParameter("clave"));
-        //ArrayList l=c.calenContable(Integer.parseInt(request.getParameter("clave")));
-        ArrayList l=c.calenContable(request.getParameter("clave"));
-        
-        request.getSession().setAttribute("clave", l.get(0));        
-        request.getSession().setAttribute("periodo", l.get(1));
-        request.getSession().setAttribute("fechaini", l.get(2));
-        request.getSession().setAttribute("fechafin", l.get(3));
-        request.getSession().setAttribute("status", l.get(4));
-        //HttpSession sesion=request.getSession();
-        response.sendRedirect("Contabilidad/calen_contable_1.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,9 +59,9 @@ public class CalenContable extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,14 +76,10 @@ public class CalenContable extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("entre por post");
-        System.out.println("clave"+request.getAttribute("clave"));
-        try {
+        try {        
             processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

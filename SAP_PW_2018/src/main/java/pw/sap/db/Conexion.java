@@ -91,6 +91,16 @@ public class Conexion {
         closeDB();        
         return r;
     }
+    //eliminacion de periodos en calendario contable
+     public int eliminaCalen(String clave) throws SQLException{        
+        openDB();       
+        PreparedStatement ps= conn.prepareStatement("DELETE FROM calen_contable where clave=?;");
+        ps.setString(1, clave);
+        int r=ps.executeUpdate();
+        closeDB();
+        return r;        
+    }
+    
     //Inicio Inventario
      public ArrayList consultaEntradas(int IDEntrada) throws SQLException {
         openDB();    

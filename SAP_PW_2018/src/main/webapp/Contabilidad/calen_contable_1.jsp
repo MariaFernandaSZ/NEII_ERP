@@ -139,22 +139,15 @@
                                     <th>Fecha inicio</th>
                                     <th>Fecha final</th>
                                     <th>Status</th>
+                                </tr>
+                                <tr>                                                                       
+                                    <td class="seleccion"><input type="radio" id="ccselperiodo" value="<%=request.getAttribute("clave")%>" name="ccselperiodo"></td>
+                                    <td><%=request.getSession().getAttribute("clave")%></td>
+                                    <td><%=request.getSession().getAttribute("periodo")%></td>
+                                    <td><%=request.getSession().getAttribute("fechaini")%></td>
+                                    <td><%=request.getSession().getAttribute("fechafin")%></td>
+                                    <td><%=request.getSession().getAttribute("status")%></td>    
                                 </tr>                                
-                                    <%
-                                        LinkedList<Calen_Contable> lista =ConsultasGenerales.consultaGeneral();
-                                        for (int i=0;i<lista.size();i++)
-                                        {
-                                           out.println("<tr>");
-                                           out.println("<td><input type='radio' name='idcalen' value='"+lista.get(i).getId()+"'></td>");                                           
-                                           out.println("<td>"+lista.get(i).getClave()+"</td>");
-                                           out.println("<td>"+lista.get(i).getPeriodo()+"</td>");
-                                           out.println("<td>"+lista.get(i).getFechaini()+"</td>");
-                                           out.println("<td>"+lista.get(i).getFechafin()+"</td>");
-                                           out.println("<td>"+lista.get(i).getStatus()+"</td>");
-                                           out.println("</tr>");
-                                        }
-                                    %>
-                                                                        
                             </table>    
                         </div>
                     </div>
@@ -301,7 +294,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-style-5">
-                                    <form onsubmit="return calencontEliminar();" action="../CalenElimina" method="POST">
+                                    <form onsubmit="return calencontEliminar();" action="" method="POST">
                                         <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nclave" id="neliminaclave" placeholder="001"/></span><br>
                                         <center><input id="eliminarCal" type="submit" value="Eliminar" style="background-color: #9F150D" class="btn btn-danger"><br>
                                             <br></center>                   
