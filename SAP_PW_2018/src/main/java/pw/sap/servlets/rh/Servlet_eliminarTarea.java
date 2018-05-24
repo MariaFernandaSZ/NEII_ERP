@@ -49,8 +49,16 @@ public class Servlet_eliminarTarea extends HttpServlet {
                 }
             }
             if(resultado == 1){
+                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se elimino una tarea");
+            
                 response.getWriter().write("Tarea eliminada");
+              
+               
             }else{
+                
+                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de eliminacion de tarea");
+            
+                
                 response.getWriter().write("El registro no pudo ser eliminado");
             }
         }

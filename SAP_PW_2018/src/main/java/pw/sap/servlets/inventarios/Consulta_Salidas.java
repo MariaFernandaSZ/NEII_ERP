@@ -45,7 +45,8 @@ public class Consulta_Salidas extends HttpServlet {
         request.setAttribute("id_ordenventa", l.get(1));
         request.setAttribute("cantidad_vendida", l.get(2));
         request.setAttribute("total_mon", l.get(3));
-       
+       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de salida");
+         
         request.getRequestDispatcher("Inventarios/Inventario/salidas.jsp").forward(request, response);
         
         

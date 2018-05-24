@@ -58,10 +58,16 @@ public class Servlet_modificarTarea extends HttpServlet {
                 }
             }
         }
+        
         try (PrintWriter out = response.getWriter()) {
             if(resultado == 1){
+                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se modifico una tarea");
+            
                 out.println("Modificacion realizada correctamente");
             }else{
+                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de modificacion de tarea");
+            
+               
                 out.println("Modificacion fallida");
             }
         }

@@ -49,7 +49,8 @@ public class Consulta_MermaD extends HttpServlet {
         request.setAttribute("tipo_merma", l.get(3));
         request.setAttribute("cant_mer", l.get(4));
         request.setAttribute("motivo_mer", l.get(5));
-        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de merma desconocida");
+         
         request.getRequestDispatcher("Inventarios/Inventario/merma_con.jsp").forward(request, response);
         
         

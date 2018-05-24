@@ -39,6 +39,9 @@ public class ConsultaE_MD extends HttpServlet {
         
         Conexion c=new Conexion();
         
+        
+      
+        
         ArrayList l=c.consultaEMermad(Integer.parseInt(request.getParameter("CoBa")));
         
      
@@ -48,7 +51,8 @@ public class ConsultaE_MD extends HttpServlet {
         request.setAttribute("tipo_merma", l.get(3));
         request.setAttribute("cantidad_merma", l.get(4));
         request.setAttribute("observaciones", l.get(5));
-        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta especifica de merca desconocida");
+            
         request.getRequestDispatcher("Inventarios/Inventario/merma_con.jsp").forward(request, response);
         
         

@@ -40,11 +40,25 @@ public class Eliminar_Devolucion extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        
          String codigo = request.getParameter("id_devolucion");
          
          registro rg= new registro();
          
-         rg.eliminarDevolucion(codigo);
+         
+          if(rg.eliminarDevolucion(codigo)== 1){
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se elimino una devolucion");
+            
+                response.getWriter().write("Devolucion eliminada");
+              
+               
+            }else{
+                
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de eliminacion de devolucion");
+            
+                
+                response.getWriter().write("El registro no pudo ser eliminado");
+            }
          
     }
 

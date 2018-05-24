@@ -49,7 +49,8 @@ public class Consulta_Desconocida extends HttpServlet {
         request.setAttribute("tipo_merma", l.get(3));
         request.setAttribute("cantidad_merma", l.get(4));
         request.setAttribute("observaciones", l.get(5));
-        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de merma desconocida");
+            
         request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
         
         

@@ -56,12 +56,17 @@ public class Servlet_consultarEmpleado extends HttpServlet {
         }else{
             lista = c.consulta(campos, "empleado", "id_vendedor", "is not null ", orden, cont);
         }
+        
+       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de empleados");
+            
+        
+        
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
-            for(int i = 0 ; i < lista.size() ; i++){
-                if(i == cont){out.println("</tr><tr>");}
-                out.print("<td>"+lista.get(i)+"</td>");
+            for(int j = 0 ; j < lista.size() ; j++){
+                if(j == cont){out.println("</tr><tr>");}
+                out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
             out.println("</table>");

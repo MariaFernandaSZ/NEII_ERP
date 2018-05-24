@@ -43,6 +43,9 @@ public class PlanDeCuentas extends HttpServlet {
         
         ArrayList l= c.consultaPlan(request.getParameter("clave"));
         
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta de plan de cuentas");
+            
+        
         request.setAttribute("codigosat", l.get(0));
         request.setAttribute("descripcion", l.get(1));
         

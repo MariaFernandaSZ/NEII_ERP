@@ -49,8 +49,12 @@ public class Servlet_contratarEmpleado extends HttpServlet {
                     "empleado", valores);
             lista.add(c.consulta("id_vendedor", "empleado", "id_vendedor", "is not null", "ORDER BY id_vendedor DESC LIMIT 1", 1));
             if(query == 1){
+               int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se contrato a un empleado");
+            
                 response.getWriter().write("Registro realizado correctamente. ID de empleado: "+lista.get(0));
-            }else{
+                }else{
+                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de contratacion");
+            
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
         }

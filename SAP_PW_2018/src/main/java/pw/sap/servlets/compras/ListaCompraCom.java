@@ -41,6 +41,9 @@ public class ListaCompraCom extends HttpServlet {
         request.getSession().setAttribute("preciotot", l.get(1));
         request.getSession().setAttribute("fomapago", l.get(2));
         request.getSession().setAttribute("folio", l.get(3));
+        
+       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de compras");
+            
        
        response.sendRedirect("Compras/com_consultacompras.jsp");
         //sesion.setAttribute("clave",l.get(0));        

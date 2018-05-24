@@ -40,13 +40,15 @@ public class ConsultaE_Salidas extends HttpServlet {
         
         Conexion c=new Conexion();
         
+        
         ArrayList l=c.consultaESalidas(Integer.parseInt(request.getParameter("CoBa")),Integer.parseInt(request.getParameter("IDSalida")),Integer.parseInt(request.getParameter("IDOrdenCom")));
         request.setAttribute("id_producto", l.get(0));
         request.setAttribute("id_salida", l.get(1));
         request.setAttribute("id_ordenventa", l.get(2));
         request.setAttribute("fecha_salida", l.get(3));
         request.setAttribute("cantidad_vendida", l.get(4));
-       
+       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta especifica de salidas");
+            
         request.getRequestDispatcher("Inventarios/Inventario/salidas.jsp").forward(request, response);
         
         

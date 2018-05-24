@@ -38,62 +38,79 @@ public class registro {
     }
     
     
-            public void agregarMerma(String codigo, String fecha, String tipo, String cantidad, String motivo) throws SQLException, ClassNotFoundException{
+            public int agregarMerma(String codigo, String fecha, String tipo, String cantidad, String motivo) throws SQLException, ClassNotFoundException{
          
                  openDB();
+                 int valor=1;
                   PreparedStatement ps;
                     
                      ps = conn.prepareStatement("INSERT INTO merma(id_producto,fecha_merma,tipo_merma,cantidad_merma,motivo) "
                                        + " VALUES ('"+codigo+"','now()','"+tipo+"',"+cantidad+",'"+motivo+"')");
-                    ResultSet rs= ps.executeQuery();
+                    valor = ps.executeUpdate();
           
                     System.out.println(ps);
                     
                     closeDB();
+                    return valor;
                   
         }
-    public void eliminarDevolucion(String codigo) throws SQLException, ClassNotFoundException{
+    public int eliminarDevolucion(String codigo) throws SQLException, ClassNotFoundException{
          
             openDB();
+            int valor=1;
             
                      PreparedStatement ps;
                     
                      ps = conn.prepareStatement("delete from devolucion where id_devolucion="+codigo);
-                    ResultSet rs= ps.executeQuery();
-                    System.out.println(ps);
+                    valor = ps.executeUpdate();
         
             closeDB();
+            return valor;
         }
     
     
                
    
    
-   public void agregarDevolucion(String codigo, String fecha, String cantidad, String observaciones) throws SQLException, ClassNotFoundException{
+   public int agregarDevolucion(String codigo, String fecha, String cantidad, String observaciones) throws SQLException, ClassNotFoundException{
          
             openDB();
-            
+            int valor=1;
                      PreparedStatement ps;
                     
                      ps = conn.prepareStatement("INSERT INTO devolucion(id_compra,cantidad_devuelta,fecha_devolucion,motivo) "
                                        + " VALUES ("+codigo+","+cantidad+",'now()','"+observaciones+"')");
-                    ResultSet rs= ps.executeQuery();
+                    valor = ps.executeUpdate();
                     System.out.println(ps);
         
             closeDB();
+            return valor;
         }
           
-    public void eliminarMerma (String codigo) throws SQLException, ClassNotFoundException{
+    public int eliminarMerma (String codigo) throws SQLException, ClassNotFoundException{
          
             openDB();
-            
+            int valor=1;
                      PreparedStatement ps;
                     
                     ps = conn.prepareStatement("delete from merma where id_merma="+codigo);
-                    ResultSet rs= ps.executeQuery();
+                    valor = ps.executeUpdate();
                     System.out.println(ps);
         
             closeDB();
+            return valor;
         }   
    
+    
+      public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        openDB();
+        int valor=1;
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,desc) VALUES ("+id_emp+",'"+area+"','"+des+"'");
+        valor= ps.executeUpdate();
+        closeDB();        
+        return valor;
+    }
+     
+    
 }

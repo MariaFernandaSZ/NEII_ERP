@@ -40,7 +40,20 @@ public class eliminarMerma extends HttpServlet {
          
          registro rg= new registro();
          
-         rg.eliminarMerma(codigo);
+              
+          if(rg.eliminarMerma(codigo)== 1){
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se elimino una merma");
+            
+                response.getWriter().write("Merma eliminada");
+              
+               
+            }else{
+                
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de eliminacion de devolucion");
+            
+                
+                response.getWriter().write("El registro no pudo ser eliminado");
+            }
          
     }
 

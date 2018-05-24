@@ -42,15 +42,26 @@ public class insertar_merma extends HttpServlet {
         
         registro rg = new registro();
         
-       rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
- 
+
+         if(rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo)== 1){
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una merma");
+            
+                response.getWriter().write("Merma agregada");
+              
+               
+            }else{
+                
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de agregacion merma");
+            
+                
+                response.getWriter().write("El registro no pudo ser eliminado");
+            }
+        
+        
+        
         response.sendRedirect("Inventarios/Inventario/merma.jsp");
-//        if(registrado=true){
-//        response.sendRedirect("Inventarios/Inventario/merma.jsp");
-// }else{
-//  response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
-// 
-// }
+        
+        
         
     }
 

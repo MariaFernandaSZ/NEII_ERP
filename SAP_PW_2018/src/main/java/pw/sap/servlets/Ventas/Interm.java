@@ -52,6 +52,9 @@ public class Interm extends HttpServlet {
         
            boolean sw=c.agregarInterm(interBean);
             if(sw){
+            
+                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Iinsercion de Intermediario");
+            
 
              PrintWriter out=response.getWriter();
             out.println("<script>");

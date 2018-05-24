@@ -52,7 +52,8 @@ public class Modificar_Merma extends HttpServlet {
         Modificar m= new Modificar();
         m.modificarMerma(codigo, tipo, cantidad, observaciones);
  
-        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se Modifico merma");
+            
    
         response.sendRedirect("Inventarios/Inventario/merma.jsp");
  

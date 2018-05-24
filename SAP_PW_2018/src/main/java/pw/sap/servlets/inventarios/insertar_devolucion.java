@@ -39,8 +39,25 @@ public class insertar_devolucion extends HttpServlet {
         String observaciones = request.getParameter("motivo_dev");
         
         registro rg = new registro();
-        rg.agregarDevolucion(codigo, fecha, cantidad, observaciones);
+        
  
+        
+        if(rg.agregarDevolucion(codigo, fecha, cantidad, observaciones)== 1){
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una devolucion");
+            
+                response.getWriter().write("Devolucion agregada");
+              
+               
+            }else{
+                
+                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de agregacion de devolucion");
+            
+                
+                response.getWriter().write("El registro no pudo ser eliminado");
+            }
+        
+        
+        
         
       
         response.sendRedirect("Inventarios/Inventario/Producto_Re.jsp");

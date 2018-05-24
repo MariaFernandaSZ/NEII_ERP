@@ -30,8 +30,8 @@ public class Conexion {
     public void openDB() throws SQLException {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        connProp.put("password", "Gorostieta123");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/pruebalog", connProp);
     }
 
     /**
@@ -633,4 +633,43 @@ public class Conexion {
         closeDB();        
         return r;
     }
+    
+    
+     public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        openDB();
+        int valor=1;
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,desc) VALUES ("+id_emp+",'"+area+"','"+des+"'");
+        valor= ps.executeUpdate();
+        closeDB();        
+        return valor;
+    }
+     
+     
+     public ArrayList consultaRegistro(String id_emp) throws SQLException {
+        openDB();    
+        ArrayList r=new ArrayList();
+        //Statement stmt;
+        PreparedStatement ps;
+        //stmt = conn.createStatement();
+        ps=conn.prepareStatement("SELECT id_emp,area,des WHERE id_emp=? ");
+        ps.setString(1, id_emp);
+        //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
+          ResultSet rs= ps.executeQuery();
+          System.out.println(rs.getString(1));
+          System.out.println(rs.getString(2));
+          System.out.println(rs.getString(3));
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+                r.add(rs.getString(1));
+                r.add(rs.getString(2));
+                r.add(rs.getString(3));                            
+            }
+            
+        closeDB();        
+        return r;
+    }
+     
+       
+    
 }

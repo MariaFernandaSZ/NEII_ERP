@@ -40,6 +40,8 @@ public class ConsultaE_G extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
         
+       
+        
         ArrayList l=c.consultaEG(Integer.parseInt(request.getParameter("CoBa")),Integer.parseInt(request.getParameter("IDEntrada")),Integer.parseInt(request.getParameter("IDOrdenCom")),"TipoPro");
         request.setAttribute("id_entrada", l.get(0));
         request.setAttribute("id_compra", l.get(1));
@@ -49,6 +51,10 @@ public class ConsultaE_G extends HttpServlet {
         request.setAttribute("cantidad_recibido", l.get(5));
         request.setAttribute("fecha_registro", l.get(6));
         request.setAttribute("fecha_caducidad", l.get(7));
+        
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta general");
+            
+        
         request.getRequestDispatcher("Inventarios/Inventario/inventario_g.jsp").forward(request, response);
         
         

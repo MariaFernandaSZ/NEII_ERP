@@ -48,6 +48,9 @@ public class Consulta_Entradas extends HttpServlet {
         request.setAttribute("cantidad_recibido", l.get(5));
         request.setAttribute("fecha_registro", l.get(6));
         request.setAttribute("fecha_caducidad", l.get(7));
+        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de entradas ");
+            
         request.getRequestDispatcher("Inventarios/Inventario/entradas.jsp").forward(request, response);
         
         

@@ -41,7 +41,8 @@ public class PlanDeCuentasAdd extends HttpServlet {
         PlanCuentas c =new PlanCuentas();
         
         ArrayList Add = c.consultaPlan(request.getParameter("id"));
-        
+          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego un plan de cuenta");
+            
         request.getRequestDispatcher("Contabilidad/plan_cuentas.jsp").forward(request, response);
         
     }
