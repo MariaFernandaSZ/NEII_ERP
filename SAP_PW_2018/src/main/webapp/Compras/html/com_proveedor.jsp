@@ -84,12 +84,12 @@
                                     <option value="Michoac&aacute;n">Michoacán </option>
                                     <option value="Morelos">Morelos </option>
                                     <option value="Nayarit">Nayarit </option>
-                                    <option value="Nuevo leon">Nuevo León </option>
+                                    <option value="Nuevo Le&oacute;n">Nuevo León </option>
                                     <option value="Oaxaca">Oaxaca </option>
                                     <option value="Puebla">Puebla </option>
-                                    <option value="Queretaro">Querétaro </option>
+                                    <option value="Quer&eacute;taro">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
-                                    <option value="San Luis Potosi;">San Luis Potosí </option>
+                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
                                     <option value="Sinaloa">Sinaloa </option>
                                     <option value="Sonora">Sonora </option>
                                     <option value="Tabasco">Tabasco </option>
@@ -137,7 +137,7 @@
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord5" value="proveedor">
                                 <label style="font-size: 18px" class="form-check-label" for="ord5">Nombre de la empresa</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord6" value="estado">
-                                <label style="font-size: 18px" class="form-check-label" for="ord6">Zona</label>
+                                <label style="font-size: 18px" class="form-check-label" for="ord6">Estado</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord7" value="producto">
                                 <label style="font-size: 18px" class="form-check-label" for="ord7">Producto</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord8" value="correo">
@@ -188,16 +188,16 @@
                                     <option value="Nuevo Le&oacute;n">Nuevo León </option>
                                     <option value="Oaxaca">Oaxaca </option>
                                     <option value="Puebla">Puebla </option>
-                                    <option value="Queretaroo">Querétaro </option>
+                                    <option value="Quer&eacute;taro">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
-                                    <option value="San Luis Potosi">San Luis Potosí </option>
+                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
                                     <option value="Sinaloa">Sinaloa </option>
                                     <option value="Sonora">Sonora </option>
                                     <option value="Tabasco">Tabasco </option>
                                     <option value="Tamaulipas">Tamaulipas </option>
                                     <option value="Tlaxcala">Tlaxcala </option>
                                     <option value="Veracruz">Veracruz </option>
-                                    <option value="Yucatan">Yucatán </option>
+                                    <option value="Yucat&aacute;n">Yucatán </option>
                                     <option value="Zacatecas">Zacatecas</option>
                                 </optgroup>
                             </select>
