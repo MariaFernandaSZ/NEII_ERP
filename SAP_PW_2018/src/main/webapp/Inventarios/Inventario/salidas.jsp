@@ -105,9 +105,9 @@
                            <span id="titulo"><span class="number">1</span> Consultar registro por id de producto</span><br><br>
                            <span class="idemp"><input type="text" name="id_producto" id="id_producto" placeholder="Id de producto" required="required" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                     </form>
-                    <form action="../../Consulta_Salidas" method="POST">  
+                    <form action="../../Consulta_SalidaOrden" method="POST">  
                            <span id="titulo"><span class="number">2</span> Consulta registro por orden de venta</span><br><br>
-                           <span class="idemp"><input type="text" name="id_venta" id="id_venta" placeholder="Orden de venta" maxlength="7" pattern="[0-9]{7}" title="El id de orden de venta debe ser de 7 digitos (n&uacute;meros)" required/></span><input type="submit" name="Busca" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
+                           <span class="idemp"><input type="text" name="id_ordenventa" id="id_venta" placeholder="Orden de venta" maxlength="7" pattern="[0-9]{7}" title="El id de orden de venta debe ser de 7 digitos (n&uacute;meros)" required/></span><input type="submit" name="Busca" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                             
                             </form>
                     </div>
