@@ -101,7 +101,7 @@
                         <span id="titulo"><span class="number">3</span>Orden de compra</span>
                         
                         
-                        <form method="POST" onsubmit="return vali_nuevoproducto();" name="OrdenCompra" action="../OrdenCompra"> 
+                        <form method="POST" onsubmit="return vali_nuevoproducto();" name="OrdenCompra" action="../../OrdenCompra"> 
                             
                             <br>
                             <div class="row">
