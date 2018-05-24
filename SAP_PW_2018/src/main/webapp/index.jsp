@@ -27,7 +27,7 @@
                     <table id="acceso">
                         <tr>
                             <td><label>Usuario:&nbsp;&nbsp;</label></td>
-                            <td><input type="text" class="form-control form-control-sm" id="user" name="user" required="required" /></td>
+                            <td><input type="number" class="form-control form-control-sm" id="user" name="user" required="required" /></td>
                         </tr>
                         <tr>
                             <td><label>Contrase&ntilde;a:&nbsp;</label></td>
