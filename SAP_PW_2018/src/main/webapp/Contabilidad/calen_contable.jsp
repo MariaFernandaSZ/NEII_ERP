@@ -1,3 +1,9 @@
+<%@page import="pw.sap.db.ConsultasGenerales"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="java.util.List"%>
+<%@page import="pw.sap.db.Conexion"%>
+<%@page import="pw.sap.pojo.Contabilidad.Calen_Contable"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -84,16 +90,23 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-12 col-xs-12"> <!-- Seccion izquierda -->
                         <div class="form-style-5">
                             <form onsubmit="return validanumero('clave');" action="../CalenContable" method="POST"> 
-                                <span id="titulo"><span class="number">1</span>Ingresa la clave a buscar</span>
+                                <span id="titulo"><span class="number">1</span>Ingresa la clave a buscar</span>                            
                                 <div class="row">
                                     <div class="col-lg-8 col-md-12 col-sm-8 col-xs-8">
                                         <input type="text" id="clave" name="clave" placeholder="Clave">    
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
                                         <input id="buscar" name="buscar" type="submit" value="Buscar">
-                                    </div> 
+                                    </div>                             
                                 </div>
-                                <div class="row">
+                            </form>
+                            <form action="../calenGeneral" method="POST">
+                                    <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
+                                        <input id="buscar" name="general" type="submit" value="Consulta General">
+                                    </div> 
+                            </form>
+                        
+                            <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
                                         <button id="btn-cc-add" type="button" class="btn btn-light" onclick="agregaCCmodal()">Agregar</button>
                                     </div>
@@ -103,13 +116,12 @@
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
                                         <button id="btn-cc-del" type="button" class="btn btn-light" onclick="eliminaCCmodal()">Eliminar</button>
                                     </div>
-                                </div>
-                            </form> 
+                            </div>                            
                         </div> 
                     </div>
                     <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
+                        <div class="table-responsive" id="cambios">
+                            <table class="table table-bordered table-responsive">
                                 <tr>
                                     <th>Selecciona</th>
                                     <th>Clave</th>
@@ -119,6 +131,21 @@
                                     <th>Status</th>
                                 </tr>
                                 <tr>
+                                    <%
+                                        LinkedList<Calen_Contable> lista =ConsultasGenerales.consultaGeneral();
+                                        for (int i=0;i<lista.size();i++)
+                                        {
+                                           out.println("<tr>");
+                                           out.println("<td><input type='radio' name='idcalen' value='"+lista.get(i).getId()+"'></td>");                                           
+                                           out.println("<td>"+lista.get(i).getClave()+"</td>");
+                                           out.println("<td>"+lista.get(i).getPeriodo()+"</td>");
+                                           out.println("<td>"+lista.get(i).getFechaini()+"</td>");
+                                           out.println("<td>"+lista.get(i).getFechafin()+"</td>");
+                                           out.println("<td>"+lista.get(i).getStatus()+"</td>");
+                                           out.println("</tr>");
+                                        }
+                                    %>
+                                    
                                     <td class="seleccion"><input type="radio" id="ccselperiodo" value="<%=request.getAttribute("clave")%>" name="ccselperiodo"></td>
                                     <td><%=request.getSession().getAttribute("clave")%></td>
                                     <td><%=request.getSession().getAttribute("periodo")%></td>
