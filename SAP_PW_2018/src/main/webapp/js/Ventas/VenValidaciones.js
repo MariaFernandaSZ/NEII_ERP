@@ -715,7 +715,7 @@ function validaRegistraInterm(){
                 
                 }
             //nombre del cliente obligatorio
- 
+  
       
      if (nombrecliente=="" || nombrecliente == null || nombrecliente.length == 0 || /^\s+$/.test(nombrecliente)) {
   
@@ -726,7 +726,7 @@ function validaRegistraInterm(){
   alert("el maximo de caracteres para el nombre del intermediario es 40");
   return false;
 }
-
+       
     
         if (apellidosCliente=="" || apellidosCliente == null || apellidosCliente.length == 0 || /^\s+$/.test(apellidosCliente)) {
        
@@ -736,22 +736,22 @@ function validaRegistraInterm(){
   alert("el maximo de caracteres para los apellidos del intermediario es 60");
   return false;
 }
-
         
-    if(!(/^\d{10}$/.test(numeroTelefono))) {
-        
-        alert("escribe un telefono valido ejemplo: 7223490089");
    
-             return false;
-            }
-
-          
-  if(!(/\S+@\S+\.\S+/.test(correo))){
+    if(!(/^\d{10}$/.test(numeroTelefono))) {
                
- alert('ERROR: Debe escribir un correo vÃ¡lido ejemplo:geovanni.ayalapea@gmail.com');
+        alert("escribe un telefono valido ejemplo: 7223490089");
          
        return false;
             }
+ 
+      
+  if(!(/\S+@\S+\.\S+/.test(correo))){
+
+ alert('ERROR: Debe escribir un correo vÃ¡lido ejemplo:geovanni.ayalapea@gmail.com');
+
+       return false;
+        }
         }
         
                 

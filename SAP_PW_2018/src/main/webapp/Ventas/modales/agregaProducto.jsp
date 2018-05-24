@@ -26,26 +26,25 @@
               </div>
               <div class="modal-body">
                 <div class="form-style-5">
-                    <form action="../AgregaProducto" method="POST" name="codigoProd">
+                    <form method="POST">
                             <span id="titulo"><span class="number">1</span>Añade</span>
                             
                             
                                 <br><br><span>C&oacute;digo de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" onkeypress="return searchKeyPress(event);" id="codprod" type="text" name="codprod" placeholder="###############"/></span>
 
-                                <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return cantOnPress(event);" id="cant" type="text" name="cantidad" placeholder="0"/></span>
+                                <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return cantOnPress(event);" id="cant" type="text" name="cant" placeholder="0"/></span>
                                 <br><br>
-                    </form>
-                    <form>
+
 
                                 <span id="titulo"><span class="number">2</span>Datos de producto</span>
                                 <br><br>
                                 <span id="nom">Nombre producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text"  name="nomProd" id="nomprod" readonly="readonly" placeholder="Nombre"/></span>
                                 <br><br>
-                                <span >Precio unitario:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text"  name="Total" id="precioprod" readonly="readonly" placeholder="$000.00"/></span>
+                                <span >Precio unitario:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="precioprod" id="precioprod" readonly="readonly" placeholder="$000.00"/></span>
                                 <br><br>
-                                <span>IVA:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="iva" id="ivaprod" readonly="readonly" placeholder="$000.00"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>IVA:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="ivaprod" id="ivaprod" readonly="readonly" placeholder="$000.00"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 
-                                <span >Subtotal:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="precioUnitario" readonly="readonly" placeholder="$000.00"/></span>
+                                <span >Subtotal:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="precioUnitario" id="precioUnitario" readonly="readonly" placeholder="$000.00"/></span>
                     </form>        
                     
                 </div>
@@ -64,7 +63,7 @@
     <script src="../../js/Ventas/VenGeneral.js"></script>
     <script src="../../js/Ventas/VenValidaciones.js"></script>
     <script src="../../js/Ventas/muestraModales.js"></script>
-    <script src="../../js/Ventas/ajaxFunctions.js" type="text/javascript"></script>
+    <script src="../../js/Ventas/ajaxFunctions.js"></script>
 
     </body>
 </html>

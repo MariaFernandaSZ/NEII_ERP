@@ -35,27 +35,25 @@ function searchKeyPress(e)
 
 function cantOnPress(e)
 {
-        var canti=$('#cant').val();
+        var cant=$('#cant').val();
+        var precioprod=$('#precioprod').val();
+        var ivaprod=$('#ivaprod').val();
         
         if (e.keyCode == 13)
         {
-            if( !(/^\d{1,4}$/.test(canti)) ) {
+            if( !(/^\d{1,4}$/.test(cant)) ) {
         
                 alert("ingrese una cantidad menor a 1000");
                 return false;
             }else{
-//                $.ajax({
-//                    type:'POST',
-//                    url: '../AgregaProducto',
-//                    datatype: 'json',
-//                    data: {cant:cant},
-//                    success: function (result) {
-//                        var producto = $.parseJSON(result);
-//                        $('#nomprod').val(producto.nombre);
-//                        $('#precioprod').val(producto.precio);
-//                        $('#ivaprod').val(producto.iva);
-//                    }
-//                });
+                $.ajax({
+                    type:'POST',
+                    url: '../cantidadProd',
+                    data: {cant:'cant',precioprod:'precioprod',ivaprod:'ivaprod'},
+                    success: function (result) {
+                        $('#precioUnitario').val(result);
+                    }
+                });
             }  
         }
 }
