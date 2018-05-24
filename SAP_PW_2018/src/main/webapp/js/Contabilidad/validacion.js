@@ -701,12 +701,41 @@ if(numeros.test(id)||id===""){
         return false;
     }
     
-   var uuid = document.getElementById('uuid').value;
-    var numeros=/[0-9]/;    
+    var uuid = document.getElementById('uuid').value;
+        
     if(uuid===""){
         alert('El campo UUID factura se encuentra vacio');
         return false;
     }
+    
+   
+    var letra=/[g-zG-Z]/;    
+    if(letra.test(uuid)||uuid===""){
+        alert('el campo UUID no puede contener letras de la g a la z ');
+        return false;
+    }
+    
+    var cont=0;
+    for (var i = 0; i < uuid.length; i++) {
+        
+        if (uuid[i]=="-") {
+            cont++;
+        }
+     }
+    
+    if (cont<4) {
+         alert('El campo UUID debe estar separado en 5 grupos por un "-" ');
+         alert('Ejemplo: 4A1B43E2-1183-4AD4-A3DE-C2DA787AE56A ');
+       return false; 
+    }
+    
+    if (uuid.length==36) {
+        return true;
+    }else{
+        alert('UUID debe de tener una longitud de 32')
+        return false;
+    }
+  
     
      
      
