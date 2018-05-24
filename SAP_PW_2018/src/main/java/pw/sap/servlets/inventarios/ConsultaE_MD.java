@@ -39,7 +39,7 @@ public class ConsultaE_MD extends HttpServlet {
         
         Conexion c=new Conexion();
         
-        ArrayList l=c.consultaEMermad(Integer.parseInt(request.getParameter("CoBa")),Integer.parseInt(request.getParameter("IDMerma")));
+        ArrayList l=c.consultaEMermad(Integer.parseInt(request.getParameter("CoBa")));
         
      
         request.setAttribute("id_producto", l.get(0));
