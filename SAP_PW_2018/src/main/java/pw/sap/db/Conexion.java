@@ -248,14 +248,14 @@ public class Conexion {
      
      
      
-     public ArrayList consultaMermac(String id_merma) throws SQLException {
+     public ArrayList consultaMermac(int id_merma) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
         ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo FROM merma WHERE id_merma=? and tipo_merma='MermaConocida'");
-        ps.setString(2, id_merma);
+        ps.setInt(1, id_merma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
          

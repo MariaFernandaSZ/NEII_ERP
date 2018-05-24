@@ -40,7 +40,7 @@ public class Consulta_Merma extends HttpServlet {
         
         Conexion c=new Conexion();
         
-        ArrayList l=c.consultaMermac(request.getParameter("id_merma"));
+        ArrayList l=c.consultaMermac(Integer.parseInt(request.getParameter("id_merma")));
         
         request.setAttribute("id_producto", l.get(0));
         request.setAttribute("id_merma", l.get(1));
