@@ -30,7 +30,7 @@ public class Conexion {
     public void openDB() throws SQLException {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "Gorostieta123");
+        connProp.put("password", "root");
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/pruebalog", connProp);
     }
 

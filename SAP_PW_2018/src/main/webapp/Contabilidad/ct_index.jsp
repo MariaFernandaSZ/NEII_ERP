@@ -78,7 +78,7 @@
                                 
                         </li>
                     </ul>                    
-                    <form class="form-inline my-2 my-lg-0" action="../index.jsp">                
+                    <form class="form-inline my-2 my-lg-0" action="../CerrarSesion" method="POST">                
                         <button class="btn barra text-white my-2 my-sm-0" id="cerrarSesion" type="submit">Cerrar Sesi&oacute;n</button>
                     </form>
                 </div>

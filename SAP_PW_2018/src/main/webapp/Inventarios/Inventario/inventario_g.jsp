@@ -75,7 +75,7 @@ and open the template in the editor.
                         <script src="../../js/gerencia.js"></script>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.jsp" style="color: white">Salir</a>                                
+                        <a class="nav-link" href="../../CerrarSesion" style="color: white">Salir</a>                                
                     </li>
                 </div>
             </nav>

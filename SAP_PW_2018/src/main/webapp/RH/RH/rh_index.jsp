@@ -85,7 +85,7 @@
                                         <a class="nav-link text-white color" href="#" id="ayuda_imprimir">Imprimir</a>
                                     </div>
                                 </li>
-                                <li class="nav-item"><a href="../../index.jsp" class="nav-link text-white color">Salir</a></li>                              
+                                <li class="nav-item"><a href="../../CerrarSesion" class="nav-link text-white color">Salir</a></li>                              
                             </ul>
                       </div>
                   </nav>

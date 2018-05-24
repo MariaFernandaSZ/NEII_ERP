@@ -33,7 +33,7 @@
 
                 </div>
                 <li class="nav-item" style="list-style:none">
-                    <a class="nav-link" href="../../index.jsp" style="color: white">Salir</a>
+                    <a class="nav-link" href="../../CerrarSesion" style="color: white">Salir</a>
                 </li>
             </nav>
         </header>
