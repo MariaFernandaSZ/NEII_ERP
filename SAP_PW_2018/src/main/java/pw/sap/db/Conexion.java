@@ -258,10 +258,7 @@ public class Conexion {
         ps.setString(2, id_merma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
-          System.out.println(rs.getString(1));
-          System.out.println(rs.getString(2));
-          System.out.println(rs.getString(3));
-          System.out.println(rs.getString(4));
+         
             while (rs.next()) {                
                 //System.out.println(rs.getInt(1));
                 r.add(rs.getString(1));
