@@ -99,7 +99,7 @@
                     </form>
                 </div> 
                 <div class="form-style-5">
-                    <form action="merma.jsp" method="POST" onsubmit="return EliminarMe()">
+                    <form action="../../eliminarMerma" method="POST" onsubmit="return EliminarMe()">
                            
                            <span id="titulo"><span class="number">2</span>Eliminar producto merma</span><br><br>
                             <span class="idemp"><input type="text" name="id_merma"  id="id_merma" placeholder="ID de Merma" maxlength="7" pattern="[0-9]{7}" title="El id de orden de merma debe ser de 7 digitos (n&uacute;meros)" required="required"></span> <input type="submit" name="EliminaM" style="background-color: #9F150D" class="btn btn-danger" value="Eliminar" /><br><br>                
@@ -170,7 +170,7 @@
               </div>
               <div class="modal-body">
                 <div class="form-style-5">
-                    <form method="POST" action="../../ConsultaE_Merma" onsubmit="return formularioModifica()">
+                    <form method="POST" action="../../Modificar_Merma" onsubmit="return formularioModifica()">
                             <span id="titulo"><span class="number">1</span>Inserte el id del merma a modificar (Nota: el id debe existir)</span>
                             <br><br><span>ID de merma:&nbsp;&nbsp;</span><span ><input type="text" name="id_merma" id="id_merma" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de merma debe ser de 7 digitos (n&uacute;meros)"/></span>
                             <span id="titulo"><span class="number">2</span>Inserte Datos a modificar</span>
