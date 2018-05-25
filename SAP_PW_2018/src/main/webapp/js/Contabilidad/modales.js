@@ -12,6 +12,7 @@ function consultacalen(){
 
 
 function editaCCmodal() {
+
     $('#editacc').modal({
         show: true
     });

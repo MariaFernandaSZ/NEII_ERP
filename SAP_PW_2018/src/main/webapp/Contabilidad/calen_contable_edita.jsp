@@ -129,28 +129,47 @@
                             </div>                            
                         </div> 
                     </div>
-                    <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
-                        <div class="table-responsive" id="cambios">
-                            <table class="table table-bordered table-responsive">
-                                <tr>
-                                    <th>Selecciona</th>
-                                    <th>Clave</th>
-                                    <th>Periodo</th>
-                                    <th>Fecha inicio</th>
-                                    <th>Fecha final</th>
-                                    <th>Status</th>
-                                </tr>
-                                <tr>                                                                       
-                                    <td class="seleccion"><input type="radio" id="ccselperiodo" value="<%=request.getAttribute("clave")%>" name="ccselperiodo"></td>
-                                    <td><%=request.getSession().getAttribute("clave")%></td>
-                                    <td><%=request.getSession().getAttribute("periodo")%></td>
-                                    <td><%=request.getSession().getAttribute("fechaini")%></td>
-                                    <td><%=request.getSession().getAttribute("fechafin")%></td>
-                                    <td><%=request.getSession().getAttribute("status")%></td>    
-                                </tr>                                
-                            </table>    
-                        </div>
+                    <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->                                                
+                        <h4 class="text-center">Editar Calendario Contable</h4>                                                        
+                                <div class="form-style-5">
+                                    <form method="post" onsubmit="return validacadena('neditaclave');" action="../EditaCalen">
+                                        <div class="row form-style-5">                                                                                        
+                                            <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
+                                               <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" id="neditaclave" name="neditaclave" placeholder="201800"/></span>                                                                               
+                                               <input id="buscar" name="general" type="submit" value="Consulta">
+                                           </div> 
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <form method="post" onsubmit="return calencontaeditar();" action="../EditaCalen">                                      
+                                        <span style="font-size: 18px">Periodo: </span><span class="idemp">
+                                            <%
+                                                out.println("<input type='text' id='periodo' name='periodo' value="+request.getSession().getAttribute("periodo")+">");
+                                            %>
+                                        </span>
+                                        <br><br>
+                                        <%
+                                            out.println("<span style='font-size: 18px'>Fecha Inicial: </span><span class='idemp'><input style='width: 180px; height: 30px;text-align: center;' type='text' id='Editfechaini' name='Editfechaini' value='"+request.getSession().getAttribute("fechaini")+"'/></span><br>");
+                                        %>
+                                        <span style="font-size: 18px">Fecha Final: </span><span class="idemp">
+                                        <%    
+                                            out.println("<input style='width: 180px; height: 30px;text-align: center;' type='date' id='Editfechafin' name='Editfechafin' value='"+request.getSession().getAttribute("fechafin")+"' />");
+                                        %>
+                                        </span><br>
+
+                                        <span style="font-size: 18px">Estatus: </span><span class="idemp">                                          
+                                                    <%
+                                                        out.println("<input type='text' id='Editestado' name='Editestado' value='"+request.getSession().getAttribute("status")+"'/>");
+                                                    %>                                                                                                
+                                        </span><br>
+
+                                        <center>
+                                            <input id="guardar" type="submit" value="Aplicar" style="background-color: #9F150D" class="btn btn-danger"><br>
+                                        </center>                   
+                                    </form>
+                                </div>                                                    
                     </div>
+                    
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
                         <table style="width:100%;height:100%;">                                        
                             <tr><td colspan="2">Informaci&oacute;n de la empresa</td></tr>
@@ -230,59 +249,6 @@
 
                 <!-- Modal EDITAR CALENDARIO CONTABLE-->
 
-                <div class="modal fade" id="editacc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Editar Calendario Contable</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-style-5">
-                                    <form method="post" onsubmit="return calencontaeditar();" action="calen_contable.jsp">
-
-                                        <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" id="neditaclave" placeholder="001"/></span><br>
-
-                                        <span style="font-size: 18px">Periodo: </span><span class="idemp">
-                                            <select id="CalEditperiodo" name="periodo">
-                                                <optgroup>
-                                                    <option value="x">Seleccione...</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
-                                                    <option value="2025">2025</option>
-                                                </optgroup>
-                                            </select> 
-                                        </span><br>
-
-                                        <span style="font-size: 18px">Fecha Inicial: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" id="Editfechaini" /></span>  <br>
-
-                                        <span style="font-size: 18px">Fecha Final: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" id="Editfechafin" /></span>  <br>
-
-                                        <span style="font-size: 18px">Estatus: </span><span class="idemp">
-                                            <select id="Editestado">
-                                                <optgroup>
-                                                    <option value="x">Seleccione...</option>
-                                                    <option value="abierto">Abierto</option>
-                                                    <option value="bloqueado">Bloqueado</option>
-                                                    <option value="cerrado">Cerrado</option>
-                                                    <option value="transportado">Transportado</option>
-                                                </optgroup>
-                                            </select> 
-                                        </span><br>
-
-                                        <center>
-                                            <input id="guardar" type="submit" value="Guardar" style="background-color: #9F150D" class="btn btn-danger"><br>
-                                        </center>                   
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Modal ELIMINAR CALENDARIO CONTABLE-->
 
@@ -294,7 +260,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-style-5">
-                                    <form onsubmit="return calencontEliminar();" action="" method="POST">
+                                    <form onsubmit="return calencontEliminar();" action="../CalenElimina" method="POST">
                                         <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nclave" id="neliminaclave" placeholder="001"/></span><br>
                                         <center><input id="eliminarCal" type="submit" value="Eliminar" style="background-color: #9F150D" class="btn btn-danger"><br>
                                             <br></center>                   

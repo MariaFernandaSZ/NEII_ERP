@@ -115,13 +115,13 @@
                                         <input id="buscar" name="general" type="submit" value="Consulta General">
                                     </div> 
                             </form>
-                        
+                            <br>
                             <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
                                         <button id="btn-cc-add" type="button" class="btn btn-light" onclick="agregaCCmodal()">Agregar</button>
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
-                                        <button id="btn-cc-edit" type="button" class="btn btn-light" onclick="editaCCmodal()">Editar</button>
+                                        <button id="btn-cc-edit" type="button" class="btn btn-light" onclick="location.href='calen_contable_edita.jsp'">Editar</button>
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
                                         <button id="btn-cc-del" type="button" class="btn btn-light" onclick="eliminaCCmodal()">Eliminar</button>
@@ -145,7 +145,7 @@
                                         for (int i=0;i<lista.size();i++)
                                         {
                                            out.println("<tr>");
-                                           out.println("<td><input type='radio' name='idcalen' value='"+lista.get(i).getId()+"'></td>");                                           
+                                           out.println("<td><input type='radio' id='idcalen' name='idcalen' value="+lista.get(i).getId()+"></td>");                                           
                                            out.println("<td>"+lista.get(i).getClave()+"</td>");
                                            out.println("<td>"+lista.get(i).getPeriodo()+"</td>");
                                            out.println("<td>"+lista.get(i).getFechaini()+"</td>");
@@ -245,7 +245,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-style-5">
-                                    <form method="post" onsubmit="return calencontaeditar();" action="calen_contable.jsp">
+                                    <form method="post" onsubmit="return calencontaeditar();" action="../EditaCalen">
 
                                         <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" id="neditaclave" placeholder="001"/></span><br>
 
@@ -282,7 +282,7 @@
                                         </span><br>
 
                                         <center>
-                                            <input id="guardar" type="submit" value="Guardar" style="background-color: #9F150D" class="btn btn-danger"><br>
+                                            <input id="guardar" type="submit" value="Aplicar" style="background-color: #9F150D" class="btn btn-danger"><br>
                                         </center>                   
                                     </form>
                                 </div>
