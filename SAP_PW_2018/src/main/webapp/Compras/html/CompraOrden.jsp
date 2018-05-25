@@ -73,8 +73,7 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
                         
                         
-                        <form method="POST" action="com_prod.jsp" onsubmit="return vali_almacen();">
-                            
+                                   
                             
                             <span id="titulo"><span class="number">1</span>Requisición</span><br>
                             <div class="row">
@@ -83,28 +82,38 @@
                                             <tr>
                                                 <th scope="col">Folio</th>
                                                 <th scope="col">Código</th>
-                                                <th scope="col">Producto</th>
                                                 <th scope="col">Cantidad</th>
 
                                             </tr>
                                         </thead>
+                                        
+                                        <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                        <%
+                                        ResultSet rsTabla = interTabla.tablaReq();
+                                        
+                                        %>
+                                        
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">00001</th>
-                                                <td>7895422557</td>
-                                                <td>producto2</td>
-                                                <td>6</td>
+                                            <%
+                                                while(rsTabla.next()){
+                                            %>
+                                            <tr id="modalInter">
+                                                <td><%=rsTabla.getString(1)%></td>
+                                                <td><%=rsTabla.getString(2)%></td>
+                                                <td><%=rsTabla.getString(3)%></td>
+                                                
+                                                
                                             </tr>
-                                            <tr>
-                                                <th scope="row">00002</th>
-                                                <td>7895425678</td>
-                                                <td>producto4</td>
-                                                <td>1</td>
-                                            </tr>
+                                            
+                                            <%
+                                            }
+                                            %>
+                                            
+                                            
                                         </tbody>
 
                                     </table></div> </div>   
-                        </form><hr>
+                        <hr>
                         <input type="number" name="foliorequisi" placeholder="Folio" id="foliorequisi" required/>
                         <center><input type="submit" value="Aceptada" style="background-color: #9F150D" name="acep" class="btn btn-danger"/></center>
                     </div>                       

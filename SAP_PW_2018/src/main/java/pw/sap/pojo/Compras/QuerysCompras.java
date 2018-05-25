@@ -29,7 +29,7 @@ public class QuerysCompras {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SAP_PW", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
     
     public void closeDB() throws SQLException {
@@ -196,5 +196,17 @@ public class QuerysCompras {
         closeDB();        
         return valor;
     }
+     
+     public ResultSet tablaReq(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("SELECT req_folio, id_producto, req_cantidad from requisicion;");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+     }
     
 }
