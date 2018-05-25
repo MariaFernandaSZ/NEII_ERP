@@ -43,11 +43,11 @@ public class Consulta_Devolucion extends HttpServlet {
         ArrayList l=c.consultaDevolucion(Integer.parseInt(request.getParameter("id_devolucion")));
         
      
-        request.setAttribute("id_devolucion", l.get(0));
-        request.setAttribute("id_compra", l.get(1));
-        request.setAttribute("cantidad_devuelta", l.get(2));
-        request.setAttribute("fecha_devolucion", l.get(3));
-        request.setAttribute("motivo", l.get(4));
+        request.getSession().setAttribute("id_devolucion", l.get(0));
+        request.getSession().setAttribute("id_compra", l.get(1));
+        request.getSession().setAttribute("cantidad_devuelta", l.get(2));
+        request.getSession().setAttribute("fecha_devolucion", l.get(3));
+        request.getSession().setAttribute("motivo", l.get(4));
         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de devolucion");
             
         request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
