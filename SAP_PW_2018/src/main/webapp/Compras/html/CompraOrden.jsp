@@ -128,7 +128,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <input type="text" name="ord_folio" placeholder="id&nbsp;orden&nbsp;de&nbsp;compra" id="ord_folio" required/> 
+                                    <input type="text" name="ord_folio" placeholder="id&nbsp;orden&nbsp;de&nbsp;compra" id="ord_folio"/> 
                                 </div>
                                 
                                 <div class="form-style-5">

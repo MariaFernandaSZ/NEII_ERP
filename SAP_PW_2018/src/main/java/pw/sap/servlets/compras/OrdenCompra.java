@@ -53,7 +53,6 @@ public class OrdenCompra extends HttpServlet {
         boolean sw = c.agregarOrdenCompra(ordenBean);
         
         if (sw) {
-             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una orden de compra");
             
             PrintWriter out=response.getWriter();
             out.println("<script>");
@@ -61,7 +60,6 @@ public class OrdenCompra extends HttpServlet {
             out.print("window.location='Compras/CompraOrden.jsp'");
             out.println("</script>");
         }else{
-             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se intento agregar una orden de compra");
             
             PrintWriter out=response.getWriter();
             out.println("<script>");
