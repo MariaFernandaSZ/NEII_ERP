@@ -220,5 +220,19 @@ public class QuerysCompras {
          }
          return rs;
      }
+     
+     public ResultSet tablaProductosMm(){
+         
+         ResultSet rs = null;
+         
+         try{
+             openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("SELECT nombre, cantidad, maximo, minimo from producto;");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+         }
+     }
     
-}

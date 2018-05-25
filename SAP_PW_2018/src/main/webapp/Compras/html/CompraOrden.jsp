@@ -80,8 +80,8 @@
                                 <div class="table-responsive"><table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Folio</th>
-                                                <th scope="col">Código</th>
+                                                <th scope="col">ID&nbsp;Requisici&oacute;n</th>
+                                                <th scope="col">Código&nbsp;del&nbsp;producto</th>
                                                 <th scope="col">Cantidad</th>
 
                                             </tr>
@@ -114,7 +114,7 @@
 
                                     </table></div> </div>   
                         <hr>
-                        <input type="number" name="foliorequisi" placeholder="Folio" id="foliorequisi" required/>
+                        <input type="number" name="foliorequisi" placeholder="Folio de requisición a eliminar" id="foliorequisi" required/>
                         <center><input type="submit" value="Aceptada" style="background-color: #9F150D" name="acep" class="btn btn-danger"/></center>
                     </div>                       
 
@@ -169,26 +169,41 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         <form method="POST" onsubmit="return vali_nuevoproducto();">                        
                             <span id="titulo"><span class="number">2</span>Alerta productos mínimos</span><br>
+                            
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Código</th>
-                                            <th scope="col">Producto</th>
+                                            <th scope="col">Nombre</th>
                                             <th scope="col">Cantidad</th>
+                                            <th scope="col">M&aacute;ximo</th>
+                                            <th scope="col">M&iacute;nimo</th>
+                                            
 
                                         </tr>
                                     </thead>
+                                    
+                                    <jsp:useBean id="interTablaMm" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                    
+                                    <%
+                                    ResultSet rsTablaMm = interTablaMm.tablaProductosMm();
+                                    %>
+                                    
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">7895422557</th>
-                                            <td>producto2</td>
-                                            <td>6</td>
+                                        
+                                        <%
+                                        while(rsTablaMm.next()){
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaMm.getString(1)%></td>
+                                            <td><%=rsTablaMm.getString(2)%></td>
+                                            <td><%=rsTablaMm.getString(3)%></td>
+                                            <td><%=rsTablaMm.getString(4)%></td>
+                                            
                                         </tr>
-                                        <tr>
-                                            <th scope="row">7895425678</th>
-                                            <td>producto4</td>
-                                            <td>1</td>
-                                        </tr>
+                                        
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
 
                                 </table></div> 
