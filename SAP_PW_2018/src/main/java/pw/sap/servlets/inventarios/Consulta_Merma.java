@@ -53,6 +53,8 @@ public class Consulta_Merma extends HttpServlet {
         
         response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
 
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de merma desconocida");
+        
         
         
         
