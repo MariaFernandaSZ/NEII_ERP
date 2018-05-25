@@ -85,13 +85,26 @@ public class PlanCuentas {
         openDB();
         ArrayList r = new ArrayList();
         PreparedStatement ps;
-        ps = conn.prepareStatement("SELECT cuenta, descripcion FROM cuenta_sat WHERE id=?");
-        ps.setString(1, clave);
+        
+        ps = conn.prepareStatement("SELECT ce.id,cs.cuenta, cs.descripcion, ce.tipo_cuenta, ce.clase_cuenta, cs.cuenta||'-'||cs.descripcion as \"Clase_SAT\", ce.naturaleza FROM cuentas_empresa as ce, cuenta_sat as cs where cs.id = ce.id_cuenta and (cs.cuenta=? or ce.descripcion=?);");
+        
+        if (isNumeric(clave)==true) {
+            ps.setInt(1, Integer.parseInt(clave));
+            ps.setString(2, "");
+        }else{
+            ps.setNull(1,0);
+            ps.setString(2, clave);
+        }
+        
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            //System.out.println(rs.getInt(1));
             r.add(rs.getString(1));
             r.add(rs.getString(2));
+            r.add(rs.getString(3));
+            r.add(rs.getString(4));
+            r.add(rs.getString(5));
+            r.add(rs.getString(6));
+            r.add(rs.getString(7));
         }
 
         closeDB();
@@ -176,7 +189,19 @@ public class PlanCuentas {
         return valor;
     }
      
-    
+    public static boolean isNumeric(String cadena) {
+
+        boolean resultado;
+
+        try {
+            Integer.parseInt(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
     
 
 }

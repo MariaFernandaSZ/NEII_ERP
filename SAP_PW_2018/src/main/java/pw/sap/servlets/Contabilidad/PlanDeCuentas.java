@@ -38,20 +38,27 @@ public class PlanDeCuentas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        PlanCuentas c =new PlanCuentas();
-        
-        ArrayList l= c.consultaPlan(request.getParameter("clave"));
-        
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta de plan de cuentas");
-            
-        
-        request.setAttribute("codigosat", l.get(0));
-        request.setAttribute("descripcion", l.get(1));
-        
-        
-        request.getRequestDispatcher("Contabilidad/plan_cuentas.jsp").forward(request, response);
-        
+
+        PlanCuentas c = new PlanCuentas();
+
+        ArrayList l = new ArrayList();
+
+        if (!request.getParameter("clave").isEmpty()) {
+            l = c.consultaPlan(request.getParameter("clave"));
+        } else {
+            l = c.consultaPlan(request.getParameter("desc"));
+        }
+
+        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta de plan de cuentas");
+        request.getSession().setAttribute("cuenta", l.get(1));
+        request.getSession().setAttribute("descripcion", l.get(2));
+        request.getSession().setAttribute("tipo_cuenta", l.get(3));
+        request.getSession().setAttribute("clase_cuenta", l.get(4));
+        request.getSession().setAttribute("clase_sat", l.get(5));
+        request.getSession().setAttribute("naturaleza", l.get(6));
+
+        response.sendRedirect("Contabilidad/plan_cuentas.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

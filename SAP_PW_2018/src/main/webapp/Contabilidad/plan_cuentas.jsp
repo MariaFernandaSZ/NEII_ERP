@@ -152,6 +152,15 @@
                                            }
                                     %>
                                 </tr>
+                                <tr>
+                                    <td class="seleccion"><input type="radio" id="ccselperiodo"  name="ccselperiodo"></td>
+                                    <td><%=request.getSession().getAttribute("cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("descripcion")%></td>
+                                    <td><%=request.getSession().getAttribute("tipo_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("clase_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("clase_sat")%></td>  
+                                    <td><%=request.getSession().getAttribute("naturaleza")%></td>    
+                                </tr>
                             </table>    
                         </div>
                     </div>
