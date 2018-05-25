@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets;
+package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,16 +16,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.Object;
-import javax.servlet.http.HttpSession;
 import pw.sap.db.Conexion;
 
 /**
  *
  * @author fgb
  */
-@WebServlet(name = "Asientos", urlPatterns = {"/Asientos"})
-public class Asientos extends HttpServlet {
+@WebServlet(name = "CalendarioContableGral", urlPatterns = {"/CalendarioContableGral"})
+public class CalendarioContableGral extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +36,20 @@ public class Asientos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-        
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c=new Conexion();
-        System.out.println("la clave ingresada es:"+request.getParameter("clave"));
-        ArrayList l=c.consultaAsientos(request.getParameter("clave"));
+        Conexion c=new Conexion();              
+        
+        System.out.println("clave:"+request.getParameter("consultaes"));
+        //ArrayList l=c.calenContable(Integer.parseInt(request.getParameter("clave")));
+        ArrayList l=c.calenContable(request.getParameter("consultaes"));
+        
         request.getSession().setAttribute("clave", l.get(0));        
-        request.getSession().setAttribute("modulo", l.get(1));
-        request.getSession().setAttribute("tipo", l.get(2));
-        request.getSession().setAttribute("fecha", l.get(3));
-        request.getSession().setAttribute("concepto",l.get(4));
-        request.getSession().setAttribute("periodo",l.get(5));
+        request.getSession().setAttribute("periodo", l.get(1));
+        request.getSession().setAttribute("fechaini", l.get(2));
+        request.getSession().setAttribute("fechafin", l.get(3));
+        request.getSession().setAttribute("status", l.get(4));
         //HttpSession sesion=request.getSession();
-       response.sendRedirect("Contabilidad/asientos_conta.jsp");
-        //sesion.setAttribute("clave",l.get(0));        
-        //response.sendRedirect("Contabilidad/asientos_conta_1.jsp");
+        response.sendRedirect("Contabilidad/calen_contable.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,11 +61,17 @@ public class Asientos extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        processRequest(request, response);
-//    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -80,12 +83,13 @@ public class Asientos extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-            System.out.println("entre por post");
+            throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Asientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

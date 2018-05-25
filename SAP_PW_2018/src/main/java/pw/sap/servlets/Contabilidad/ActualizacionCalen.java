@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets;
+package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +19,8 @@ import pw.sap.db.Conexion;
  *
  * @author fgb
  */
-@WebServlet(name = "PlanCuentas", urlPatterns = {"/PlanCuentas"})
-public class PlanCuentas extends HttpServlet {
+@WebServlet(name = "ActualizacionCalen", urlPatterns = {"/ActualizacionCalen"})
+public class ActualizacionCalen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,14 +34,8 @@ public class PlanCuentas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c =new Conexion();    
-        System.out.println("la clave es:" +request.getParameter("clave"));
-        ArrayList l= c.consultaPlan(request.getParameter("clave"));
-        
-        request.getSession().setAttribute("codigosat", l.get(0));
-        request.getSession().setAttribute("descripcion", l.get(1));
-        
-        response.sendRedirect("Contabilidad/plan_cuentas.jsp");
+        Conexion c=new Conexion();
+        request.getParameter("");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,13 +50,7 @@ public class PlanCuentas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -79,13 +64,7 @@ public class PlanCuentas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -97,9 +76,5 @@ public class PlanCuentas extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private ArrayList consultaPlan(String parameter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

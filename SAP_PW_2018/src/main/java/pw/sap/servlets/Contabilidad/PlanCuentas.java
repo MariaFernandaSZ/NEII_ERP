@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets;
+package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -21,8 +22,8 @@ import pw.sap.db.Conexion;
  *
  * @author fgb
  */
-@WebServlet(name = "AgregaCalen", urlPatterns = {"/AgregaCalen"})
-public class AgregaCalen extends HttpServlet {
+@WebServlet(name = "PlanCuentas", urlPatterns = {"/PlanCuentas"})
+public class PlanCuentas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,14 +37,14 @@ public class AgregaCalen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c=new Conexion();
-        System.out.println("clave a agregar:"+request.getParameter("nclave"));
-        String campos="'"+request.getParameter("nclave")+"',"+request.getParameter("periodo")+",'"+ request.getParameter("fechaini")+"','"+request.getParameter("fechafin")+"','"+request.getParameter("estado")+"'";
-        System.out.println("cadena:"+campos);
-        c.ingresarRegistro("calen_contable", "clave,periodo,fechaini,fechafin,status", campos);
+        Conexion c =new Conexion();    
+        System.out.println("la clave es:" +request.getParameter("clave"));
+        ArrayList l= c.consultaPlan(request.getParameter("clave"));
         
-        response.sendRedirect("Contabilidad/calen_contable.jsp");
+        request.getSession().setAttribute("codigosat", l.get(0));
+        request.getSession().setAttribute("descripcion", l.get(1));
         
+        response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,9 +62,9 @@ public class AgregaCalen extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -81,9 +82,9 @@ public class AgregaCalen extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlanCuentas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,5 +97,9 @@ public class AgregaCalen extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private ArrayList consultaPlan(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

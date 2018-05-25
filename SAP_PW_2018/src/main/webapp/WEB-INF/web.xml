@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>CalenContable</servlet-name>
-        <servlet-class>pw.sap.servlets.CalenContable</servlet-class>
+        <servlet-class>pw.sap.servlets.Contabilidad.CalenContable</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>cotizacion</servlet-name>
