@@ -41,10 +41,10 @@ public class Consulta_SalidaOrden extends HttpServlet {
         Conexion c=new Conexion();
         
         ArrayList l=c.consultaSalidasId(Integer.parseInt(request.getParameter("id_ordenventa")));
-        request.setAttribute("id_producto", l.get(0));
-        request.setAttribute("id_ordenventa", l.get(1));
-        request.setAttribute("cantidad_vendida", l.get(2));
-        request.setAttribute("total_mon", l.get(3));
+        request.getSession().setAttribute("id_producto", l.get(0));
+        request.getSession().setAttribute("id_ordenventa", l.get(1));
+        request.getSession().setAttribute("cantidad_vendida", l.get(2));
+        request.getSession().setAttribute("total_mon", l.get(3));
        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de salida de orden");
          
         request.getRequestDispatcher("Inventarios/Inventario/salidas.jsp").forward(request, response);
