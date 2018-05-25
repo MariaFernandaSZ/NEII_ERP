@@ -40,14 +40,14 @@ public class Consulta_Entradas extends HttpServlet {
         Conexion c=new Conexion();
         
         ArrayList l=c.consultaEntradas(Integer.parseInt(request.getParameter("IDEntrada")));
-        request.setAttribute("id_entrada", l.get(0));
-        request.setAttribute("id_compra", l.get(1));
-        request.setAttribute("id_producto", l.get(2));
-        request.setAttribute("id_lote", l.get(3));
-        request.setAttribute("tipo_producto", l.get(4));
-        request.setAttribute("cantidad_recibido", l.get(5));
-        request.setAttribute("fecha_registro", l.get(6));
-        request.setAttribute("fecha_caducidad", l.get(7));
+        request.getSession().setAttribute("id_entrada", l.get(0));
+        request.getSession().setAttribute("id_compra", l.get(1));
+        request.getSession().setAttribute("id_producto", l.get(2));
+        request.getSession().setAttribute("id_lote", l.get(3));
+        request.getSession().setAttribute("tipo_producto", l.get(4));
+        request.getSession().setAttribute("cantidad_recibido", l.get(5));
+        request.getSession().setAttribute("fecha_registro", l.get(6));
+        request.getSession().setAttribute("fecha_caducidad", l.get(7));
         
         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de entradas ");
             
