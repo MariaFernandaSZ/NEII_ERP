@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets;
+package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,8 +21,8 @@ import pw.sap.db.Conexion;
  *
  * @author fgb
  */
-@WebServlet(name = "CalenElimina", urlPatterns = {"/CalenElimina"})
-public class CalenElimina extends HttpServlet {
+@WebServlet(name = "AgregaCalen", urlPatterns = {"/AgregaCalen"})
+public class AgregaCalen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,9 +37,11 @@ public class CalenElimina extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
-        System.out.println("clave a eliminar:"+request.getParameter("nclave")); 
-        String campo=request.getParameter("nclave");
-        c.eliminaCalen(campo);        
+        System.out.println("clave a agregar:"+request.getParameter("nclave"));
+        String campos="'"+request.getParameter("nclave")+"',"+request.getParameter("periodo")+",'"+ request.getParameter("fechaini")+"','"+request.getParameter("fechafin")+"','"+request.getParameter("estado")+"'";
+        System.out.println("cadena:"+campos);
+        c.ingresarRegistro("calen_contable", "clave,periodo,fechaini,fechafin,status", campos);
+        
         response.sendRedirect("Contabilidad/calen_contable.jsp");
         
     }
@@ -59,9 +61,9 @@ public class CalenElimina extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -76,10 +78,12 @@ public class CalenElimina extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {        
+        try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregaCalen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

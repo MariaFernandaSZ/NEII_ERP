@@ -158,9 +158,9 @@
                                         </span><br>
 
                                         <span style="font-size: 18px">Estatus: </span><span class="idemp">                                          
-                                                    <%
-                                                        out.println("<input type='text' id='Editestado' name='Editestado' value='"+request.getSession().getAttribute("status")+"'/>");
-                                                    %>                                                                                                
+                                        <%
+                                            out.println("<input type='text' id='Editestado' name='Editestado' value='"+request.getSession().getAttribute("status")+"'/>");
+                                        %>                                                                                                
                                         </span><br>
 
                                         <center>
