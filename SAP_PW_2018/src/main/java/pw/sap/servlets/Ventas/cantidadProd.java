@@ -62,11 +62,11 @@ public class cantidadProd extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        int cant = Integer.parseInt(request.getParameter("cant"));
-        double precioprod = Double.parseDouble(request.getParameter("precioprod"));
-        double ivaprod = Double.parseDouble(request.getParameter("ivaprod"));
+        String cant = request.getParameter("cant");
+        String precioprod = request.getParameter("precioprod");
+        String ivaprod = request.getParameter("ivaprod");
         
-        double subtotal = (precioprod + ivaprod ) * cant;
+        double subtotal = (Double.parseDouble(precioprod) + Double.parseDouble(ivaprod) ) * Integer.parseInt(cant);
         
         PrintWriter out = response.getWriter();
         

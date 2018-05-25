@@ -35,7 +35,6 @@
                                 <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return cantOnPress(event);" id="cant" type="text" name="cant" placeholder="0"/></span>
                                 <br><br>
 
-
                                 <span id="titulo"><span class="number">2</span>Datos de producto</span>
                                 <br><br>
                                 <span id="nom">Nombre producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text"  name="nomProd" id="nomprod" readonly="readonly" placeholder="Nombre"/></span>
@@ -51,7 +50,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" style="background-color: #9F150D" onclick="valAgrega()" class="btn btn-danger">Agregar</button>
+                <button type="button" style="background-color: #9F150D" onclick="valAgrega() " class="btn btn-danger">Agregar</button>
               </div>
             </div>
           </div>

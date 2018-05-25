@@ -49,7 +49,7 @@ function cantOnPress(e)
                 $.ajax({
                     type:'POST',
                     url: '../cantidadProd',
-                    data: {cant:'cant',precioprod:'precioprod',ivaprod:'ivaprod'},
+                    data: {cant:cant,precioprod:precioprod,ivaprod:ivaprod},
                     success: function (result) {
                         $('#precioUnitario').val(result);
                     }
