@@ -299,7 +299,7 @@
                             <div class="modal-body">
                                 <div class="form-style-5">
                                     <form action="../PlanDeCuentasEliminar" onsubmit="return validanumero('neliminapcclave');" method="post">
-                                        <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nclave" id="neliminapcclave" placeholder="001"/></span><br>
+                                        <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="neliminapcclave" id="neliminapcclave" placeholder="001"/></span><br>
                                         <center><input id="eliminar" type="submit" value="Eliminar" style="background-color: #9F150D" class="btn btn-danger"><br>
                                             <br></center>                   
                                     </form>

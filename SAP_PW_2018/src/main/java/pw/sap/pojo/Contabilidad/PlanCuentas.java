@@ -128,16 +128,13 @@ public class PlanCuentas {
         return r;
     }
     
-    public Boolean eliminaPlan(int id) throws SQLException {
+    public int eliminaPlan(int id) throws SQLException {
         openDB();
-        boolean resultado=false;
-        PreparedStatement ps;
-        ps=conn.prepareStatement("DELETE  FROM devolucion where id_devolucion=?");
+        PreparedStatement ps=conn.prepareStatement("delete from cuentas_empresa where id=?");
         ps.setInt(1, id);
-        ResultSet rs= ps.executeQuery();
-        int coba2= ps.executeUpdate();
+        int r= ps.executeUpdate();
         closeDB();
-        return resultado;
+        return r;
     }
     
     public Boolean editaPlan(int id, String valor) throws SQLException {
