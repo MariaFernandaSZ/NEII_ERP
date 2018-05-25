@@ -73,7 +73,7 @@ public class Clientes extends HttpServlet {
                 
 //                request.getRequestDispatcher("Ventas/modales/detalleCliente.jsp").forward(request, response);
 
-int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Insercion de cliente");
+//int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Insercion de cliente");
             
 
              PrintWriter out=response.getWriter();

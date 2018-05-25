@@ -64,7 +64,6 @@ public class IniciarSesion extends HttpServlet {
             Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     /**
      * Returns a short description of the servlet.
      *
