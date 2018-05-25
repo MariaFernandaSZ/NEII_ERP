@@ -43,12 +43,12 @@ public class Consulta_Desconocida extends HttpServlet {
         ArrayList l=c.consultaMermad(Integer.parseInt(request.getParameter("IDMerma")));
         
      
-        request.setAttribute("id_producto", l.get(0));
-        request.setAttribute("id_merma", l.get(1));
-        request.setAttribute("fecha_merma", l.get(2));
-        request.setAttribute("tipo_merma", l.get(3));
-        request.setAttribute("cantidad_merma", l.get(4));
-        request.setAttribute("observaciones", l.get(5));
+        request.getSession().setAttribute("id_producto", l.get(0));
+        request.getSession().setAttribute("id_merma", l.get(1));
+        request.getSession().setAttribute("fecha_merma", l.get(2));
+        request.getSession().setAttribute("tipo_merma", l.get(3));
+        request.getSession().setAttribute("cantidad_merma", l.get(4));
+        request.getSession().setAttribute("observaciones", l.get(5));
         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de merma desconocida");
             
         request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);

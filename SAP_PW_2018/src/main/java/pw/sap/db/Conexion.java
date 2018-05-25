@@ -163,7 +163,7 @@ public class Conexion {
         PreparedStatement ps;
         //stmt = conn.createStatement();
         ps=conn.prepareStatement("SELECT id_producto, id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo FROM merma WHERE id_merma=? and tipo_merma='MermaDesconocida'");
-        ps.setInt(2, id_merma);
+        ps.setInt(1, id_merma);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
             while (rs.next()) {                
@@ -271,7 +271,7 @@ public class Conexion {
          
             while (rs.next()) {                
                 //System.out.println(rs.getInt(1));
-                r.add(rs.getString(1));
+                r.add(rs.getInt(1));
                 r.add(rs.getString(2));
                 r.add(rs.getString(3));
                 r.add(rs.getString(4));

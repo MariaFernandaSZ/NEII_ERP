@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -84,28 +85,41 @@
 
 
                     <div class="form-style-5">
-                        <form>
+                        <form method="post">
+                            <jsp:useBean id="idClient" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                            <jsp:useBean id="idInter" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                            <%
+                                ResultSet rs = idClient.consultarIDEMP(); 
+                                ResultSet rss = idInter.consultarIDInterm();
+
+                            %>  
                             <span id="titulo"><span class="number">1</span> Informaci&oacute;n de cliente</span><br>
                             <span class="idemp"><input type="text" id="IDCliente" name="IDCliente" placeholder="ID Cliente"></span>
-                            <button type="button" name="cargar" onclick="validaIDCliente()" style="background-color: #9F150D" class="btn btn-danger">Cargar</button><br>
-                            <br><select id="nomEmp" name="field4">
+                            <button type="button" name="cargar" onclick="validaIDCliente(); this.form.action = '../ClienteID'" style="background-color: #9F150D" class="btn btn-danger">Cargar</button><br>
+                            <br><select id="nomEmp" name="nombreEmp">
                                 <optgroup label="Empresa">
-                                    <option value="nomEmp">Nombre de empresa</option>
-                                    <option value="Eejemp1">Cliente 1</option>
-                                    <option value="Eejemp2">Cliente 2</option>
-                                    <option value="Eejemp3">Cliente 3</option>
-                                    <option value="Eejemp4">Cliente 4</option>
+                                    <option value="emp1">Empresa</option>
+                                    <%
+                                        while(rs.next()){
+                                    %>
+                                    <option value="<%=rs.getString(1)%>"> <%=rs.getString(2)%> </option>
+                                    <%
+                                        }
+                                    %>
                                 </optgroup>
                             </select> 
-                            <select id="nomInter" name="field4">
-                                <optgroup label="Intermediario">
-                                    <option value="nomInterm">Intermediario</option>
-                                    <option value="Iejem1">Intermediario 1</option>
-                                    <option value="Iejem2">Intermediario 2</option>
-                                    <option value="Iejem3">Intermediario 3</option>
-                                    <option value="Iejem4">Intermediario 4</option>
+                            <select id="nomInter" name="nombreEmp">
+                                <optgroup label="Empresa">
+                                    <option value="emp1">Intermediario</option>
+                                    <%
+                                        while(rss.next()){
+                                    %>
+                                    <option value="<%=rss.getString(1)%>"> <%=rss.getString(2)%> </option>
+                                    <%
+                                        }
+                                    %>
                                 </optgroup>
-                            </select> 
+                            </select>
 
                             <span id="titulo"><span class="number">2</span>Apartar producto</span><br>
                             <br><span>N&uacute;m. apartado&nbsp;&nbsp;</span><br><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nocot" readonly="readonly" placeholder="001"/></span><br>
@@ -204,6 +218,6 @@
         <script src="../js/Ventas/VenGeneral.js"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
         <script src="../js/Ventas/muestraModales.js"></script>
-
+        <script src="../js/Ventas/ajaxFunctions.js"></script>
     </body>
 </html>

@@ -1,4 +1,5 @@
 
+
 package pw.sap.pojo.Inventarios;
 
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 import pw.sap.db.Conexion;
 
@@ -112,5 +114,42 @@ public class registro {
         return valor;
     }
      
-    
+      public ResultSet consultaGeneral() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_producto, prov_nom_emp, nombre,tipo_producto,cantidad,minimo,maximo,costo_unitario,costo_venta\n" +
+                                                "from producto\n" +
+                                                "inner join proveedor\n" +
+                                                "on producto.proveedor=proveedor.prov_rfc;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+      
+      public ArrayList cantidadProducto (String id_merma) throws SQLException {
+        openDB();    
+        ArrayList r=new ArrayList();
+        //Statement stmt;
+        PreparedStatement ps;
+        //stmt = conn.createStatement();
+        ps=conn.prepareStatement("SELECT cantidad FROM producto WHERE id_producto=? ");
+        ps.setString(1, id_merma);
+        //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
+          ResultSet rs= ps.executeQuery();
+         
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+                r.add(rs.getString(1));                
+            }
+            
+        closeDB();        
+        return r;
+    }
+     
+      
 }
