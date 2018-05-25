@@ -37,13 +37,13 @@ public class QuerysCompras {
     }
     
     
-   public void agregarProveedor(String rfc, String nom_emp, String nom_cont, String correo, String tel, String estado, String muni, String cp) throws SQLException, ClassNotFoundException{
+   public void agregarProveedor(Proveedores prov) throws SQLException, ClassNotFoundException{
          
                  openDB();
                   PreparedStatement ps;
                     
                      ps = conn.prepareStatement("INSERT INTO proveedor(prov_rfc,prov_nom_emp,prov_nom_cont,prov_correo,prov_tel,prov_estado,prov_muni,prov_cp ) "
-                                       + " VALUES ('"+rfc+"','"+nom_emp+"','"+nom_cont+"','"+correo+"',"+tel+",'"+estado+"','"+muni+"',"+cp+");");
+                                       + " VALUES ('"+prov.getProv_rfc()+"','"+prov.getProv_nom_emp()+"','"+prov.getProv_nom_cont()+"','"+prov.getProv_correo()+"',"+prov.getProv_tel()+",'"+prov.getProv_estado()+"','"+prov.getProv_muni()+"',"+prov.getProv_cp()+");");
                     ResultSet rs= ps.executeQuery();
           
                     System.out.println(ps);
