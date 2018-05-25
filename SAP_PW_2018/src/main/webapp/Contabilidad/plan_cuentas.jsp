@@ -1,3 +1,4 @@
+<%@page import="pw.sap.obj.Contabilidad.ObjCuentaSat"%>
 <%@page import="pw.sap.obj.Contabilidad.ObjPlanDeCuentas"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="pw.sap.pojo.Contabilidad.PlanCuentas"%>
@@ -185,27 +186,25 @@
                             <div class="modal-body">
                                 <div class="form-style-5">
                                     <form action="../PlanDeCuentasAdd" onsubmit="return seleccion();" method="post">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" style="overflow:scroll; height:200px; width:100%;">
                                         <table class="table table-bordered">
                                             <tr>
-                                                <th>Selecciona</th>
+                                                <th>Id</th>
                                                 <th>Cuenta</th>
-                                                <th>Cuenta Superior</th>
                                                 <th>Descripcion</th>
-                                                <th>Tipo de cuenta</th>
-                                                <th>Clase cuenta</th>
-                                                <th>Clase SAT</th>
-                                                <th>Tipo Naturaleza</th>
                                             </tr>
                                             <tr>
-                                                <td class="seleccion"><input type='checkbox' name='agregarcuenta[]' id='agregarcuenta' value='1'/></td>
-                                                <td>100</td>
-                                                <td>&nbsp;</td>
-                                                <td>Activo</td>
-                                                <td>titulo</td>
-                                                <td>Sintetica</td>
-                                                <td>100-Activo</td>
-                                                <td>DEUDORA</td>
+                                                <%
+                                        LinkedList<ObjCuentaSat> listaSat =PlanCuentas.consultaTodoSat();
+                                        for (int i=0;i<listaSat.size();i++)
+                                        {
+                                           out.println("<tr>");
+                                           out.println("<td class='seleccion'><input type='checkbox'></td>");                                           
+                                           out.println("<td>"+listaSat.get(i).getCuenta()+"</td>");
+                                           out.println("<td>"+listaSat.get(i).getDescripcion()+"</td>");
+                                            out.println("<tr>");
+                                           }
+                                    %>
                                             </tr>                        
                                         </table>    
                                         </div>

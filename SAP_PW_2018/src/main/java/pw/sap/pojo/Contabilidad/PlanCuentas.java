@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.obj.Contabilidad.ObjCuentaSat;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
 
 public class PlanCuentas {
@@ -75,6 +76,29 @@ public class PlanCuentas {
                 pc.setClase_sat(rs.getString("Clase_SAT"));
                 pc.setNaturaleza(rs.getString("naturaleza"));              
                 l.add(pc);
+            }   
+
+        conn.close();
+        return l;
+    }
+    
+    public static  LinkedList  consultaTodoSat() throws SQLException, ClassNotFoundException {
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);        
+        LinkedList <ObjCuentaSat> l=new LinkedList<ObjCuentaSat>();
+        PreparedStatement ps;
+        ps = conn.prepareStatement("select * from cuenta_sat");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+                ObjCuentaSat cs=new ObjCuentaSat();
+                cs.setId(rs.getInt("id"));
+                cs.setCuenta(rs.getInt("cuenta"));
+                cs.setDescripcion(rs.getString("descripcion"));
+                l.add(cs);
             }   
 
         conn.close();
