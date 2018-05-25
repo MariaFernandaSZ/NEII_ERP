@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -55,7 +56,7 @@
                             <script src="../../js/gerencia.js"></script>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../../CerrarSesion"  style="color: white">Salir</a>
+                            <a class="nav-link" href="../../index.jsp"  style="color: white">Salir</a>
                         </li>
                     </ul>
                 </div>
@@ -91,10 +92,10 @@
                                     <option value="Hidalgo">Hidalgo </option>
                                     <option value="Jalisco">Jalisco </option>
                                     <option value="Michoac&aacute;n">Michoacán </option>
-                                    <option value="Morelos">Morelos </option>
-                                    <option value="Nayarit">Nayarit </option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
                                     <option value="Nuevo Le&oacute;n">Nuevo León </option>
-                                    <option value="Oaxaca">Oaxaca </option>
+                                    <option value="Oaxaca">Oaxaca</option>
                                     <option value="Puebla">Puebla </option>
                                     <option value="Quer&eacute;taro">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
@@ -111,14 +112,16 @@
                             </select>
                             <span style="font-size: 18px">Ordenar&nbsp;por:</span>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busprov" id="ord2" value="proveedor">
+                                <input class="form-check-input" type="radio" name="busprov" id="ord2" value="prov_nom_emp">
                                 <label style="font-size: 18px" class="form-check-label" for="ord2">Nombre de la empresa</label>
-                                <input class="form-check-input" type="radio" name="busprov" id="ord3" value="RFC">
+                                <input class="form-check-input" type="radio" name="busprov" id="ord3" value="prov_rfc">
                                 <label style="font-size: 18px" class="form-check-label" for="ord3">RFC</label>
-                                <input class="form-check-input" type="radio" name="busprov" id="ord4" value="producto">
-                                <label style="font-size: 18px" class="form-check-label" for="ord4">Producto</label>
+                                <input class="form-check-input" type="radio" name="busprov" id="ord4" value="prov_nom_cont">
+                                <label style="font-size: 18px" class="form-check-label" for="ord4">Nomdre del contacto</label>
+                                <input class="form-check-input" type="radio" name="busprov" id="ord4" value="prov_muni">
+                                <label style="font-size: 18px" class="form-check-label" for="ord4">Municipio</label>
                             </div>
-                            <span style="font-size: 18px">Solo&nbsp;mostrar:</span>
+                            <!--<span style="font-size: 18px">Solo&nbsp;mostrar:</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord5" value="empresa">
                                 <label style="font-size: 18px" class="form-check-label" for="ord5">Nombre de la empresa</label>
@@ -132,7 +135,7 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Teléfono</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord9" value="estado">
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Estado</label>
-                            </div>
+                            </div>-->
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
@@ -141,7 +144,7 @@
                             <br><br>
                             <input type="text" name="RFC" placeholder="RFC" id="rfc" required>
 
-                            <span style="font-size: 18px">Solo&nbsp;mostrar:</span>
+                            <!--<span style="font-size: 18px">Solo&nbsp;mostrar:</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord5" value="proveedor">
                                 <label style="font-size: 18px" class="form-check-label" for="ord5">Nombre de la empresa</label>
@@ -153,14 +156,59 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord8">Correo</label>
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord9" value="telefono">
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Teléfono</label>
-                            </div>
+                            </div>-->
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
+                            <br><center><input type="submit" value="Modificar" style="background-color: #9F150D" name="Modificar" class="btn btn-danger"></center>
+                            <br> <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
                         </form>
                     </div>
 
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->                          
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->  
+                              <form method="POST" action="com_imprimir.jsp" target="_blank">
+                            <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">RFC</th>
+                                            <th scope="col">Nombre empresa</th>
+                                            <th scope="col">Nombre contacto</th>
+                                            <th scope="col">Correo</th>
+                                            <th scope="col">Teléfono</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Municipio</th>
+                                            <th scope="col">CP</th>
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                    <%
+                                        ResultSet rsTabla = interTabla.consultaProveedor();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(7)%></td>
+                                            <td><%=rsTabla.getString(8)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>  
+                                    <br>
+                            <center><input type="submit" value="Generar PDF" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">
+                                <input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"></center>
+
+                        </form>  
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
