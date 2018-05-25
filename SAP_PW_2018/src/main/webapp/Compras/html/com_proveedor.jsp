@@ -73,9 +73,9 @@
                         <form method="POST" action="com_consultaprov.jsp" onsubmit="return vali_almacen();">
                             <div id="titulo" class="col-12">
                                 <span class="number">1</span>B&uacute;squeda de<br>proveedor por estado</div>
-                            <select id="zona" name="field4">
-                                <optgroup label="Estado">
-                                    <option value="@">Seleccione una opci&oacute;n</option>
+                            <select id="zona" name="estado">
+                                 <optgroup label="Estado">
+                                    <option value="@">Seleccione una estado</option>
                                     <option value=”Aguascalientes">Aguascalientes</option>
                                     <option value="Baja California">Baja California </option>
                                     <option value="Baja California Sur">Baja California Sur </option>
@@ -86,20 +86,20 @@
                                     <option value="Colima">Colima </option>
                                     <option value="Distrito Federal">Distrito Federal</option>
                                     <option value="Durango">Durango </option>
-                                    <option value="Estado de M&eacute;xico">Estado de México </option>
+                                    <option value="Estado De Mexico">Estado de Mexico</option>
                                     <option value="Guanajuato">Guanajuato </option>
                                     <option value="Guerrero">Guerrero </option>
                                     <option value="Hidalgo">Hidalgo </option>
                                     <option value="Jalisco">Jalisco </option>
-                                    <option value="Michoac&aacute;n">Michoacán </option>
-                                    <option value="Morelos">Morelos</option>
-                                    <option value="Nayarit">Nayarit</option>
-                                    <option value="Nuevo Le&oacute;n">Nuevo León </option>
-                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Michoacan">Michoacán </option>
+                                    <option value="Morelos">Morelos </option>
+                                    <option value="Nayarit">Nayarit </option>
+                                    <option value="Nuevo Leon">Nuevo León </option>
+                                    <option value="Oaxaca">Oaxaca </option>
                                     <option value="Puebla">Puebla </option>
-                                    <option value="Quer&eacute;taro">Querétaro </option>
+                                    <option value="Queretaro">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
-                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
+                                    <option value="San Luis Potosi;">San Luis Potosí </option>
                                     <option value="Sinaloa">Sinaloa </option>
                                     <option value="Sonora">Sonora </option>
                                     <option value="Tabasco">Tabasco </option>
@@ -183,7 +183,6 @@
                                     <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
                                     <%
                                         ResultSet rsTabla = interTabla.consultaProveedor();
-
                                     %> 
                                     <tbody>
                                         <%
@@ -225,36 +224,36 @@
                                 <optgroup label="Estado">
                                     <option value="@">Seleccione una estado</option>
                                     <option value=”Aguascalientes">Aguascalientes</option>
-                                    <option value="BajaCalifornia">Baja California </option>
-                                    <option value="BajaCalifornia Sur">Baja California Sur </option>
+                                    <option value="Baja California">Baja California </option>
+                                    <option value="Baja California Sur">Baja California Sur </option>
                                     <option value="Campeche">Campeche </option>
                                     <option value="Chiapas">Chiapas </option>
                                     <option value="Chihuahua">Chihuahua </option>
                                     <option value="Coahuila">Coahuila </option>
                                     <option value="Colima">Colima </option>
-                                    <option value="DistritoFederal">Distrito Federal</option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
                                     <option value="Durango">Durango </option>
-                                    <option value="EstadoDeMexico">Estado de Mexico</option>
+                                    <option value="Estado De Mexico">Estado de Mexico</option>
                                     <option value="Guanajuato">Guanajuato </option>
                                     <option value="Guerrero">Guerrero </option>
                                     <option value="Hidalgo">Hidalgo </option>
                                     <option value="Jalisco">Jalisco </option>
-                                    <option value="Michoac&aacute;n">Michoacán </option>
+                                    <option value="Michoacan">Michoacán </option>
                                     <option value="Morelos">Morelos </option>
                                     <option value="Nayarit">Nayarit </option>
-                                    <option value="Nuevo Le&oacute;n">Nuevo León </option>
+                                    <option value="Nuevo Leon">Nuevo León </option>
                                     <option value="Oaxaca">Oaxaca </option>
                                     <option value="Puebla">Puebla </option>
-                                    <option value="Quer&eacute;taro">Querétaro </option>
+                                    <option value="Queretaro">Querétaro </option>
                                     <option value="Quintana Roo">Quintana Roo </option>
-                                    <option value="San Luis Potos&iacute;">San Luis Potosí </option>
+                                    <option value="San Luis Potosi;">San Luis Potosí </option>
                                     <option value="Sinaloa">Sinaloa </option>
                                     <option value="Sonora">Sonora </option>
                                     <option value="Tabasco">Tabasco </option>
                                     <option value="Tamaulipas">Tamaulipas </option>
                                     <option value="Tlaxcala">Tlaxcala </option>
                                     <option value="Veracruz">Veracruz </option>
-                                    <option value="Yucat&aacute;n">Yucatán </option>
+                                    <option value="Yucatan">Yucatán </option>
                                     <option value="Zacatecas">Zacatecas</option>
                                 </optgroup>
                             </select>
