@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.pojo.Compras.Proveedores;
 import pw.sap.pojo.Compras.QuerysCompras;
 
 
@@ -44,9 +45,12 @@ public class proveedor extends HttpServlet {
         
         QuerysCompras nuevo = new QuerysCompras();
         
-       nuevo.agregarProveedor(rfc, nom_emp, nom_cont, correo, tel, estado, muni, cp);
+        Proveedores prov = new Proveedores(rfc, nom_emp, nom_cont, correo, tel, estado, muni, cp);
+        
+       nuevo.agregarProveedor(prov);
  
         response.sendRedirect("Compras/html/com_proveedor.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
