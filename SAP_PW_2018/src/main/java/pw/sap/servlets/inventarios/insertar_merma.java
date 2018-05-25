@@ -4,6 +4,7 @@ import pw.sap.pojo.Inventarios.registro;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.Inventarios.Modificar;
 import pw.sap.pojo.Inventarios.registro;
 /**
  *
@@ -40,26 +42,52 @@ public class insertar_merma extends HttpServlet {
         String cantidad = request.getParameter("cant_mer");
         String motivo = request.getParameter("motivo_mer");
         
-        registro rg = new registro();
-        
 
-         if(rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo)== 1){
-                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una merma");
+        registro rg = new registro();
+        Modificar mod = new Modificar();
+        ArrayList l= rg.cantidadProducto(codigo);
+        System.out.println(l.get(0)); 
+       
+       int cantidad_prod = Integer.parseInt((String) l.get(0));
+       int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
+       String total= String.valueOf(cantidad_prod - cantidad_merma);
+       if(cantidad_merma<=cantidad_prod){
+        rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
+            PrintWriter out=response.getWriter();
             
-                response.getWriter().write("Merma agregada");
-              
-               
-            }else{
-                
-                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de agregacion merma");
+            mod.modificarCantidad(codigo, total);
             
-                
-                response.getWriter().write("El registro no pudo ser eliminado");
-            }
-        
-        
-        
-        response.sendRedirect("Inventarios/Inventario/merma.jsp");
+            out.println("<script>");
+            out.println("alert('Merma ingresada correctamente');");
+            out.print("window.location='Inventarios/Inventario/merma.jsp'");
+            out.println("</script>");
+
+       }else{
+        PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('No se puede mermar más de lo que existe');");
+            out.print("window.location='Inventarios/Inventario/merma.jsp'");
+            out.println("</script>");
+       }
+       
+      
+//         if(rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo)== 1){
+//                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una merma");
+//            
+//                response.getWriter().write("Merma agregada");
+//              
+//               
+//            }else{
+//                
+//                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de agregacion merma");
+//            
+//                
+//                response.getWriter().write("El registro no pudo ser eliminado");
+//            }
+//  
+//
+//        response.sendRedirect("Inventarios/Inventario/merma.jsp");
+ 
         
         
         
