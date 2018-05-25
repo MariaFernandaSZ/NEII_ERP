@@ -103,14 +103,15 @@ function valAgrega(){
         alert("el numero de caracteres para el codigo del producto debe ser de 13");
         return false;
         
-    }
-
-    if( !(/^\d{1,4}$/.test(canti)) ) {
+    }else if( !(/^\d{1,4}$/.test(canti)) ) {
         
         alert("ingrese una cantidad de productos");
-        return false;
-        
-    }  
+        return false;       
+    }else{
+        this.form.action = '../cotizacion';
+    } 
+
+ 
 }
 
 

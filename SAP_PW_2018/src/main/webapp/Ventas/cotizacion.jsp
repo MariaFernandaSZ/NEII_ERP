@@ -205,6 +205,7 @@
         <script src="../js/Ventas/VenGeneral.js"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
         <script src="../js/Ventas/muestraModales.js"></script>
+        <script src="../js/Ventas/ajaxFunctions.js"></script>
 
     </body>
 </html>
