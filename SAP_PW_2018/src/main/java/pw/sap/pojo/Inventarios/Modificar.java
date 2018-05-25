@@ -65,5 +65,16 @@ PreparedStatement ps;
                     System.out.println(ps);
 closeDB();
         }
+            
+                        public void modificarCantidad(String idproducto, String cantidad) throws SQLException, ClassNotFoundException{
+   
+openDB();
+PreparedStatement ps;
+                    
+                    ps = conn.prepareStatement("UPDATE producto set cantidad="+cantidad+" where id_producto='"+idproducto+"'");
+                    ResultSet rs= ps.executeQuery();
+                 
+closeDB();
+        }
 }
 
