@@ -114,9 +114,19 @@
 
                                     </table></div> </div>   
                         <hr>
-                        <input type="number" name="foliorequisi" placeholder="Folio de requisición a eliminar" id="foliorequisi" required/>
+                        
+                        <form method="POST" onsubmit="return vali_nuevoproducto();" name="eliminarReq" action="../../eliminarReq">
+                        <div>
+                                                
+                        <input type="text" name="req_folio" placeholder="Folio de requisición a eliminar" id="req_folio" required/>
                         <center><input type="submit" value="Aceptada" style="background-color: #9F150D" name="acep" class="btn btn-danger"/></center>
-                    </div>                       
+                                                
+                    </div>
+                        </form>
+                        
+                    </div> 
+                                            
+                    
 
 
                     <div style="background-color: #f4f7f8;" class="col-lg-5 col-md-5 col-sm-5 col-xs-11 form-style-5"><!-- Seccion central -->                          

@@ -234,5 +234,29 @@ public class QuerysCompras {
          }
          return rs;
          }
-     }
+
+
+    public boolean eliminaReq(requisicionPojo reqBean) throws SQLException, ClassNotFoundException{
+        boolean eliminado=false;
+        
+        openDB();
+        
+        try {
+                
+                    if(conn!=null){
+                        Statement st;
+                        st = conn.createStatement();
+                        st.executeUpdate("delete from requisicion where req_folio='"+reqBean.getReq_folio()+"'");
+                        eliminado=true;
+                        st.close();
+                    }
+                closeDB();
+                    } catch (SQLException e) {
+                        eliminado=false;
+                        e.printStackTrace();
+                    }
+            return eliminado;
+        
+    }
+}
     
