@@ -1,6 +1,6 @@
-table class='tabla'>
+<table class='tabla'>
     <tr><td align='center' class='form-group'>
-            <form autocomplete='off' method="POST" id="formContratarEmpleado" action="../../Servlet_contratarEmpleado">
+            <form autocomplete='off' method="POST" id="formContratarEmpleado" onsubmit="return validarContratar();">
             <table style="margin: 0 auto;">
                 <tr><td colspan='2' align='center'><h1>CONTRATACI&Oacute;N</h1></td></tr>
                 <tr><td>Nombre</td><td><input type='text'id='contratarNombre' name='contratarNombre' class='form-control form-control-sm' required></td></tr>
@@ -17,7 +17,7 @@ table class='tabla'>
                         </select>
                     </td>
                 </tr>
-                <tr><td>Licencia Médica</td><td><input type='text' id='licenciaMedica' name='licenciaMedica' class='form-control form-control-sm' required></td></tr>
+                <tr><td>Licencia M&eacute;dica</td><td><input type='text' id='contratarlicenciaMedica' name='contratarlicenciaMedica' class='form-control form-control-sm' required></td></tr>
 
                 <tr><td>Sueldo</td><td><input type='number' id='contratarSueldo' name='contratarSueldo' class='form-control form-control-sm' required></td></tr>
                  <tr><td>Sueldo por día</td><td><input type='number' id='contratarSueldoDiario' name='contratarSueldoDiario' class='form-control form-control-sm' required></td></tr>
@@ -48,4 +48,4 @@ table class='tabla'>
             </table>
         </form>
     </td></tr>
-</table>
+
