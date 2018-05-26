@@ -132,8 +132,7 @@
                     <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
                         <div class="table-responsive" id="cambios">
                             <table class="table table-bordered table-responsive">
-                                <tr>
-                                    <th>Selecciona</th>
+                                <tr>                                    
                                     <th>Clave</th>
                                     <th>Periodo</th>
                                     <th>Fecha inicio</th>
@@ -144,8 +143,7 @@
                                         LinkedList<Calen_Contable> lista =ConsultasGenerales.consultaGeneral();
                                         for (int i=0;i<lista.size();i++)
                                         {
-                                           out.println("<tr>");
-                                           out.println("<td><input type='radio' id='idcalen' name='idcalen' value="+lista.get(i).getId()+"></td>");                                           
+                                           out.println("<tr>");                               
                                            out.println("<td>"+lista.get(i).getClave()+"</td>");
                                            out.println("<td>"+lista.get(i).getPeriodo()+"</td>");
                                            out.println("<td>"+lista.get(i).getFechaini()+"</td>");

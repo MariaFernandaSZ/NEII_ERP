@@ -132,16 +132,14 @@
                     <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
                         <div class="table-responsive" id="cambios">
                             <table class="table table-bordered table-responsive">
-                                <tr>
-                                    <th>Selecciona</th>
+                                <tr>                                
                                     <th>Clave</th>
                                     <th>Periodo</th>
                                     <th>Fecha inicio</th>
                                     <th>Fecha final</th>
                                     <th>Status</th>
                                 </tr>
-                                <tr>                                                                       
-                                    <td class="seleccion"><input type="radio" id="ccselperiodo" value="<%=request.getAttribute("clave")%>" name="ccselperiodo"></td>
+                                <tr>                                                                                                           
                                     <td><%=request.getSession().getAttribute("clave")%></td>
                                     <td><%=request.getSession().getAttribute("periodo")%></td>
                                     <td><%=request.getSession().getAttribute("fechaini")%></td>

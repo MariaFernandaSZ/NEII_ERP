@@ -135,22 +135,25 @@
                                     <form method="post" onsubmit="return validacadena('neditaclave');" action="../EditaCalen">
                                         <div class="row form-style-5">                                                                                        
                                             <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
-                                               <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" id="neditaclave" name="neditaclave" placeholder="201800"/></span>                                                                               
+                                               <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" id="neditaclave" name="neditaclave"/></span>                                                                               
                                                <input id="buscar" name="general" type="submit" value="Consulta">
                                            </div> 
                                         </div>
                                     </form>
                                     <br>
-                                    <form method="post" onsubmit="return calencontaeditar();" action="../EditaCalen">                                      
+                                    <form onsubmit="return calencontaeditar();" action="../ActualizacionCalen" method="post">                                      
                                         <span style="font-size: 18px">Periodo: </span><span class="idemp">
                                             <%
+                                                out.println("<input type='text' id='claveeditar' name='claveeditar' hidden=hidden value="+request.getSession().getAttribute("clave")+">");
                                                 out.println("<input type='text' id='periodo' name='periodo' value="+request.getSession().getAttribute("periodo")+">");
                                             %>
                                         </span>
                                         <br><br>
+                                        <span style="font-size: 18px">Fecha Inicial: </span><span class="idemp">
                                         <%
-                                            out.println("<span style='font-size: 18px'>Fecha Inicial: </span><span class='idemp'><input style='width: 180px; height: 30px;text-align: center;' type='text' id='Editfechaini' name='Editfechaini' value='"+request.getSession().getAttribute("fechaini")+"'/></span><br>");
+                                            out.println("<input style='width: 180px; height: 30px;text-align: center;' type='date' id='Editfechaini' name='Editfechaini' value='"+request.getSession().getAttribute("fechaini")+"'/>");
                                         %>
+                                        </span><br>
                                         <span style="font-size: 18px">Fecha Final: </span><span class="idemp">
                                         <%    
                                             out.println("<input style='width: 180px; height: 30px;text-align: center;' type='date' id='Editfechafin' name='Editfechafin' value='"+request.getSession().getAttribute("fechafin")+"' />");

@@ -39,7 +39,7 @@ public class EditaCalen extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();              
         
-        System.out.println("clave:"+request.getParameter("neditaclave"));
+        System.out.println("clave:"+request.getParameter("neditaclave"));        
         //ArrayList l=c.calenContable(Integer.parseInt(request.getParameter("clave")));
         ArrayList l=c.calenContable(request.getParameter("neditaclave"));
         
@@ -67,9 +67,7 @@ public class EditaCalen extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditaCalen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EditaCalen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -87,9 +85,7 @@ public class EditaCalen extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(EditaCalen.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EditaCalen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

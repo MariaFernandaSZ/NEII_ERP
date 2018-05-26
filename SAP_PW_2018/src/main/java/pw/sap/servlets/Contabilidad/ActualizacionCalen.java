@@ -8,12 +8,14 @@ package pw.sap.servlets.Contabilidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.db.Conexion;
+import pw.sap.pojo.Contabilidad.Con_Calendario;
 
 /**
  *
@@ -34,8 +36,20 @@ public class ActualizacionCalen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c=new Conexion();
-        request.getParameter("");
+        Con_Calendario c=new Con_Calendario();
+        
+        System.out.println("ahora estoy en Actualizacion");
+        
+        String clave=request.getParameter("claveeditar");        
+        System.out.println("la clave es:"+clave);
+        String fechaini=request.getParameter("Editfechaini");
+        String fechafin=request.getParameter("Editfechafin");
+        int periodo=Integer.parseInt(request.getParameter("periodo"));
+        String status=request.getParameter("Editestado");        
+        c.actualizarCalendario(clave, fechaini, fechafin, periodo, status);        
+        response.sendRedirect("Contabilidad/calen_contable.jsp");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +64,11 @@ public class ActualizacionCalen extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ActualizacionCalen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -64,7 +82,11 @@ public class ActualizacionCalen extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ActualizacionCalen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
