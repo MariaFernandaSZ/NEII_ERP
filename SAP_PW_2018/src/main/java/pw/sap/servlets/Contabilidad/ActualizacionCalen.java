@@ -36,11 +36,9 @@ public class ActualizacionCalen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Con_Calendario c=new Con_Calendario();
-        
-        System.out.println("ahora estoy en Actualizacion");
-        
-        String clave=request.getParameter("claveeditar");        
+        Con_Calendario c=new Con_Calendario();        
+        System.out.println("ahora estoy en Actualizacion");        
+        String clave=(String) request.getSession().getAttribute("clave");        
         System.out.println("la clave es:"+clave);
         String fechaini=request.getParameter("Editfechaini");
         String fechafin=request.getParameter("Editfechafin");

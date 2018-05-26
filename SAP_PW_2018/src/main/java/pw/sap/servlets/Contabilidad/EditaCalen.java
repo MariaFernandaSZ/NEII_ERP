@@ -6,7 +6,6 @@
 package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,8 +37,8 @@ public class EditaCalen extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();              
-        
-        System.out.println("clave:"+request.getParameter("neditaclave"));        
+        System.out.println("EditaCalen");
+        System.out.println("la clave es:"+request.getParameter("neditaclave"));        
         //ArrayList l=c.calenContable(Integer.parseInt(request.getParameter("clave")));
         ArrayList l=c.calenContable(request.getParameter("neditaclave"));
         
