@@ -7,8 +7,6 @@ package pw.sap.servlets.rh;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -42,41 +40,22 @@ public class Servlet_agregarTarea extends HttpServlet {
         ArrayList lista = new ArrayList();
         try (PrintWriter out = response.getWriter()) {
             Conexion c = new Conexion();
-            String valores = "'"+request.getParameter("agregarNombreTarea")+
-                    "',"+request.getParameter("agregarResponsable")+",'"+request.getParameter("agregarFechaInicio")+
-                            "','"+request.getParameter("agregarFechaFin")+"'";
-            Integer query = c.insertar("nombre,responsable,fecha_inicio,fecha_termino", "tarea", valores);
+                         c.openDB();
+
+            String valores = ("'"
+                    + request.getParameter("agregarNombreTarea") + "','"
+                    + request.getParameter("agregarResponsable") + "','"
+                    + request.getParameter("agregarFechaInicio") + "','"
+                    + request.getParameter("agregarFechaFin")+"'");
+            Integer query = c.insertar("nombre_tarea,id_emp,fecha_inicio,fecha_fin", "tarea", valores);
             lista.add(c.consulta("id_tarea", "tarea", "id_tarea", "is not null", "ORDER BY id_tarea DESC LIMIT 1", 1));
             if(query == 1){
-                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una tarea");
-            
-                response.getWriter().write("Registro realizado correctamente. ID de tarea: "+lista.get(0));
-                
+                response.getWriter().write("El ID de tarea registrada es : "+lista.get(0));
             }else{
-                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "No se agrego la tarea");
-            
                 response.getWriter().write("Registro incorrecto, revisar datos");
-                }
+            }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-    
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
