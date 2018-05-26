@@ -43,7 +43,7 @@
                                 <br><br>
                                 <span>IVA:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="ivaprod" id="ivaprod" readonly="readonly" placeholder="$000.00"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 
-                                <span >Subtotal:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="precioUnitario" id="precioUnitario" readonly="readonly" placeholder="$000.00"/></span>
+                                <span >Subtotal:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="subtotal" id="subtotal" readonly="readonly" placeholder="$000.00"/></span>
                     </form>        
                     
                 </div>

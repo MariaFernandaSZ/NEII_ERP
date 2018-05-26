@@ -146,28 +146,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="table-responsive">
-                        <table class="table table-striped" id="listaProductos">
-                            <thead>
-                                <tr>
-                                    <th scope="col">C&oacute;digo</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio unitario</th>
-                                    <th scope="col">IVA</th>
-                                    <th scope="col">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>7702111333581</td>
-                                    <td>Impresora LaserJet HP</td>
-                                    <td>2</td>
-                                    <td>$572.00</td>
-                                    <td>$91.52</td>
-                                    <td>$1,144.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="tablaProductos"></div>
                     </div> 
 
                 </div>
@@ -205,7 +184,43 @@
 
         </div>               
 
-        <div id="tmpModal"></div>
+        <div class="modal fade" id="agregaProductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar producto</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-style-5">
+                    <form method="POST">
+                            <span id="titulo"><span class="number">1</span>Añade</span>
+                            
+                            
+                                <br><br><span>C&oacute;digo de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" onkeypress="return searchKeyPress(event);" id="codprod" type="text" name="codprod" placeholder="###############"/></span>
+
+                                <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return cantOnPress(event);" id="cant" type="text" name="cant" placeholder="0"/></span>
+                                <br><br>
+
+                                <span id="titulo"><span class="number">2</span>Datos de producto</span>
+                                <br><br>
+                                <span id="nom">Nombre producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text"  name="nomProd" id="nomprod" readonly="readonly" placeholder="Nombre"/></span>
+                                <br><br>
+                                <span >Precio unitario:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="precioprod" id="precioprod" readonly="readonly" placeholder="$000.00"/></span>
+                                <br><br>
+                                <span>IVA:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="ivaprod" id="ivaprod" readonly="readonly" placeholder="$000.00"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                
+                                <span >Subtotal:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="subtotal" id="subtotal" readonly="readonly" placeholder="$000.00"/></span>
+                    </form>        
+                    
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" style="background-color: #9F150D" onclick="valAgrega() " class="btn btn-danger">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div> 
 
         <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

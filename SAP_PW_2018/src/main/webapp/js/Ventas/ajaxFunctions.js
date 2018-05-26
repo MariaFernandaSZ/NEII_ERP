@@ -51,7 +51,7 @@ function cantOnPress(e)
                     url: '../cantidadProd',
                     data: {cant:cant,precioprod:precioprod,ivaprod:ivaprod},
                     success: function (result) {
-                        $('#precioUnitario').val(result);
+                        $('#subtotal').val(result);
                     }
                 });
             }  
