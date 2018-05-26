@@ -175,16 +175,16 @@ public class PlanCuentas {
         return r;
     }
     
-    public Boolean editaPlan(int id, String valor) throws SQLException {
+    public int editaPlan(int id, String tipo_cuenta, String clase_cuenta, String naturaleza) throws SQLException {
         openDB();
-        Boolean resultado = false;
-        PreparedStatement ps;
-        ps = conn.prepareStatement("UPDATE tabla SET campoMod ? WHERE campocriterio=?");
-        ps.setString(1, valor);
-        ps.setInt(2, id);
-        ResultSet rs = ps.executeQuery();
+        PreparedStatement ps = conn.prepareStatement("update cuentas_empresa set tipo_cuenta=?,clase_cuenta=?,naturaleza=? where id=?");
+        ps.setString(1, tipo_cuenta);
+        ps.setString(2, clase_cuenta);
+        ps.setString(3, naturaleza);
+        ps.setInt(4, id);
+        int r= ps.executeUpdate();
         closeDB();
-        return resultado;
+        return r;
     }
 
     //Metodos de consulta de datos

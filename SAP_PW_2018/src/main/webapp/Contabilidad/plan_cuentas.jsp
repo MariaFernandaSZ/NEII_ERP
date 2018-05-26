@@ -128,7 +128,6 @@
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Selecciona</th>
                                     <th>Cuenta</th>
                                     <th>Descripcion</th>
                                     <th>Tipo de cuenta</th>
@@ -141,7 +140,6 @@
                                         LinkedList<ObjPlanDeCuentas> lista = PlanCuentas.consultaTodoPlan();
                                         for (int i = 0; i < lista.size(); i++) {
                                             out.println("<tr>");
-                                            out.println("<td class='seleccion'><input type='checkbox'></td>");
                                             out.println("<td>" + lista.get(i).getId_cuenta() + "</td>");
                                             out.println("<td>" + lista.get(i).getDescripcion() + "</td>");
                                             out.println("<td>" + lista.get(i).getTipo_cuenta() + "</td>");
@@ -153,7 +151,6 @@
                                     %>
                                 </tr>
                                 <tr>
-                                    <td class="seleccion"><input type="radio" id="ccselperiodo"  name="ccselperiodo"></td>
                                     <td><%=request.getSession().getAttribute("cuenta")%></td>
                                     <td><%=request.getSession().getAttribute("descripcion")%></td>
                                     <td><%=request.getSession().getAttribute("tipo_cuenta")%></td>
@@ -219,7 +216,7 @@
                                                 <input type="text" name="clasecuenta" id="clasecuenta" placeholder="Clase de cuenta">    
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
-                                                    <input type="text" name="naturaleza" id="naturaleza" placeholder="Naturaleza">    
+                                                <input type="text" name="naturaleza" id="naturaleza" placeholder="Naturaleza">    
                                             </div>
                                         </div>
                                         <div class="row">
@@ -244,56 +241,54 @@
                                 <div class="form-style-5">
                                     <form action="../PlanDeCuentasEditar" onsubmit="return plancuentaseditar();" method="post">
 
-                                        <span style="font-size: 18px">Cuenta superior: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" id="csup" name="csup" placeholder="001"/></span><br>
-                                        <span style="font-size: 18px">Naturaleza: </span><span class="idemp">
-                                            <select id="naturaleza" name="naturaleza">
-                                                <optgroup>
-                                                    <option value="x">Seleccione...</option>
-                                                    <option value="deudora">Deudora</option>
-                                                    <option value="Acreedora">Acreedora</option>
-                                                    <option value="Binaturaleza">Binaturaleza</option>
-                                                </optgroup>
-                                            </select> 
-                                        </span><br>
-
-                                        <span style="font-size: 18px">Asociaci&oacute;n: </span><span class="idemp">
-                                            <select name="asociacion" id="asociacion">
-                                                <optgroup>
-                                                    <option value="x">Seleccione...</option>
-                                                    <option value="balance">Balance</option>
-                                                    <option value="orden">De orden</option>
-                                                    <option value="resultados">Resultados</option>
-
-                                                </optgroup>
-                                            </select> 
-                                        </span><br>
-
-                                        <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="neditapcclave" id="nclave" placeholder="001"/></span><br>
-
-                                        <span style="font-size: 18px">Descripci&oacute;n: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n"/></span><br>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="reportVentas" id="report1" value="todasV" checked>
-                                            <label style="font-size: 18px" class="form-check-label" for="report1">
-                                                Activa
-                                            </label>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Selecciona</th>
+                                                    <th>Cuenta</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Tipo de cuenta</th>
+                                                    <th>Clase cuenta</th>
+                                                    <th>Clase SAT</th>
+                                                    <th>Tipo Naturaleza</th>
+                                                </tr>
+                                                <tr>
+                                                    <%
+                                                        LinkedList<ObjPlanDeCuentas> listaEdita = PlanCuentas.consultaTodoPlan();
+                                                        for (int i = 0; i < listaEdita.size(); i++) {
+                                                            out.println("<tr>");
+                                                            out.println("<td><input type='radio' id='neliminapcclave' name='neliminapcclave' value=" + listaEdita.get(i).getId() + "></td>");
+                                                            out.println("<td>" + listaEdita.get(i).getId_cuenta() + "</td>");
+                                                            out.println("<td>" + listaEdita.get(i).getDescripcion() + "</td>");
+                                                            out.println("<td>" + listaEdita.get(i).getTipo_cuenta() + "</td>");
+                                                            out.println("<td>" + listaEdita.get(i).getClase_cuenta() + "</td>");
+                                                            out.println("<td>" + listaEdita.get(i).getClase_sat() + "</td>");
+                                                            out.println("<td>" + listaEdita.get(i).getNaturaleza() + "</td>");
+                                                            out.println("<tr>");
+                                                        }
+                                                    %>
+                                                </tr>
+                                            </table>    
                                         </div>
-
-                                        <span style="font-size: 18px">Codigo SAT: </span><span class="idemp">
-                                            <select id="codigosat" name="codigosat">
-                                                <optgroup>
-                                                    <option value="x">Selecciona...</option>                                                        
-                                                    <option value="100">100-Activo</option>
-                                                    <option value="100.01">100.01-Activo a corto plazo</option>
-                                                    <option value="101">101- Caja</option>
-                                                    <option value="100.01">101.01- Caja y efectivo</option>
-                                                    <option value="102">102-Bancos</option>
-                                                </optgroup>
-                                            </select> 
-                                        </span><br>
-
-                                        <center><input id="guardar" type="submit" value="Aplicar" style="background-color: #9F150D" class="btn btn-danger"><br>
-                                            <br></center>                   
+                                        <div class="row">
+                                            <br>
+                                            <span id="titulo">Colocar los datos</span>   
+                                            <br>
+                                        </div>        
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+                                                <input type="text" name="tipocuenta" id="tipocuenta" placeholder="Tipo de cuenta">    
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+                                                <input type="text" name="clasecuenta" id="clasecuenta" placeholder="Clase de cuenta">    
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+                                                <input type="text" name="naturaleza" id="naturaleza" placeholder="Naturaleza">    
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <input type="submit" value="AGREGAR"/>    
+                                        </div>                
                                     </form>
                                 </div>
                             </div>
@@ -312,9 +307,39 @@
                             <div class="modal-body">
                                 <div class="form-style-5">
                                     <form action="../PlanDeCuentasEliminar" onsubmit="return validanumero('neliminapcclave');" method="post">
-                                        <span style="font-size: 18px">Clave: </span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="neliminapcclave" id="neliminapcclave" placeholder="001"/></span><br>
-                                        <center><input id="eliminar" type="submit" value="Eliminar" style="background-color: #9F150D" class="btn btn-danger"><br>
-                                            <br></center>                   
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Selecciona</th>
+                                                    <th>Cuenta</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Tipo de cuenta</th>
+                                                    <th>Clase cuenta</th>
+                                                    <th>Clase SAT</th>
+                                                    <th>Tipo Naturaleza</th>
+                                                </tr>
+                                                <tr>
+                                                    <%
+                                                        LinkedList<ObjPlanDeCuentas> listaEliminar = PlanCuentas.consultaTodoPlan();
+                                                        for (int i = 0; i < listaEliminar.size(); i++) {
+                                                            out.println("<tr>");
+                                                            out.println("<td><input type='radio' id='neliminapcclave' name='neliminapcclave' value=" + listaEliminar.get(i).getId() + "></td>");
+                                                            out.println("<td>" + listaEliminar.get(i).getId_cuenta() + "</td>");
+                                                            out.println("<td>" + listaEliminar.get(i).getDescripcion() + "</td>");
+                                                            out.println("<td>" + listaEliminar.get(i).getTipo_cuenta() + "</td>");
+                                                            out.println("<td>" + listaEliminar.get(i).getClase_cuenta() + "</td>");
+                                                            out.println("<td>" + listaEliminar.get(i).getClase_sat() + "</td>");
+                                                            out.println("<td>" + listaEliminar.get(i).getNaturaleza() + "</td>");
+                                                            out.println("<tr>");
+                                                        }
+                                                    %>
+                                                </tr>
+                                            </table>    
+                                        </div>
+                                        <center>
+                                            <input id="eliminar" type="submit" value="Eliminar" style="background-color: #9F150D" class="btn btn-danger"><br>
+                                            <br>
+                                        </center>                   
                                     </form>
                                 </div>
                             </div>
