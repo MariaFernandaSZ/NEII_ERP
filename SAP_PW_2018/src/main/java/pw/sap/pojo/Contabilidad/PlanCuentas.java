@@ -137,20 +137,34 @@ public class PlanCuentas {
 
   
     
-    public ArrayList agregaPlan(String id) throws SQLException {
+    public int agregaPlan(int id_cuenta, String descripcion, String tipo_cuenta, String clase_cuenta, String naturaleza) throws SQLException {
         openDB();
-        ArrayList r = new ArrayList();
-        PreparedStatement ps;
-        ps = conn.prepareStatement("INSERT INTO tabla (campos) VALUES (valores)");
-        ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
-        for (int i = 0; rs.next(); i++) {
-            r.add(rs.getString(i));
-        }
-
+        PreparedStatement ps = conn.prepareStatement("insert into cuentas_empresa(id_cuenta,descripcion,tipo_cuenta,clase_cuenta,naturaleza) values (?,?,?,?,?);");
+        ps.setInt(1, id_cuenta); 
+        ps.setString(2, descripcion);
+        ps.setString(3, tipo_cuenta);
+        ps.setString(4, clase_cuenta);
+        ps.setString(5, naturaleza);
+        int r= ps.executeUpdate();
         closeDB();
         return r;
     }
+    
+    public String descSat(int id) throws SQLException {
+        openDB();
+        String desc="";
+        
+        PreparedStatement ps = conn.prepareStatement("SELECT descripcion FROM cuenta_sat where id=?");
+        ps.setInt(1, id);
+        
+        ResultSet rs = ps.executeQuery();
+         rs.next(); 
+        desc=rs.getString(1);
+        closeDB();
+        
+        return desc;
+    }
+    
     
     public int eliminaPlan(int id) throws SQLException {
         openDB();
