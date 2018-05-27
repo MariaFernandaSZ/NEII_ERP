@@ -91,7 +91,9 @@ public class Clientes extends HttpServlet {
             }
 //      request.getRequestDispatcher("Ventas/clientes.jsp").forward(request, response);
 //        response.sendRedirect("Ventas/clientes.jsp");
-        
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Insercion de cliente");
+          
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
