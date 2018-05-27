@@ -130,18 +130,18 @@ function EspecificaMC(){
                                     <th>Observaciones</th>
                                 </tr>
                                 <%
-                                        LinkedList <Merma> lista =ConsultasGenerales.consultaGMermac();
-                                        for (int i=0;i<lista.size();i++)
-                                        {
-                                           out.println("<tr>");                               
-                                           out.println("<td>"+lista.get(i).getId_producto()+"</td>");
-                                           out.println("<td>"+lista.get(i).getIDMerma()+"</td>");
-                                           out.println("<td>"+lista.get(i).getFechaRe()+"</td>");
-                                           out.println("<td>"+lista.get(i).getTipo()+"</td>");
-                                           out.println("<td>"+lista.get(i).getCantidad()+"</td>"); 
-                                           out.println("<td>"+lista.get(i).getObs()+"</td>");
-                                           out.println("</tr>");
-                                        }
+                                  //      LinkedList <Merma> lista =ConsultasGenerales.consultaGMermac();
+                                    //    for (int i=0;i<lista.size();i++)
+                                      //  {
+                                        //   out.println("<tr>");                               
+                                          // out.println("<td>"+lista.get(i).getId_producto()+"</td>");
+                                           //out.println("<td>"+lista.get(i).getIDMerma()+"</td>");
+                                           //out.println("<td>"+lista.get(i).getFechaRe()+"</td>");
+                                           //out.println("<td>"+lista.get(i).getTipo()+"</td>");
+                                           //out.println("<td>"+lista.get(i).getCantidad()+"</td>"); 
+                                           //out.println("<td>"+lista.get(i).getObs()+"</td>");
+                                           //out.println("</tr>");
+                                        //}
                                     %>
                               
                             </table>    
