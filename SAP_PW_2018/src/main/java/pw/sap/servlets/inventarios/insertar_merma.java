@@ -22,15 +22,9 @@ import pw.sap.pojo.Inventarios.registro;
 @WebServlet(name = "insertar_merma", urlPatterns = {"/insertar_merma"})
 public class insertar_merma extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
+
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -55,13 +49,15 @@ public class insertar_merma extends HttpServlet {
         rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
             PrintWriter out=response.getWriter();
             
-            mod.modificarCantidad(codigo, total);
-            
+           
+             rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
             out.println("<script>");
             out.println("alert('Merma ingresada correctamente');");
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
             out.println("</script>");
 
+              mod.modificarCantidad(codigo, total);
+            
        }else{
         PrintWriter out=response.getWriter();
             out.println("<script>");
@@ -69,30 +65,11 @@ public class insertar_merma extends HttpServlet {
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
             out.println("</script>");
        }
-       
-      
-//         if(rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo)== 1){
-//                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego una merma");
-//            
-//                response.getWriter().write("Merma agregada");
-//              
-//               
-//            }else{
-//                
-//                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de agregacion merma");
-//            
-//                
-//                response.getWriter().write("El registro no pudo ser eliminado");
-//            }
-//  
-//
-//        response.sendRedirect("Inventarios/Inventario/merma.jsp");
- 
-        
-        
+              
         
     }
 
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
