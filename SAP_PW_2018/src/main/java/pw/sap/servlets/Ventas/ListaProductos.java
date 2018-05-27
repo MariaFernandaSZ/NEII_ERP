@@ -37,7 +37,7 @@ public class ListaProductos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
 
     }
 
@@ -56,7 +56,11 @@ public class ListaProductos extends HttpServlet {
         processRequest(request, response);
     }
     
-    ArrayList<VentaLista> ventList = new ArrayList();
+    public static ArrayList<VentaLista> ventList = new ArrayList();
+    
+    public static double subtotalTotal_ov = 0;
+    public static double totalIva_ov = 0;
+    public static double TOTAL_ov = 0;
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -88,7 +92,7 @@ public class ListaProductos extends HttpServlet {
 //        ArrayList<VentaLista> ventList = new ArrayList();
         
         ventList.add(new VentaLista(codprod,nomprod,cant,precioprod,ivaprod,subtotal));
-
+        
                             out.println("<table class=\"table table-striped\" id=\"listaProductos\">");
                             out.println("<thead>");
                             out.println("<tr>");
@@ -112,11 +116,16 @@ public class ListaProductos extends HttpServlet {
 			out.println("<td>"+prod.getIva()+"</td>");
 			out.println("<td>"+prod.getSubtotal()+"</td>");
 			out.println("</tr>");
+                        
+                        subtotalTotal_ov += prod.getSubtotal();
+                        totalIva_ov += prod.getIva();
 		}
 		out.println("</tbody>");
                 out.println("</table>");
-
-//                    Gson gson = new Gson();
+                
+                TOTAL_ov = subtotalTotal_ov + totalIva_ov;
+                
+//            Gson gson = new Gson();
 //            out.print(gson.toJson(new VentaLista(codprod,nomprod,cant,precioprod,ivaprod,subtotal)));
 //            out.flush();
 //            out.close();
@@ -134,4 +143,4 @@ public class ListaProductos extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-}
+    }

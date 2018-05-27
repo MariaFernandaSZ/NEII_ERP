@@ -1,4 +1,6 @@
+<%@page import="pw.sap.servlets.Ventas.ListaProductos"%>
 <%@page import="java.sql.ResultSet"%>
+<jsp:useBean id="nuevaTabla" scope="page" class="pw.sap.servlets.Ventas.ListaProductos"/>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -90,7 +92,7 @@
                             <%
                                 ResultSet rs = idClient.consultarIDEMP(); 
                                 ResultSet rss = idInter.consultarIDInterm();
-
+                                ListaProductos.ventList.clear();                                               
                             %>  
                             <span id="titulo"><span class="number">1</span> Informaci&oacute;n de cliente</span><br>
                             <span class="idemp"><input type="text" id="IDCliente" name="IDCliente" placeholder="ID Cliente"></span>
@@ -121,7 +123,7 @@
                             </select>
 
                             <span id="titulo"><span class="number">2</span>Datos venta contado</span><br><br>
-                            <span>N&uacute;m. venta contado</span><br><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nocot" readonly="readonly" placeholder="001"/></span><br>
+                            <span>N&uacute;m. venta contado</span><br><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nocont" id="nocont" value="<%  %>" readonly="readonly" placeholder="001"/></span><br>
 
                             <span style="font-size: 18px">Fecha de venta</span><br><span class="idemp"><input min="2010-01-01" style="width: 180px; height: 30px;text-align: center;" readonly="readonly" type="date" id="fecha1" name="fechaC" /></span><br>
                             <script>
@@ -174,7 +176,7 @@
                                 <br><span>TOTAL&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Total" readonly="readonly" placeholder="$15,924.48"/></span><br>
 
 
-                                <br><button type="button" name="pagar" style="background-color: #9F150D" onclick="validaFechasCONTADO()" class="btn btn-danger">Pagar</button> <button type="button" name="cancelar" style="background-color: #9F150D" class="btn btn-danger">Cancelar</button>
+                                <br><button type="button" name="pagar" style="background-color: #9F150D" onclick="validaFechasCONTADO()" class="btn btn-danger">Pagar</button> <button type="button" name="cancelar" id="cancelar" onclick="cancelar()" style="background-color: #9F150D" class="btn btn-danger">Cancelar</button>
                             </center>
                         </form>
                     </div>
