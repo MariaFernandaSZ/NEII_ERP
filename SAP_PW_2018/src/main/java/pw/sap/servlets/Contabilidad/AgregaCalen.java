@@ -41,6 +41,7 @@ public class AgregaCalen extends HttpServlet {
         String campos="'"+request.getParameter("nclave")+"',"+request.getParameter("periodo")+",'"+ request.getParameter("fechaini")+"','"+request.getParameter("fechafin")+"','"+request.getParameter("estado")+"'";
         System.out.println("cadena:"+campos);
         c.ingresarRegistro("calen_contable", "clave,periodo,fechaini,fechafin,status", campos);
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion en el calendario");
         
         response.sendRedirect("Contabilidad/calen_contable.jsp");
         
