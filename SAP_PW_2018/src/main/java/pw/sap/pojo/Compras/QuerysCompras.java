@@ -287,6 +287,25 @@ public class QuerysCompras {
         
     }
     
+         public ArrayList  gerencia(int mes) throws SQLException{
+     openDB();
+     ArrayList r=new ArrayList();
+        PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select ord_pagotot from orden_compra where (Extract(MONTH from ord_fecha))='"+mes+"';");
+                    ResultSet rs= ps.executeQuery();
+         
+            while (rs.next()) {                
+               
+                r.add(rs.getString(1));
+                
+                      
+        
+    }
+             closeDB(); 
+        return r;
+    
+     }
     
     public 
 }
