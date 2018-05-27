@@ -263,7 +263,7 @@ public class QuerysVentas {
         openDB();
         int valor=1;
         PreparedStatement ps;
-        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,desc) VALUES ("+id_emp+",'"+area+"','"+des+"'");
+        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,des) VALUES ("+id_emp+",'"+area+"','"+des+"');");
         valor= ps.executeUpdate();
         closeDB();        
         return valor;

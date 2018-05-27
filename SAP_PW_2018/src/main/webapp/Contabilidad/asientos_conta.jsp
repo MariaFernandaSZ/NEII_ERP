@@ -1,3 +1,7 @@
+<%@page import="pw.sap.pojo.Contabilidad.Modulos"%>
+<%@page import="pw.sap.db.ConsultasGenerales"%>
+<%@page import="pw.sap.pojo.Contabilidad.Calen_Contable"%>
+<%@page import="java.util.LinkedList"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -106,6 +110,11 @@
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
                                         <button id="btn-cc-add" type="button" class="btn btn-light" onclick="agregaAsiento()">Agregar</button>
                                     </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
+                                        <button id="btn-cc-add" type="button" class="btn btn-light" onclick="continuaAsientoDetalle()">Continuar Captura</button>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
                                         <button id="btn-cc-edit" type="button" class="btn btn-light" onclick="editaAsiento()">Editar</button>
                                     </div>
@@ -159,24 +168,33 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-style-5">
-                                    <form  autocomplete="off"  method="post" action="asientos_conta.jsp" onsubmit="return AsientoAgr();">
-                                        <div class="row form-style-5">
+                                    <form  autocomplete="off"  method="post" action="../AgregaAsientoGeneral" onsubmit="return AsientoAgr();">
+                                        <!--<div class="row form-style-5">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
                                                 <span style="font-size: 16px">Clave: </span><span class="idemp"><input style="width: 250px; text-align: left;" type="text" id="claveAs"  /></span>                                               
                                             </div>    
-                                        </div>
+                                        </div>-->
                                         <div class="row form-style-5">                                            
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <span style="font-size: 16px">Modulo: </span><span class="idemp">
                                                     <select id="moduAs" name="modu">
                                                         <optgroup>
                                                             <option value="x">Seleccione...</option>
-                                                            <option value="ventas">Ventas</option>
+                                                            <%
+                                                                LinkedList<Modulos> lista =ConsultasGenerales.consultaModulos();
+                                                                for (int i=0;i<lista.size();i++)
+                                                                {
+
+                                                                   out.println("<option value='"+lista.get(i).getId_area()+"'>"+lista.get(i).getNombre_area()+"</option>");                                                                   
+
+                                                                }
+                                                            %>                                                                                                                                                                                    
+                                                            <!--<option value="ventas">Ventas</option>
                                                             <option value="compras">Compras</option>
                                                             <option value="porpagar">Por pagar</option>
                                                             <option value="nomina">Nomina</option>
                                                             <option value="inventarios">Inventarios</option>
-                                                            <option value="conta">Contabilidad</option>
+                                                            <option value="conta">Contabilidad</option>-->
                                                         </optgroup>
                                                     </select> 
                                                 </span>
@@ -203,26 +221,52 @@
                                                     <select id="periodoAs" name="periodo">
                                                         <optgroup>
                                                             <option value="x">Seleccione...</option>
-                                                            <option value="2018">2018-01</option>
-                                                            <option value="2019">2018-02</option>
-                                                            <option value="2020">2018-03</option>
-                                                            <option value="2021">2018-04</option>
-                                                            <option value="2022">2018-05</option>
-                                                            <option value="2023">2018-06</option>                                                            
+                                                        <%
+                                                            LinkedList<Calen_Contable> perio =ConsultasGenerales.consultaPeriodoGeneral();
+                                                            for (int i=0;i<perio.size();i++)
+                                                            {
+                                                               
+                                                               out.println("<option value='"+perio.get(i).getId()+"'>"+perio.get(i).getClave()+"</option>");
+                                                               
+                                                            }
+                                                        %>                                                            
                                                         </optgroup>
                                                     </select> 
                                                 </span>                                                
                                             </div>    
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <span style="font-size: 16px">Fecha de ingreso: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" id="fechaIng" /></span>
+                                                <span style="font-size: 16px">Fecha de captura: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" id="fechacap" name="fechacap" /></span>
                                             </div>
                                             
                                         </div>                                        
                                         <div class="row form-style-5">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
-                                                    <span style="font-size: 16px">Concepto: </span><span class="idemp"><input style="width: 220px; text-align: left;" type="textarea" id="concepto"/></span>                                               
+                                                <span style="font-size: 16px">Concepto: </span><span class="idemp"><textarea style="width: 220px; text-align: left;" id="concepto" name="concepto"></textarea></span>                                               
                                             </div>    
                                         </div>
+                                        <div class="modal-footer">
+                                            <center>
+                                                <input id="guardar" type="submit" value="Guardar" style="background-color: #9F150D"  class="btn btn-danger"><br>
+                                            </center>    
+                                        </div>                   
+                                    </form>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                                        
+
+<!-- Modal continuar capturando detalles del ASIENTO contable-->
+                <div class="modal fade" id="continuarasiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Agregar Asiento Contable</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-style-5">
+                                    <form autocomplete="off"  method="post" action="asientos_conta.jsp" onsubmit="return AsientoAgr();">
                                         <h4 class="text-center">Detalles</h4>
                                         <div class="row form-style-5">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
@@ -270,7 +314,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>                                                        
+
+                                                        
 
 
                 <!-- Modal EDITAR ASIENTO CONTABLE-->
@@ -339,7 +385,7 @@
                                         </div>                                        
                                         <div class="row form-style-5">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
-                                                    <span style="font-size: 16px">Concepto: </span><span class="idemp"><input style="width: 250px; text-align: left;" type="textarea" id="concepto" /></span>                                               
+                                                    <span style="font-size: 16px">Concepto: </span><span class="idemp"><textarea style="width: 250px; text-align: left;" id="concepto"></textarea></span>                                               
                                             </div>    
                                         </div>
                                         <h4 class="text-center">Detalles</h4>

@@ -49,9 +49,30 @@ public class Con_Calendario {
         return r;        
         
     }
-        
-        
-         public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+    /**
+     * Metodo para insertar asiento general
+     * @param modulo
+     * @param comprobante
+     * @param fechacap
+     * @param concepto
+     * @param periodo
+     * @return
+     * @throws SQLException 
+     */
+    public int insertarAsientoGeneral(int modulo,String comprobante,String fechacap,String concepto,int periodo) throws SQLException{
+        openDB();        
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO asientogeneral (modulo,tipo_comprobante,fecha_apli,concepto,periodo_conta) VALUES (?,?,'"+fechacap+"',?,?);");
+        ps.setInt(1, modulo);
+        ps.setString(2, comprobante);      
+        ps.setString(3, concepto);
+        ps.setInt(4, periodo);
+        int r=ps.executeUpdate();
+        closeDB();
+        return r;
+    }
+                    
+    public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
         openDB();
         int valor=1;
         PreparedStatement ps;

@@ -106,4 +106,8 @@ function eliminaAsiento(){
         show: true
     });
 }
-
+function continuaAsientoDetalle(){
+    $('#continuarasiento').modal({
+        show: true
+    });
+}
