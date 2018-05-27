@@ -51,7 +51,7 @@ public class Servlet_eliminarTarea extends HttpServlet {
             if(resultado == 1){
                 response.getWriter().write("Tarea eliminada");
             }else{
-                response.getWriter().write("La tarea no pudo ser eliminada");
+                response.getWriter().write("La tarea no existe");
             }
         }
     }
