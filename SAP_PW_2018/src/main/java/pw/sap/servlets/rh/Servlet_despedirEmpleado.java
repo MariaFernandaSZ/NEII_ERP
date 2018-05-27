@@ -49,6 +49,8 @@ public class Servlet_despedirEmpleado extends HttpServlet {
             }else{
                 response.getWriter().write("El ID del empleado no existe");
             }
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Despido de empleados");
+         
         }
     }
 
