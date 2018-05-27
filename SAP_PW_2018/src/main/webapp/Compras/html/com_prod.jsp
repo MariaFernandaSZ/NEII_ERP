@@ -153,7 +153,7 @@
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
-                        <form method="POST" onsubmit="return vali_nuevoproducto();">                        
+                        <form method="POST" action="../../ingresar_producto" onsubmit="return vali_nuevoproducto();">                        
                             <span id="titulo"><span class="number">3</span>Agregar<br>nuevo producto</span><br>
                             <br><input type="number" name="codprodnuevo" placeholder="Código de barras" id="codigo_nuevoprod" required>                             
                             <input type="text" name="nomproducto" placeholder="Nombre" id="nom_producto" required>
@@ -169,6 +169,7 @@
                                 </optgroup>
                             </select>
                             <input type="text" name="costoproducto" placeholder="Costo" id="costo" required>
+                            <input type="text" name="costoproducto" placeholder="Precio de venta" id="precio" required>
                             <input type="text" name="provproducto" placeholder="Proveedor" id="proveedor" required>
                             <input type="number" name="maxproducto" placeholder="Máximo en inventario" id="proveedor" required>
                             <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="proveedor" required>
