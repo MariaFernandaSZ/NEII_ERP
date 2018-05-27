@@ -11,8 +11,8 @@ import java.util.Date;
 public class Validador {
     
     public boolean noVacio(String [] lista){
-        for(int i = 0 ; i < lista.length ; i++){
-            if(lista[i] == null || lista[i].equals("")){
+        for (String lista1 : lista) {
+            if (lista1 == null || lista1.equals("")) {
                 return false;
             }
         }
@@ -45,5 +45,39 @@ public class Validador {
             return false;
         }
         return true;
+    }
+    
+    public String ordenConsultaEmp(String valor){
+        String orden = "ORDER BY id_emp ASC";
+        if(valor != null){
+            switch(valor){
+                case "alfabeto":
+                    orden = "ORDER BY nombre_emp ASC";
+                    break;
+                case "area":
+                    orden = "ORDER BY area_emp ASC";
+                    break;
+                default:
+                    orden = "ORDER BY id_emp ASC";
+                    break;
+            }
+        }
+        return orden;
+    }
+    
+    public String referenciaConsultaEmp(String area, String id){
+        String referencia = "id_emp is not null";
+        if(area!= null && id!=null && !area.equals("") && !id.equals("")){
+            referencia = "area_emp = '"+area+"' AND id_emp = "+id;
+        }else{
+            if(area!=null && !area.equals("") && (id==null || id.equals(""))){
+                referencia = "area_emp = '"+area+"'";
+            }else{
+                if(id!=null && !id.equals("") && (area==null || area.equals(""))){
+                    referencia = "id_emp = "+id;
+                }
+            }
+        }
+        return referencia;
     }
 }

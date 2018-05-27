@@ -109,7 +109,7 @@
                           </div>
                           <div>
                               <center>
-                                  <p>Información&nbsp;de&nbsp;la&nbsp;empresa</p><!-- InformaciÃ³n relacionada con la empresa que utiliza el software -->
+                                  <p>Informaci&oacute;n&nbsp;de&nbsp;la&nbsp;empresa</p><!-- InformaciÃ³n relacionada con la empresa que utiliza el software -->
                               </center>
                           </div>
                           <div>
