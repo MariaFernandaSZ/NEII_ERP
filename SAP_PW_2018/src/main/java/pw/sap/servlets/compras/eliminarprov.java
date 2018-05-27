@@ -48,7 +48,8 @@ public class eliminarprov extends HttpServlet {
             out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
         
-        
+         int i = nuevo.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de proveedor");
+         
      
     }
 

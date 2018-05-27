@@ -53,6 +53,8 @@ public class Servlet_eliminarTarea extends HttpServlet {
             }else{
                 response.getWriter().write("La tarea no existe");
             }
+             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Eliminacion de tarea");
+            
         }
     }
 

@@ -58,6 +58,8 @@ public class AgregaProd extends HttpServlet {
             JsonElement element = gson.toJsonTree(new ProductoBean(nombre,precio,iva));
             out.write(element.toString());
         }
+          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion de producto");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

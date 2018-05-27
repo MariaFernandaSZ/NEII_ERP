@@ -68,6 +68,20 @@ public class QuerysVentas {
             return agregado;
         }
         
+        
+        public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        openDB();
+        int valor=1;
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,desc) VALUES ("+id_emp+",'"+area+"','"+des+"'");
+        valor= ps.executeUpdate();
+        closeDB();        
+        return valor;
+    }
+        
+        
+        
+        
         public boolean agregarInterm(IntermBean interBean) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
             Genera_IDs idcli = new Genera_IDs();

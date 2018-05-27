@@ -1,6 +1,6 @@
 <table class='tabla'>
     <tr><td align='center' class='form-group'>
-            <form autocomplete='off' action="../../Servlet_despedirEmpleado" >
+            <form autocomplete='off' onsubmit='return despedirEmpleado();' >
                 <table style="margin: 0 auto;" >
                     <tr><td colspan='2' align='center'><h1>DESPIDO</h1></td></tr>
                     <tr><td>ID&nbsp;empleado</td><td><input type='number' id='despedirIdEmpleado' name='despedirIdEmpleado' class='form-control form-control-sm' required></td></tr>

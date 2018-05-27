@@ -54,6 +54,8 @@ public class Servlet_agregarTarea extends HttpServlet {
             }else{
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
+             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de empleados");
+          
         }
     }
 

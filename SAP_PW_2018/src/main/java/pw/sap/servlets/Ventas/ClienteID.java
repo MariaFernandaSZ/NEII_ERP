@@ -48,8 +48,7 @@ public class ClienteID extends HttpServlet {
         
            ResultSet rs = c.consultarIDEMP();
             if(rs == null){
-   int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Error en la insercion de cliente");
-            
+         
              PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
@@ -57,14 +56,14 @@ public class ClienteID extends HttpServlet {
             out.println("</script>");
 
             }else{
-            int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Insercion de cliente");
-            
+           
              PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
             out.print("window.location='Ventas/clientes.jsp'");
             out.println("</script>");
             }
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una registro de cliente");
         
     }
 

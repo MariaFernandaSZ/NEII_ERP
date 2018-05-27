@@ -69,7 +69,8 @@ public class Interm extends HttpServlet {
             out.print("window.location='Ventas/clientes.jsp'");
             out.println("</script>");
             }
-        
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Iinsercion de Intermediario");
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -50,6 +50,8 @@ public class Asientos extends HttpServlet {
         request.getSession().setAttribute("concepto",l.get(4));
         request.getSession().setAttribute("periodo",l.get(5));
         //HttpSession sesion=request.getSession();
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion de asientos contables");
+        
        response.sendRedirect("Contabilidad/asientos_conta.jsp");
         //sesion.setAttribute("clave",l.get(0));        
         //response.sendRedirect("Contabilidad/asientos_conta_1.jsp");

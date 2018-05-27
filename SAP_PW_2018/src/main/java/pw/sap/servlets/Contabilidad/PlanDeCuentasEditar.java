@@ -42,7 +42,7 @@ public class PlanDeCuentasEditar extends HttpServlet {
         
         c.editaPlan(Integer.parseInt(request.getParameter("neliminapcclave")), request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
        
-         // int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
             
          response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }
