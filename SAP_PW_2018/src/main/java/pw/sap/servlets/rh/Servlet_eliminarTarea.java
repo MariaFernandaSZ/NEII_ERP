@@ -45,21 +45,13 @@ public class Servlet_eliminarTarea extends HttpServlet {
                 resultado = c.borrar("tarea", "id_tarea", "= "+id);
             }else{
                 if(!nombre.equals("")){
-                    resultado = c.borrar("tarea", "nombre", "= '"+nombre+"'");
+                    resultado = c.borrar("tarea", "nombre_tarea", "= '"+nombre+"'");
                 }
             }
             if(resultado == 1){
-                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se elimino una tarea");
-            
                 response.getWriter().write("Tarea eliminada");
-              
-               
             }else{
-                
-                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de eliminacion de tarea");
-            
-                
-                response.getWriter().write("El registro no pudo ser eliminado");
+                response.getWriter().write("La tarea no pudo ser eliminada");
             }
         }
     }
