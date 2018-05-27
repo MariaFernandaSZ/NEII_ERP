@@ -238,7 +238,7 @@ public class ExcelReportes
         try
         {
             //Fuente del archivo que se utilizara
-            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\dowload.png");
+            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\download.png");
             byte[] bytes = IOUtils.toByteArray(is);
             //Tipo de imagen  y se cierra el archivo is
             int imgIndex = libroReporte.addPicture(bytes, libroReporte.PICTURE_TYPE_PNG);
