@@ -17,8 +17,8 @@ import pw.sap.db.Conexion;
  *
  * @author Josafat Rosas Ortiz
  */
-@WebServlet(name = "Servlet_consultaEmpleadoGeneral", urlPatterns = {"/Servlet_consultaEmpleadoGeneral"})
-public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
+@WebServlet(name = "Servlet_consultaTareaG", urlPatterns = {"/Servlet_consultaTareaG"})
+public class Servlet_consultaTareaG extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +33,9 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO",
-                            "SUELDO DIARIO","AREA","CARGO"};
-        ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,sueldo_por_dia,area_emp,cargo_emp","empleado", "id_emp", "is not null", "order by id_emp asc", 12);
+        String [] campos = {"ID","NOMBRE","RESPONSABLE","FECHA INICIO","FECHA FIN"};
+        ArrayList lista = c.consulta("id_tarea,nombre_tarea,id_emp,fecha_inicio,fecha_fin","tarea", "id_tarea", "is not null",
+                "order by id_tarea asc", 5);
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
@@ -44,7 +43,7 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%12 == 0){out.println("</tr><tr>");}
+                if(j%5 == 0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
@@ -67,9 +66,9 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_consultaEmpleadoGeneral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_consultaTareaG.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_consultaEmpleadoGeneral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_consultaTareaG.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
