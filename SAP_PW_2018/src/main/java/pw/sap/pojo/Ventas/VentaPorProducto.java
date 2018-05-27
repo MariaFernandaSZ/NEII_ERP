@@ -24,6 +24,15 @@ public class VentaPorProducto {
         this.cantidad = cantidad;
         this.iva = iva;
     }    
+
+    public VentaPorProducto(String id_producto, double monto, int cantidad, double iva) {
+        this.id_producto = id_producto;
+        this.monto = monto;
+        this.cantidad = cantidad;
+        this.iva = iva;
+    }
+    
+    
     
     /**
      * @return the id_producto

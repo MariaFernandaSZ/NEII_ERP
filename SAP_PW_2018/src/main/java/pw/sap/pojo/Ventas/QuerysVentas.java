@@ -94,6 +94,29 @@ public class QuerysVentas {
             return agregado;
         }
         
+        public boolean insertVPP(ArrayList<VentaPorProducto> vpp) throws SQLException, ClassNotFoundException{
+            boolean agregado=false;
+            Genera_IDs idcli = new Genera_IDs();
+            openDB();
+            try {
+                    if(conn!=null){
+                        for (int i = 0; i < vpp.size(); i++) {
+                        Statement st;
+                        st = conn.createStatement();
+                        st.executeUpdate("INSERT INTO venta_por_prod VALUES ('"+vpp.get(i).getId_producto()+"','"+consultarOrdenVenta()+"',"+vpp.get(i).getMonto()+","+vpp.get(i).getCantidad()+","+vpp.get(i).getIva()+")");
+                        agregado=true;
+                        st.close();
+                        }
+
+                    }
+                closeDB();
+                    } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    }
+            return agregado;
+        }
+        
         public String consultarCli(){
          String id="";
          try{

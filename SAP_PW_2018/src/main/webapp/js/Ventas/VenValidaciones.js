@@ -487,60 +487,54 @@ function valmodalimprimir(){
 //        }
 //          
 //}
-function validamodalapagotarjeta(){
-
-        
-    var tar=document.getElementById("tarjeta").value;
-
-    var me=document.getElementById("mes").value;
-    var anio=document.getElementById("año").value;
-    var cods=document.getElementById("codseguridad").value;
-        var nomtar=document.getElementById("nomtar").value;
-         var Max_nomtar = 64;
-        var lengthnomtar = document.getElementById("nomtar").value.length;
-    
- if(tar == "" || tar == null || tar.length == 0 || /^\s+$/.test(tar)){
-       alert("ingrese su numero de tarjeta")     
-        }else  if( !(/^\d{16}$/.test(tar)) ) {
-            alert("ingrese los 16 digitos de su tarjeta: ejemplo 1234567891234567");
-          return false;
-        }
-        
-        if(me == "" || me == null || me.length == 0 || /^\s+$/.test(me)){
-       alert("ingrese un mes")     
-        }else  if( !(/^\d{2}$/.test(me)) ) {
-            alert("ingrese los 2 dijitos del mes: ejemplo 12");
-          return false;
-        }else if(me<1 || me >12){
-            alert("ingrese un mes entre 1  y 12");
-            return false;
-        }
-        
-          if(anio == "" || anio == null ||anio.length == 0 || /^\s+$/.test(anio)){
-       alert("ingrese un año")     
-        }else  if( !(/^\d{4}$/.test(anio)) ) {
-            alert("ingrese los 4 digitos del año: ejemplo 2018");
-          return false;
-        }else if(anio<2018 || anio>2050){
-            alert("ingrese un año que sea del actual al 2050");
-            return false;
-        }
-         if(cods == "" || cods == null || cods.length == 0 || /^\s+$/.test(cods)){
-       alert("ingrese un año")     
-        }else  if( !(/^\d{3}$/.test(cods)) ) {
-            alert("ingrese los 3 caracteres del codigo: ejemplo 218");
-          return false;
-        }
-        
-   if(nomtar == "" || nomtar == null || nomtar.length == 0 || /^\s+$/.test(nomtar)){
-            alert("ingrese un nombre de la tarjeta");
-            return false;
-        } else if (lengthnomtar > Max_nomtar) {
-  alert("el numero de caracteres maximo son 60");
-  return false;
-}
-          
-}
+//function validamodalapagotarjeta(){
+//
+//        
+//    var tar=document.getElementById("tarjeta").value;
+//
+//    var me=document.getElementById("mes").value;
+//    var anio=document.getElementById("año").value;
+//    var cods=document.getElementById("codseguridad").value;
+//        var nomtar=document.getElementById("nomtar").value;
+//         var Max_nomtar = 64;
+//        var lengthnomtar = document.getElementById("nomtar").value.length;
+//    
+// if(tar == "" || tar == null || tar.length == 0 || /^\s+$/.test(tar)){
+//       alert("ingrese su numero de tarjeta")     
+//        }else  if( !(/^\d{16}$/.test(tar)) ) {
+//            alert("ingrese los 16 digitos de su tarjeta: ejemplo 1234567891234567");
+//          return false;
+//        }else if(me == "" || me == null || me.length == 0 || /^\s+$/.test(me)){
+//       alert("ingrese un mes")     
+//        }else  if( !(/^\d{2}$/.test(me)) ) {
+//            alert("ingrese los 2 dijitos del mes: ejemplo 12");
+//          return false;
+//        }else if(me<1 || me >12){
+//            alert("ingrese un mes entre 1  y 12");
+//            return false;
+//        }else if(anio == "" || anio == null ||anio.length == 0 || /^\s+$/.test(anio)){
+//       alert("ingrese un año")     
+//        }else  if( !(/^\d{4}$/.test(anio)) ) {
+//            alert("ingrese los 4 digitos del año: ejemplo 2018");
+//          return false;
+//        }else if(anio<2018 || anio>2050){
+//            alert("ingrese un año que sea del actual al 2050");
+//            return false;
+//        }else if(cods == "" || cods == null || cods.length == 0 || /^\s+$/.test(cods)){
+//       alert("ingrese un año")     
+//        }else  if( !(/^\d{3}$/.test(cods)) ) {
+//            alert("ingrese los 3 caracteres del codigo: ejemplo 218");
+//          return false;
+//        }else if(nomtar == "" || nomtar == null || nomtar.length == 0 || /^\s+$/.test(nomtar)){
+//            alert("ingrese un nombre de la tarjeta");
+//            return false;
+//        } else if (lengthnomtar > Max_nomtar) {
+//            alert("el numero de caracteres maximo son 60");
+//            return false;
+//          }else{
+//              
+//          }         
+//}
 
 //  function validamodalapagoEfectivo(){
 //       var moneda = document.getElementById("job").selectedIndex;
