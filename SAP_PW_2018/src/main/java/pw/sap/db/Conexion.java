@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import pw.sap.pojo.Contabilidad.Calen_Contable;
+import pw.sap.pojo.Inventarios.Merma;
 import pw.sap.pojo.Ventas.ClienteBean;
 import pw.sap.pojo.Ventas.QuerysVentas;
 
