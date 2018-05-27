@@ -70,6 +70,8 @@ public class Servlet_modificarTarea extends HttpServlet {
                
                 out.println("Modificacion fallida");
             }
+            int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se modifico una tarea");
+            
         }
     }
 
