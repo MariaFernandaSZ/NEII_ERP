@@ -47,7 +47,7 @@ public class Servlet_despedirEmpleado extends HttpServlet {
             if(resultado == 1){
                 response.getWriter().write("Empleado Despedido");
             }else{
-                response.getWriter().write("El registro no pudo ser eliminado");
+                response.getWriter().write("El ID del empleado no existe");
             }
         }
     }
