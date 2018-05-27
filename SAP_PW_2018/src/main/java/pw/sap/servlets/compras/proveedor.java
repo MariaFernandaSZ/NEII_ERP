@@ -52,7 +52,8 @@ public class proveedor extends HttpServlet {
             out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
             out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
-      
+       int i = nuevo.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de proveedor");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
