@@ -41,7 +41,7 @@ public class PlanDeCuentasEliminar extends HttpServlet {
         PlanCuentas c =new PlanCuentas();
         
         c.eliminaPlan(Integer.parseInt(request.getParameter("neliminapcclave")));
-        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
+       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }
 
