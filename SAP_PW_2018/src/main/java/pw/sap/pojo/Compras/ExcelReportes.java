@@ -11,13 +11,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -35,7 +39,14 @@ public class ExcelReportes
     }
     
     public void openBD()throws SQLException{
-        
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+    }
+    
+    public void closeBD() throws SQLException{
+        conn.close();
     }
 
     public void cearExcel()
@@ -141,10 +152,10 @@ public class ExcelReportes
         }
     }
 
+    //Cargar demanera masiva desde un Excel a la Base de Datos
     public void cargaExcel() throws SQLException, ClassNotFoundException, IOException
     {
-        
-
+        PreparedStatement ps;
         try
         {
             FileInputStream archivo = new FileInputStream(new File("C:\\Users\\Adrian\\Escritorio\\excel\\Excel.xlsx"));
@@ -154,10 +165,34 @@ public class ExcelReportes
 
             int numFilas = hoja.getLastRowNum();
 
-            for (int a = 0; a <= numFilas; a++)
+            for (int a = 1; a <= numFilas; a++)
             {
                 Row fila = hoja.getRow(a);
+                ps = conn.prepareStatement("INSERT INTO producto (codigo, nombre, precio, cantidad) VALUES (?,?,?,?)");
+                ps.setString(1, fila.getCell(0).getStringCellValue());
+                ps.setString(2, fila.getCell(1).getStringCellValue());
+                ps.setDouble(3, fila.getCell(2).getNumericCellValue());
+                ps.setDouble(4, fila.getCell(3).getNumericCellValue());
+                ps.executeQuery();
             }
+            closeBD();
+        } catch (FileNotFoundException ex)
+        {
+            Logger.getLogger(ExcelReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void modificarExcel() throws IOException
+    {
+        try
+        {
+            FileInputStream archivo = new FileInputStream(new File("C:\\Users\\Adrian\\Escritorio\\excel\\Excel.xlsx"));
+
+            XSSFWorkbook extraerinfo = new XSSFWorkbook(archivo);
+            XSSFSheet hoja = extraerinfo.getSheetAt(0);
+            
+            //Fila que se va a traer
+            XSSFRow fila = hoja.getRow(1);
 
         } catch (FileNotFoundException ex)
         {
