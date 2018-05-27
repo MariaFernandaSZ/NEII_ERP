@@ -1,4 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="pw.sap.db.ConsultasGenerales"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="java.util.List"%>
+<%@page import="pw.sap.db.Conexion"%>
+<%@page import="pw.sap.pojo.Inventarios.Merma"%>
+<%@page import="java.util.ArrayList"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
@@ -16,7 +21,8 @@
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
-        <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
+        
+        
         <script>
 function EspecificaMC(){
             var coba = document.getElementById('CoBa');
@@ -110,29 +116,34 @@ function EspecificaMC(){
                 </div>
 
             </div>
+                
 
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"> <!-- Seccion central TABLA -->
                    <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-responsive">
                                 <tr>
                                     <th>ID de producto</th>
                                     <th>ID de merma</th>
                                     <th>Fecha de registro</th>
                                     <th>Tipo</th>
                                     <th>Cantidad</th> 
-
-                                   <th>Observaciones</th>
+                                    <th>Observaciones</th>
                                 </tr>
-                                <tr>
-                                   
-                                <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("id_merma")%></td>
-                                <td><%= request.getAttribute("fecha_mer")%></td>
-                                <td><%= request.getAttribute("tipo_merma")%></td>
-                                <td><%= request.getAttribute("cant_mer")%></td>
-                                <td><%= request.getAttribute("motivo_mer")%></td>
-                                
-                                </tr>
+                                <%
+                                        LinkedList <Merma> lista =ConsultasGenerales.consultaGMermac();
+                                        for (int i=0;i<lista.size();i++)
+                                        {
+                                           out.println("<tr>");                               
+                                           out.println("<td>"+lista.get(i).getId_producto()+"</td>");
+                                           out.println("<td>"+lista.get(i).getIDMerma()+"</td>");
+                                           out.println("<td>"+lista.get(i).getFechaRe()+"</td>");
+                                           out.println("<td>"+lista.get(i).getTipo()+"</td>");
+                                           out.println("<td>"+lista.get(i).getCantidad()+"</td>"); 
+                                           out.println("<td>"+lista.get(i).getObs()+"</td>");
+                                           out.println("</tr>");
+                                        }
+                                    %>
+                              
                             </table>    
                         </div>          
                 
