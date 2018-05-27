@@ -1,11 +1,9 @@
 package pw.sap.servlets.rh;
 
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,8 +18,8 @@ import pw.sap.pojo.RH.Validador;
  *
  * @author Josafat Rosas Ortiz
  */
-@WebServlet(name = "Servlet_modificarTarea", urlPatterns = {"/Servlet_modificarTarea"})
-public class Servlet_modificarTarea extends HttpServlet {
+@WebServlet(name = "Servlet_modificarNomina", urlPatterns = {"/Servlet_modificarNomina"})
+public class Servlet_modificarNomina extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,38 +35,41 @@ public class Servlet_modificarTarea extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         Validador validar = new Validador();
-        String tarea = request.getParameter("modificarTareaIdResultado");
-        String [] valores = {request.getParameter("modificarNombreTarea"),request.getParameter("modificarTareaIdEmpleado"),
-                            request.getParameter("modificarTareaFechaInicio"),request.getParameter("modificarTareaFechaFin")};
-        String [] numero = {request.getParameter("modificarTareaIdEmpleado")};
+        String nomina = request.getParameter("modificarNominaIdResultado");
+        String [] valores = {request.getParameter("modificarNominaEmpresa"),request.getParameter("modificarNominaFechaCreacion"),
+                            request.getParameter("modificarNominaFechaLimite"),request.getParameter("modificarNominaIdEmpleado"),
+                            request.getParameter("modificarNominaPercepciones"),request.getParameter("modificarNominaDeducciones"),
+                            request.getParameter("modificarNominaDias"),request.getParameter("modificarNominaTotal"),
+                            request.getParameter("modificarNominaPago")};
+        String [] numero = {request.getParameter("modificarNominaFechaCreacion"),request.getParameter("modificarNominaFechaLimite"),
+                            request.getParameter("modificarNominaIdEmpleado"),request.getParameter("modificarNominaPercepciones"),
+                            request.getParameter("modificarNominaDeducciones"),request.getParameter("modificarNominaDias"),
+                            request.getParameter("modificarNominaTotal")};
+        String [] letra = {request.getParameter("modificarNominaPago")};
         if(validar.noVacio(valores)){
-            if(validar.sinLetras(numero) && validar.fechaMayor(valores[2],valores[3])){
-                String campos = "nombre_tarea='"+valores[0]+"',id_emp="+valores[1]+",fecha_inicio='"+valores[2]+
-                "',fecha_fin='"+valores[3]+"'";
-                if(tarea != null && !tarea.equals("")){
-                    Integer query = c.actualizar(campos, "tarea", "id_tarea","="+tarea);
+            if(validar.sinLetras(numero) && validar.sinNumeros(letra) && validar.fechaMayor(valores[1],valores[2])){
+                String campos = "nombre_emp='"+valores[0]+"',fecha_creacion='"+valores[1]+"',fecha_limite='"+valores[2]+
+                "',id_emp="+valores[3]+",percepciones="+valores[4]+",deducciones="+valores[5]+
+                    ",dias_pagados="+valores[6]+",pago_total="+valores[7]+",forma_pago='"+valores[8]+"'";
+                if(nomina != null && !nomina.equals("")){
+                    Integer query = c.actualizar(campos, "nomina", "id_nomina","="+nomina);
                     if(query == 1){
                         response.getWriter().write("1");
                     }else{
-                        System.out.println("query");
                         response.getWriter().write("0");
                     }
                 }else{
-                    System.out.println("tarea");
                     response.getWriter().write("0");
                 }
             }else{
-                System.out.println("validacion");
                 response.getWriter().write("0");
             }
         }else{
-            System.out.println("vacio");
             response.getWriter().write("0");
         }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -83,11 +84,11 @@ public class Servlet_modificarTarea extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_modificarTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_modificarNomina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_modificarTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_modificarNomina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-            Logger.getLogger(Servlet_modificarTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_modificarNomina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

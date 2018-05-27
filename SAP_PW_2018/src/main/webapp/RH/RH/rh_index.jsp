@@ -52,9 +52,9 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle text-white color" id="nomina" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">N&oacute;mina</a>
                                     <div class="dropdown-menu departamento" aria-labelledby="nomina">
-                                        <a class="nav-link text-white color" href="#" id="agregarNomina">Agregar Nómina</a>
-                                        <a class="nav-link text-white color" href="#" id="modificarNomina">Modificar Nómina</a>
-                                        <a class="nav-link text-white color" href="#" id="consultarNomina">Consultar Nómina</a>
+                                        <a class="nav-link text-white color" href="#" id="agregarNomina">Agregar&nbsp;N&oacute;mina</a>
+                                        <a class="nav-link text-white color" href="#" id="modificarNomina">Modificar&nbsp;N&oacute;mina</a>
+                                        <a class="nav-link text-white color" href="#" id="consultarNomina">Consultar&nbsp;N&oacute;mina</a>
                                         
                                     </div>
                                 </li>

@@ -9,6 +9,10 @@ function fecha(){
     document.getElementById('fecha').innerHTML = valor.value;
 }
 
+function cargaFiltrosEmp(){
+    $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#resultadoConsultaEmp").html(carga);});
+}
+
 function agregarNomina(){
     alert('entre');
     var numeros = /[0-9]/;
@@ -145,31 +149,6 @@ function eliminarTarea(){
     }
                document.forms[0].action="../../Servlet_eliminarTarea";
 }
-
-function modificarTarea(){
-    var numeros = /[0-9]/;
-    
-    var modificarNombreTarea = document.getElementById('modificarNombreTarea').value;
-    var modificarEncargadoTarea = document.getElementById('modificarEncargadoTarea').value;
-    var modificarFechaInicio = document.getElementById('modificarFechaInicio').value;
-    var modificarFechaFin = document.getElementById('modificarFechaFin').value;
-    if(numeros.test(modificarNombreTarea)){alert('Modifique el nombre de la tarea, no es numerico');return false;}
-    var now = moment();
-    var fechai = new Date(modificarFechaInicio);
-
-                    if (fechai > now) {
-        alert('la fecha de inicio  no puede ser superior a la actual');
-        return false;
-    }
-    var fechaf = new Date(modificarFechaFin);
-    if (fechaf < fechai) {
-        alert('la fecha de fin no puede ser menor a la fecha de inicio');
-                   
-   
-    $.get('../Vistas/modificarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
-                   
-    }
-}
    
 function validaConsulta(){
     var area = document.getElementById('area').value;
@@ -270,122 +249,6 @@ function validarContratar(){
 
     $.get('../Vistas/contratar.jsp',function(carga){$('#tareaActual').html(carga);});
 }
-function modificarNomina(){
-    var numeros = /[0-9]/;
-    var letras = /[A-Za-z]/;
-    var modificarEmpresa = document.getElementById('modificarNombreEm').value;
-    var modificarFechaCreacion = document.getElementById('modificarFechaCreacion').value;
-    var modificarFechaLimite = document.getElementById('modificarFechaLimite').value;
-    var modificarPercepciones = document.getElementById('modificarPercepciones').value;
-    var modificarDeducciones = document.getElementById('modificarDeducciones').value;
-    var modificardiasPagados = document.getElementById('modificardiasPagados').value;
-    var modificarPagototal = document.getElementById('modificarPagototal').value;
-    var modificarFormapago = document.getElementById('modificarFormapago').value;
-    var modificarIdEmpleado = document.getElementById('modificarIdEmpleado').value;
-
-//     if(!(/^[a-zA-z0-9]{8}$/.test(modificarIdEmpleado))){
-//                alert("Favor de ingresar el ID de empleado con los 8 digitos");                
-//                return false;
-//            }
-
-    if (numeros.test(modificarEmpresa)) {
-        alert('Nombre de la empresa no valida.');
-        return false;
-    }
-    var now = moment();
-    var fechac = new Date(modificarFechaCreacion);
-    if (fechac > now) {
-        alert('la fecha de creacion  no puede ser superior a la actual');
-        return false;
-    }
-
-    var fechal = new Date(modificarFechaLimite);
-    var fechac = new Date(modificarFechaCreacion);
-    if (fechal < fechac) {
-        alert('Modifique la fecha de limite de pago, no puede ser menor a la fecha de creacion');
-        return false;
-    }
-    if (fechal === fechac) {
-        alert('Modifique la fecha de limite de pago, no puede ser igual a la fecha de creacion');
-        return false;
-    }
-
-    if (modificarPercepciones < 0) {
-        alert('Modifique las percepciones, no deben ser negativas');
-        return false;
-    }
-
-    if (modificarDeducciones < 0) {
-        alert('Modifique las deducciones, no deben ser negativas');
-        return false;
-    }
-
-    if ((modificardiasPagados) < 0) {
-        alert('Modifique los dias pagados, no acepta negativos');
-        return false;
-    }
-
-    if ((modificarPagototal) < 0) {
-        alert('El pago total no debe ser negativo');
-        return false;
-    }
-
-    if (numeros.test(modificarFormapago)) {
-        alert('Modifique la forma de pago, no es numerico');
-        return false;
-    }
-    alert("Modificacion exitosa");
-    $.get('../Vistas/modificarNomina.jsp', function (carga) {
-        $('#tareaActual').html(carga);
-    });
-    return false;
-               
-            }
-        
-    
-    
-
-
-function modificarEmpleado(){
-    var modificarIdEmpleado = document.getElementById('modificarIdEmpleado').value;
-    var modificarNombreEmpleado = document.getElementById('modificarNombreEmpleado').value;
-    var modificarApellidoEmpleado = document.getElementById('modificarApellidoEmpleado').value;
-    var modificarDireccionEmpleado = document.getElementById('modificarDireccionEmpleado').value;
-    var modificarTelefonoEmpleado = document.getElementById('modificarTelefonoEmpleado').value;
-    var modificarEdocivilEmpleado = document.getElementById('modificarEdocivilEmpleado').value;
-    var modificarLicenciaEmpleado = document.getElementById('modificarLicenciaEmpleado').value;
-    var modificarSueldoEmpleado = document.getElementById('modificarSueldoEmpleado').value;
-    var modificarCargoEmpleado = document.getElementById('modificarCargoEmpleado').value;
-    var numeros = /[0-9]/;
-    var letras = /[A-Za-z]/;
-   
-   
-    if (numeros.test(modificarNombreEmpleado)) {
-        alert('Nombre no valido.');
-        return false;
-    }
-
-    if (numeros.test(modificarApellidoEmpleado)) {
-        alert('Apellido no valido.');
-        return false;
-    }
-
-    if (letras.test(modificarTelefonoEmpleado)) {
-        alert('Telefono no valido.');
-        return false;
-    }
-
-    if (modificarSueldoEmpleado < 88.50) {
-        alert('El sueldo debe ser mayor a $88.50');
-        return false;
-    }
-    alert('Se ha modificado la informacion del empleado ' + modificarIdEmpleado);
-    $.get('../Vistas/modificar.jsp',function(carga){$('#tareaActual').html(carga);});
-    return false;
-
-                   
-        }
-        
         
 function despedirEmpleado(){
     var despedirIdEmpleado = document.getElementById('despedirIdEmpleado').value;
@@ -410,10 +273,6 @@ function despedirEmpleado(){
     $.get('../Vistas/despedir.jsp',function(carga){$('#tareaActual').html(carga);});
     
     }
-    
- 
-
-
 
 $(document).ready(function(){
     $('#verCalendario').click(function(){
@@ -461,7 +320,7 @@ $(document).ready(function(){
     });
     
     $('#buscar_empleado').click(function(){
-        $.get('../Vistas/consultar_empleado.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.get('../Vistas/consultas.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
       $('#imprimir').click(function(){
@@ -515,85 +374,154 @@ $(document).ready(function(){
     $('#ayuda_imprimir').click(function(){
         $.get('../Vistas/ayuda_imprimir.jsp',function(carga){$('#tareaActual').html(carga);});
     });
-   
-    
-//    $(document).on("submit","#formAgregarTarea", function(event){
-//        var $form = $(this);
-//        $.post($form.attr("action"), $form.serialize(), function(responseText){
-//            alert(responseText);
-//            $('#agregarNombreTarea').val("");
-//            $('#agregarResponsable').val("");
-//            $('#agregarFechaInicio').val("");
-//            $('#agregarFechaFin').val("");
-//        });
-//        event.preventDefault();
-//    });
-    
-//    $(document).on("submit","#formEliminarTarea", function(event){
-//        var $form = $(this);
-//        $.post($form.attr("action"), $form.serialize(), function(responseText){
-//            alert(responseText);
-//            $('#eliminarIdTarea').val("");
-//            $('#eliminarNombreTarea').val("");
-//        });
-//        event.preventDefault();
-//    });
-    
 
+     $(document).on("submit","#formEmpleadoG",function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            $('#resultadoConsultaEmp').html(responseText);
+        });
+        event.preventDefault();
+    });
+    
     $(document).on("submit","#formConsultarEmpleado",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#tareaActual').html(responseText);
+            $('#resultadoConsultaEmp').html(responseText);
         });
         event.preventDefault();
     });
     
-    $(document).on("submit","#formModificarTarea", function(event){
+    $(document).on("submit","#formModTarea", function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseJson){
+            $("#modificaTareaResultado").css("display","block");
+            $("#modificarIdTarea").prop("disabled",true);
+            $("#modificarBuscarTarea").css("display","none");
+            $("#modificarTareaIdResultado").css("display","none");
+            $("#modificarTareaIdResultado").val(responseJson[0]);
+            $('#modificarNombreTarea').val(responseJson[1]);
+            $('#modificarTareaIdEmpleado').val(responseJson[2]);
+            $('#modificarTareaFechaInicio').val(responseJson[3]);
+            $('#modificarTareaFechaFin').val(responseJson[4]);
+        });
+        event.preventDefault();
+    });
+    
+    $(document).on("submit","#formGuardarModTarea", function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            alert(responseText);
-            $('#modificarNombreTarea').val("");
-            $('#modificarResponsable').val("");
-            $('#modificarFechaInicio').val("");
-            $('#modificarFechaFin').val("");
+            if(responseText === "1"){
+                alert("Registro actualizado.");
+                $("#modificaTareaResultado").css("display","none");
+                $("#modificarIdTarea").prop("disabled",false);
+                $("#modificarBuscarTarea").css("display","block");
+                $("#modificarIdTarea").val("");
+                $("#modificarTareaIdResultado").val("");
+                $('#modificarNombreTarea').val("");
+                $('#modificarTareaIdEmpleado').val("");
+                $('#modificarTareaFechaInicio').val("");
+                $('#modificarTareaFechaFin').val("");
+            }else{
+                alert("ERROR. Verificar datos.");
+            }
         });
         event.preventDefault();
     });
-////    
-//    $(document).on("submit","#formContratarEmpleado", function(event){
-//        var $form = $(this);
-//        $.post($form.attr("action"), $form.serialize(), function(responseText){
-//            alert(responseText);
-//            $('#contratarNombre').val("");
-//            $('#contratarApellido').val("");
-//            $('#contratarDireccion').val("");
-//            $('#contratarRfc').val("");
-//            $('#contratarTelefono').val("");
-//            $('#contratarEdocivil').val("");
-//            $('#contratarlicenciaMedica').val("");           
-//            $('#contratarSueldo').val("");
-//            $('#contratarSueldoDiario').val("");
-//            $('#contratarArea').val("");
-//            $('#contratarCargo').val("");
-//        });
-//        event.preventDefault();
-//    });
-
-//$(document).on("submit","#formAgregarNomina", function(event){
-//        var $form = $(this);
-//        $.post($form.attr("action"), $form.serialize(), function(responseText){
-//            alert(responseText);
-//            $('#empresa').val("");
-//            $('#fechaCreacion').val("");
-//            $('#fechaLimite').val("");
-//            $('#idEmpleado').val("");
-//            $('#percepciones').val("");
-//            $('#deducciones').val("");
-//            $('#diasPagados').val("");
-//            $('#pagoTotal').val("");
-//            $('#formaPago').val("");
-//        });
-//        event.preventDefault();
-//    });
     
+    $(document).on("submit","#formModEmpleado", function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseJson){
+            $("#resultado").css("display","block");
+            $("#modificarIdEmpleado").prop("disabled",true);
+            $("#modificarBuscaEmp").css("display","none");
+            $("#modificarIdResultado").css("display","none");
+            $("#modificarIdResultado").val(responseJson[0]);
+            $("#modificarNombreEmpleado").val(responseJson[1]);
+            $("#modificarApellidoEmpleado").val(responseJson[2]);
+            $("#modificarDireccionEmpleado").val(responseJson[3]);
+            $("#modificarRFC").val(responseJson[4]);
+            $("#modificarTelefonoEmpleado").val(responseJson[5]);
+            $("#modificarEdocivilEmpleado").val(responseJson[6]);
+            $("#modificarLicEmpleado").val(responseJson[7]);
+            $("#modificarSueldoEmpleado").val(responseJson[8]);
+            $("#modificarSueldoDEmpleado").val(responseJson[9]);
+            $("#modificarAreaEmpleado").val(responseJson[10]);
+            $("#modificarCargoEmpleado").val(responseJson[11]);
+        });
+        event.preventDefault();
+    });
+    
+    $(document).on("submit","#formGuardarModEmpleado", function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            if(responseText === "1"){
+                alert("Registro actualizado.");
+                $("#modificarBuscaEmp").css("display","block");
+                $("#modificarIdEmpleado").prop("disabled",false);
+                $("#modificarIdEmpleado").val("");
+                $("#resultado").css("display","none");
+                $("#modificarNombreEmpleado").val("");
+                $("#modificarApellidoEmpleado").val("");
+                $("#modificarDireccionEmpleado").val("");
+                $("#modificarRFC").val("");
+                $("#modificarTelefonoEmpleado").val("");
+                $("#modificarEdocivilEmpleado").val("");
+                $("#modificarLicenciaEmpleado").val("");
+                $("#modificarSueldoEmpleado").val("");
+                $("#modificarSueldoDEmpleado").val("");
+                $("#modificarAreaEmpleado").val("");
+                $("#modificarCargoEmpleado").val("");
+            }else{
+                alert("ERROR. Verificar datos.");
+            }
+        });
+        event.preventDefault();
+    });
+    
+    $(document).on("submit","#formModNomina", function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseJson){
+            $("#modNominaResultado").css("display","block");
+            $("#modificarIdNomina").prop("disabled",true);
+            $("#modificarBuscaNomina").css("display","none");
+            $("#modificarNominaIdResultado").css("display","none");
+            $("#modificarNominaIdResultado").val(responseJson[0]);
+            $("#modificarNominaEmpresa").val(responseJson[1]);
+            $("#modificarNominaFechaCreacion").val(responseJson[2]);
+            $("#modificarNominaFechaLimite").val(responseJson[3]);
+            $("#modificarNominaIdEmpleado").val(responseJson[4]);
+            $("#modificarNominaPercepciones").val(responseJson[5]);
+            $("#modificarNominaDeducciones").val(responseJson[6]);
+            $("#modificarNominaDias").val(responseJson[7]);
+            $("#modificarNominaTotal").val(responseJson[8]);
+            $("#modificarNominaPago").val(responseJson[9]);
+        });
+        event.preventDefault();
+    });
+    
+    $(document).on("submit","#formGuardarModNomina", function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            if(responseText === "1"){
+                alert("Registro actualizado.");
+                $("#modNominaResultado").css("display","none");
+                $("#modificarIdNomina").prop("disabled",false);
+                $("#modificarIdNomina").val("");
+                $("#modificarBuscaNomina").css("display","block");
+                $("#modificarNominaIdResultado").val("");
+                $("#modificarNominaEmpresa").val("");
+                $("#modificarNominaFechaCreacion").val("");
+                $("#modificarNominaFechaLimite").val("");
+                $("#modificarNominaIdEmpleado").val("");
+                $("#modificarNominaPercepciones").val("");
+                $("#modificarNominaDeducciones").val("");
+                $("#modificarNominaDias").val("");
+                $("#modificarNominaTotal").val("");
+                $("#modificarNominaPago").val("");
+            }else{
+                alert("ERROR. Verificar datos.");
+            }
+        });
+        event.preventDefault();
+    });
 });
