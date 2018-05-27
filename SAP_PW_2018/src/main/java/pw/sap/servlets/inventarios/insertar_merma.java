@@ -65,6 +65,9 @@ public class insertar_merma extends HttpServlet {
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
             out.println("</script>");
        }
+        
+        int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se inserto una devolucion");
+      
               
         
     }
