@@ -56,7 +56,8 @@ public class PlanDeCuentas extends HttpServlet {
         request.getSession().setAttribute("clase_cuenta", l.get(4));
         request.getSession().setAttribute("clase_sat", l.get(5));
         request.getSession().setAttribute("naturaleza", l.get(6));
-
+int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta del plan de cuentas");
+        
         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
 
     }
