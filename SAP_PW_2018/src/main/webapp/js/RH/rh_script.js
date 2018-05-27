@@ -229,16 +229,23 @@ function validarContratar(){
         alert('Nombre no valido');
         return false;
     }
-    var apellido = document.getElementById('contratarApellido').value
+    var apellido = document.getElementById('contratarApellido').value;
     if (numeros.test(apellido)) {
-        alert('Apellido no valido');
+        alert('Modifique el apellido del empleado, no es numerico');
         return false;
     }
     var direccion = document.getElementById('contratarDireccion').value;
+        
+    var RFC = document.getElementById('contratarRfc').value;
+
+    if(!(/^[a-zA-z0-9]{13}$/.test(RFC))){
+                alert('Favor de ingresar el RFC con los 13 caracteres');                
+                return false;
+            }   
 
     var telefono = document.getElementById('contratarTelefono').value;
     if (telefono.length !== 10 || letras.test(telefono)) {
-        alert('Numero telefonico no valido');
+        alert('Modifique el numero telefonico del empleado, es de 10 digitos');
         return false;
     }
     var edocivil = document.getElementById('contratarEdocivil').value;
@@ -254,6 +261,7 @@ function validarContratar(){
         alert('El sueldo debe ser mayor a $88.50');
         return false;
     }
+    
     var area = document.getElementById('contratarArea').value;
     var cargo = document.getElementById('contratarCargo').value;
    document.forms[0].action="../../Servlet_contratarEmpleado";
@@ -377,17 +385,35 @@ function modificarEmpleado(){
 
                    
         }
+        
+        
+function despedirEmpleado(){
+    var despedirIdEmpleado = document.getElementById('despedirIdEmpleado').value;
+    var fechadespedir = document.getElementById('despedirFecha').value;
+    var despedirMotivo = document.getElementById('despedirMotivo').value;
+
+    var now = moment();
+                    var fechad = new Date(fechadespedir);
+                    if (fechad > now) {
+                alert('Modifique la fecha de despido, no puede ser superior a la actual');
+                     return false;
+                 }     
+
+    
+//    if(!(/^[a-zA-z0-9]{8}$/.test(despedirIdEmpleado))){
+//                alert("Favor de ingresar el ID de empleado con los 8 digitos");                
+//                return false;
+//            }
+    alert('El empleado con ID '+despedirIdEmpleado+' '+' \n\ ha sido retirado debido a: '+despedirMotivo);
+       document.forms[0].action="../../Servlet_despedirEmpleado";
+
+    $.get('../Vistas/despedir.jsp',function(carga){$('#tareaActual').html(carga);});
+    
+    }
     
  
 
-function despedirEmpleado(){
-    var despedirIdEmpleado = document.getElementById('despedirIdEmpleado').value;
-    var despedirMotivo = document.getElementById('despedirMotivo').value;
-    var despedirCargo = document.getElementById('despedirCargo').value;
-    alert('El empleado '+despedirIdEmpleado+' con cargo '+despedirCargo+' \n\ ha sido retirado debido a: '+despedirMotivo);
-    $.get('../Vistas/despedir.jsp',function(carga){$('#tareaActual').html(carga);});
-    return false;
-}
+
 
 $(document).ready(function(){
     $('#verCalendario').click(function(){
