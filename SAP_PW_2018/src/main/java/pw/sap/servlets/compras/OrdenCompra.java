@@ -57,14 +57,14 @@ public class OrdenCompra extends HttpServlet {
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
-            out.print("window.location='Compras/CompraOrden.jsp'");
+            out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }else{
             
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
-            out.print("window.location='Compras/CompraOrden.jsp'");
+            out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }
     }

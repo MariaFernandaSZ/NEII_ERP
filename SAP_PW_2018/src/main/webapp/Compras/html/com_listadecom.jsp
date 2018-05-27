@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -121,11 +122,34 @@
                                 <th scope="col">RFC&nbsp;proveedor</th>
                                 <th scope="col">Fecha&nbsp;de&nbsp;compra</th>
                                 
-                                
                             </tr>
                             
                         </thead>
-                        
+                        <jsp:useBean id="interTablaLC" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                        <%
+                                        ResultSet rsTablaLC = interTablaLC.tablaLC();
+                                        
+                                        %>
+                                        
+                                        <tbody>
+                                         <%
+                                                while(rsTablaLC.next()){
+                                            %>   
+                                            
+                                            
+                                            <tr id="modalInter">
+                                                <td><%=rsTablaLC.getString(1)%></td>
+                                                <td><%=rsTablaLC.getString(2)%></td>
+                                                <td><%=rsTablaLC.getString(3)%></td>
+                                                <td><%=rsTablaLC.getString(4)%></td>
+                                                
+                                                
+                                            </tr>
+                                            
+                                            <%
+                                            }
+                                            %>
+                                        </tbody>
                     </table></div>
                 
                 

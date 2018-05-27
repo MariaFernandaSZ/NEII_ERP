@@ -235,7 +235,19 @@ public class QuerysCompras {
         return valor;
     }
      
-     public 
+     public ResultSet tablaLC(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("SELECT list_folio, id_producto, prov_rfc, list_fecha from lista_compra;");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+         
+     }
+     
      
      public ResultSet tablaReq(){
          ResultSet rs = null;
@@ -288,6 +300,6 @@ public class QuerysCompras {
     }
     
     
-    public 
+     
 }
     
