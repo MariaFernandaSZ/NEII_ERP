@@ -10,22 +10,26 @@ package pw.sap.pojo.Inventarios;
  * @author montse
  */
 public class Merma {
-    private int CoBa;
+    private String id_producto;
     private int IDMerma;
     private String FechaRe;
     private String tipo;
     private int cantidad;
     private String obs;
 
-public Merma (int CoBa, int IDMerma,String FechaRe, String tipo, int cantidad, String obs){
+public Merma (String id_producto, int IDMerma,String FechaRe, String tipo, int cantidad, String obs){
 
-    this.CoBa=CoBa;
+    this.id_producto=id_producto;
     this.IDMerma=IDMerma;
     this.FechaRe=FechaRe;
     this.tipo=tipo;
     this.cantidad=cantidad;
     this.obs=obs;
 }
+
+    public Merma() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getFechaRe() {
         return FechaRe;
@@ -60,20 +64,20 @@ public Merma (int CoBa, int IDMerma,String FechaRe, String tipo, int cantidad, S
     }
 
 
-    public int getCoBa() {
-        return CoBa;
-    }
-
-    public void setCoBa(int CoBa) {
-        this.CoBa = CoBa;
-    }
-
     public int getIDMerma() {
         return IDMerma;
     }
 
     public void setIDMerma(int IDMerma) {
         this.IDMerma = IDMerma;
+    }
+
+    public String getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(String id_producto) {
+        this.id_producto = id_producto;
     }
 
 
