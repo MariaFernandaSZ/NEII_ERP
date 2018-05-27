@@ -49,6 +49,9 @@ public class CalendarioContableGral extends HttpServlet {
         request.getSession().setAttribute("fechafin", l.get(3));
         request.getSession().setAttribute("status", l.get(4));
         //HttpSession sesion=request.getSession();
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta general de calendario");
+        
+        
         response.sendRedirect("Contabilidad/calen_contable.jsp");
     }
 
