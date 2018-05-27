@@ -198,7 +198,7 @@
                         <span id="titulo"><span class="number">2</span>Inserte Datos</span><br>
                         <span >Cantidad devuelta:&nbsp;&nbsp;</span><span><input type="number" name="cant_dev" id="cant_dev" placeholder="1" min="1" max="999999999" pattern="[0-9]{1,999999999}" title="La cantidad devuelta debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/></span>
                         <span >Fecha de devoluci&oacute;n:&nbsp;&nbsp;</span><span><input type="text" id="fecha_dev" name="fecha_dev" disabled="disabled"/></span>
-                        <span >Motivo:&nbsp;&nbsp;</span><span><input type="text" name="motivo_dev" id="motivo_dev" placeholder="Descripci&oacute;n" required="required" maxlength="150" pattern="[A-Za-z0-9]{1,150}" title="El motivo debe contener de 1 a 150 car&aacute;cteres (n&uacute;meros y letras))"/></span>
+                        <span >Motivo:&nbsp;&nbsp;</span><span><input type="text" name="motivo_dev" id="motivo_dev" placeholder="Descripci&oacute;n" required="required" maxlength="150"  title="El motivo debe contener de 1 a 150 car&aacute;cteres (n&uacute;meros y letras))"/></span>
                         <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" value="Agregar" style="background-color: #9F150D" class="btn btn-danger" onsubmit="return InsertarDev() location.href='Producto_Re.jsp'"/>
                     </form>
