@@ -50,6 +50,7 @@ public class eliminarReq extends HttpServlet {
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
+           
             out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }else{
@@ -60,7 +61,9 @@ public class eliminarReq extends HttpServlet {
             out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }
-       
+        
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de requerimiento");
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
