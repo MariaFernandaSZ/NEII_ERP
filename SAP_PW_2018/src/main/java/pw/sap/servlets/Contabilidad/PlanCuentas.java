@@ -43,6 +43,7 @@ public class PlanCuentas extends HttpServlet {
         
         request.getSession().setAttribute("codigosat", l.get(0));
         request.getSession().setAttribute("descripcion", l.get(1));
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta del plan de cuentas");
         
         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }
