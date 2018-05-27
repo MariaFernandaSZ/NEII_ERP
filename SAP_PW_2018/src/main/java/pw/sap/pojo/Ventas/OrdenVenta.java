@@ -50,6 +50,19 @@ public class OrdenVenta {
         this.id_emp = id_emp;
     }
 
+    public OrdenVenta(String id_intermC, String fecha_ordv, double total_iva, double subtotal_pago, double total_pago, String fecha_entrega, String moneda, int id_emp) {
+        this.id_intermC = id_intermC;
+        this.fecha_ordv = fecha_ordv;
+        this.total_iva = total_iva;
+        this.subtotal_pago = subtotal_pago;
+        this.total_pago = total_pago;
+        this.fecha_entrega = fecha_entrega;
+        this.moneda = moneda;
+        this.id_emp = id_emp;
+    }
+    
+    
+
     public OrdenVenta() {
        
     }
