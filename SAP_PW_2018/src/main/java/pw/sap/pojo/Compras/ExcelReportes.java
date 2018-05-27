@@ -21,6 +21,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -193,6 +194,24 @@ public class ExcelReportes
             
             //Fila que se va a traer
             XSSFRow fila = hoja.getRow(1);
+            if (fila == null)
+            {
+                fila = hoja.createRow(1);
+            }
+            
+            XSSFCell celda = fila.createCell(1);
+            if (celda == null)
+            {
+                celda = fila.createCell(1);
+            }
+            //Agregar valor a la celda
+            celda.setCellValue(90);
+            
+            archivo.close();
+            
+            FileOutputStream guardar = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\Excel.xlsx");
+            extraerinfo.write(guardar);
+            guardar.close();
 
         } catch (FileNotFoundException ex)
         {
