@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,12 +20,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.xmlbeans.impl.common.IOUtil;
 
 /**
  *
@@ -35,18 +43,21 @@ public class ExcelReportes
 
     Connection conn;
 
-    public ExcelReportes() throws ClassNotFoundException , SQLException{
+    public ExcelReportes() throws ClassNotFoundException, SQLException
+    {
         Class.forName("org.postgresql.Driver");
     }
-    
-    public void openBD()throws SQLException{
+
+    public void openBD() throws SQLException
+    {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
-    
-    public void closeBD() throws SQLException{
+
+    public void closeBD() throws SQLException
+    {
         conn.close();
     }
 
@@ -182,7 +193,7 @@ public class ExcelReportes
             Logger.getLogger(ExcelReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void modificarExcel() throws IOException
     {
         try
@@ -191,14 +202,14 @@ public class ExcelReportes
 
             XSSFWorkbook extraerinfo = new XSSFWorkbook(archivo);
             XSSFSheet hoja = extraerinfo.getSheetAt(0);
-            
+
             //Fila que se va a traer
             XSSFRow fila = hoja.getRow(1);
             if (fila == null)
             {
                 fila = hoja.createRow(1);
             }
-            
+
             XSSFCell celda = fila.createCell(1);
             if (celda == null)
             {
@@ -206,14 +217,52 @@ public class ExcelReportes
             }
             //Agregar valor a la celda
             celda.setCellValue(90);
-            
+
             archivo.close();
-            
+
             FileOutputStream guardar = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\Excel.xlsx");
             extraerinfo.write(guardar);
             guardar.close();
 
         } catch (FileNotFoundException ex)
+        {
+            Logger.getLogger(ExcelReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void ReporteBD()
+    {
+        Workbook libroReporte = new XSSFWorkbook();
+        Sheet hojaR = libroReporte.createSheet("Reporte Productos");
+        
+        try
+        {
+            //Fuente del archivo que se utilizara
+            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\dowload.png");
+            byte[] bytes = IOUtils.toByteArray(is);
+            //Tipo de imagen  y se cierra el archivo is
+            int imgIndex = libroReporte.addPicture(bytes, libroReporte.PICTURE_TYPE_PNG);
+            is.close();
+            
+           CreationHelper ayuda = libroReporte.getCreationHelper();
+           Drawing draw = hojaR.createDrawingPatriarch();
+           //Se coloca en que fila ycolumna se colocara la imagen
+           ClientAnchor ancho = ayuda.createClientAnchor();
+           ancho.setCol1(0);
+           ancho.setRow1(1);
+           Picture imagen = draw.createPicture(ancho, imgIndex);
+           //Cambiar tamaño de la imagen (donde empieza, cuanto puede usar)
+           imagen.resize(1, 3);
+           //Archivo a generar
+           FileOutputStream archivoReporte = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\PrimerReporteCompras.xlsx");
+           //Se escribe en el libro
+           libroReporte.write(archivoReporte);
+           //Se Cierra el archivo
+           archivoReporte.close();
+        } catch (FileNotFoundException ex)
+        {
+            Logger.getLogger(ExcelReportes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex)
         {
             Logger.getLogger(ExcelReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
