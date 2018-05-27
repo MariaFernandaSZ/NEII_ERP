@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.RH.Validador;
 
 /**
  *
@@ -34,38 +35,32 @@ public class Servlet_consultarEmpleado extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         ArrayList lista;
+        Validador validar = new Validador();
         int cont = 3;
         String id = request.getParameter("id_empleado");
-        String orden = "ORDER BY id_vendedor";
-        String campos = "id_vendedor,nombre,apellido";
+        String area = request.getParameter("area");
+        String orden = validar.ordenConsultaEmp(request.getParameter("ordenar"));
+        String referencia = validar.referenciaConsultaEmp(area, id);
+        String campos = "id_emp,nombre_emp,apellido_emp";
         String [] filtro = request.getParameterValues("mostrar[]");
-        if(filtro != null){
-            if(filtro.length > 0){
-                for(int k = 0 ; k < filtro.length ; k++){
-                    campos = campos+","+filtro[k];
-                    cont++;
-                }
+        if(filtro != null && filtro.length != 0){
+            for (String filtro1 : filtro) {
+                campos = campos+"," + filtro1;
+                cont++;
             }
         }
-        if(request.getParameter("ordenar")!=null){
-            if(request.getParameter("ordenar").equals("alfabeto")){orden = "ORDER BY nombre";}
-            if(request.getParameter("ordenar").equals("area")){orden = "ORDER BY area";}
-        }
-        if(!id.equals("")){
-            lista = c.consulta(campos, "empleado", "id_vendedor", "= "+id, orden, cont);
-        }else{
-            lista = c.consulta(campos, "empleado", "id_vendedor", "is not null ", orden, cont);
-        }
-        
-       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de empleados");
-            
-        
-        
+        lista = c.consulta(campos, "empleado", referencia, orden, "", cont);
+        String [] arreglo = campos.split(",");
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
+            for (String arreglo1 : arreglo) {
+                out.println("<td>"+arreglo1+"</td>");
+            }
+            out.println("</tr>");
+            out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j == cont){out.println("</tr><tr>");}
+                if(j%cont==0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
