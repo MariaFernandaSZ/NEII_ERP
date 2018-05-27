@@ -10,10 +10,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -27,7 +28,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelReportes
 {
 
-    public static void cearExcel()
+    Connection conn;
+
+    public ExcelReportes() throws ClassNotFoundException , SQLException{
+        Class.forName("org.postgresql.Driver");
+    }
+    
+    public void openBD()throws SQLException{
+        
+    }
+
+    public void cearExcel()
     {
         Workbook libro = new HSSFWorkbook();
         org.apache.poi.ss.usermodel.Sheet hoja = libro.createSheet("Reporte Compras");
@@ -47,7 +58,7 @@ public class ExcelReportes
 
     }
 
-    public static void crearExcelNuevo()
+    public void crearExcelNuevo()
     {
         Workbook libro = new XSSFWorkbook();
         org.apache.poi.ss.usermodel.Sheet hoja = libro.createSheet("Reporte Compras");
@@ -83,7 +94,7 @@ public class ExcelReportes
         }
     }
 
-    public static void leerExcel() throws IOException
+    public void leerExcel() throws IOException
     {
         try
         {
@@ -106,17 +117,17 @@ public class ExcelReportes
                     {
                         case "NUMERIC":
 
-                            System.out.println(celda.getNumericCellValue()+" ");
+                            System.out.println(celda.getNumericCellValue() + " ");
 
                             break;
                         case "STRING":
 
-                            System.out.println(celda.getStringCellValue()+" ");
+                            System.out.println(celda.getStringCellValue() + " ");
 
                             break;
                         case "Formula":
 
-                            System.out.println(celda.getCellFormula()+" ");
+                            System.out.println(celda.getCellFormula() + " ");
 
                             break;
                     }
@@ -130,8 +141,10 @@ public class ExcelReportes
         }
     }
 
-    public static void cargaExcel() throws IOException
+    public void cargaExcel() throws SQLException, ClassNotFoundException, IOException
     {
+        
+
         try
         {
             FileInputStream archivo = new FileInputStream(new File("C:\\Users\\Adrian\\Escritorio\\excel\\Excel.xlsx"));
@@ -144,31 +157,6 @@ public class ExcelReportes
             for (int a = 0; a <= numFilas; a++)
             {
                 Row fila = hoja.getRow(a);
-                int numCol = fila.getLastCellNum();
-
-                for (int b = 0; b < numCol; b++)
-                {
-                    Cell celda = fila.getCell(b);
-                    switch (celda.getCellTypeEnum().toString())
-                    {
-                        case "NUMERIC":
-
-                            System.out.println(celda.getNumericCellValue()+" ");
-
-                            break;
-                        case "STRING":
-
-                            System.out.println(celda.getStringCellValue()+" ");
-
-                            break;
-                        case "Formula":
-
-                            System.out.println(celda.getCellFormula()+" ");
-
-                            break;
-                    }
-                }
-                System.out.println(" ");
             }
 
         } catch (FileNotFoundException ex)
