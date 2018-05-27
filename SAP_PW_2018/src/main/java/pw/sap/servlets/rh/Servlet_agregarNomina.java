@@ -60,6 +60,9 @@ public class Servlet_agregarNomina extends HttpServlet {
             }else{
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
+            
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Agregacion de nomina");
+         
         }
     }
 
