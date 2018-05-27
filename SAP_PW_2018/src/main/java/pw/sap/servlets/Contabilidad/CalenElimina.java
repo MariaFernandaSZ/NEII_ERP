@@ -39,7 +39,9 @@ public class CalenElimina extends HttpServlet {
         Conexion c=new Conexion();
         System.out.println("clave a eliminar:"+request.getParameter("nclave")); 
         String campo=request.getParameter("nclave");
-        c.eliminaCalen(campo);        
+        c.eliminaCalen(campo);       
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de calendario");
+        
         response.sendRedirect("Contabilidad/calen_contable.jsp");
         
     }
