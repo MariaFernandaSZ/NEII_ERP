@@ -14,7 +14,7 @@
                     <option value="Recursos Humanos">Recursos&nbsp;Humanos</option>
                     <option value="Ventas">Ventas</option>
                     <option value="Compras">Compras</option>
-                    <option value="Inventario">Inventario</option>
+                    <option value="Inventarios">Inventario</option>
                     <option value="Contabilidad">Contabilidad</option>
                     <option value="Gerencia">Gerencia</option>
                 </select>

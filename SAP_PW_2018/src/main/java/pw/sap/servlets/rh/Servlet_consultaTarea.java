@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.RH.Validador;
 
 /**
  *
  * @author Josafat Rosas Ortiz
  */
-@WebServlet(name = "Servlet_consultaEmpleadoGeneral", urlPatterns = {"/Servlet_consultaEmpleadoGeneral"})
-public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
+@WebServlet(name = "Servlet_consultaTarea", urlPatterns = {"/Servlet_consultaTarea"})
+public class Servlet_consultaTarea extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +34,24 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO",
-                            "SUELDO DIARIO","AREA","CARGO"};
-        ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,sueldo_por_dia,area_emp,cargo_emp","empleado", "id_emp", "is not null", "order by id_emp asc", 12);
+        ArrayList lista;
+        Validador validar = new Validador();
+        String empleado = request.getParameter("id_empleado");
+        String tarea = request.getParameter("id_tarea");
+        String referencia = validar.referenciaConsultaTarea(tarea, empleado);
+        lista = c.consulta("id_tarea,nombre_tarea,id_emp,fecha_inicio,fecha_fin",
+                            "tarea", referencia, "ORDER BY id_tarea", "", 5);
+        String [] campos = {"ID","NOMBRE","RESPONSABLE","FECHA INICIO","FECHA FIN"};
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
-            for (String campo : campos){out.println("<td>" + campo + "</td>");}
+            for (String arreglo1 : campos) {
+                out.println("<td>"+arreglo1+"</td>");
+            }
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%12 == 0){out.println("</tr><tr>");}
+                if(j%5==0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
@@ -67,9 +74,9 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_consultaEmpleadoGeneral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_consultaTarea.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_consultaEmpleadoGeneral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_consultaTarea.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

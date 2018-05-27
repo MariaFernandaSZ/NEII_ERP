@@ -80,4 +80,20 @@ public class Validador {
         }
         return referencia;
     }
+    
+    public String referenciaConsultaTarea(String tarea, String id){
+        String referencia = "id_tarea is not null";
+        if(tarea!= null && id!=null && !tarea.equals("") && !id.equals("")){
+            referencia = "id_tarea = "+tarea+" AND id_emp = "+id;
+        }else{
+            if(tarea!=null && !tarea.equals("") && (id==null || id.equals(""))){
+                referencia = "id_tarea = "+tarea;
+            }else{
+                if(id!=null && !id.equals("") && (tarea==null || tarea.equals(""))){
+                    referencia = "id_emp = "+id;
+                }
+            }
+        }
+        return referencia;
+    }
 }

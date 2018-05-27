@@ -13,6 +13,10 @@ function cargaFiltrosEmp(){
     $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#resultadoConsultaEmp").html(carga);});
 }
 
+function cargaFiltrosTarea(){
+    $.get("../Vistas/consultar_tareas.jsp",function(carga){$("#resultadoConsultaTarea").html(carga);});
+}
+
 function agregarNomina(){
     alert('entre');
     var numeros = /[0-9]/;
@@ -288,7 +292,7 @@ $(document).ready(function(){
     });
    
     $('#consultarTarea').click(function(){
-        $.get('../Vistas/consultar_tareas.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.get('../Vistas/consultasTareas.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#eliminarTarea').click(function(){
@@ -387,6 +391,22 @@ $(document).ready(function(){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
             $('#resultadoConsultaEmp').html(responseText);
+        });
+        event.preventDefault();
+    });
+    
+    $(document).on("submit","#formTareaG",function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            $('#resultadoConsultaTarea').html(responseText);
+        });
+        event.preventDefault();
+    });
+    
+    $(document).on("submit","#formConsultarTarea",function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            $('#resultadoConsultaTarea').html(responseText);
         });
         event.preventDefault();
     });
