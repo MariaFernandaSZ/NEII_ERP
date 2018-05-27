@@ -50,7 +50,7 @@ public class insertar_merma extends HttpServlet {
             PrintWriter out=response.getWriter();
             
            
-             rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
+
             out.println("<script>");
             out.println("alert('Merma ingresada correctamente');");
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
