@@ -31,6 +31,19 @@ public class QuerysCompras {
         connProp.put("password", "root");
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
+     public void eliminar_prov(String rfc) throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("delete from proveedor where prov_rfc='"+rfc+"';");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  
+        }
     
     public void closeDB() throws SQLException {
         conn.close();
