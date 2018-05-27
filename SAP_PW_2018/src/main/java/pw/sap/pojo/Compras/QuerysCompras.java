@@ -31,25 +31,51 @@ public class QuerysCompras {
         connProp.put("password", "root");
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
-    
+   
     public void closeDB() throws SQLException {
         conn.close();
     }
     
     
-   public void agregarProveedor(String rfc, String nom_emp, String nom_cont, String correo, String tel, String estado, String muni, String cp) throws SQLException, ClassNotFoundException{
-         
+    public boolean agregarProveedor(String rfc, String nom_emp, String nom_cont, String correo, String tel, String estado, String muni, String cp) throws SQLException, ClassNotFoundException{
+         boolean agregado=false;
+         Genera_IDCom idorden = new Genera_IDCom();
                  openDB();
-                  PreparedStatement ps;
+                 try{
+                 if(conn!=null){
+                         PreparedStatement ps;
                     
                      ps = conn.prepareStatement("INSERT INTO proveedor(prov_rfc,prov_nom_emp,prov_nom_cont,prov_correo,prov_tel,prov_estado,prov_muni,prov_cp ) "
                                        + " VALUES ('"+rfc+"','"+nom_emp+"','"+nom_cont+"','"+correo+"',"+tel+",'"+estado+"','"+muni+"',"+cp+");");
                     ResultSet rs= ps.executeQuery();
-          
-                    System.out.println(ps);
-                    
+                     agregado=true;
+                    }
+                          
                     closeDB();
-                  
+                      } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    }
+                return agregado; 
+        }
+    public boolean eliminar_prov(String rfc) throws SQLException, ClassNotFoundException{
+         boolean agregado=false;
+         Genera_IDCom idorden = new Genera_IDCom();
+                 openDB();
+                 try{
+                 if(conn!=null){
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("delete from proveedor where prov_rfc='"+rfc+"';");
+                    ResultSet rs= ps.executeQuery();
+                    agregado=true;
+                 }
+                 closeDB();
+                 } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    } 
+                 return agregado;
         }
     
     public boolean agregarOrdenCompra(OrdenCompraPojo ordenPojo) throws SQLException, ClassNotFoundException{

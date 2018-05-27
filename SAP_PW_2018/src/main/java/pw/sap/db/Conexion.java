@@ -611,7 +611,9 @@ public class Conexion {
     
     public Integer actualizar(String campos, String tabla, String referencia, String condicion) throws SQLException {
         openDB();
-        if(condicion.equals("")){condicion="is not null";}
+        if(condicion.equals("")){
+            condicion="is not null";
+        }
         PreparedStatement ps;
         ps=conn.prepareStatement("UPDATE "+tabla+" SET "+campos+" WHERE "+referencia+" "+condicion);
         Integer rs = ps.executeUpdate();

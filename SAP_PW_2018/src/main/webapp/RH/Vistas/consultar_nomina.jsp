@@ -7,8 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <form autocomplete='off' onsubmit='return validaConsulta();'>
+    <tr><br></tr>
+    <tr><br></tr>
  <tr><td align='center' colspan='2'><h1 style='text-align:center;'>CONSULTA&nbsp;DE&nbsp;NÓMINAS</h1></td></tr>
          <table style="margin: 0 auto;">
+             <tr><br></tr>
              <tr><td align="center">Seleccione un &aacute;rea de la empresa: </td></tr>
     </table>
 
@@ -27,6 +30,7 @@
                 </select>
        </td></tr>
     </table>
+         <tr><br></tr>
     <table style="margin: 0 auto;">
         <tr><td align="center">B&uacute;squeda&nbsp;espec&iacute;fica</td></tr>
         <tr><td align="center">ID&nbsp;empleado:<input type="text" id="id_empleado" name="id_empleado" class="form-control form-control-sm"></td></tr>

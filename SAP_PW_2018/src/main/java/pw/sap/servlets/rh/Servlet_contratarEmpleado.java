@@ -38,23 +38,28 @@ public class Servlet_contratarEmpleado extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList lista = new ArrayList();
+                    Conexion c = new Conexion();
+             c.openDB();
         try (PrintWriter out = response.getWriter()) {
-            Conexion c = new Conexion();
-            String valores = "'"+request.getParameter("contratarNombre")+"','"+request.getParameter("contratarApellido")
-                    +"','"+request.getParameter("contratarDireccion")+"','"+request.getParameter("contratarRfc")+"','"
-                    +request.getParameter("contratarTelefono"+"','"+request.getParameter("contratarEdocivil")+"',"
-                            +request.getParameter("contratarSueldo")+",'"+request.getParameter("contratarArea")+"','"
-                            +request.getParameter("contratarCargo")+"'");
-            Integer query = c.insertar("nombre,apellido,direccion,rfc,telefono,edo_civil,sueldo,area,cargo",
+            String valores = ("'"
+                    +request.getParameter("contratarNombre")+"','"
+                    + request.getParameter("contratarApellido") + "','"
+                    + request.getParameter("contratarDireccion") + "','"
+                    + request.getParameter("contratarRfc") + "','"
+                    + request.getParameter("contratarTelefono")+"','"
+                    + request.getParameter("contratarEdocivil") + "','"
+                    + request.getParameter("contratarlicenciaMedica") + "','"
+                    + request.getParameter("contratarSueldo") + "','"
+                    + request.getParameter("contratarSueldoDiario") + "','"
+                    + request.getParameter("contratarArea") + "','"
+                    + request.getParameter("contratarCargo")+"'");        
+            Integer query = c.insertar("nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,licencia_medica,sueldo_emp,sueldo_por_dia,area_emp,cargo_emp",
                     "empleado", valores);
-            lista.add(c.consulta("id_vendedor", "empleado", "id_vendedor", "is not null", "ORDER BY id_vendedor DESC LIMIT 1", 1));
+            lista.add(c.consulta("id_emp", "empleado", "id_emp", "is not null", "ORDER BY id_emp DESC LIMIT 1", 1));
             if(query == 1){
-               int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se contrato a un empleado");
-            
-                response.getWriter().write("Registro realizado correctamente. ID de empleado: "+lista.get(0));
-                }else{
-                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de contratacion");
-            
+               
+                response.getWriter().write("Registro ingresado correctamente: "+lista.get(0));
+            }else{
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
         }

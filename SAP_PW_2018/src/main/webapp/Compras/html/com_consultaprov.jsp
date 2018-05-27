@@ -139,7 +139,7 @@
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
-                        <form method="POST" action="com_consultaprov.jsp" onsubmit="return vali_rfc();">
+                        <form method="POST" action="../../eliminarprov" onsubmit="return vali_rfc();">
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda&nbsp;por<br>RFC del proveedor</span>
                             <br><br>
                             <input type="text" name="RFC" placeholder="RFC" id="rfc" required>

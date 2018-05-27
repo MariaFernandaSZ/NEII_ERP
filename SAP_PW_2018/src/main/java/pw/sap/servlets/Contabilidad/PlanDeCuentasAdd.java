@@ -39,11 +39,17 @@ public class PlanDeCuentasAdd extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         PlanCuentas c =new PlanCuentas();
+        String descripcion="";
         
-        ArrayList Add = c.consultaPlan(request.getParameter("id"));
-          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego un plan de cuenta");
-            
-        request.getRequestDispatcher("Contabilidad/plan_cuentas.jsp").forward(request, response);
+        descripcion = c.descSat(Integer.parseInt(request.getParameter("idsat")));
+        
+        
+        
+        c.agregaPlan(Integer.parseInt(request.getParameter("idsat")), descripcion, request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
+        
+//int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego un plan de cuenta");
+        
+         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
         
     }
 

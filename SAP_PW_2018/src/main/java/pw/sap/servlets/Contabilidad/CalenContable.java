@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets;
+package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +21,7 @@ import pw.sap.db.Conexion;
  *
  * @author fgb
  */
-@WebServlet(name = "CalendarioContableGral", urlPatterns = {"/CalendarioContableGral"})
-public class CalendarioContableGral extends HttpServlet {
+public class CalenContable extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,9 +37,9 @@ public class CalendarioContableGral extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();              
         
-        System.out.println("clave:"+request.getParameter("consultaes"));
+        System.out.println("clave:"+request.getParameter("clave"));
         //ArrayList l=c.calenContable(Integer.parseInt(request.getParameter("clave")));
-        ArrayList l=c.calenContable(request.getParameter("consultaes"));
+        ArrayList l=c.calenContable(request.getParameter("clave"));
         
         request.getSession().setAttribute("clave", l.get(0));        
         request.getSession().setAttribute("periodo", l.get(1));
@@ -49,7 +47,7 @@ public class CalendarioContableGral extends HttpServlet {
         request.getSession().setAttribute("fechafin", l.get(3));
         request.getSession().setAttribute("status", l.get(4));
         //HttpSession sesion=request.getSession();
-        response.sendRedirect("Contabilidad/calen_contable.jsp");
+        response.sendRedirect("Contabilidad/calen_contable_1.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,9 +65,9 @@ public class CalendarioContableGral extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,12 +82,14 @@ public class CalendarioContableGral extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("entre por post");
+        System.out.println("clave"+request.getAttribute("clave"));
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CalendarioContableGral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalenContable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

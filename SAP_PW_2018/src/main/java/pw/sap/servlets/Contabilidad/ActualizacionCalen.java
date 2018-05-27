@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets;
+package pw.sap.servlets.Contabilidad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,14 +15,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.db.Conexion;
+import pw.sap.pojo.Contabilidad.Con_Calendario;
 
 /**
  *
  * @author fgb
  */
-@WebServlet(name = "CalenElimina", urlPatterns = {"/CalenElimina"})
-public class CalenElimina extends HttpServlet {
+@WebServlet(name = "ActualizacionCalen", urlPatterns = {"/ActualizacionCalen"})
+public class ActualizacionCalen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,11 +36,17 @@ public class CalenElimina extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c=new Conexion();
-        System.out.println("clave a eliminar:"+request.getParameter("nclave")); 
-        String campo=request.getParameter("nclave");
-        c.eliminaCalen(campo);        
+        Con_Calendario c=new Con_Calendario();        
+        System.out.println("ahora estoy en Actualizacion");        
+        String clave=(String) request.getSession().getAttribute("clave");        
+        System.out.println("la clave es:"+clave);
+        String fechaini=request.getParameter("Editfechaini");
+        String fechafin=request.getParameter("Editfechafin");
+        int periodo=Integer.parseInt(request.getParameter("periodo"));
+        String status=request.getParameter("Editestado");        
+        c.actualizarCalendario(clave, fechaini, fechafin, periodo, status);        
         response.sendRedirect("Contabilidad/calen_contable.jsp");
+        
         
     }
 
@@ -58,10 +64,8 @@ public class CalenElimina extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ActualizacionCalen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -76,10 +80,10 @@ public class CalenElimina extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {        
+        try {
             processRequest(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CalenElimina.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ActualizacionCalen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

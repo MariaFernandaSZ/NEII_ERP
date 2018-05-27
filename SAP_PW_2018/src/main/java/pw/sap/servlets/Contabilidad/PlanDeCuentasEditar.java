@@ -40,10 +40,11 @@ public class PlanDeCuentasEditar extends HttpServlet {
         
         PlanCuentas c =new PlanCuentas();
         
-        c.editaPlan(Integer.parseInt(request.getParameter("p")),request.getParameter("id"));
-          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
+        c.editaPlan(Integer.parseInt(request.getParameter("neliminapcclave")), request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
+       
+         // int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
             
-        request.getRequestDispatcher("Contabilidad/plan_cuentas.jsp").forward(request, response);
+         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

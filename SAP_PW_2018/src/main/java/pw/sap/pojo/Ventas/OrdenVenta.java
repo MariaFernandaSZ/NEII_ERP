@@ -50,6 +50,10 @@ public class OrdenVenta {
         this.id_emp = id_emp;
     }
 
+    public OrdenVenta() {
+       
+    }
+
     
     
     /**

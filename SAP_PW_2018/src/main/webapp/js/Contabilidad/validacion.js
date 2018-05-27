@@ -437,7 +437,8 @@ function busqueda(){
 //nclave,periodo,fechaini,fechafin,estado
 function calencontaeditar(){
  
-    var id = document.getElementById('neditaclave').value;
+    var id = document.getElementById('claveeditar').value;
+    alert(id);
     var numeros=/[a-zA-Z]/;    
     if(numeros.test(id)||id===""){
         alert('el campo de clave debe contener numeros');

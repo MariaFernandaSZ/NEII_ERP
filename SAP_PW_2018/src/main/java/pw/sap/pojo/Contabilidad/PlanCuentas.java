@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.obj.Contabilidad.ObjCuentaSat;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
 
 public class PlanCuentas {
@@ -80,6 +81,29 @@ public class PlanCuentas {
         conn.close();
         return l;
     }
+    
+    public static  LinkedList  consultaTodoSat() throws SQLException, ClassNotFoundException {
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);        
+        LinkedList <ObjCuentaSat> l=new LinkedList<ObjCuentaSat>();
+        PreparedStatement ps;
+        ps = conn.prepareStatement("select * from cuenta_sat");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+                ObjCuentaSat cs=new ObjCuentaSat();
+                cs.setId(rs.getInt("id"));
+                cs.setCuenta(rs.getInt("cuenta"));
+                cs.setDescripcion(rs.getString("descripcion"));
+                l.add(cs);
+            }   
+
+        conn.close();
+        return l;
+    }
 
     public ArrayList consultaPlan(String clave) throws SQLException {
         openDB();
@@ -113,43 +137,54 @@ public class PlanCuentas {
 
   
     
-    public ArrayList agregaPlan(String id) throws SQLException {
+    public int agregaPlan(int id_cuenta, String descripcion, String tipo_cuenta, String clase_cuenta, String naturaleza) throws SQLException {
         openDB();
-        ArrayList r = new ArrayList();
-        PreparedStatement ps;
-        ps = conn.prepareStatement("INSERT INTO tabla (campos) VALUES (valores)");
-        ps.setString(1, id);
-        ResultSet rs = ps.executeQuery();
-        for (int i = 0; rs.next(); i++) {
-            r.add(rs.getString(i));
-        }
-
+        PreparedStatement ps = conn.prepareStatement("insert into cuentas_empresa(id_cuenta,descripcion,tipo_cuenta,clase_cuenta,naturaleza) values (?,?,?,?,?);");
+        ps.setInt(1, id_cuenta); 
+        ps.setString(2, descripcion);
+        ps.setString(3, tipo_cuenta);
+        ps.setString(4, clase_cuenta);
+        ps.setString(5, naturaleza);
+        int r= ps.executeUpdate();
         closeDB();
         return r;
     }
     
-    public Boolean eliminaPlan(int id) throws SQLException {
+    public String descSat(int id) throws SQLException {
         openDB();
-        boolean resultado=false;
-        PreparedStatement ps;
-        ps=conn.prepareStatement("DELETE  FROM devolucion where id_devolucion=?");
+        String desc="";
+        
+        PreparedStatement ps = conn.prepareStatement("SELECT descripcion FROM cuenta_sat where id=?");
         ps.setInt(1, id);
-        ResultSet rs= ps.executeQuery();
-        int coba2= ps.executeUpdate();
+        
+        ResultSet rs = ps.executeQuery();
+         rs.next(); 
+        desc=rs.getString(1);
         closeDB();
-        return resultado;
+        
+        return desc;
     }
     
-    public Boolean editaPlan(int id, String valor) throws SQLException {
+    
+    public int eliminaPlan(int id) throws SQLException {
         openDB();
-        Boolean resultado = false;
-        PreparedStatement ps;
-        ps = conn.prepareStatement("UPDATE tabla SET campoMod ? WHERE campocriterio=?");
-        ps.setString(1, valor);
-        ps.setInt(2, id);
-        ResultSet rs = ps.executeQuery();
+        PreparedStatement ps=conn.prepareStatement("delete from cuentas_empresa where id=?");
+        ps.setInt(1, id);
+        int r= ps.executeUpdate();
         closeDB();
-        return resultado;
+        return r;
+    }
+    
+    public int editaPlan(int id, String tipo_cuenta, String clase_cuenta, String naturaleza) throws SQLException {
+        openDB();
+        PreparedStatement ps = conn.prepareStatement("update cuentas_empresa set tipo_cuenta=?,clase_cuenta=?,naturaleza=? where id=?");
+        ps.setString(1, tipo_cuenta);
+        ps.setString(2, clase_cuenta);
+        ps.setString(3, naturaleza);
+        ps.setInt(4, id);
+        int r= ps.executeUpdate();
+        closeDB();
+        return r;
     }
 
     //Metodos de consulta de datos

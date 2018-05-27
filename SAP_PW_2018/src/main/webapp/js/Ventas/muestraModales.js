@@ -15,12 +15,10 @@ $(document).ready(function e(){
                                     alert("seleccione intermediario");
                                     return false;
                 }else{
-                    $.post('modales/agregaProducto.jsp',function(xx){
-                      
-                        $('#tmpModal').html(xx);
+
 
                         $('#agregaProductos').modal('show');
-                    });    
+                      
                 }
     });
 });
@@ -108,7 +106,34 @@ function valAgrega(){
         alert("ingrese una cantidad de productos");
         return false;       
     }else{
-        this.form.action = '../cotizacion';
+        
+        var codprodVar = $('#codprod').val();
+        var cantVar=$('#cant').val();
+        var nomprodVar=$('#nomprod').val();
+        var precioprodVar=$('#precioprod').val();
+        var ivaprodVar=$('#ivaprod').val();
+        var subtotalVar=$('#subtotal').val();
+//                $.ajax({
+//                    type:'POST',
+//                    datatype: 'json',
+//                    url: '../ListaProductos',
+//                    data: {codprod:codprodu,cant:cant,nomprod:nomprodu,precioprod:precioprod,ivaprod:ivaprodu,subtotal:subtotal},
+//                    success: function (result) {
+//                        //var producto = $.parseJSON(result);
+//                        //alert("Codigo: "+codprodu+"\n Nombre: "+producto.nombre+"\n Precio Unitario: "+precioprod+"\n Cantidad: "+producto.cantidad + "\n Iva: "+producto.iva+"\n Subtotal: "+producto.subtotal);
+//                    }
+//                });
+
+			$.post('../ListaProductos', {
+				codprod : codprodVar,
+				cant: cantVar,
+				nomprod: nomprodVar,
+                                precioprod : precioprodVar,
+                                ivaprod : ivaprodVar,
+                                subtotal : subtotalVar
+			}, function(responseText) {
+				$('#tablaProductos').html(responseText);
+			});
     } 
 
  
