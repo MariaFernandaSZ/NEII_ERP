@@ -69,7 +69,7 @@ public class PlanCuentas {
         while (rs.next()) {
                 ObjPlanDeCuentas pc=new ObjPlanDeCuentas();
                 pc.setId(rs.getInt("id"));
-                pc.setId_cuenta(rs.getInt("cuenta"));
+                pc.setId_cuenta(rs.getDouble("cuenta"));
                 pc.setDescripcion(rs.getString("descripcion"));
                 pc.setTipo_cuenta(rs.getString("tipo_cuenta"));
                 pc.setClase_cuenta(rs.getString("clase_cuenta"));
