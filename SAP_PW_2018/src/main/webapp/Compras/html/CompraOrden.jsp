@@ -115,6 +115,9 @@
                                     </table></div> </div>   
                         <hr>
                         
+                        
+                        
+                        
                         <form method="POST" onsubmit="return vali_nuevoproducto();" name="eliminarReq" action="../../eliminarReq">
                         <div>
                                                 
@@ -123,6 +126,9 @@
                                                 
                     </div>
                         </form>
+                        
+                        
+                        
                         
                     </div> 
                                             

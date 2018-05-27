@@ -336,8 +336,8 @@ function vali_codigo(){
         function vali_folio(){
            var foliolista= document.getElementById('folio_com').value;
              
-             if(!(/^\d{5}$/.test(foliolista))){
-             alert("Favor de ingresar el folio con los 5 números");
+             if(!(/^\d{7}$/.test(foliolista))){
+             alert("Favor de ingresar el folio con los 7 números");
              return false;
          } 
         }

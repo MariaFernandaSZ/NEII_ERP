@@ -69,40 +69,26 @@
                 </div>
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
-                        <form method="POST" action="com_consultacompras.jsp" onsubmit="return vali_fecha();">
+                        
+                        
+                        
+                        <form method="POST" action="../../busquedaFecha" onsubmit="return vali_fecha();" name="busquedaFecha">
                             <div id="titulo" class="col-12">    
                                 <span class="number">1</span>B&uacute;squeda de<br>compras por fecha</div>
 
-                            <input style="text-align: center;" type="date" name="fechaC" id="fecha_com"/>
-                            <span style="font-size: 18px">Ordenar&nbsp;por:</span>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busprod" id="ord3" value="folio">
-                                <label style="font-size: 18px" class="form-check-label" for="ord3">Folio</label>
-                                <input class="form-check-input" type="radio" name="busprod" id="ord2" value="proveedor">
-                                <label style="font-size: 18px" class="form-check-label" for="ord2">Proveedor</label>                                
-                                <input class="form-check-input" type="radio" name="busprod" id="ord4" value="pago">
-                                <label style="font-size: 18px" class="form-check-label" for="ord4">Pago Total</label>
-                            </div>
+                            <input style="text-align: center;" type="date" name="list_fecha" id="list_fecha"/>
+                            
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
+                        
+                        
+                        
                         <form method="POST" action="../ListaCompraCom" onsubmit="return vali_folio();">
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda<br>por folio de compra</span>
                             <br><br>
                             <input type="number" name="codprod" placeholder="Folio" id="folio_com" required>
-                            <span style="font-size: 18px">Mostrar:</span>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="busprod" id="ord1" value="fecha">
-                                <label style="font-size: 18px" class="form-check-label" for="ord1">Fecha</label>
-                                <input class="form-check-input" type="checkbox" name="cod_factura" id="ord2" value="factura">
-                                <label style="font-size: 18px" class="form-check-label" for="ord2">Código factura</label>
-                                <input class="form-check-input" type="checkbox" name="busprod" id="ord2" value="proveedor">
-                                <label style="font-size: 18px" class="form-check-label" for="ord2">Proveedor</label>
-                                <input class="form-check-input" type="checkbox" name="cantcom" id="ord2" value="cantidad">
-                                <label style="font-size: 18px" class="form-check-label" for="ord2">Cantidad</label>
-                                <input class="form-check-input" type="checkbox" name="busprod" id="ord4" value="pago">
-                                <label style="font-size: 18px" class="form-check-label" for="ord4">Pago Total</label>
-                            </div>
+                            
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                         </form>
                     </div> 
@@ -110,7 +96,7 @@
                     <!-- Seccion central -->                          
                     <div style="background-color: #f4f7f8;" class="col-lg-5 col-md-5 col-sm-5 col-xs-11 form-style-5">  <!-- Seccion tabla resultados de busqueda -->
             
-            <span id="titulo"><span class="number">T</span>Resultados&nbsp;de&nbsp;busqueda</span>
+            <span id="titulo"><span class="number">T</span>Lista&nbsp;completa&nbsp;de&nbsp;compras</span>
             
             <div class="row">
                 <div class="table-responsive"><table class="table table-striped">
@@ -153,10 +139,103 @@
                     </table></div>
                 
                 
-            </form>
+            </div> 
+                                        
+                                        <h1>&nbsp;</h1>
+                                        <span id="titulo"><span class="number">T</span>Lista&nbsp;de&nbsp;compras&nbsp;por&nbsp;fecha</span>
+            
+            <div class="row">
+                <div class="table-responsive"><table class="table table-striped">
+                    
+                        <thead>
+                            <tr>
+                                <th scope="col">folio</th>
+                                <th scope="col">ID&nbsp;producto</th>
+                                <th scope="col">RFC&nbsp;proveedor</th>
+                                <th scope="col">Fecha&nbsp;de&nbsp;compra</th>
+                                
+                            </tr>
+                            
+                        </thead>
+                        <jsp:useBean id="interTablaLCF" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                        <%
+                                        ResultSet rsTablaLCBF = interTablaLC.tablaLC();
+                                        
+                                        %>
+                                        
+                                        <tbody>
+                                         <%
+                                                while(rsTablaLC.next()){
+                                            %>   
+                                            
+                                            
+                                            <tr id="modalInter">
+                                                <td><%=rsTablaLC.getString(1)%></td>
+                                                <td><%=rsTablaLC.getString(2)%></td>
+                                                <td><%=rsTablaLC.getString(3)%></td>
+                                                <td><%=rsTablaLC.getString(4)%></td>
+                                                
+                                                
+                                            </tr>
+                                            
+                                            <%
+                                            }
+                                            %>
+                                        </tbody>
+                    </table></div>
+                
+                
+            </div> 
+                                        
+                     <h1>&nbsp;</h1>
+                                        <span id="titulo"><span class="number">T</span>Lista&nbsp;de&nbsp;compras&nbsp;por&nbsp;folio</span>
+            
+            <div class="row">
+                <div class="table-responsive"><table class="table table-striped">
+                    
+                        <thead>
+                            <tr>
+                                <th scope="col">folio</th>
+                                <th scope="col">ID&nbsp;producto</th>
+                                <th scope="col">RFC&nbsp;proveedor</th>
+                                <th scope="col">Fecha&nbsp;de&nbsp;compra</th>
+                                
+                            </tr>
+                            
+                        </thead>
+                        <jsp:useBean id="interTablaLCBFol" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                        <%
+                                        ResultSet rsTablaLCBFol = interTablaLC.tablaLC();
+                                        
+                                        %>
+                                        
+                                        <tbody>
+                                         <%
+                                                while(rsTablaLC.next()){
+                                            %>   
+                                            
+                                            
+                                            <tr id="modalInter">
+                                                <td><%=rsTablaLC.getString(1)%></td>
+                                                <td><%=rsTablaLC.getString(2)%></td>
+                                                <td><%=rsTablaLC.getString(3)%></td>
+                                                <td><%=rsTablaLC.getString(4)%></td>
+                                                
+                                                
+                                            </tr>
+                                            
+                                            <%
+                                            }
+                                            %>
+                                        </tbody>
+                    </table></div>
+                
+                
             </div> 
                   
                 </div>
+                                        
+                                        
             
         </div>
         </div>

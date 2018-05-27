@@ -16,6 +16,12 @@ public class listCompraPojo  {
     public listCompraPojo() {
     }
 
+    public listCompraPojo(String list_fecha) {
+        this.list_fecha = list_fecha;
+    }
+    
+    
+
     public listCompraPojo(String list_folio, String id_producto, String prov_rfc, String list_fecha) {
         this.list_folio = list_folio;
         this.list_fecha = list_fecha;

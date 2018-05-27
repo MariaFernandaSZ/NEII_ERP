@@ -248,6 +248,42 @@ public class QuerysCompras {
          
      }
      
+     public ResultSet tablaLCF(listCompraPojo listPojo) throws SQLException, ClassNotFoundException{
+         
+         ResultSet rs = null;
+         try{
+             openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("SELECT list_folio, id_producto, prov_rfc,'"+listPojo.getList_fecha()+"', from lista_compra;");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+         
+         
+     }
+     
+//     public boolean agregarOrdenCompra(OrdenCompraPojo ordenPojo) throws SQLException, ClassNotFoundException{
+//            boolean agregado=false;
+//            Genera_IDCom idorden = new Genera_IDCom();
+//            openDB();
+//            try {
+//                
+//                    if(conn!=null){
+//                        Statement st;
+//                        st = conn.createStatement();
+//                        st.executeUpdate("INSERT INTO orden_compra VALUES('"+ordenPojo.getOrd_folio()+"','"+ordenPojo.getReq_folio()+"',"+ordenPojo.getProv_rfc()+",'"+ordenPojo.getOrd_fecha()+"','"+ordenPojo.getOrd_pagotot()+"')");
+//                        agregado=true;
+//                        st.close();
+//                    }
+//                closeDB();
+//                    } catch (SQLException e) {
+//                        agregado=false;
+//                        e.printStackTrace();
+//                    }
+//            return agregado;
+//        }
+     
      
      public ResultSet tablaReq(){
          ResultSet rs = null;
