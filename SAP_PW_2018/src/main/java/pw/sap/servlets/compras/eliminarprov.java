@@ -41,8 +41,15 @@ public class eliminarprov extends HttpServlet {
               
         QuerysCompras nuevo = new QuerysCompras();
         
+        nuevo.eliminar_prov(rfc);       
+            PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('REGISTRO INSERTADO CORRECTAMENTE');");
+            out.print("window.location='Compras/html/com_proveedor.jsp'");
+            out.println("</script>");
         
-     nuevo.eliminar_prov(rfc);
+        
+     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
