@@ -67,6 +67,8 @@ public class OrdenCompra extends HttpServlet {
             out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }
+          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una orden de compra");
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
