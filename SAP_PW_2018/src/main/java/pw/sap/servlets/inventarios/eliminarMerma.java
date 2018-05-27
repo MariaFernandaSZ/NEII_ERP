@@ -7,6 +7,7 @@ package pw.sap.servlets.inventarios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,21 +40,16 @@ public class eliminarMerma extends HttpServlet {
          String codigo = request.getParameter("id_merma");
          
          registro rg= new registro();
-         
+ 
+      
+  PrintWriter out=response.getWriter();
+   rg.eliminarMerma(codigo);
+            out.println("<script>");
+            out.println("alert('Merma eliminada correctamente');");
+            out.print("window.location='Inventarios/Inventario/merma.jsp'");
+            out.println("</script>");     
               
-          if(rg.eliminarMerma(codigo)== 1){
-                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se elimino una merma");
-            
-                response.getWriter().write("Merma eliminada");
-              
-               
-            }else{
-                
-                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de eliminacion de devolucion");
-            
-                
-                response.getWriter().write("El registro no pudo ser eliminado");
-            }
+ 
          
     }
 
