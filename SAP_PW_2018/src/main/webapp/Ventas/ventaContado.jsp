@@ -93,7 +93,7 @@
                             <%
                                 ResultSet rs = idClient.consultarIDEMP(); 
                                 ResultSet rss = idInter.consultarIDInterm();
-                                ResultSet remp = idEmp.consultarEmpleado(1);
+                                ResultSet remp = idEmp.consultarEmpleado(request.getSession().getAttribute("usuario").hashCode());
                                 ListaProductos.ventList.clear();
                                 ListaProductos.subtotalTotal_ov = 0;
                                 ListaProductos.totalIva_ov = 0;
@@ -166,7 +166,8 @@
 
                             <span id="titulo"><span class="number">3</span>Vendedor</span><br>
                             <% while(remp.next()){ %>
-                            <br><input type="text" name="nomVent" readonly="readonly" placeholder="<%=remp.getString(1)%> <%=remp.getString(2)%>"></input> 
+                            <br>ID VENDEDOR: <input type="text" name="nomVent" id="idVendedor" readonly="readonly" value="<%=request.getSession().getAttribute("usuario").hashCode()%>"></input> 
+                            NOMBRE VENDEDOR<input type="text" name="nombreVent" readonly="readonly" placeholder="<%=remp.getString(1)%> <%=remp.getString(2)%>"></input> 
                             <% } %>
                             <center>
                                 <button type="button" name="agregaProd" style="background-color: #9F150D" class="btn btn-danger" id="btnModal">Agregar producto</button><br>
@@ -230,6 +231,8 @@
             </div>
           </div>
         </div> 
+                            
+        <div id="tmpModal"></div>                    
 
         <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

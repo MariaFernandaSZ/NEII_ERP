@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pw.sap.db.Conexion;
 
 /**
@@ -41,7 +42,12 @@ public class AgregaCalen extends HttpServlet {
         String campos="'"+request.getParameter("nclave")+"',"+request.getParameter("periodo")+",'"+ request.getParameter("fechaini")+"','"+request.getParameter("fechafin")+"','"+request.getParameter("estado")+"'";
         System.out.println("cadena:"+campos);
         c.ingresarRegistro("calen_contable", "clave,periodo,fechaini,fechafin,status", campos);
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion en el calendario");
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se creo un periodo contable");
+        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion en el calendario");
         
         response.sendRedirect("Contabilidad/calen_contable.jsp");
         

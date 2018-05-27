@@ -19,11 +19,11 @@ public class ObjPlanDeCuentas {
         this.id = id;
     }
 
-    public int getId_cuenta() {
+    public Double getId_cuenta() {
         return id_cuenta;
     }
 
-    public void setId_cuenta(int id_cuenta) {
+    public void setId_cuenta(Double id_cuenta) {
         this.id_cuenta = id_cuenta;
     }
 
@@ -67,7 +67,7 @@ public class ObjPlanDeCuentas {
         this.naturaleza = naturaleza;
     }
     int id;
-    int id_cuenta;
+    Double id_cuenta;
     String descripcion;
     String tipo_cuenta;
     String clase_cuenta;

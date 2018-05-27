@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.Contabilidad;
+package pw.sap.servlets.Ventas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,15 +15,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import pw.sap.pojo.Contabilidad.Con_Calendario;
+import pw.sap.pojo.Ventas.OrdenVenta;
+import pw.sap.pojo.Ventas.QuerysVentas;
 
 /**
  *
- * @author fgb
+ * @author ricardozaldivar
  */
-@WebServlet(name = "ActualizacionCalen", urlPatterns = {"/ActualizacionCalen"})
-public class ActualizacionCalen extends HttpServlet {
+@WebServlet(name = "CreaOrdenVenta", urlPatterns = {"/CreaOrdenVenta"})
+public class CreaOrdenVenta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,29 +35,8 @@ public class ActualizacionCalen extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Con_Calendario c=new Con_Calendario();        
-        System.out.println("ahora estoy en Actualizacion");        
-        String clave=(String) request.getSession().getAttribute("clave");        
-        System.out.println("la clave es:"+clave);
-        String fechaini=request.getParameter("Editfechaini");
-        String fechafin=request.getParameter("Editfechafin");
-        int periodo=Integer.parseInt(request.getParameter("periodo"));
-        String status=request.getParameter("Editestado");        
-        c.actualizarCalendario(clave, fechaini, fechafin, periodo, status);        
-        
-//registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se cambio informacion a un periodo contable");
-        // int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una actualizacion de calendario");
-        
-        
-        response.sendRedirect("Contabilidad/calen_contable.jsp");
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,11 +51,7 @@ public class ActualizacionCalen extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ActualizacionCalen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -90,11 +65,47 @@ public class ActualizacionCalen extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
+        
+        QuerysVentas c = null;
         try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ActualizacionCalen.class.getName()).log(Level.SEVERE, null, ex);
+            c = new QuerysVentas();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CreaOrdenVenta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CreaOrdenVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        String id_intermC= request.getParameter("id_intermC");
+        String fecha_ordv=request.getParameter("fecha_ordv");
+        double total_iva=Double.parseDouble(request.getParameter("total_iva"));
+        double subtotal_pago=Double.parseDouble(request.getParameter("subtotal_pago"));
+        double total_pago=Double.parseDouble(request.getParameter("total_pago"));
+        String fecha_entrega=request.getParameter("fecha_entrega");
+        String moneda="Pesos";
+        int id_emp=Integer.parseInt(request.getParameter("id_emp"));
+        
+        OrdenVenta ordenV = new OrdenVenta(id_intermC,fecha_ordv,total_iva,subtotal_pago,total_pago,fecha_entrega,moneda,id_emp);
+        
+        try {
+            boolean sw=c.agregarOrdenVenta(ordenV);
+            
+            if (sw) {                        
+                PrintWriter out = response.getWriter();
+                out.print(total_pago);
+            }else{
+                        
+                PrintWriter out = response.getWriter();
+
+                out.print(total_pago);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CreaOrdenVenta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CreaOrdenVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
     }
 
     /**

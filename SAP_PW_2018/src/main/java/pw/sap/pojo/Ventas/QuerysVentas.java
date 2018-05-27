@@ -111,6 +111,23 @@ public class QuerysVentas {
          return id;
         }
         
+        public String consultarOrdenVenta(){
+         String id="";
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          ResultSet rs=st.executeQuery("select id_ordenventa from OrdenVenta order by id_ordenventa desc limit 1");
+          while(rs.next()){
+           id = rs.getString(1);
+          }
+          rs.close();
+          st.close();
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return id;
+        }
+        
         public String consultarInter(){
          String id="";
          try{
@@ -220,6 +237,26 @@ public class QuerysVentas {
          }
          return rs;
         } 
+         
+        public boolean agregarOrdenVenta(OrdenVenta ov) throws SQLException, ClassNotFoundException{
+            boolean agregado=false;
+            Genera_IDs idcli = new Genera_IDs();
+            openDB();
+            try {
+                    if(conn!=null){
+                        Statement st;
+                        st = conn.createStatement();
+                        st.executeUpdate("INSERT INTO OrdenVenta VALUES ('"+idcli.idOrdenVenta()+"','"+ov.getId_intermC()+"','"+ov.getFecha_ordv()+"',current_timestamp,"+ov.getTotal_iva()+","+ov.getSubtotal_pago()+","+ov.getTotal_pago()+",'"+ov.getFecha_entrega()+"',null,'"+ov.getMoneda()+"',"+ov.getId_emp()+")");
+                        agregado=true;
+                        st.close();
+                    }
+                closeDB();
+                    } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    }
+            return agregado;
+        }
          
          
           public int insercionRegistro(int id_emp, String area, String des) throws SQLException{

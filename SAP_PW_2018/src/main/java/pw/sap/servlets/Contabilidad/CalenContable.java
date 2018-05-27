@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pw.sap.db.Conexion;
 
 /**
@@ -46,8 +47,10 @@ public class CalenContable extends HttpServlet {
         request.getSession().setAttribute("fechaini", l.get(2));
         request.getSession().setAttribute("fechafin", l.get(3));
         request.getSession().setAttribute("status", l.get(4));
-        //HttpSession sesion=request.getSession();
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion de calendario contable");
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se realizo una consulta al calendario");
         
         response.sendRedirect("Contabilidad/calen_contable_1.jsp");
     }

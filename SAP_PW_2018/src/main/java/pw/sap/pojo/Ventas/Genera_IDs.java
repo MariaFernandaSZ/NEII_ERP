@@ -44,4 +44,19 @@ public class Genera_IDs {
             return "itr"+String.valueOf(con);
         }
     }
+    
+    public String idOrdenVenta() throws ClassNotFoundException, SQLException{
+        
+        QuerysVentas c = new QuerysVentas();
+        
+        String idCli = c.consultarOrdenVenta();
+        
+        if ("".equals(idCli) || idCli == null) {
+            return "ven1";
+        }else{
+            String num = idCli.replace("ven", "");
+            int con = Integer.parseInt(num)+1;
+            return "ven"+String.valueOf(con);
+        }
+    }
 }

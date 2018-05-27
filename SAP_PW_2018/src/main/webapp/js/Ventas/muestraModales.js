@@ -113,16 +113,7 @@ function valAgrega(){
         var precioprodVar=$('#precioprod').val();
         var ivaprodVar=$('#ivaprod').val();
         var subtotalVar=$('#subtotal').val();
-//                $.ajax({
-//                    type:'POST',
-//                    datatype: 'json',
-//                    url: '../ListaProductos',
-//                    data: {codprod:codprodu,cant:cant,nomprod:nomprodu,precioprod:precioprod,ivaprod:ivaprodu,subtotal:subtotal},
-//                    success: function (result) {
-//                        //var producto = $.parseJSON(result);
-//                        //alert("Codigo: "+codprodu+"\n Nombre: "+producto.nombre+"\n Precio Unitario: "+precioprod+"\n Cantidad: "+producto.cantidad + "\n Iva: "+producto.iva+"\n Subtotal: "+producto.subtotal);
-//                    }
-//                });
+
 
 			$.post('../ListaProductos', {
 				codprod : codprodVar,
@@ -146,6 +137,15 @@ function valAgrega(){
                         $('#totalOV').val(ov.total_pago);
                     }
                 });
+                
+                $('#codprod').val("");
+                $('#cant').val("");
+                $('#nomprod').val("");
+                $('#precioprod').val("");
+                $('#ivaprod').val("");
+                $('#subtotal').val("");
+                $('#agregaProductos').modal('hide');
+                
     } 
 
  
@@ -474,6 +474,32 @@ function validaTipoPago(){
             }); 
 
           }else{
+              
+              var id_interVar=$("#nomInter option:selected").val();
+              var fecha_ovVar=$('#fecha1').val();
+              var total_ivaVar=$('#totalIvaOV').val();
+              var subtotalVar=$('#subtotalOV').val();
+              var total_ovVar=$('#totalOV').val();
+              var fecha_entregaVar=$('#fecha2').val();
+              var id_empVar=$('#idVendedor').val();
+            
+                $.ajax({
+                    type:'POST',
+                    url: '../CreaOrdenVenta',
+                    datatype: 'json',
+                    data: {
+                        id_intermC:id_interVar,
+                        fecha_ordv:fecha_ovVar,
+                        total_iva:total_ivaVar,
+                        subtotal_pago:subtotalVar,
+                        total_pago:total_ovVar,
+                        fecha_entrega:fecha_entregaVar,
+                        id_emp:id_empVar
+                    },
+                    success: function (result) {
+                        alert("ORDEN DE VENTA CREADA, PAGO: "+result)
+                    }
+                });
                   
             $.post('modales/pagoTarjeta.jsp',function(xx){
 
