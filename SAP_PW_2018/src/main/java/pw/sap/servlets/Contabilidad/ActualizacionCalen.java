@@ -45,6 +45,9 @@ public class ActualizacionCalen extends HttpServlet {
         int periodo=Integer.parseInt(request.getParameter("periodo"));
         String status=request.getParameter("Editestado");        
         c.actualizarCalendario(clave, fechaini, fechafin, periodo, status);        
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una actualizacion de calendario");
+        
+        
         response.sendRedirect("Contabilidad/calen_contable.jsp");
         
         
