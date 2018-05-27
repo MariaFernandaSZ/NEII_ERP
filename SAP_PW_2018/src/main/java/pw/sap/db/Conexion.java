@@ -272,8 +272,8 @@ public class Conexion {
          
             while (rs.next()) {                
                 //System.out.println(rs.getInt(1));
-                r.add(rs.getInt(1));
-                r.add(rs.getString(2));
+                r.add(rs.getString(1));
+                r.add(rs.getInt(2));
                 r.add(rs.getString(3));
                 r.add(rs.getString(4));
                 r.add(rs.getString(5));
