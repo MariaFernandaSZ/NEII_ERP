@@ -170,7 +170,7 @@
                         
                        
                     </table>
-                        <input type="submit" name="requisitos" value="ingresar">
+                        <button type="submit" style="background-color: #9F150D" name="requisitos" class="btn btn-danger">Ingresar</button>
                     </div>
                 </div>
                             </div>      

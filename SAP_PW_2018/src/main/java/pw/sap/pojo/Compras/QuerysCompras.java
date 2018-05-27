@@ -209,6 +209,8 @@ public class QuerysCompras {
         return valor;
     }
      
+     public 
+     
      public ResultSet tablaReq(){
          ResultSet rs = null;
          try{
@@ -258,5 +260,8 @@ public class QuerysCompras {
             return eliminado;
         
     }
+    
+    
+    public 
 }
     

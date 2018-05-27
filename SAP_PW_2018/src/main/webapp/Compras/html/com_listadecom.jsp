@@ -105,11 +105,39 @@
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                         </form>
                     </div> 
-                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12"><!-- Seccion central -->                          
-                    </div>
-                </div>
+                    
+                    <!-- Seccion central -->                          
+                    <div style="background-color: #f4f7f8;" class="col-lg-5 col-md-5 col-sm-5 col-xs-11 form-style-5">  <!-- Seccion tabla resultados de busqueda -->
+            
+            <span id="titulo"><span class="number">T</span>Resultados&nbsp;de&nbsp;busqueda</span>
+            
+            <div class="row">
+                <div class="table-responsive"><table class="table table-striped">
+                    
+                        <thead>
+                            <tr>
+                                <th scope="col">folio</th>
+                                <th scope="col">ID&nbsp;producto</th>
+                                <th scope="col">RFC&nbsp;proveedor</th>
+                                <th scope="col">Fecha&nbsp;de&nbsp;compra</th>
+                                
+                                
+                            </tr>
+                            
+                        </thead>
+                        
+                    </table></div>
+                
+                
+            </form>
             </div> 
+                  
+                </div>
+            
         </div>
+        </div>
+        
+        
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
