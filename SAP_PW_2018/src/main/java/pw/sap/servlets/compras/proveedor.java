@@ -33,6 +33,7 @@ public class proveedor extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        QuerysCompras nuevo = new QuerysCompras();
         
         String rfc = request.getParameter("nuevo_rfc");
         String nom_emp = request.getParameter("nuevo_nomemp");
@@ -42,15 +43,16 @@ public class proveedor extends HttpServlet {
         String estado = request.getParameter("nuevo_estado");
         String muni = request.getParameter("minicipio_prov");
         String cp = request.getParameter("nuevo_cp");
-        
-        QuerysCompras nuevo = new QuerysCompras();
-        
-        Proveedores prov = new Proveedores(rfc, nom_emp, nom_cont, correo, tel, estado, muni, cp);
-        
-       nuevo.agregarProveedor(prov);
+             
+      nuevo.agregarProveedor(rfc, nom_emp, nom_cont, correo, tel, estado, muni, cp);
  
-        response.sendRedirect("Compras/html/com_proveedor.jsp");
         
+            PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
+            out.print("window.location='Compras/html/com_proveedor.jsp'");
+            out.println("</script>");
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
