@@ -69,15 +69,7 @@ public class QuerysVentas {
         }
         
         
-        public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
-        openDB();
-        int valor=1;
-        PreparedStatement ps;
-        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,desc) VALUES ("+id_emp+",'"+area+"','"+des+"'");
-        valor= ps.executeUpdate();
-        closeDB();        
-        return valor;
-    }
+
         
         
         
@@ -187,6 +179,18 @@ public class QuerysVentas {
           openDB();
           Statement st=conn.createStatement();
           rs=st.executeQuery("select id_interm, nombre_inter from interm_cliente");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+         
+         public ResultSet consultarEmpleado(int id_emp){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("select nombre_emp,apellido_emp from empleado where id_emp="+id_emp);
          }catch(SQLException se){
           se.printStackTrace();
          }

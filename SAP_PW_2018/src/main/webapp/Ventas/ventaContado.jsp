@@ -89,10 +89,15 @@
                                                 <form method="post">
                             <jsp:useBean id="idClient" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
                             <jsp:useBean id="idInter" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                            <jsp:useBean id="idEmp" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
                             <%
                                 ResultSet rs = idClient.consultarIDEMP(); 
                                 ResultSet rss = idInter.consultarIDInterm();
-                                ListaProductos.ventList.clear();                                               
+                                ResultSet remp = idEmp.consultarEmpleado(1);
+                                ListaProductos.ventList.clear();
+                                ListaProductos.subtotalTotal_ov = 0;
+                                ListaProductos.totalIva_ov = 0;
+                                ListaProductos.TOTAL_ov = 0;
                             %>  
                             <span id="titulo"><span class="number">1</span> Informaci&oacute;n de cliente</span><br>
                             <span class="idemp"><input type="text" id="IDCliente" name="IDCliente" placeholder="ID Cliente"></span>
@@ -109,8 +114,8 @@
                                     %>
                                 </optgroup>
                             </select> 
-                            <select id="nomInter" name="nombreEmp">
-                                <optgroup label="Empresa">
+                            <select id="nomInter" name="nomInter">
+                                <optgroup label="Intermediario">
                                     <option value="emp1">Intermediario</option>
                                     <%
                                         while(rss.next()){
@@ -160,20 +165,22 @@
                         <form>
 
                             <span id="titulo"><span class="number">3</span>Vendedor</span><br>
-                            <br><input type="text" name="nomVent" readonly="readonly" placeholder="Nombre Vendedor"></input> 
+                            <% while(remp.next()){ %>
+                            <br><input type="text" name="nomVent" readonly="readonly" placeholder="<%=remp.getString(1)%> <%=remp.getString(2)%>"></input> 
+                            <% } %>
                             <center>
                                 <button type="button" name="agregaProd" style="background-color: #9F150D" class="btn btn-danger" id="btnModal">Agregar producto</button><br>
                                 <br><button type="button" name="EliminaProd" style="background-color: #9F150D" class="btn btn-danger">Eliminar producto</button><br>
 
                                 <br><span id="titulo"><span class="number">4</span>Resultados</span><br>
 
-                                <br><span >Subtotal&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Subtotal" readonly="readonly" placeholder="$13,728.00"/></span><br>
+                                <br><span >Subtotal&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Subtotal" id="subtotalOV" readonly="readonly" placeholder="$0000.00"/></span><br>
 
-                                <br><span>IVA&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="IVA" readonly="readonly" placeholder="$2,196.48"/></span>
+                                <br><span>IVA&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="IVA" id="totalIvaOV" readonly="readonly" placeholder="$0000.00"/></span>
 
                                 <br><span>Descuento&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Descuento" readonly="readonly" placeholder="0%"/></span>
 
-                                <br><span>TOTAL&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Total" readonly="readonly" placeholder="$15,924.48"/></span><br>
+                                <br><span>TOTAL&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Total" id="totalOV" readonly="readonly" placeholder="$0000.00"/></span><br>
 
 
                                 <br><button type="button" name="pagar" style="background-color: #9F150D" onclick="validaFechasCONTADO()" class="btn btn-danger">Pagar</button> <button type="button" name="cancelar" id="cancelar" onclick="cancelar()" style="background-color: #9F150D" class="btn btn-danger">Cancelar</button>

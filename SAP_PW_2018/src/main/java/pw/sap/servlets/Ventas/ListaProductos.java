@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Ventas.ListaDeProductos;
+import pw.sap.pojo.Ventas.OrdenVenta;
 import pw.sap.pojo.Ventas.ProductoBean;
 import pw.sap.pojo.Ventas.VentaLista;
 
@@ -105,7 +106,11 @@ public class ListaProductos extends HttpServlet {
                             out.println("</tr>");    
                             out.println("</thead>");
                             out.println("<tbody>");
-
+                            
+                        subtotalTotal_ov *= 0;   
+                        totalIva_ov *= 0;
+                        TOTAL_ov *= 0;        
+                                
 		for(int i=0; i<ventList.size(); i++){
 			VentaLista prod = ventList.get(i);
 			out.println("<tr>");
@@ -117,16 +122,20 @@ public class ListaProductos extends HttpServlet {
 			out.println("<td>"+prod.getSubtotal()+"</td>");
 			out.println("</tr>");
                         
-                        subtotalTotal_ov += prod.getSubtotal();
+                        subtotalTotal_ov += prod.getPrecioUnitario();
                         totalIva_ov += prod.getIva();
+                        TOTAL_ov +=prod.getSubtotal();
 		}
 		out.println("</tbody>");
                 out.println("</table>");
                 
-                TOTAL_ov = subtotalTotal_ov + totalIva_ov;
-                
+//                OrdenVenta ov = new OrdenVenta();
+//                ov.setSubtotal_pago(subtotalTotal_ov);
+//                ov.setTotal_iva(totalIva_ov);
+//                ov.setTotal_pago(TOTAL_ov);
+//                
 //            Gson gson = new Gson();
-//            out.print(gson.toJson(new VentaLista(codprod,nomprod,cant,precioprod,ivaprod,subtotal)));
+//            out.print(gson.toJson(ov));
 //            out.flush();
 //            out.close();
 

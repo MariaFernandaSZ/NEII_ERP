@@ -134,6 +134,18 @@ function valAgrega(){
 			}, function(responseText) {
 				$('#tablaProductos').html(responseText);
 			});
+
+                $.ajax({
+                    type:'POST',
+                    url: '../MandaOrdenVenta',
+                    datatype: 'json',
+                    success: function (result) {
+                        var ov = $.parseJSON(result);
+                        $('#subtotalOV').val(ov.subtotal_pago);
+                        $('#totalIvaOV').val(ov.total_iva);
+                        $('#totalOV').val(ov.total_pago);
+                    }
+                });
     } 
 
  

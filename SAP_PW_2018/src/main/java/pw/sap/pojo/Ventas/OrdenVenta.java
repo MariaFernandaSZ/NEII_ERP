@@ -54,6 +54,12 @@ public class OrdenVenta {
        
     }
 
+    public OrdenVenta(double total_iva, double subtotal_pago, double total_pago) {
+        this.total_iva = total_iva;
+        this.subtotal_pago = subtotal_pago;
+        this.total_pago = total_pago;
+    }
+
     
     
     /**

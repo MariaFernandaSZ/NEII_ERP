@@ -17,13 +17,13 @@ public class GeneraOrdenVenta {
     double totalIva = ListaProductos.totalIva_ov;
     double total_ov = ListaProductos.TOTAL_ov;
     
-    OrdenVenta ov = new OrdenVenta();
+    public static OrdenVenta ov = new OrdenVenta();
     
     public void generaOrden(){
         
         ov.setSubtotal_pago(subtotal);
         ov.setTotal_iva(totalIva);
-        ov.setTotal_pago(totalIva);
+        ov.setTotal_pago(total_ov);
     }
     
 }
