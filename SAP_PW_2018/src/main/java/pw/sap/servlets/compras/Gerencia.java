@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.rh;
+package pw.sap.servlets.compras;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,16 +11,18 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.db.Conexion;
+import pw.sap.pojo.Compras.QuerysCompras;
 
 /**
  *
- * @author Katy Manjarrez
+ * @author Marii
  */
-public class Servlet_despedirEmpleado extends HttpServlet {
+@WebServlet(name = "Gerencia", urlPatterns = {"/Gerencia"})
+public class Gerencia extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,22 +36,18 @@ public class Servlet_despedirEmpleado extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c = new Conexion();
-        c.openDB();
-        try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("despedirIdEmpleado");
-            String fecha = request.getParameter("despedirFecha");
-            Integer resultado = 0;
-         
-                resultado = c.borrar("empleado", "id_emp", "= "+id);
-                
-           
-            if(resultado == 1){
-                response.getWriter().write("Empleado Despedido");
-            }else{
-                response.getWriter().write("El ID del empleado no existe");
-            }
-        }
+         QuerysCompras nuevo = new QuerysCompras();
+        
+        int mes=01;
+       
+             nuevo.gerencia(mes);
+ 
+        
+            PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
+            out.print("window.location='Gerencia/IG/ig_inicio.jsp'");
+            out.println("</script>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,9 +65,9 @@ public class Servlet_despedirEmpleado extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Gerencia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Gerencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -87,9 +85,9 @@ public class Servlet_despedirEmpleado extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Gerencia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Gerencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -104,4 +102,3 @@ public class Servlet_despedirEmpleado extends HttpServlet {
     }// </editor-fold>
 
 }
-

@@ -131,25 +131,19 @@ function agregarTarea(){
 
 function eliminarTarea(){
     var numeros = /[0-9]/;
-    var letras = /[A-Za-z]/;
    
-    var nombre = document.getElementById('eliminarNombreTarea').value;
+        var nombre = document.getElementById('eliminarNombreTarea').value;
         if(numeros.test(nombre)){alert('Modifique el nombre, no es numerico');return false;}
-
-    var id = document.getElementById('eliminarIdTarea').value;
-     if(letras.test(id)){alert('Modifique el ID del empleado, no contiene letras');return false;}
+        
+        var id = document.getElementById('eliminarIdTarea').value;
 //    if(!(/^[a-zA-z0-9]{8}$/.test(id))){
 //                alert('Favor de ingresar el ID de empleado con los 8 digitos');                
 //                return false;
 //            }
     if(nombre==="" && id===""){
         alert('Debe agregar el nombre o ID de la tarea a eliminar.');
-        return false;
-    }else{
-        alert('Tarea eliminada.');
-        $.get('../Vistas/eliminarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
-        return false;
     }
+               document.forms[0].action="../../Servlet_eliminarTarea";
 }
 
 function modificarTarea(){
@@ -509,15 +503,15 @@ $(document).ready(function(){
 //        event.preventDefault();
 //    });
     
-    $(document).on("submit","#formEliminarTarea", function(event){
-        var $form = $(this);
-        $.post($form.attr("action"), $form.serialize(), function(responseText){
-            alert(responseText);
-            $('#eliminarIdTarea').val("");
-            $('#eliminarNombreTarea').val("");
-        });
-        event.preventDefault();
-    });
+//    $(document).on("submit","#formEliminarTarea", function(event){
+//        var $form = $(this);
+//        $.post($form.attr("action"), $form.serialize(), function(responseText){
+//            alert(responseText);
+//            $('#eliminarIdTarea').val("");
+//            $('#eliminarNombreTarea').val("");
+//        });
+//        event.preventDefault();
+//    });
     
 
     $(document).on("submit","#formConsultarEmpleado",function(event){

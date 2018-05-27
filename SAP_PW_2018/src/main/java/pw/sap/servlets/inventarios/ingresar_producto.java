@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.rh;
+package pw.sap.servlets.inventarios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,14 +15,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.db.Conexion;
+import pw.sap.pojo.Inventarios.QuerysProducto;
 
 /**
  *
- * @author Windows 10 Pro
+ * @author migue_f4t6hjx
  */
-@WebServlet(name = "Servlet_eliminarTarea", urlPatterns = {"/Servlet_eliminarTarea"})
-public class Servlet_eliminarTarea extends HttpServlet {
+@WebServlet(name = "ingresar_producto", urlPatterns = {"/ingresar_producto"})
+public class ingresar_producto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +36,45 @@ public class Servlet_eliminarTarea extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        Conexion c = new Conexion();
-        try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("eliminarIdTarea");
-            String nombre = request.getParameter("eliminarNombreTarea");
-            Integer resultado = 0;
-            if(!id.equals("")){
-                resultado = c.borrar("tarea", "id_tarea", "= "+id);
-            }else{
-                if(!nombre.equals("")){
-                    resultado = c.borrar("tarea", "nombre_tarea", "= '"+nombre+"'");
-                }
-            }
-            if(resultado == 1){
-                response.getWriter().write("Tarea eliminada");
-            }else{
-                response.getWriter().write("La tarea no existe");
-            }
-        }
+       
+        QuerysProducto qp= new QuerysProducto();
+        qp.agregar("id_prod", "prov", "nombre", "tipo", "cant","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
+        
+        PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('No se puede mermar más de lo que existe');");
+            out.print("window.location=''");// Poner entre comillas la pagina para redireccionar
+            out.println("</script>");
+        
+        
+        
+        
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ingresar_producto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ingresar_producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -71,9 +89,9 @@ public class Servlet_eliminarTarea extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_eliminarTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ingresar_producto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_eliminarTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ingresar_producto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
