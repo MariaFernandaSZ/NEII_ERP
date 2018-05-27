@@ -53,7 +53,8 @@ public class listaCompraServlet extends HttpServlet {
         
         listCompraPojo litaBean = new listCompraPojo(list_folio, id_producto, prov_rfc, list_fecha);
         
-        
+         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de la lista de compra");
+         
         
     }
 
