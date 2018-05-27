@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pw.sap.pojo.Contabilidad.Con_Calendario;
 
 /**
@@ -45,7 +46,13 @@ public class ActualizacionCalen extends HttpServlet {
         int periodo=Integer.parseInt(request.getParameter("periodo"));
         String status=request.getParameter("Editestado");        
         c.actualizarCalendario(clave, fechaini, fechafin, periodo, status);        
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una actualizacion de calendario");
+        
+//registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se cambio informacion a un periodo contable");
+        // int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una actualizacion de calendario");
         
         
         response.sendRedirect("Contabilidad/calen_contable.jsp");

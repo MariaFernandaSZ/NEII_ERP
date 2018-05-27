@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pw.sap.db.Conexion;
 
 /**
@@ -47,8 +48,8 @@ public class EditaCalen extends HttpServlet {
         request.getSession().setAttribute("fechaini", l.get(2));
         request.getSession().setAttribute("fechafin", l.get(3));
         request.getSession().setAttribute("status", l.get(4));
-        //HttpSession sesion=request.getSession();
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito el calendario");
+        HttpSession sesion=request.getSession();
+        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito el calendario");
         
         response.sendRedirect("Contabilidad/calen_contable_edita.jsp");
         
