@@ -1,13 +1,5 @@
-<%-- 
-    Document   : Inventari_g1
-    Created on : 27/05/2018, 11:16:11 PM
-    Author     : montse
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@page import="java.sql.ResultSet"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
@@ -108,18 +100,20 @@ and open the template in the editor.
                             
                             <input type="submit" name="ConsultaInvg" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
                            </form>
+                    <form action="../Inventario/inventari_g1.jsp" method="POST">
+                            <span id="titulo"><span class="number">2</span> Consulta General</span><br><br>
+                            <input type="submit" name="ConsultaInG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
+                           </form>
                             <br><br>
-                    </form>
-                    <form action="inventario_g.jsp" method="POST">
-                            <span id="titulo"><span class="number">2</span> Consulta general</span><br><br>
+                            <span id="titulo"><span class="number">3</span> Consulta especifica de registro</span><br><br>
                             <center>
-                            <input type="submit" name="ConsultaG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"><br>
+                            <button type="button" name="ConEsIG" data-toggle="modal" data-target="#ConsultaIG" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
                             </center> <br>
                             
                             
                     <form>
 
-                            <span id="titulo"><span class="number">3</span> Reporte</span><br><br>
+                            <span id="titulo"><span class="number">4</span> Reporte</span><br><br>
                             
                            <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_Re.pdf'">Generar PDF</button><br><br>
                            <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_RE.ods'">Generar Excel</button><br><br>
@@ -134,8 +128,8 @@ and open the template in the editor.
 
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
              <div class="table-responsive">
-                       <table class="table table-striped table-responsive">
-                                    
+                 <table class="table table-striped">
+                                    <thead>
                                         <tr>
                                             <th scope="col">ID Producto</th>
                                             <th scope="col">Nombre</th>
@@ -145,29 +139,43 @@ and open the template in the editor.
                                             <th scope="col">Minimo</th>
                                             <th scope="col">Costo Unitario</th>
                                             <th scope="col">Costo de venta</th>
+                                            </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    <%
+                                      
+                                        ResultSet rsTabla = interTabla.ConsultaG();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(7)%></td>
+                                            <td><%=rsTabla.getString(8)%></td>
                                             
+                                      
                                         </tr>
-                                        <tr>
-                                         <td><%=request.getSession().getAttribute("id_producto")%></td>
-                                         <td><%=request.getSession().getAttribute("nombre")%></td>
-                                         <td><%=request.getSession().getAttribute("tipo_producto")%></td>
-                                         <td><%=request.getSession().getAttribute("prov_nom_emp")%></td>
-                                         <td><%=request.getSession().getAttribute("cantidad")%></td>
-                                         <td><%=request.getSession().getAttribute("minimo")%></td>
-                                         <td><%=request.getSession().getAttribute("costo_unitario")%></td>
-                                         <td><%=request.getSession().getAttribute("prov_nom_emp")%></td>
-                                         <td><%=request.getSession().getAttribute("costo_venta")%></td>
-                                         
-                                         
-                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
                                 </table>
+                       
                         </div>    
             </div>
             
             </div>  
             </div>
         
-<<<<<<< Upstream, based on origin/master
+
          <!-- Modal Consulta especifica-->
         <div class="modal fade" id="ConsultaIG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -196,8 +204,7 @@ and open the template in the editor.
        
                 
 
-=======
->>>>>>> d24104c inventario general
+
         <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
            <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
            <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
