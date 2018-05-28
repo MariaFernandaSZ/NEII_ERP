@@ -151,5 +151,43 @@ public class registro {
         return r;
     }
      
-      
+      public ArrayList cantidadMerma(String id_merma) throws SQLException {
+        openDB();    
+        ArrayList r=new ArrayList();
+        //Statement stmt;
+        PreparedStatement ps;
+        //stmt = conn.createStatement();
+        ps=conn.prepareStatement("SELECT cantidad FROM merma WHERE id_merma=? ");
+        ps.setString(1, id_merma);
+        //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
+          ResultSet rs= ps.executeQuery();
+         
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+                r.add(rs.getString(1));                
+            }
+            
+        closeDB();        
+        return r;
+    }
+        public ArrayList productoMerma(String id_merma) throws SQLException {
+        openDB();    
+        ArrayList r=new ArrayList();
+        //Statement stmt;
+        PreparedStatement ps;
+        //stmt = conn.createStatement();
+        ps=conn.prepareStatement("SELECT id_producto FROM merma WHERE id_merma=? ");
+        ps.setString(1, id_merma);
+        //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
+          ResultSet rs= ps.executeQuery();
+         
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+                r.add(rs.getString(1));                
+            }
+            
+        closeDB();        
+        return r;
+    }
+         
 }

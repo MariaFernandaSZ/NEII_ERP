@@ -6,6 +6,8 @@
 package pw.sap.pojo.Inventarios;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -31,7 +33,7 @@ public class QuerysInventarios {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/PWS", connProp);
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
 
     /**
@@ -62,5 +64,24 @@ public class QuerysInventarios {
                     }
             return agregado;
         }
+    
+     public ResultSet consultaGeneral() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select nombre,tipo_producto,prov_nom_emp,cantidad,minimo,costo_unitario, costo_venta  \n" +
+                                                    "from producto\n" +
+                                                    "inner join proveedor\n" +
+                                                    "on producto.proveedor=proveedor.prov_rfc;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
+    
       
 }

@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -122,34 +123,44 @@ and open the template in the editor.
 
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
              <div class="table-responsive">
-                        <table class="table table-bordered">
-                              <tr>
-                                  <th>Id de producto</th>
-                                  <th>Proveedor</th>
-                                  <th>Nombre del producto</th>
-                                  <th>Tipo de producto</th>
-                                  <th>Cantidad en existencia</th>
-                                  <th>M&iacute;nimo</th>
-                                  <th>M&aacute;ximo</th>
-                                  <th>Costo unitario</th>
-                                  <th>Costo total</th>
-                                  <th>Unidad de medida</th>
+                       <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Proveedor</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Minimo</th>
+                                            <th scope="col">Costo Unitario )</th>
+                                            <th scope="col">Costo de venta </th>
                                             
-                              </tr>
-                              <tr>
-                                  <td><%= request.getAttribute("id_producto")%></td>
-                                  <td><%= request.getAttribute("proveedor")%></td>
-                                  <td><%= request.getAttribute("nombre_pro")%></td>
-                                  <td><%= request.getAttribute("tipo_pro")%></td>
-                                  <td><%= request.getAttribute("cant_exist")%></td>
-                                  <td><%= request.getAttribute("min_pro")%></td>
-                                  <td><%= request.getAttribute("max_pro")%></td>
-                                  <td><%= request.getAttribute("costo_uni")%></td>
-                                  <td><%= request.getAttribute("costo_ven")%></td>
-                                  <td><%= request.getAttribute("uni_med")%></td>
-                                            
-                             </tr>
-                        </table>    
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    <%
+                                      
+                                        ResultSet rsTabla = interTabla.consultaGeneral();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td>$<%=rsTabla.getString(6)%></td>
+                                            <td>$<%=rsTabla.getString(7)%></td>
+                                      
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
                         </div>    
             </div>
             

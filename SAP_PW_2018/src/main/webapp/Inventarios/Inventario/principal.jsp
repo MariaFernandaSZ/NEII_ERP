@@ -134,7 +134,7 @@ and open the template in the editor.
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="form-style-5" id="cono">
-                        <img src="../imagenes/grafica.gif" class="img-thumbnail" alt="grafica" width="1000" height="800" > <br><br>
+                      <br><br>
                     </div>
 
                 </div>
