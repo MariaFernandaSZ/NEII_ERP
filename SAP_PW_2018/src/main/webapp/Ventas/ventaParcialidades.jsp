@@ -183,40 +183,13 @@
 
                 </div>
 
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="table-responsive">
                         <div id="tablaProductos"></div>
                     </div> 
 
                 </div>
 
-              <%--  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="listaProductos">
-                            <thead>
-                                <tr>
-                                    <th scope="col">C&oacute;digo</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio unitario</th>
-                                    <th scope="col">IVA</th>
-                                    <th scope="col">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>7702111333581</td>
-                                    <td>Impresora LaserJet HP</td>
-                                    <td>2</td>
-                                    <td>$572.00</td>
-                                    <td>$91.52</td>
-                                    <td>$1,144.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> 
-
-                </div>--%>
 
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
 
@@ -224,8 +197,7 @@
                     <div class="form-style-5">
                         <form>
 
-                            <span id="titulo"><span class="number">3</span>Vendedor</span><br>
-                            <br><input type="text" name="nomVent" readonly="readonly" placeholder="Nombre Vendedor"></input> 
+                            <span id="titulo"><span class="number">3</span>Vendedor</span><br> 
                              <% while(remp.next()){ %>
                             <br>ID VENDEDOR: <input type="text" name="nomVent" id="idVendedor" readonly="readonly" value="<%=request.getSession().getAttribute("usuario").hashCode()%>"></input> 
                             NOMBRE VENDEDOR<input type="text" name="nombreVent" readonly="readonly" placeholder="<%=remp.getString(1)%> <%=remp.getString(2)%>"></input> 
