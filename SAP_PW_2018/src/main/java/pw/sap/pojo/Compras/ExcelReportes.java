@@ -19,13 +19,16 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -235,7 +238,7 @@ public class ExcelReportes
         }
     }
 
-    public void reportePtoveedorBD()
+    public void reporteProveedorBD()
     {
         Workbook libroReporte = new XSSFWorkbook();
         Sheet hojaR = libroReporte.createSheet("Reporte Productos");
@@ -262,6 +265,7 @@ public class ExcelReportes
            CellStyle tituloEstilo = libroReporte.createCellStyle();
            tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
            tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+           //Crear Fuente
            Font fuenteTitulo = libroReporte.createFont();
            fuenteTitulo.setFontName("Arial");
            fuenteTitulo.setBold(true);
@@ -276,9 +280,33 @@ public class ExcelReportes
            //Combinar celdas, parametros (fila donde empieza, ultima fila que utilizara, primer columna que utilizara, ultima columna que utilizara)
            hojaR.addMergedRegion(new CellRangeAddress(1, 2, 1, 3));
            
+           String[] cabecera = new String[]{"RFC Proveedor", "Nombre de la Empresa", "Nombre del Contacto", "Correo del Poveedor", "Teléfono del Proveedor", "Estado", "Municipio", "Codigo Postal"};
            
+           CellStyle estiloEncabezado = libroReporte.createCellStyle();
+           estiloEncabezado.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+           estiloEncabezado.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+           estiloEncabezado.setBorderBottom(BorderStyle.THIN);
+           estiloEncabezado.setBorderLeft(BorderStyle.THIN);
+           estiloEncabezado.setBorderRight(BorderStyle.THIN);
+           estiloEncabezado.setBorderTop(BorderStyle.THIN);
+           
+           Font fuenteEncabezado = libroReporte.createFont();
+           fuenteEncabezado.setFontName("Arial");
+           fuenteEncabezado.setBold(true);
+           fuenteEncabezado.setColor(IndexedColors.WHITE.getIndex());
+           fuenteEncabezado.setFontHeightInPoints((short)12);
+           estiloEncabezado.setFont(fuenteEncabezado);
+           
+           Row filaEncabezado = hojaR.createRow(4);
+           
+            for (int i = 0; i < cabecera.length; i++)
+            {
+                Cell celdaEncabezado = filaEncabezado.createCell(i);
+                celdaEncabezado.setCellStyle(estiloEncabezado);
+                celdaEncabezado.setCellValue(cabecera[i]);
+            }
            //Archivo a generar
-           FileOutputStream archivoReporte = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\PrimerReporteCompras.xlsx");
+           FileOutputStream archivoReporte = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\Reporte.xlsx");
            //Se escribe en el libro
            libroReporte.write(archivoReporte);
            //Se Cierra el archivo
