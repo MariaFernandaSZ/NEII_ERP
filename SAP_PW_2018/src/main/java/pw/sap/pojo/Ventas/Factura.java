@@ -11,9 +11,6 @@ package pw.sap.pojo.Ventas;
  */
 public class Factura {
     
-    private int id;
-    private String uuid;
-    private String folio;
     private String rfc_receptor;
     private String rfc_emisor;
     private double subtotal;
@@ -22,12 +19,8 @@ public class Factura {
     private String lugar_exp;
     private String forma_pago;
     private String tipo_venta;
-    private String id_ordenventa;
 
-    public Factura(int id, String uuid, String folio, String rfc_receptor, String rfc_emisor, double subtotal, double total_iva, double total, String lugar_exp, String forma_pago, String tipo_venta, String id_ordenventa) {
-        this.id = id;
-        this.uuid = uuid;
-        this.folio = folio;
+    public Factura(String rfc_receptor, String rfc_emisor, double subtotal, double total_iva, double total, String lugar_exp, String forma_pago, String tipo_venta) {
         this.rfc_receptor = rfc_receptor;
         this.rfc_emisor = rfc_emisor;
         this.subtotal = subtotal;
@@ -36,52 +29,9 @@ public class Factura {
         this.lugar_exp = lugar_exp;
         this.forma_pago = forma_pago;
         this.tipo_venta = tipo_venta;
-        this.id_ordenventa = id_ordenventa;
     }
+
     
-    
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * @param uuid the uuid to set
-     */
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    /**
-     * @return the folio
-     */
-    public String getFolio() {
-        return folio;
-    }
-
-    /**
-     * @param folio the folio to set
-     */
-    public void setFolio(String folio) {
-        this.folio = folio;
-    }
 
     /**
      * @return the rfc_receptor
@@ -193,20 +143,6 @@ public class Factura {
      */
     public void setTipo_venta(String tipo_venta) {
         this.tipo_venta = tipo_venta;
-    }
-
-    /**
-     * @return the id_ordenventa
-     */
-    public String getId_ordenventa() {
-        return id_ordenventa;
-    }
-
-    /**
-     * @param id_ordenventa the id_ordenventa to set
-     */
-    public void setId_ordenventa(String id_ordenventa) {
-        this.id_ordenventa = id_ordenventa;
     }
     
     

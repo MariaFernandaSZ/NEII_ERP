@@ -323,7 +323,7 @@ public class QuerysVentas {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO Factura VALUES ("+consultarIDFactura()+",'"+fact.uuid()+"','"+fact.idFactura()+"',null,'"+fac.getRfc_receptor()+"','"+fac.getRfc_emisor()+"',"+fac.getSubtotal()+","+fac.getTotal_iva()+",null,null,null,"+fac.getTotal()+",current_date,null,'"+fac.getLugar_exp()+"','"+fac.getForma_pago()+"','"+fac.getTipo_venta()+"','"+fac.getId_ordenventa()+"')");
+                        st.executeUpdate("INSERT INTO Factura VALUES ("+consultarIDFactura()+",'"+fact.uuid()+"','"+fact.idFactura()+"',null,'"+fac.getRfc_receptor()+"','"+fac.getRfc_emisor()+"',"+fac.getSubtotal()+","+fac.getTotal_iva()+",null,null,null,"+fac.getTotal()+",current_date,null,'"+fac.getLugar_exp()+"','"+fac.getForma_pago()+"','"+fac.getTipo_venta()+"','"+consultarOrdenVenta()+"')");
                         agregado=true;
                         st.close();
                     }

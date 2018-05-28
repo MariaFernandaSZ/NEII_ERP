@@ -86,7 +86,7 @@ public class CreaOrdenVenta extends HttpServlet {
         int id_emp=Integer.parseInt(request.getParameter("id_emp"));
         
         OrdenVenta ordenV = new OrdenVenta(id_intermC,fecha_ordv,total_iva,subtotal_pago,total_pago,fecha_entrega,moneda,id_emp);
-        
+//        Factura fac = new Factura();
         try {
             boolean sw=c.agregarOrdenVenta(ordenV);
             
