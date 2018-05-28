@@ -20,13 +20,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -230,7 +235,7 @@ public class ExcelReportes
         }
     }
 
-    public void ReporteBD()
+    public void reportePtoveedorBD()
     {
         Workbook libroReporte = new XSSFWorkbook();
         Sheet hojaR = libroReporte.createSheet("Reporte Productos");
@@ -253,6 +258,25 @@ public class ExcelReportes
            Picture imagen = draw.createPicture(ancho, imgIndex);
            //Cambiar tamaño de la imagen (donde empieza, cuanto puede usar)
            imagen.resize(1, 3);
+           //Titulo del Reporte
+           CellStyle tituloEstilo = libroReporte.createCellStyle();
+           tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
+           tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+           Font fuenteTitulo = libroReporte.createFont();
+           fuenteTitulo.setFontName("Arial");
+           fuenteTitulo.setBold(true);
+           fuenteTitulo.setFontHeightInPoints((short)14);
+           //Se asina al estilo, se envia objeto de la fuente que se a creado
+           tituloEstilo.setFont(fuenteTitulo);
+           
+           Row filaTitulo = hojaR.createRow(1);
+           Cell celdaTitulo = filaTitulo.createCell(1);
+           celdaTitulo.setCellStyle(tituloEstilo);
+           celdaTitulo.setCellValue("Reporte Productos");
+           //Combinar celdas, parametros (fila donde empieza, ultima fila que utilizara, primer columna que utilizara, ultima columna que utilizara)
+           hojaR.addMergedRegion(new CellRangeAddress(1, 2, 1, 3));
+           
+           
            //Archivo a generar
            FileOutputStream archivoReporte = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\PrimerReporteCompras.xlsx");
            //Se escribe en el libro
