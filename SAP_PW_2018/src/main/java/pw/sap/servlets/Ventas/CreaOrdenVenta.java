@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.pojo.Ventas.Factura;
 import pw.sap.pojo.Ventas.OrdenVenta;
 import pw.sap.pojo.Ventas.QuerysVentas;
 
@@ -86,7 +87,7 @@ public class CreaOrdenVenta extends HttpServlet {
         int id_emp=Integer.parseInt(request.getParameter("id_emp"));
         
         OrdenVenta ordenV = new OrdenVenta(id_intermC,fecha_ordv,total_iva,subtotal_pago,total_pago,fecha_entrega,moneda,id_emp);
-//        Factura fac = new Factura();
+        Factura fac = new Factura("EMIS101097HCL",c.consultaRFCReceptor(id_intermC),subtotal_pago,total_iva,total_pago,"Toluca, EdoMex",null,null);
         try {
             boolean sw=c.agregarOrdenVenta(ordenV);
             

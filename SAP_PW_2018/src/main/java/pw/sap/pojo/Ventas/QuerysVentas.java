@@ -201,7 +201,24 @@ public class QuerysVentas {
          }
          return id;
         }
-
+        
+        public String consultaRFCReceptor(String RFC){
+         String rfc="";
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          ResultSet rs=st.executeQuery("SELECT rfc_emp FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc where id_interm = '"+RFC+"'");
+          while(rs.next()){
+           rfc = rs.getString(1);
+          }
+          rs.close();
+          st.close();
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rfc;
+        }
+        
         public ClienteBean detalleCli(){
          ClienteBean cliBean = null;
         String idCliente; 
