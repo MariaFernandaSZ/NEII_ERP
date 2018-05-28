@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.Contabilidad;
+package pw.sap.servlets.log;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,48 +17,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
-import pw.sap.pojo.Contabilidad.PlanCuentas;
 
 /**
  *
  * @author maxim
  */
-@WebServlet(name = "PlanDeCuentas", urlPatterns = {"/PlanDeCuentas"})
-public class PlanDeCuentas extends HttpServlet {
+@WebServlet(name = "Consultalog", urlPatterns = {"/Consultalog"})
+public class Consultalog extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-
-        PlanCuentas c = new PlanCuentas();
-
-        ArrayList l = new ArrayList();
-
-        if (!request.getParameter("clave").isEmpty()) {
-            l = c.consultaPlan(request.getParameter("clave"));
-        } else {
-            l = c.consultaPlan(request.getParameter("desc"));
+        Conexion c = new Conexion();
+        ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", "id_emp", "is not null", "", 5);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Consultalog</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<table class='table table-bordered'>");
+            out.println("<tr>");
+//            for (String arreglo1 : arreglo) {
+//                out.println("<td>"+arreglo1+"</td>");
+//            }
+            out.println("</tr>");
+            out.println("<tr>");
+            for(int j = 0 ; j < lista.size() ; j++){
+                if(j%5==0){out.println("</tr><tr>");}
+                out.print("<td>"+lista.get(j)+"</td>");
+            }
+            out.println("</tr>");
+            out.println("</table>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-        request.getSession().setAttribute("cuenta", l.get(1));
-        request.getSession().setAttribute("descripcion", l.get(2));
-        request.getSession().setAttribute("tipo_cuenta", l.get(3));
-        request.getSession().setAttribute("clase_cuenta", l.get(4));
-        request.getSession().setAttribute("clase_sat", l.get(5));
-        request.getSession().setAttribute("naturaleza", l.get(6));
-        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta del plan de cuentas");
-        
-        response.sendRedirect("Contabilidad/plan_cuentas_1.jsp");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,9 +71,9 @@ public class PlanDeCuentas extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanDeCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultalog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(PlanDeCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultalog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,9 +91,9 @@ public class PlanDeCuentas extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanDeCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultalog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(PlanDeCuentas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultalog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
