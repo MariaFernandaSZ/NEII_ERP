@@ -1,3 +1,4 @@
+<%@page import="pw.sap.pojo.Contabilidad.AsientoGeneral"%>
 <%@page import="pw.sap.pojo.Contabilidad.Modulos"%>
 <%@page import="pw.sap.db.ConsultasGenerales"%>
 <%@page import="pw.sap.pojo.Contabilidad.Calen_Contable"%>
@@ -96,11 +97,25 @@
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-12 col-xs-12"> <!-- Seccion izquierda -->
                         <div class="form-style-5">
-                            <form onsubmit="return validacadena('clave');" action="../Asientos" method="POST"> 
-                                <span id="titulo"><span class="number">1</span>Ingresa la clave a buscar</span>
+                            <form action="../Asientos" method="POST"> 
+                                <span id="titulo"><span class="number">1</span>Busqueda por modulo</span>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-12 col-sm-8 col-xs-8">
-                                        <input type="text" id="clave" name="clave" placeholder="Clave" required="required">    
+                                        <!--<input type="text" id="clave" name="clave" placeholder="Clave" required="required">-->
+                                        <select id="moduAs" name="modu">
+                                                <optgroup>
+                                                    <option value="x">Seleccione...</option>
+                                                    <%
+                                                        LinkedList<Modulos> mod =ConsultasGenerales.consultaModulos();
+                                                        for (int i=0;i<mod.size();i++)
+                                                        {
+
+                                                           out.println("<option value='"+mod.get(i).getId_area()+"'>"+mod.get(i).getNombre_area()+"</option>");                                                                   
+
+                                                        }
+                                                    %>                                                                                                                                                                                                                                                
+                                                </optgroup>
+                                        </select>                                         
                                     </div>
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
                                         <input id="buscar" name="buscar" type="submit" value="Buscar">
@@ -109,12 +124,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
                                         <button id="btn-cc-add" type="button" class="btn btn-light" onclick="agregaAsiento()">Agregar</button>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
-                                        <button id="btn-cc-add" type="button" class="btn btn-light" onclick="continuaAsientoDetalle()">Continuar Captura</button>
-                                    </div>
-                                </div>
-                                <div class="row">
+                                    </div>                                                                    
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-4">
                                         <button id="btn-cc-edit" type="button" class="btn btn-light" onclick="editaAsiento()">Editar</button>
                                     </div>
@@ -130,25 +140,31 @@
                             <h1 class="text-center">Asientos contables</h1>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Selecciona</th>
-                                    <th>Clave</th>
+                                    <th>Id</th>                                    
                                     <th>Modulo</th>
                                     <th>Tipo</th>
                                     <th>Fecha</th>
                                     <th>Concepto</th>
                                     <th>Periodo contable</th>
                                 </tr>
-                                <tr>
-                                    <td class="seleccion"><input type="radio" id="ccselperiodo" value="201801" name="ccselperiodo"></td>
-                                    <td><%=request.getSession().getAttribute("clave")%></td>
-                                    <td><%=request.getSession().getAttribute("modulo")%></td>
-                                    <td><%=request.getSession().getAttribute("tipo")%></td>                                    
-                                    <td><%=request.getSession().getAttribute("fecha")%></td>
-                                    <td><%=request.getSession().getAttribute("concepto")%></td>
-                                    <td><%=request.getSession().getAttribute("periodo")%></td>
-                                    
-                                </tr>                               
-                            </table>    
+                                    <%
+                                        LinkedList<AsientoGeneral> asientog =ConsultasGenerales.consultaAsientoGeneral();
+                                        for (int i=0;i<asientog.size();i++)
+                                        {
+                                           out.println("<tr>");                               
+                                           out.println("<td><input type='radio' value="+asientog.get(i).getId()+" name='idasiento'/></td>");
+                                           out.println("<td>"+asientog.get(i).getModulo()+"</td>");
+                                           out.println("<td>"+asientog.get(i).getTipo_comprobante()+"</td>");
+                                           out.println("<td>"+asientog.get(i).getFecha_cap()+"</td>");
+                                           out.println("<td>"+asientog.get(i).getConcepto()+"</td>");
+                                           out.println("<td>"+asientog.get(i).getPeriodo_conta()+"</td>");
+                                           out.println("</tr>");
+                                        }
+                                    %>
+                            </table>                                
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
+                            <button id="btn-cc-add" type="button" class="btn btn-danger" onclick="continuaAsientoDetalle()">Continuar Captura</button>
                         </div>
                     </div>
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
@@ -188,13 +204,7 @@
                                                                    out.println("<option value='"+lista.get(i).getId_area()+"'>"+lista.get(i).getNombre_area()+"</option>");                                                                   
 
                                                                 }
-                                                            %>                                                                                                                                                                                    
-                                                            <!--<option value="ventas">Ventas</option>
-                                                            <option value="compras">Compras</option>
-                                                            <option value="porpagar">Por pagar</option>
-                                                            <option value="nomina">Nomina</option>
-                                                            <option value="inventarios">Inventarios</option>
-                                                            <option value="conta">Contabilidad</option>-->
+                                                            %>                                                                                                                                                                                                                                                
                                                         </optgroup>
                                                     </select> 
                                                 </span>
