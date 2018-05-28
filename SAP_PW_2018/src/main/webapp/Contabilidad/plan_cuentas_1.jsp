@@ -106,7 +106,7 @@
                                     <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
                                         <input type="text" name="desc" id="desc" placeholder="Descripci&oacute;n">
                                     </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <input id="buscar" name="buscar" type="submit" value="Buscar">
                                     </div> 
                                 </div>
@@ -141,19 +141,12 @@
                                     <th>Tipo Naturaleza</th>
                                 </tr>
                                 <tr>
-                                    <%
-                                        LinkedList<ObjPlanDeCuentas> lista = PlanCuentas.consultaTodoPlan();
-                                        for (int i = 0; i < lista.size(); i++) {
-                                            out.println("<tr>");
-                                            out.println("<td>" + lista.get(i).getId_cuenta() + "</td>");
-                                            out.println("<td>" + lista.get(i).getDescripcion() + "</td>");
-                                            out.println("<td>" + lista.get(i).getTipo_cuenta() + "</td>");
-                                            out.println("<td>" + lista.get(i).getClase_cuenta() + "</td>");
-                                            out.println("<td>" + lista.get(i).getClase_sat() + "</td>");
-                                            out.println("<td>" + lista.get(i).getNaturaleza() + "</td>");
-                                            out.println("<tr>");
-                                        }
-                                    %>
+                                    <td><%=request.getSession().getAttribute("cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("descripcion")%></td>
+                                    <td><%=request.getSession().getAttribute("tipo_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("clase_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("clase_sat")%></td>  
+                                    <td><%=request.getSession().getAttribute("naturaleza")%></td>    
                                 </tr>
                             </table>    
                         </div>
