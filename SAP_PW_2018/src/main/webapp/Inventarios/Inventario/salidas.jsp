@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -137,23 +138,39 @@
 
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
            <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>Id de producto</th>
-                                    <th>Id de orden de venta</th>
-                                    <th>Cantidad vendida</th>
-                                    <th>Monto total de venta</th>
+                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID Producto</th>
+                                            <th scope="col">ID Orden de venta</th>
+                                            <th scope="col">Cantidad vendida</th>
+                                            <th scope="col">Monto total</th>
+                                            </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    <%
+                                      
+                                        ResultSet rsTabla = interTabla.Consultasalidas();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            
+                                      
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
                                
-                                </tr>
-                                <tr>
-                                <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("id_ordenventa")%></td>
-                                <td><%= request.getAttribute("cantidad_vendida")%></td>
-                                <td><%= request.getAttribute("total_mon")%></td>
-                                   
-                                   
-                                </tr>
-                            </table>    
                         </div> 
 
             </div>
