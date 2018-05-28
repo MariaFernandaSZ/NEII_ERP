@@ -94,18 +94,19 @@ and open the template in the editor.
                 </div>
 
                 <div class="form-style-5">
-                    <form action="../../Consulta_G" method="POST">
+                    <form action="../Inventario/inventario_g.jsp" method="GET">
                             <span id="titulo"><span class="number">1</span> Consultas</span><br><br>
-                            <span class="idemp"><input type="text" name="id_producto" id="id_producto" placeholder="Id de producto" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required></span> 
+                            <span class="idemp"><input type="text" name="parametro" id="parametro" placeholder="Id de producto" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required></span> 
                             
                             <input type="submit" name="ConsultaInvg" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
+                           </form>
                             <br><br>
                             <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
                             <center>
                             <button type="button" name="ConEsIG" data-toggle="modal" data-target="#ConsultaIG" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
                             </center> <br>
                             
-                            </form>
+                            
                     <form>
 
                             <span id="titulo"><span class="number">3</span> Reporte</span><br><br>
@@ -138,8 +139,9 @@ and open the template in the editor.
                                     </thead>
                                     <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
                                     <%
+                                        String parametro=request.getParameter("parametro");
                                       
-                                        ResultSet rsTabla = interTabla.consultaGeneral();
+                                        ResultSet rsTabla = interTabla.consultaGeneral(parametro);
 
                                     %> 
                                     <tbody>
@@ -176,7 +178,7 @@ and open the template in the editor.
               </div>
               <div class="modal-body">
                 <div class="form-style-5">
-                     <form method="POST" action="../../ConsultaE_G" onsubmit="return EspecificaIG()">
+                     <form method="GET" action="../../inventarios_g.jsp" onsubmit="return EspecificaIG()">
                             <span id="titulo"><span class="number">1</span>Ingrese los Datos a consultar</span>
                             
                             <br><br><span>Proveedor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="proveedor" id="proveedor" placeholder="FEMSA" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El proveedor de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
