@@ -128,5 +128,86 @@ public class QuerysInventarios {
                   return rs;
         }    
     
-      
-}
+  public ResultSet consultaGeneralMC(String id_merma, String producto, String fecha) throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+//                    if (producto != null) {
+                                                    ps = conn.prepareStatement("select id_producto,id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo  \n" +
+                                                    "from merma "
+                                                    + "where id_merma="+id_merma+" and tipo_merma='MermaConocida';");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+//         }else {
+//                     ps = conn.prepareStatement("select id_producto,id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo \n" +
+//                                                    "from merma "
+//                                                    + "where id_producto='"+producto+"' or fecha_merma='"+fecha+"' and tipo_merma='MermaConocida'"
+//                                                   );
+//                                                    ResultSet rs= ps.executeQuery();
+//                                                      System.out.println(ps);
+//                    
+//                                                       closeDB();
+//                  return rs;
+//                    
+                    }
+                    
+  
+         public ResultSet ConsultaGM() throws SQLException, ClassNotFoundException{
+                          openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_producto,id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo  \n" +
+                                                    "from merma where tipo_merma='MermaConocida'");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        } 
+      public ResultSet consultaGeneralMD(String id_merma, String producto, String fecha) throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+//                    if (producto != null) {
+                                                    ps = conn.prepareStatement("select id_producto,id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo  \n" +
+                                                    "from merma "
+                                                    + "where id_merma="+id_merma+" and tipo_merma='MermaDesconocida';");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+//         }else {
+//                     ps = conn.prepareStatement("select id_producto,id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo \n" +
+//                                                    "from merma "
+//                                                    + "where id_producto='"+producto+"' or fecha_merma='"+fecha+"' and tipo_merma='MermaConocida'"
+//                                                   );
+//                                                    ResultSet rs= ps.executeQuery();
+//                                                      System.out.println(ps);
+//                    
+//                                                       closeDB();
+//                  return rs;
+//                    
+                    }
+                    
+  
+         public ResultSet ConsultaGD() throws SQLException, ClassNotFoundException{
+                          openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_producto,id_merma,fecha_merma,tipo_merma,cantidad_merma,motivo  \n" +
+                                                    "from merma where tipo_merma='MermaDesconocida'");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        } 
+                  
+        }     
+
