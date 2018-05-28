@@ -43,7 +43,7 @@ public class ingresar_producto extends HttpServlet {
         PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('No se puede mermar más de lo que existe');");
-            out.print("window.location=''");// Poner entre comillas la pagina para redireccionar
+            out.print("window.location='Compras/html/com_index.jsp'");
             out.println("</script>");
         
         
