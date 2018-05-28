@@ -99,6 +99,19 @@ public class QuerysInventarios {
           
                   
         }
+     public ResultSet Consultasalidas() throws SQLException, ClassNotFoundException{
+                          openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_producto,id_ordenventa,cantidad,monto\n" +
+                                                    "from venta_por_prod");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }    
     
     
       
