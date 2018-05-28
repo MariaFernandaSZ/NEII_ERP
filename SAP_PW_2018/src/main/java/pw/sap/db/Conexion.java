@@ -187,19 +187,19 @@ public class Conexion {
    
      
      
-     public ArrayList consultaSalidasId(int id_producto) throws SQLException {
+    public ArrayList consultaSalidasId(String id_producto) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
         PreparedStatement ps;
         //stmt = conn.createStatement();
         ps=conn.prepareStatement("SELECT id_producto,id_ordenventa,monto,cantidad FROM venta_por_prod WHERE id_producto=?");
-        ps.setInt(1, id_producto);
+        ps.setString(1, id_producto);
         //ResultSet rs = stmt.executeQuery("SELECT clave,modulo,tipo, fecha FROM asientos WHERE clave=");
           ResultSet rs= ps.executeQuery();
             while (rs.next()) {                
                 //System.out.println(rs.getInt(1));
-                r.add(rs.getInt(1));
+                r.add(rs.getString(1));
                 r.add(rs.getString(2));
                 r.add(rs.getString(3));
                 r.add(rs.getString(4));
@@ -208,7 +208,7 @@ public class Conexion {
         closeDB();        
         return r;
     }
-     public ArrayList consultaSalidasOrden(int id_ordenventa) throws SQLException {
+    public ArrayList consultaSalidasOrden(int id_ordenventa) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
         //Statement stmt;
@@ -229,6 +229,7 @@ public class Conexion {
         closeDB();        
         return r;
     }
+     
      
      
      
