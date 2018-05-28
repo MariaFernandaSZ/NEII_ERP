@@ -183,8 +183,14 @@
 
                 </div>
 
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+                    <div class="table-responsive">
+                        <div id="tablaProductos"></div>
+                    </div> 
 
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+                </div>
+
+              <%--  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="table-responsive">
                         <table class="table table-striped" id="listaProductos">
                             <thead>
@@ -210,7 +216,7 @@
                         </table>
                     </div> 
 
-                </div>
+                </div>--%>
 
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
 
