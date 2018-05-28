@@ -92,7 +92,7 @@
                                 <input class="form-check-input" type="radio" name="busprod" id="ord4" value="precio">
                                 <label style="font-size: 18px" class="form-check-label" for="ord4">Precio</label>
                             </div>
-                            <span style="font-size: 18px">Solo&nbsp;mostrar:</span>
+                            <!--<span style="font-size: 18px">Solo&nbsp;mostrar:</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="busprod" id="ord10" value="nom_prod">
                                 <label style="font-size: 18px" class="form-check-label" for="ord10">Nombre del producto</label>
@@ -104,7 +104,7 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord7">Precio</label>
                                 <input class="form-check-input" type="checkbox" name="busprod" id="ord8" value="unidad">
                                 <label style="font-size: 18px" class="form-check-label" for="ord8">Unidad</label>                                
-                            </div>
+                            </div>-->
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
@@ -113,7 +113,7 @@
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda por<br>c&oacute;digo de producto</span>
                             <br><br>
                             <input type="number" name="codprod" placeholder="Código" id="codigo" required>
-                            <span style="font-size: 18px">Solo&nbsp;mostrar:</span>
+                            <!--<span style="font-size: 18px">Solo&nbsp;mostrar:</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="busprod" id="ord5" value="proveedor">
                                 <label style="font-size: 18px" class="form-check-label" for="ord5">Proveedor</label>
@@ -125,8 +125,10 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord8">Unidad</label>
                                 <input class="form-check-input" type="checkbox" name="busprod" id="ord9" value="almacen">
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Almacen</label>                               
-                            </div>
+                            </div>-->
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
+                       <br><center><input type="submit" value="Modificar" style="background-color: #9F150D" name="Modificar" class="btn btn-danger"></center>
+                       <br><center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
                         </form>
                     </div>                       
 
