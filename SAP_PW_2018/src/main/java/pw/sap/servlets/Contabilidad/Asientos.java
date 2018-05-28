@@ -49,8 +49,12 @@ public class Asientos extends HttpServlet {
         request.getSession().setAttribute("fecha", l.get(3));
         request.getSession().setAttribute("concepto",l.get(4));
         request.getSession().setAttribute("periodo",l.get(5));
-        //HttpSession sesion=request.getSession();
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion de asientos contables");
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta especifica Asientos contables");        
+        //c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion de asientos contables");
         
        response.sendRedirect("Contabilidad/asientos_conta.jsp");
         //sesion.setAttribute("clave",l.get(0));        
