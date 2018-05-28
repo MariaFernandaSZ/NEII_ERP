@@ -18,8 +18,8 @@ import pw.sap.pojo.RH.Validador;
  *
  * @author Josafat Rosas Ortiz
  */
-@WebServlet(name = "Servlet_consultaTarea", urlPatterns = {"/Servlet_consultaTarea"})
-public class Servlet_consultaTarea extends HttpServlet {
+@WebServlet(name = "Servlet_consultarNomina", urlPatterns = {"/Servlet_consultarNomina"})
+public class Servlet_consultarNomina extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +36,14 @@ public class Servlet_consultaTarea extends HttpServlet {
         Conexion c = new Conexion();
         ArrayList lista;
         Validador validar = new Validador();
-        String empleado = request.getParameter("id_empleado");
-        String tarea = request.getParameter("id_tarea");
-        String referencia = validar.referenciaConsultaTarea(tarea, empleado);
-        lista = c.consulta("id_tarea,nombre_tarea,id_emp,fecha_inicio,fecha_fin",
-                            "tarea", referencia, "ORDER BY id_tarea ASC", "", 5);
-        String [] campos = {"ID","NOMBRE","RESPONSABLE","FECHA INICIO","FECHA FIN"};
+        String empleado = request.getParameter("id_empleadoNomina");
+        String nomina = request.getParameter("id_empleado");
+        String referencia = validar.referenciaConsultaNomina(nomina, empleado);
+        String [] campos = {"ID","EMPRESA","FECHA CREACION","FECHA LIMITE","EMPLEADO","PERCEPCIONES","DEDUCCIONES","DIAS PAGADOS",
+                            "TOTAL","FORMA DE PAGO"};
+        lista = c.consulta("id_nomina,nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,"
+                            + "dias_pagados,pago_total,forma_pago",
+                            "nomina", referencia, "ORDER BY id_nomina ASC", "", 10);
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
@@ -51,7 +53,7 @@ public class Servlet_consultaTarea extends HttpServlet {
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%5==0){out.println("</tr><tr>");}
+                if(j%10==0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
@@ -74,9 +76,9 @@ public class Servlet_consultaTarea extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_consultaTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_consultarNomina.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_consultaTarea.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_consultarNomina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

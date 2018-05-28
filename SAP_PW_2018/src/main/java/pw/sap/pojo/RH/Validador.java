@@ -96,4 +96,20 @@ public class Validador {
         }
         return referencia;
     }
+    
+    public String referenciaConsultaNomina(String nomina, String id){
+        String referencia = "id_nomina is not null";
+        if(nomina!= null && id!=null && !nomina.equals("") && !id.equals("")){
+            referencia = "id_nomina = "+nomina+" AND id_emp = "+id;
+        }else{
+            if(nomina!=null && !nomina.equals("") && (id==null || id.equals(""))){
+                referencia = "id_nomina = "+nomina;
+            }else{
+                if(id!=null && !id.equals("") && (nomina==null || nomina.equals(""))){
+                    referencia = "id_emp = "+id;
+                }
+            }
+        }
+        return referencia;
+    }
 }
