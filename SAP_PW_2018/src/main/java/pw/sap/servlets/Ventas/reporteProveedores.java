@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.compras;
+package pw.sap.servlets.Ventas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,11 +21,11 @@ import pw.sap.pojo.Compras.ExcelReportes;
  *
  * @author Adrian
  */
-@WebServlet(name = "ReportesExcel", urlPatterns =
+@WebServlet(name = "reporteProveedores", urlPatterns =
 {
-    "/ReportesExcel"
+    "/reporteProveedores"
 })
-public class ReportesExcel extends HttpServlet
+public class reporteProveedores extends HttpServlet
 {
 
     /**
@@ -44,10 +44,11 @@ public class ReportesExcel extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             ExcelReportes excr = new ExcelReportes();
+            excr.reportePtoveedorBD();
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<script>");
-            out.println("alert('Reporte Generado Corectamente');");
+            out.println("alert('Reporte de Proveedores Generado Corectamente');");
             out.print("window.location='Compras/html/com_prod.jsp'");
             out.println("</script>");
         }
@@ -71,10 +72,10 @@ public class ReportesExcel extends HttpServlet
             processRequest(request, response);
         } catch (ClassNotFoundException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(reporteProveedores.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(reporteProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -95,10 +96,10 @@ public class ReportesExcel extends HttpServlet
             processRequest(request, response);
         } catch (ClassNotFoundException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(reporteProveedores.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(reporteProveedores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
