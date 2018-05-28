@@ -181,13 +181,13 @@
 
                                 <br><span id="titulo"><span class="number">4</span>Resultados</span><br>
 
-                                <br><span >Subtotal&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Subtotal" readonly="readonly" placeholder="$13,728.00"/></span><br>
+                                <br><span >Subtotal&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Subtotal" id="subtotalOV" readonly="readonly" placeholder="$0000.00"/></span><br>
 
-                                <br><span>IVA&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="IVA" readonly="readonly" placeholder="$2,196.48"/></span>
+                                <br><span>IVA&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="IVA" id="totalIvaOV" readonly="readonly" placeholder="$0000.00"/></span>
 
                                 <br><span>Descuento&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Descuento" readonly="readonly" placeholder="0%"/></span>
 
-                                <br><span>TOTAL&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Total" readonly="readonly" placeholder="$15,924.48"/></span><br>
+                                <br><span>TOTAL&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="Total" id="totalOV" readonly="readonly" placeholder="$0000.00"/></span><br>
 
 
                                 <br><button type="button" name="pagar" style="background-color: #9F150D" onclick="validaTabla()" class="btn btn-danger">Pagar</button> <button type="button" name="cancelar" id="cancelar" onclick="cancelar()" style="background-color: #9F150D" class="btn btn-danger">Cancelar</button>
