@@ -38,14 +38,15 @@ public class AgregaAsientoGeneral extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Con_Calendario c=new Con_Calendario();
+        String claveasiento=request.getParameter("claveasiento");
         int modulo=Integer.parseInt(request.getParameter("modu"));
         String comprobante=request.getParameter("tipoasiento");
         String fecha=request.getParameter("fechacap");
         String concepto=request.getParameter("concepto");
         int periodo=Integer.parseInt(request.getParameter("periodo"));
         //insercion de asiento contable;
-        System.out.println("cadena:"+modulo+comprobante+fecha+concepto+periodo);
-        c.insertarAsientoGeneral(modulo, comprobante, fecha, concepto, periodo);                
+        System.out.println("cadena:"+claveasiento+modulo+comprobante+fecha+concepto+periodo);
+        c.insertarAsientoGeneral(claveasiento,modulo, comprobante, fecha, concepto, periodo);                
         //registro para log
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));

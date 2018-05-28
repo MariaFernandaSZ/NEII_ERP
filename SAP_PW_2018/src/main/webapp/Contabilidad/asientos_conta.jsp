@@ -192,7 +192,17 @@
                                                 <span style="font-size: 16px">Clave: </span><span class="idemp"><input style="width: 250px; text-align: left;" type="text" id="claveAs"  /></span>                                               
                                             </div>    
                                         </div>-->
-                                        <div class="row form-style-5">                                            
+                                        <div class="row form-style-5">                                                                                        
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <span style="font-size: 16px">
+                                                    clave: 
+                                                </span>
+                                                <span class="idemp">
+                                                    <input style="width: 180px; height: 30px;text-align: center;" type="text" id="claveasiento" name="claveasiento" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row form-style-5">                                                                                        
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <span style="font-size: 16px">Modulo: </span><span class="idemp">
                                                     <select id="moduAs" name="modu">

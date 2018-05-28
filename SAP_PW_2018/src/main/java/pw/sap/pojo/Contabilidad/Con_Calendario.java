@@ -112,14 +112,15 @@ public class Con_Calendario {
      * @return
      * @throws SQLException 
      */
-    public int insertarAsientoGeneral(int modulo,String comprobante,String fechacap,String concepto,int periodo) throws SQLException{
+    public int insertarAsientoGeneral(String claveasiento,int modulo,String comprobante,String fechacap,String concepto,int periodo) throws SQLException{
         openDB();        
         PreparedStatement ps;
-        ps=conn.prepareStatement("INSERT INTO asientogeneral (modulo,tipo_comprobante,fecha_apli,concepto,periodo_conta) VALUES (?,?,'"+fechacap+"',?,?);");
-        ps.setInt(1, modulo);
-        ps.setString(2, comprobante);      
-        ps.setString(3, concepto);
-        ps.setInt(4, periodo);
+        ps=conn.prepareStatement("INSERT INTO asientogeneral (clave,modulo,tipo_comprobante,fecha_apli,concepto,periodo_conta) VALUES (?,?,?,'"+fechacap+"',?,?);");
+        ps.setString(1, claveasiento);
+        ps.setInt(2, modulo);
+        ps.setString(3, comprobante);      
+        ps.setString(4, concepto);
+        ps.setInt(5, periodo);
         int r=ps.executeUpdate();
         closeDB();
         return r;
