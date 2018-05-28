@@ -127,7 +127,7 @@
                                 </optgroup>
                             </select>
 
-                                <span id="titulo"><span class="number">2</span><span id="tipo_venta">venta de contado</span></span><br><br>
+                                <span id="titulo"><span class="number">2</span><span id="tipo_venta">Venta de contado</span></span><br><br>
                             <span>N&uacute;m. venta contado</span><br><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nocont" id="nocont" value="<%  %>" readonly="readonly" placeholder="001"/></span><br>
 
                             <span style="font-size: 18px">Fecha de venta</span><br><span class="idemp"><input min="2010-01-01" style="width: 180px; height: 30px;text-align: center;" readonly="readonly" type="date" id="fecha1" name="fechaC" /></span><br>

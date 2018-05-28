@@ -85,12 +85,12 @@ public class CreaOrdenVenta extends HttpServlet {
         String fecha_entrega=request.getParameter("fecha_entrega");
         String moneda="Pesos";
         int id_emp=Integer.parseInt(request.getParameter("id_emp"));
+        String tipo_venta = request.getParameter("tipo_venta");
         
-        OrdenVenta ordenV = new OrdenVenta(id_intermC,fecha_ordv,total_iva,subtotal_pago,total_pago,fecha_entrega,moneda,id_emp);
-        Factura fac = new Factura("EMIS101097HCL",c.consultaRFCReceptor(id_intermC),subtotal_pago,total_iva,total_pago,"Toluca, EdoMex",null,null);
+        OrdenVenta ordenV = new OrdenVenta(id_intermC,fecha_ordv,total_iva,subtotal_pago,total_pago,fecha_entrega,moneda,id_emp); 
         try {
             boolean sw=c.agregarOrdenVenta(ordenV);
-            
+//             Factura fac = new Factura("EMIS101097HCL",c.consultaRFCReceptor(id_intermC),subtotal_pago,total_iva,total_pago,"Toluca, EdoMex",null,tipo_venta);
             if (sw) {                        
                 PrintWriter out = response.getWriter();
                 out.print(total_pago);

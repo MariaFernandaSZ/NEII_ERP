@@ -116,8 +116,8 @@
                                     %>
                                 </optgroup>
                             </select> 
-                            <select id="nomInter" name="nombreEmp">
-                                <optgroup label="Empresa">
+                            <select id="nomInter" name="nomInter">
+                                <optgroup label="Intermediario">
                                     <option value="emp1">Intermediario</option>
                                     <%
                                         while(rss.next()){
