@@ -1,9 +1,5 @@
-<%@page import="pw.sap.db.ConsultasGenerales"%>
-<%@page import="java.util.LinkedList"%>
-<%@page import="java.util.List"%>
-<%@page import="pw.sap.db.Conexion"%>
-<%@page import="pw.sap.pojo.Inventarios.Merma"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
@@ -36,7 +32,7 @@ function EspecificaMC(){
         </script>
     </head>
     <body>
-        <header style="z-index: 2">
+         <header style="z-index: 2">
             <nav class="navbar navbar-expand-lg navbar-light menu" style="background-color: #9F150D;">
                 <a class="navbar-brand" style="color: white;" href="#">Inventario</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +78,7 @@ function EspecificaMC(){
                     </li>
                 </div>
             </nav>
-        </header>  
+        </header> 
         <!-- CONTENIDO-->
          <div class="container-fluid contenido">
             <div class="row">
@@ -94,24 +90,28 @@ function EspecificaMC(){
                    
                 </div>
                 <div class="form-style-5">
-                    <form action="../../Consulta_Merma" method="POST">  
+                    <form action="../Inventario/merma_con.jsp" method="GET">  
                             <span id="titulo"><span class="number">1</span> Consulta</span><br><br>
-                            <span class="idemp"><input type="text" name="id_merma" id="id_merma" placeholder="Id de Merma"  maxlength="7" title="El id debe ser de 7 digitos (n&uacute;meros )" required ></span>
-                            <input type="submit" name="BuscaMID"  style="background-color: #9F150D" class="btn btn-danger" value="Consultar" onclick="return fomCon()"/><br><br>
-                    </form>
-                    <form action="merma_con.jsp" method="POST">
-                            <span id="titulo"><span class="number">2</span> Consulta General</span><br><br>
+                            <span class="idemp"><input type="text" name="id_merma" id="id_merma" placeholder="Id de Merma"  maxlength="7" title="El id debe ser de 7 digitos (n&uacute;meros )" required ></span> <input type="submit" name="BuscaMID"  style="background-color: #9F150D" class="btn btn-danger" value="Consultar" onclick="return fomCon()"/><br><br>
+                            <span id="titulo"><span class="number">2</span> Consulta especifica</span><br><br>
                             <center>
-                           <input type="submit" name="General"  style="background-color: #9F150D" class="btn btn-danger" value="Consulta General"/><br><br></center>
+                            <button type="button" name="ConMC" data-toggle="modal" data-target="#ConsultaMC" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
+                            </center>
                     </form>
+                            <form action="../Inventario/merma1.jsp" method="POST">
+                            <span id="titulo"><span class="number">3</span> Consulta General</span><br><br>
+                            <input type="submit" name="ConsultaInG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
+                           </form>
+                            
+                    
                 </div>
                 <div class="form-style-5">
                     <form>
-                            <span id="titulo"><span class="number">3</span>Reporte</span><br><br>
+                            <span id="titulo"><span class="number">4</span>Reporte</span><br><br>
                             
                             <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Merma Conocida.pdf'">Generar PDF</button><br><br>
                             <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Merma Conocida.ods'">Generar Excel</button><br><br>
-                            <span id="titulo"><span class="number">4</span>Regresar</span><br><br>
+                            <span id="titulo"><span class="number">5</span>Regresar</span><br><br>
                             <button type="button" name="Regresa" style="background-color: #9F150D" class="btn btn-danger" onclick="location.href='merma.jsp'">Regresar</button><br><br>
                     
                     </form>
@@ -122,35 +122,74 @@ function EspecificaMC(){
 
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"> <!-- Seccion central TABLA -->
                    <div class="table-responsive">
-                            <table class="table table-bordered table-responsive">
-                                <tr>
-                                    <th>ID de producto</th>
-                                    <th>ID de merma</th>
-                                    <th>Fecha de registro</th>
-                                    <th>Tipo</th>
-                                    <th>Cantidad</th> 
-                                    <th>Observaciones</th>
-                                </tr>
-                                <%
-                                  //      LinkedList <Merma> lista =ConsultasGenerales.consultaGMermac();
-                                    //    for (int i=0;i<lista.size();i++)
-                                      //  {
-                                        //   out.println("<tr>");                               
-                                          // out.println("<td>"+lista.get(i).getId_producto()+"</td>");
-                                           //out.println("<td>"+lista.get(i).getIDMerma()+"</td>");
-                                           //out.println("<td>"+lista.get(i).getFechaRe()+"</td>");
-                                           //out.println("<td>"+lista.get(i).getTipo()+"</td>");
-                                           //out.println("<td>"+lista.get(i).getCantidad()+"</td>"); 
-                                           //out.println("<td>"+lista.get(i).getObs()+"</td>");
-                                           //out.println("</tr>");
-                                        //}
-                                    %>
-                              
-                            </table>    
+                            <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID Producto</th>
+                                            <th scope="col">ID de merma</th>
+                                            <th scope="col">Fecha de registro</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Observaciones</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    <%
+                                        String id_merma=request.getParameter("id_merma");
+                                        String producto=request.getParameter("CoBa");
+                                        String fecha=request.getParameter("fecha_mer");
+                                        
+                                        ResultSet rsTabla = interTabla.consultaGeneralMC(id_merma, producto, fecha);
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td>$<%=rsTabla.getString(6)%></td>
+                                            
+                                      
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>  
                         </div>          
-                
+            </div>
             </div>
                 </div>
+                                    <!-- Modal Consulta especifica-->
+        <div class="modal fade" id="ConsultaMC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel">Consulta Espec&iacute;fica</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-style-5">
+                     <form method="GET" action="../Inventarios/merma_con.jsp" onsubmit="return EspecificaMC()"> 
+                            <span id="titulo"><span class="number">1</span>Ingrese los Datos a consultar</span>
+                            
+                            
+                            <br><br><span>Id de producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="CoBa" id="CoBa" maxlength="13" placeholder="#######" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required/></span>
+                            <br><span>Fecha de merma:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" placeholder="dd/mm/aaaa" name="fecha_mer"  id="fecha_mer"  title="El formato de fecha debe ser 'dd/mm/aaaa'" required/></span><br><br>
+                                
+                             <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaMC()"><br>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
                
  <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
            <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
