@@ -134,6 +134,40 @@ public class QuerysVentas {
          return id;
         }
         
+        public String consultarFactu(){
+         String id="";
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          ResultSet rs=st.executeQuery("select folio from factura order by folio desc limit 1");
+          while(rs.next()){
+           id = rs.getString(1);
+          }
+          rs.close();
+          st.close();
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return id;
+        }
+        
+        public int consultarIDFactura(){
+         int id = 0;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          ResultSet rs=st.executeQuery("select count(*) from Factura;");
+          while(rs.next()){
+           id = rs.getInt(1);
+          }
+          rs.close();
+          st.close();
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return id+1;
+        }
+        
         public String consultarOrdenVenta(){
          String id="";
          try{
@@ -270,6 +304,26 @@ public class QuerysVentas {
                         Statement st;
                         st = conn.createStatement();
                         st.executeUpdate("INSERT INTO OrdenVenta VALUES ('"+idcli.idOrdenVenta()+"','"+ov.getId_intermC()+"','"+ov.getFecha_ordv()+"',current_timestamp,"+ov.getTotal_iva()+","+ov.getSubtotal_pago()+","+ov.getTotal_pago()+",'"+ov.getFecha_entrega()+"',null,'"+ov.getMoneda()+"',"+ov.getId_emp()+")");
+                        agregado=true;
+                        st.close();
+                    }
+                closeDB();
+                    } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    }
+            return agregado;
+        }
+        
+          public boolean agregarFactura(Factura fac) throws SQLException, ClassNotFoundException{
+            boolean agregado=false;
+            Genera_IDs fact = new Genera_IDs();
+            openDB();
+            try {
+                    if(conn!=null){
+                        Statement st;
+                        st = conn.createStatement();
+                        st.executeUpdate("INSERT INTO Factura VALUES ("+consultarIDFactura()+",'"+fact.uuid()+"','"+fact.idFactura()+"',null,'"+fac.getRfc_receptor()+"','"+fac.getRfc_emisor()+"',"+fac.getSubtotal()+","+fac.getTotal_iva()+",null,null,null,"+fac.getTotal()+",current_date,null,'"+fac.getLugar_exp()+"','"+fac.getForma_pago()+"','"+fac.getTipo_venta()+"','"+fac.getId_ordenventa()+"')");
                         agregado=true;
                         st.close();
                     }

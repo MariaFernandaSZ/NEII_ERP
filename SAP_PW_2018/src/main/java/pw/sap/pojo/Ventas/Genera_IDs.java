@@ -59,4 +59,29 @@ public class Genera_IDs {
             return "ven"+String.valueOf(con);
         }
     }
+    
+        public String idFactura() throws ClassNotFoundException, SQLException{
+        
+        QuerysVentas c = new QuerysVentas();
+        
+        String idCli = c.consultarFactu();
+        
+        if ("".equals(idCli) || idCli == null) {
+            return "fac1";
+        }else{
+            String num = idCli.replace("fac", "");
+            int con = Integer.parseInt(num)+1;
+            return "fac"+String.valueOf(con);
+        }
+    }
+        
+    public String uuid()
+    {
+        String result = java.util.UUID.randomUUID().toString();
+
+            String replaceAll = result.replaceAll("-", "");
+            String substring = replaceAll.substring(0, 32);
+
+        return substring;
+    }
 }
