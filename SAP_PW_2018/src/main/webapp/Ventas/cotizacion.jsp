@@ -1,4 +1,6 @@
+<%@page import="pw.sap.servlets.Ventas.ListaProductos"%>
 <%@page import="java.sql.ResultSet"%>
+<jsp:useBean id="nuevaTabla" scope="page" class="pw.sap.servlets.Ventas.ListaProductos"/>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -86,9 +88,15 @@
                         <form method="post">
                             <jsp:useBean id="idClient" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
                             <jsp:useBean id="idInter" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                            <jsp:useBean id="idEmp" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
                             <%
                                 ResultSet rs = idClient.consultarIDEMP(); 
                                 ResultSet rss = idInter.consultarIDInterm();
+                                ResultSet remp = idEmp.consultarEmpleado(request.getSession().getAttribute("usuario").hashCode());
+                                ListaProductos.ventList.clear();
+                                ListaProductos.subtotalTotal_ov = 0;
+                                ListaProductos.totalIva_ov = 0;
+                                ListaProductos.TOTAL_ov = 0;
 
                             %>  
                             <span id="titulo"><span class="number">1</span> Informaci&oacute;n de cliente</span><br>
@@ -135,7 +143,7 @@
                 </div>
 
 
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+          <%--      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="table-responsive">
                         <table class="table table-striped" id="listaProductos">
                             <thead>
@@ -162,6 +170,15 @@
                     </div> 
 
                 </div>
+          
+          --%>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+                    <div class="table-responsive">
+                        <div id="tablaProductos"></div>
+                    </div> 
+
+                </div>
+          
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
 
 
@@ -171,6 +188,10 @@
 
                             <span id="titulo"><span class="number">3</span>Vendedor</span><br>
                             <br><input type="text" name="nomVent" readonly="readonly" placeholder="Nombre Vendedor"></input> 
+                             <% while(remp.next()){ %>
+                            <br>ID VENDEDOR: <input type="text" name="nomVent" id="idVendedor" readonly="readonly" value="<%=request.getSession().getAttribute("usuario").hashCode()%>"></input> 
+                            NOMBRE VENDEDOR<input type="text" name="nombreVent" readonly="readonly" placeholder="<%=remp.getString(1)%> <%=remp.getString(2)%>"></input> 
+                            <% } %>
                             <center>
                                 <button type="button" name="agregaProd" style="background-color: #9F150D" class="btn btn-danger" id="btnModal" >Agregar producto</button><br>
                                 <br><button type="button" name="EliminaProd" style="background-color: #9F150D" class="btn btn-danger">Eliminar producto</button><br>
@@ -196,6 +217,43 @@
 
         </div>      
 
+                                 <div class="modal fade" id="agregaProductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar producto</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-style-5">
+                    <form method="POST">
+                            <span id="titulo"><span class="number">1</span>Añade</span>
+                            
+                            
+                                <br><br><span>C&oacute;digo de producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" onkeypress="return searchKeyPress(event);" id="codprod" type="text" name="codprod" placeholder="###############"/></span>
+
+                                <br><span >Cantidad:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" onkeypress="return cantOnPress(event);" id="cant" type="text" name="cant" placeholder="0"/></span>
+                                <br><br>
+
+                                <span id="titulo"><span class="number">2</span>Datos de producto</span>
+                                <br><br>
+                                <span id="nom">Nombre producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text"  name="nomProd" id="nomprod" readonly="readonly" placeholder="Nombre"/></span>
+                                <br><br>
+                                <span >Precio unitario:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="precioprod" id="precioprod" readonly="readonly" placeholder="$000.00"/></span>
+                                <br><br>
+                                <span>IVA:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="ivaprod" id="ivaprod" readonly="readonly" placeholder="$000.00"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                
+                                <span >Subtotal:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="subtotal" id="subtotal" readonly="readonly" placeholder="$000.00"/></span>
+                    </form>        
+                    
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" style="background-color: #9F150D" onclick="valAgrega() " class="btn btn-danger">Agregar</button>
+              </div>
+            </div>
+          </div>
+        </div> 
         <div id="tmpModal"></div>
 
 
