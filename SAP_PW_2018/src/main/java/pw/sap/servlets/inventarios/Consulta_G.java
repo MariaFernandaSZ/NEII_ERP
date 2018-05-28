@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pw.sap.db.Conexion;
 
 /**
@@ -38,36 +39,23 @@ public class Consulta_G extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c=new Conexion();
+         System.out.println("id_producto:"+request.getParameter("id_producto"));
         
-        ArrayList l=c.consultaG(Integer.parseInt(request.getParameter("IDEntrada")));
-        request.setAttribute("id_entrada", l.get(0));
-        request.setAttribute("id_compra", l.get(1));
-        request.setAttribute("id_producto", l.get(2));
-        request.setAttribute("id_lote", l.get(3));
-        request.setAttribute("tipo_producto", l.get(4));
-        request.setAttribute("cantidad_recibido", l.get(5));
-        request.setAttribute("fecha_registro", l.get(6));
-        request.setAttribute("fecha_caducidad", l.get(7));
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta general");
+        ArrayList l=c.consultaG(request.getParameter("id_producto"));
+        request.getSession().setAttribute("id_producto", l.get(0));
+        request.getSession().setAttribute("nombre", l.get(1));
+        request.getSession().setAttribute("tipo_producto", l.get(2));
+        request.getSession().setAttribute("prov_nom_emp", l.get(3));
+        request.getSession().setAttribute("cantidad", l.get(4));
+        request.getSession().setAttribute("minimo", l.get(5));
+        request.getSession().setAttribute("costo_unitario", l.get(6));
+        request.getSession().setAttribute("costo_venta", l.get(7));
+        
+        
+        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta general");
             
-        request.getRequestDispatcher("Inventarios/Inventario/inventario_g.jsp").forward(request, response);
+        request.getRequestDispatcher("Inventarios/Inventario/Inventari_g1.jsp").forward(request, response);
         
-        
-        
-        
-        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Consulta_G</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Consulta_G at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
