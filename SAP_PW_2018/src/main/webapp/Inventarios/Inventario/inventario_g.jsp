@@ -140,8 +140,10 @@ and open the template in the editor.
                                     <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
                                     <%
                                         String parametro=request.getParameter("parametro");
-                                      
-                                        ResultSet rsTabla = interTabla.consultaGeneral(parametro);
+                                        String proveedor=request.getParameter("proveedor");
+                                        String tipo=request.getParameter("tipo_pro");
+                                        String nombre=request.getParameter("nombre_pro");
+                                        ResultSet rsTabla = interTabla.consultaGeneral(parametro,proveedor,tipo,nombre);
 
                                     %> 
                                     <tbody>
@@ -178,12 +180,12 @@ and open the template in the editor.
               </div>
               <div class="modal-body">
                 <div class="form-style-5">
-                     <form method="GET" action="../../inventarios_g.jsp" onsubmit="return EspecificaIG()">
+                     <form method="GET" action="../Inventario/inventario_g.jsp" onsubmit="return EspecificaIG()">
                             <span id="titulo"><span class="number">1</span>Ingrese los Datos a consultar</span>
                             
-                            <br><br><span>Proveedor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="proveedor" id="proveedor" placeholder="FEMSA" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El proveedor de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
-                            <br><br><span>Nombre del producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="nombre_pro" id="nombre_pro" placeholder="Coca-cola" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El nombre de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
-                            <br><br><span>Tipo de Producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="tipo_pro" id="tipo_pro" placeholder="Refresco" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El tipo de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" required/></span>
+                            <br><br><span>Proveedor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="proveedor" id="proveedor" placeholder="FEMSA" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El proveedor de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></span>
+                            <br><br><span>Nombre del producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="nombre_pro" id="nombre_pro" placeholder="Coca-cola" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El nombre de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></span>
+                            <br><br><span>Tipo de Producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="tipo_pro" id="tipo_pro" placeholder="Refresco" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El tipo de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></span>
                             <br><br>
                             <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaIG()"><br>

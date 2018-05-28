@@ -65,7 +65,7 @@ public class QuerysInventarios {
             return agregado;
         }
     
-     public ResultSet consultaGeneral(String producto) throws SQLException, ClassNotFoundException{
+     public ResultSet consultaGeneral(String producto, String prov, String tipo, String nombre) throws SQLException, ClassNotFoundException{
          
                  openDB();
                   PreparedStatement ps;
@@ -74,7 +74,7 @@ public class QuerysInventarios {
                                                     "from producto\n" +
                                                     "inner join proveedor\n" +
                                                     "on producto.proveedor=proveedor.prov_rfc "
-                                                    + "where id_producto='"+producto+"';");
+                                                    + "where id_producto='"+producto+"' ;");
                                                     ResultSet rs= ps.executeQuery();
                                                       System.out.println(ps);
                     
@@ -84,7 +84,8 @@ public class QuerysInventarios {
                      ps = conn.prepareStatement("select nombre,tipo_producto,prov_nom_emp,cantidad,minimo,costo_unitario, costo_venta  \n" +
                                                     "from producto\n" +
                                                     "inner join proveedor\n" +
-                                                    "on producto.proveedor=proveedor.prov_rfc ;"
+                                                    "on producto.proveedor=proveedor.prov_rfc "
+                                                    + "where nombre='"+nombre+"'  or  prov_nom_emp='"+prov+"' or tipo_producto='"+tipo+"'"
                                                    );
                                                     ResultSet rs= ps.executeQuery();
                                                       System.out.println(ps);
