@@ -100,8 +100,12 @@ and open the template in the editor.
                             
                             <input type="submit" name="ConsultaInvg" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
                            </form>
+                    <form action="../Inventario/inventari_g1.jsp" method="POST">
+                            <span id="titulo"><span class="number">2</span> Consulta General</span><br><br>
+                            <input type="submit" name="ConsultaInG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
+                           </form>
                             <br><br>
-                            <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
+                            <span id="titulo"><span class="number">3</span> Consulta especifica de registro</span><br><br>
                             <center>
                             <button type="button" name="ConEsIG" data-toggle="modal" data-target="#ConsultaIG" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
                             </center> <br>
@@ -109,7 +113,7 @@ and open the template in the editor.
                             
                     <form>
 
-                            <span id="titulo"><span class="number">3</span> Reporte</span><br><br>
+                            <span id="titulo"><span class="number">4</span> Reporte</span><br><br>
                             
                            <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_Re.pdf'">Generar PDF</button><br><br>
                            <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_RE.ods'">Generar Excel</button><br><br>
@@ -127,12 +131,13 @@ and open the template in the editor.
                        <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                             <th scope="col">ID Producto</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Tipo</th>
                                             <th scope="col">Proveedor</th>
                                             <th scope="col">Cantidad</th>
                                             <th scope="col">Minimo</th>
-                                            <th scope="col">Costo Unitario )</th>
+                                            <th scope="col">Costo Unitario</th>
                                             <th scope="col">Costo de venta </th>
                                             
                                         </tr>
@@ -158,6 +163,7 @@ and open the template in the editor.
                                             <td><%=rsTabla.getString(5)%></td>
                                             <td>$<%=rsTabla.getString(6)%></td>
                                             <td>$<%=rsTabla.getString(7)%></td>
+                                            <td>$<%=rsTabla.getString(8)%></td>
                                       
                                         </tr>
                                         <%
