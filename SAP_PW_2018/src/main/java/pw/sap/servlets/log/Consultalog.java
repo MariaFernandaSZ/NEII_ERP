@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.log.Filtros;
 
 /**
  *
@@ -29,7 +30,9 @@ public class Consultalog extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", "id_emp", "is not null", "", 5);
+        Filtros filtro = new Filtros();
+        String referencia = filtro.filtrosQuery(area, fechaInferior, fechaSuperior, fechaFija, horaInferior, horaSuperior, horaFija);
+        ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -40,9 +43,6 @@ public class Consultalog extends HttpServlet {
             out.println("<body>");
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
-//            for (String arreglo1 : arreglo) {
-//                out.println("<td>"+arreglo1+"</td>");
-//            }
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){

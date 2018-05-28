@@ -13,7 +13,7 @@
                             <option value='' selected='selected'>Selecciona&nbsp;una&nbsp;opci&oacute;n...</option>
                             <option value='Casado(a)'>Casado(a)</option>
                             <option value='Viudo(a)'>Viudo(a)</option>
-                            <option value='Soltero(a)'>Soltero</option>
+                            <option value='Soltero(a)'>Soltero(a)</option>
                         </select>
                     </td>
                 </tr>
@@ -37,7 +37,7 @@
                 <tr><td>Cargo</td>
                     <td><select id='contratarCargo' name="contratarCargo" class='form-control form-control-sm' required>
                             <option value='' selected='selected'>Selecciona&nbsp;una&nbsp;cargo...</option>
-                            <option value='Admin'>Administrador</option>
+                            <option value='Administrador'>Administrador</option>
                             <option value='Empleado'>Empleado</option>
                             <option value='Jefe'>Jefe</option>
                             <option value='Gerente'>Gerente</option>
@@ -48,4 +48,4 @@
             </table>
         </form>
     </td></tr>
-
+</table>
