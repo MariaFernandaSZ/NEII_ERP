@@ -8,6 +8,7 @@ package pw.sap.pojo.Contabilidad;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -49,6 +50,58 @@ public class Con_Calendario {
         return r;        
         
     }
+    
+    public int consultaIdPlanCuentasEmpresa(double cuenta) throws SQLException{
+        openDB();        
+        PreparedStatement ps;
+        int r = 0;
+        ps=conn.prepareStatement("select ce.id from cuentas_empresa as ce,cuenta_sat as cs where ce.id_cuenta=cs.id and cs.cuenta=?;");
+        ps.setDouble(1, cuenta);
+        ResultSet rs= ps.executeQuery();
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+              r=rs.getInt(1);
+            }        
+        closeDB();
+        return r;
+    }
+    
+    /**
+     * Metodo para insertar datos en el asiento detallado
+     * @param idgeneral
+     * @param fechafac
+     * @param foliofac
+     * @param cuentacon
+     * @param nocuenta
+     * @param monto
+     * @param descripcion
+     * @param foliofiscal
+     * @param rfc
+     * @param deducible
+     * @param porcentaje
+     * @return
+     * @throws SQLException 
+     */
+    public int insertarAsientoDetallado(int idgeneral,String fechafac,String foliofac,String cuentacon,double nocuenta, double monto,String descripcion,String foliofiscal,String rfc,boolean deducible,double porcentaje) throws SQLException{
+        openDB();        
+        PreparedStatement ps;
+        ps=conn.prepareStatement("insert into asientodetalle (id_general,fecha_fac,foliofac,cuenta,nocuenta,monto,descripcion,folio_fiscal,rfc,deducible,porcentaje_dedu)\n" +
+"values(?,'"+fechafac+"',?,?,?,?,?,?,?,?,?);");
+        ps.setInt(1, idgeneral);
+        ps.setString(2, foliofac);
+        ps.setString(3, cuentacon);
+        ps.setDouble(4,nocuenta);
+        ps.setDouble(5,monto);
+        ps.setString(6, descripcion);
+        ps.setString(7, foliofiscal);
+        ps.setString(8, rfc);
+        ps.setBoolean(9, deducible);
+        ps.setDouble(10,porcentaje);
+        int r=ps.executeUpdate();
+        closeDB();
+        return r;        
+    }
+    
     /**
      * Metodo para insertar asiento general
      * @param modulo
@@ -68,6 +121,21 @@ public class Con_Calendario {
         ps.setString(3, concepto);
         ps.setInt(4, periodo);
         int r=ps.executeUpdate();
+        closeDB();
+        return r;
+    }
+    
+    public int consultaIdAsientoGeneral(String clave) throws SQLException{
+        openDB();        
+        PreparedStatement ps;
+        int r = 0;
+        ps=conn.prepareStatement("select id from asientogeneral where clave=?;");
+        ps.setString(1, clave);
+        ResultSet rs= ps.executeQuery();
+            while (rs.next()) {                
+                //System.out.println(rs.getInt(1));
+              r=rs.getInt(1);
+            }        
         closeDB();
         return r;
     }

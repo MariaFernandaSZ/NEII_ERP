@@ -106,7 +106,7 @@ function eliminaAsiento(){
         show: true
     });
 }
-function continuaAsientoDetalle(){
+function continuaAsientoDetalle(){    
     $('#continuarasiento').modal({
         show: true
     });

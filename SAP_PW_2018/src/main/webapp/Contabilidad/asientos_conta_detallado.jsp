@@ -1,3 +1,5 @@
+<%@page import="pw.sap.pojo.Contabilidad.PlanCuentas"%>
+<%@page import="pw.sap.obj.Contabilidad.ObjPlanDeCuentas"%>
 <%@page import="pw.sap.pojo.Contabilidad.AsientoGeneral"%>
 <%@page import="pw.sap.pojo.Contabilidad.Modulos"%>
 <%@page import="pw.sap.db.ConsultasGenerales"%>
@@ -139,13 +141,13 @@
                                 </div>
                             </form> 
                         </div> 
-                    </div>
-                    <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
+                    </div>                
+                    <div id="cont-central"  class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
                         <div class="table-responsive">
-                            <h1 class="text-center">Asientos contables</h1>
+                            <h1 class="text-center">Selecciona el Asiento contable para continuar captura</h1>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>clave</th>
+                                    <th>Clave</th>                                    
                                     <th>Modulo</th>
                                     <th>Tipo</th>
                                     <th>Fecha</th>
@@ -157,7 +159,7 @@
                                         for (int i=0;i<asientog.size();i++)
                                         {
                                            out.println("<tr>");                               
-                                           out.println("<td>"+asientog.get(i).getClave()+"</td>");    
+                                           out.println("<td>"+asientog.get(i).getClave()+"</td>");
                                            out.println("<td>"+asientog.get(i).getModulo()+"</td>");
                                            out.println("<td>"+asientog.get(i).getTipo_comprobante()+"</td>");
                                            out.println("<td>"+asientog.get(i).getFecha_cap()+"</td>");
@@ -170,12 +172,77 @@
                         </div>                        
                     </div>
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
-                        <table style="width:100%;height:100%;">                                        
+                        <!--<table style="width:100%;height:100%;">                                        
                             <tr><td colspan="2">Informaci&oacute;n de la empresa</td></tr>
                             <tr><td colspan="2"><img src="" alt="logo de la empresa"></td></tr>
-                        </table>
-                    </div>    
+                        </table>-->
+                          <form autocomplete="off" method="post" action="../AgregaAsientoDetallado" onsubmit="return AsientoAgr();">                          
+                                        <h4 class="text-center">Detalles</h4>
+                                        <div class="row form-style-5">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Clave: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="idasientogeneral" name="idasientogeneral" /></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Fecha factura: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="date" id="fechafac" name="fechafac" /></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Folio factura: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="foliofac" name="foliofac" /></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Cuenta Cargo: </span><span class="idemp"><input style="text-align: center" type="radio" id="cuenta" name='cuenta' value="1"/></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Cuenta Abono: </span><span class="idemp"><input style="text-align: center" type="radio" id="cuenta" name='cuenta' value="2"/></span>  <br>                                                                                                   
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Cuenta contable: </span>
+                                                    <span class="idemp">
+                                                        <!--<input style="width: 180px; height: 30px;text-align: center" type="text" id="cuentaCon" name="cuentaCon"/>-->
+                                                        <select id="cuentaCon" name="cuentaCon">
+                                                                <optgroup>
+                                                                    <option value="x">Seleccione...</option>
+                                                                    <%
+                                                                        LinkedList<ObjPlanDeCuentas> plan = PlanCuentas.consultaTodoPlan();
+                                                                        for (int i=0;i<plan.size();i++)
+                                                                        {
+
+                                                                           out.println("<option value='"+plan.get(i).getId_cuenta()+"'>"+plan.get(i).getId_cuenta()+"</option>");                                                                   
+
+                                                                        }
+                                                                    %>                                                                                                                                                                                                                                                
+                                                                </optgroup>
+                                                        </select>                                         
+                                                    </span><br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Monto: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="number" id="monto" name="monto"/></span>  <br>                                                
+                                            </div>  
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                <span style="font-size: 16px">Descripci&oacute;n: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="descripAs" name="descripAs"/></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                    <span style="font-size: 16px">Deducibles: </span><span class="idemp"><input style="text-align: center" type="checkbox" id="deducible" name="deducible" onclick="activar()"/></span>  <br>                                                                                                   
+                                            </div>  
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                <span style="font-size: 16px">Porcentaje: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="porcentajeAs" name="porcentajeAs" value="0.0" disabled="disabled"/></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                <span style="font-size: 16px">UUID factura: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="uuid" name="uuid"/></span>  <br>                                                
+                                            </div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
+                                                <span style="font-size: 16px">RFC: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="rfc" name="rfc" /></span>  <br>                                                
+                                            </div>    
+                                        </div>
+                                        
+                                        <div class="modal-footer">
+                                            <center>
+                                                <input id="guardar" type="submit" value="Guardar" style="background-color: #9F150D"  class="btn btn-danger"><br>
+                                            </center>    
+                                        </div>                                                                           
+                                </form>           
+                        </div>                        
                 </div>
+                            
 
                 <!-- Modal AGREGAR ASIENTO CONTABLE-->
                 <div class="modal fade" id="agregarasiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

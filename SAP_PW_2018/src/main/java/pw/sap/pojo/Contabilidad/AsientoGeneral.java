@@ -11,6 +11,7 @@ package pw.sap.pojo.Contabilidad;
  */
 public class AsientoGeneral {
     int id;
+    String clave;
     String modulo;
     String tipo_comprobante;
     String fecha_cap;
@@ -23,6 +24,14 @@ public class AsientoGeneral {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getModulo() {

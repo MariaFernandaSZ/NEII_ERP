@@ -98,10 +98,11 @@ public class ConsultasGenerales {
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
         Statement stmt;        
         stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select ag.id, ar.nombre_area as modulo,ag.tipo_comprobante,ag.fecha_apli, ag.concepto,cc.clave as periodo_conta from asientogeneral as ag, areas as ar, calen_contable as cc where ag.modulo=id_area and ag.periodo_conta=cc.id;");
+        ResultSet rs = stmt.executeQuery("select ag.id,ag.clave as clave, ar.nombre_area as modulo,ag.tipo_comprobante,ag.fecha_apli, ag.concepto,cc.clave as periodo_conta from asientogeneral as ag, areas as ar, calen_contable as cc where ag.modulo=id_area and ag.periodo_conta=cc.id;");
             while (rs.next()) {
                 AsientoGeneral a=new AsientoGeneral();
                 a.setId(rs.getInt("id"));
+                a.setClave(rs.getString("clave"));
                 a.setModulo(rs.getString("modulo"));
                 a.setTipo_comprobante(rs.getString("tipo_comprobante"));
                 a.setFecha_cap(rs.getString("fecha_apli"));

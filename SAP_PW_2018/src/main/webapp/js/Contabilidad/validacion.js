@@ -996,3 +996,26 @@ function validacadena(id){
         return true;
     }
 }
+
+
+function validacion(){
+    var opcion=document.getElementById('idasiento').value;
+    alert(opcion);
+    return false;
+}
+function activar(){
+    if (document.getElementById('deducible').checked==false){
+        document.getElementById('deducible').value=false;
+        document.getElementById('porcentajeAs').disabled=true;
+    } 
+    if (document.getElementById('deducible').checked==true){
+        document.getElementById('deducible').value=true;
+        document.getElementById('porcentajeAs').disabled=false;        
+    } 
+}
+
+function valor(){
+    var asiento=document.getElementsByName('idasientog').value;
+    alert(asiento);
+    document.getElementsByName('idasientogeneral').value=asiento;
+}
