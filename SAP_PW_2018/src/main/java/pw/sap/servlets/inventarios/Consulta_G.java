@@ -41,7 +41,7 @@ public class Consulta_G extends HttpServlet {
         Conexion c=new Conexion();
          System.out.println("id_producto:"+request.getParameter("id_producto"));
         
-        ArrayList l=c.consultaG(request.getParameter("id_producto"));
+        ArrayList l=c.consultaG(Integer.parseInt(request.getParameter("id_producto")));
         request.getSession().setAttribute("id_producto", l.get(0));
         request.getSession().setAttribute("nombre", l.get(1));
         request.getSession().setAttribute("tipo_producto", l.get(2));
