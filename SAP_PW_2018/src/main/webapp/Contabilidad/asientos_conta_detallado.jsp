@@ -144,7 +144,7 @@
                     </div>                
                     <div id="cont-central"  class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
                         <div class="table-responsive">
-                            <h1 class="text-center">Selecciona el Asiento contable para continuar captura</h1>
+                            <h1 class="text-center">Asientos contables</h1>
                             <table class="table table-bordered">
                                 <tr>
                                     <th>Clave</th>                                    
@@ -177,7 +177,7 @@
                             <tr><td colspan="2"><img src="" alt="logo de la empresa"></td></tr>
                         </table>-->
                           <form autocomplete="off" method="post" action="../AgregaAsientoDetallado" onsubmit="return AsientoAgr();">                          
-                                        <h4 class="text-center">Detalles</h4>
+                                        <h4 class="text-center">Agregar detalles</h4>
                                         <div class="row form-style-5">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                             
                                                     <span style="font-size: 16px">Clave: </span><span class="idemp"><input style="width: 180px; height: 30px;text-align: center" type="text" id="idasientogeneral" name="idasientogeneral" /></span>  <br>                                                
