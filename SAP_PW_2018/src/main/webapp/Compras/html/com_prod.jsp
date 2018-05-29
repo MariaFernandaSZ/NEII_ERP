@@ -127,9 +127,14 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Almacen</label>                               
                             </div>-->
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
-                       <br><center><input type="submit" value="Modificar" style="background-color: #9F150D" name="Modificar" class="btn btn-danger"></center>
-                       <br><center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
                         </form>
+                        <br>
+                         <form method="POST" action="com_prod.html" onsubmit="return vali_codigo();">
+                            <span id="titulo"><span class="number">3</span>Eliminar por<br>c&oacute;digo de producto</span>
+                            <br><br>
+                            <input type="number" name="codprod" placeholder="Código" id="codigo" required>
+                             <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
+                             </from>
                     </div>                       
 
 
@@ -156,7 +161,7 @@
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         <form method="POST" action="../../ingresar_producto" onsubmit="return vali_nuevoproducto();">                        
-                            <span id="titulo"><span class="number">3</span>Agregar<br>nuevo producto</span><br>
+                            <span id="titulo"><span class="number">4</span>Agregar<br>nuevo producto</span><br>
                             <br><input type="number" name="codprodnuevo" placeholder="Código de barras" id="codigo_nuevoprod" required>                             
                             <input type="text" name="nomproducto" placeholder="Nombre" id="nom_producto" required>
                             <select id="unidad" name="field4">
