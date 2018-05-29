@@ -255,10 +255,56 @@ public class QuerysInventarios {
         return valor;
     }
     
+    public ResultSet consultaEDev(String id_devolucion, String producto, String compra) throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    if (producto != null) {
+                                                    ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,id_producto \n" +
+                                                    "from devolucion "+
+                                                    "inner join orden_compra\n" +
+                                                    "on devolucion.id_compra=orden_compra.ord_folio\n"
+                                                    + " inner join requisicion\n"
+                                                    + "on orden_compra.req_folio=requisicion.req_folio\n"
+                                                    + "where id_devolucion="+id_devolucion+";");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         }else {
+                     ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,id_producto \n" +
+                                                    "from devolucion "+
+                                                    "inner join orden_compra\n" +
+                                                    "on devolucion.id_compra=orden_compra.ord_folio\n"
+                                                    + " inner join requisicion\n"
+                                                    + "on orden_compra.req_folio=requisicion.req_folio\n"
+                                                    + "where id_producto='"+producto+"' or id_compra="+compra);
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                                                       closeDB();
+                  return rs;
+                    }                  
+                    }
+    public ResultSet ConsultaDev() throws SQLException, ClassNotFoundException{
+                          openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,id_producto \n" +
+                                                    "from devolucion "+
+                                                    "inner join orden_compra\n" +
+                                                    "on devolucion.id_compra=orden_compra.ord_folio\n"
+                                                    + " inner join requisicion\n"
+                                                    + "on orden_compra.req_folio=requisicion.req_folio\n");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        } 
+}     
+
     
-    
-    
-    
-                  
-        }     
 

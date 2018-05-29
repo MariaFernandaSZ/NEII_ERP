@@ -32,7 +32,8 @@ public class insertar_devolucion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-              
+        
+        String id= request.getParameter("id_devolucion");
         String codigo = request.getParameter("id_compra");
         String fecha = request.getParameter("fecha_dev");
         
@@ -43,7 +44,7 @@ public class insertar_devolucion extends HttpServlet {
         
  
         
-        if(rg.agregarDevolucion(codigo, fecha, cantidad, observaciones)== 1){
+        if(rg.agregarDevolucion(id,codigo, fecha, cantidad, observaciones)== 1){
               
                 response.getWriter().write("Devolucion agregada");
               

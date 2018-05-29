@@ -50,7 +50,7 @@ public class EditaCalen extends HttpServlet {
         request.getSession().setAttribute("status", l.get(4));
         HttpSession sesion=request.getSession();
         //registro para log
-        HttpSession sesion=request.getSession(true);
+//        HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Edición del calendario");        

@@ -50,8 +50,15 @@ public class Consulta_Desconocida extends HttpServlet {
         request.getSession().setAttribute("tipo_merma", l.get(3));
         request.getSession().setAttribute("cantidad_merma", l.get(4));
         request.getSession().setAttribute("observaciones", l.get(5));
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de merma desconocida");
-            
+       
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de merma desconocida");        
+        
+        
+        
         request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
         
         

@@ -41,6 +41,14 @@ public class ingresar_producto extends HttpServlet {
         QuerysProducto qp= new QuerysProducto();
         qp.agregar("id_prod", "prov", "nombre", "tipo", "cant","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
         
+          //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+//        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de producto");        
+        
+        
+        
         PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('No se puede mermar más de lo que existe');");

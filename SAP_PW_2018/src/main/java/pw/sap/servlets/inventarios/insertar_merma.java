@@ -47,11 +47,19 @@ public class insertar_merma extends HttpServlet {
        int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
        String total= String.valueOf(cantidad_prod - cantidad_merma);
        if(cantidad_merma<=cantidad_prod){
+
        rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
          PrintWriter out=response.getWriter();
-            
-           
 
+            
+            
+             //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+//        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de merma");        
+        
+        
             out.println("<script>");
             out.println("alert('Merma ingresada correctamente');");
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
@@ -60,6 +68,12 @@ public class insertar_merma extends HttpServlet {
               mod.modificarCantidad(codigo, total);
             
        }else{
+            //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+//        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insercion de merma");        
+        
         PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('No se puede mermar más de lo que existe');");
@@ -67,9 +81,7 @@ public class insertar_merma extends HttpServlet {
             out.println("</script>");
        }
         
-        int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se inserto una devolucion");
       
-              
         
     }
 

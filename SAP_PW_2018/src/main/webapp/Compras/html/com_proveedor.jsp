@@ -172,7 +172,7 @@
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->  
-                              <form method="POST" action="com_imprimir.jsp" target="_blank">
+                              <form method="POST" action="../../ReportesExcel" target="">
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -210,8 +210,7 @@
                                     </tbody>
                                 </table></div>  
                                     <br>
-                            <center><input type="submit" value="Generar PDF" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">
-                                <input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"></center>
+                            <center><input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"></center>
 
                         </form>  
                     </div>

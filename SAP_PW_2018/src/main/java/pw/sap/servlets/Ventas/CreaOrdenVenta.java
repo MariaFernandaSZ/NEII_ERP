@@ -97,7 +97,7 @@ public class CreaOrdenVenta extends HttpServlet {
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Impresion de Orden de Venta");    
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Crea una Orden de Venta");    
                 PrintWriter out = response.getWriter();
                 out.print(total_pago);
             }else{

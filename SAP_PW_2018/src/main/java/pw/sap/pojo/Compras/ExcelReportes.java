@@ -14,18 +14,22 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -235,47 +239,134 @@ public class ExcelReportes
         }
     }
 
-    public void reporteProveedorBD()
+    public void reporteProveedorBD() throws SQLException
     {
         Workbook libroReporte = new XSSFWorkbook();
         Sheet hojaR = libroReporte.createSheet("Reporte Productos");
         
         try
         {
-//            //Fuente del archivo que se utilizara
-//            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\download.png");
-//            byte[] bytes = IOUtils.toByteArray(is);
-//            //Tipo de imagen  y se cierra el archivo is
-//            int imgIndex = libroReporte.addPicture(bytes, libroReporte.PICTURE_TYPE_PNG);
-//            is.close();
-//            
-//           CreationHelper ayuda = libroReporte.getCreationHelper();
-//           Drawing draw = hojaR.createDrawingPatriarch();
-//           //Se coloca en que fila ycolumna se colocara la imagen
-//           ClientAnchor ancho = ayuda.createClientAnchor();
-//           ancho.setCol1(0);
-//           ancho.setRow1(1);
-//           Picture imagen = draw.createPicture(ancho, imgIndex);
-//           //Cambiar tamaño de la imagen (donde empieza, cuanto puede usar)
-//           imagen.resize(1, 3);
-//           //Titulo del Reporte
-//           CellStyle tituloEstilo = libroReporte.createCellStyle();
-//           tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
-//           tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
-//           Font fuenteTitulo = libroReporte.createFont();
-//           fuenteTitulo.setFontName("Arial");
-//           fuenteTitulo.setBold(true);
-//           fuenteTitulo.setFontHeightInPoints((short)14);
-//           //Se asina al estilo, se envia objeto de la fuente que se a creado
-//           tituloEstilo.setFont(fuenteTitulo);
-//           
-//           Row filaTitulo = hojaR.createRow(1);
-//           Cell celdaTitulo = filaTitulo.createCell(1);
-//           celdaTitulo.setCellStyle(tituloEstilo);
-//           celdaTitulo.setCellValue("Reporte Productos");
-//           //Combinar celdas, parametros (fila donde empieza, ultima fila que utilizara, primer columna que utilizara, ultima columna que utilizara)
-//           hojaR.addMergedRegion(new CellRangeAddress(1, 2, 1, 3));
+            //Fuente del archivo que se utilizara
+            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\download.png");
+            byte[] bytes = IOUtils.toByteArray(is);
+            //Tipo de imagen  y se cierra el archivo is
+            int imgIndex = libroReporte.addPicture(bytes, libroReporte.PICTURE_TYPE_PNG);
+            is.close();
+            
+           CreationHelper ayuda = libroReporte.getCreationHelper();
+           Drawing draw = hojaR.createDrawingPatriarch();
+           //Se coloca en que fila y columna se colocara la imagen
+           ClientAnchor ancho = ayuda.createClientAnchor();
+           ancho.setCol1(0);
+           ancho.setRow1(1);
+           Picture imagen = draw.createPicture(ancho, imgIndex);
+           //Cambiar tamaño de la imagen (donde empieza, cuanto puede usar)
+           imagen.resize(1, 3);
+           //Titulo del Reporte
+           CellStyle tituloEstilo = libroReporte.createCellStyle();
+           tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
+           tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+           Font fuenteTitulo = libroReporte.createFont();
+           fuenteTitulo.setFontName("Arial");
+           fuenteTitulo.setBold(true);
+           fuenteTitulo.setFontHeightInPoints((short)14);
+           //Se asina al estilo, se envia objeto de la fuente que se a creado
+           tituloEstilo.setFont(fuenteTitulo);
            
+           Row filaTitulo = hojaR.createRow(0);
+           Cell celdaTitulo = filaTitulo.createCell(1);
+           celdaTitulo.setCellStyle(tituloEstilo);
+           celdaTitulo.setCellValue("Reporte Productos");
+           //Combinar celdas, parametros (fila donde empieza, ultima fila que utilizara, primer columna que utilizara, ultima columna que utilizara)
+           hojaR.addMergedRegion(new CellRangeAddress(0, 3, 1, 7));
+           
+           String[] cabecera = new String[]{"RFC Proveedor", "Nombre Empresa", "Nombre Contacto", "Correo", "Teléfono", "Estado", "Municipio", "Codigo Postal"};
+           
+           //Cabecera
+           CellStyle cabeceraEstilo = libroReporte.createCellStyle();
+           cabeceraEstilo.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+           cabeceraEstilo.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+           cabeceraEstilo.setBorderBottom(BorderStyle.THIN);
+           cabeceraEstilo.setBorderLeft(BorderStyle.THIN);
+           cabeceraEstilo.setBorderRight(BorderStyle.THIN);
+           cabeceraEstilo.setBorderTop(BorderStyle.THIN);
+           
+           //Fuente Cabecera
+           Font fuenteCabecera = libroReporte.createFont();
+           fuenteCabecera.setFontName("Arial");
+           fuenteCabecera.setBold(true);
+           fuenteCabecera.setColor(IndexedColors.WHITE.getIndex());
+           fuenteCabecera.setFontHeightInPoints((short) 12);
+           cabeceraEstilo.setFont(fuenteCabecera);
+           
+           //Fila Encabezados
+           Row filaEncabezados = hojaR.createRow(4);
+           
+            for (int i = 0; i < cabecera.length; i++)
+            {
+                Cell celdaEncabezado = filaEncabezados.createCell(i);
+                celdaEncabezado.setCellStyle(cabeceraEstilo);
+                celdaEncabezado.setCellValue(cabecera[i]);
+            }
+            
+            openBD();
+            if (conn != null)
+            {
+                PreparedStatement ps;
+
+                int numFilaDatos = 5;
+                //Estolo Contenido
+                CellStyle contenidoEstilo = libroReporte.createCellStyle();
+                contenidoEstilo.setBorderBottom(BorderStyle.THIN);
+                contenidoEstilo.setBorderLeft(BorderStyle.THIN);
+                contenidoEstilo.setBorderRight(BorderStyle.THIN);
+                contenidoEstilo.setBorderTop(BorderStyle.THIN);
+
+                ps = conn.prepareStatement("SELECT * FROM proveedor");
+
+                ResultSet rs = ps.executeQuery();
+
+                //Se cuentan las columnas que se tienen en la base de datos en esa tabla
+                int numCol = rs.getMetaData().getColumnCount();
+
+                //Recorrer Todo los Resultados
+                while (rs.next())
+                {
+                    Row filaDatos = hojaR.createRow(numFilaDatos);
+
+                    //Crear cada una de las celdas
+                    for (int a = 0; a < numCol; a++)
+                    {
+                        Cell celdaDatos = filaDatos.createCell(a);
+                        //Asignar estilo a las celda
+                        celdaDatos.setCellStyle(contenidoEstilo);
+//
+                        //Agregar Contenido a las Celdas
+//                        if (a == 1 || a == 2 || a == 3 || a == 4 || a == 6 || a == 7)
+//                        {
+                            celdaDatos.setCellValue(rs.getString(a+1));
+//                        } else
+//                        {
+//                            celdaDatos.setCellValue(rs.getInt(a + 1));
+//                        }
+//
+                        numFilaDatos++;
+                    }
+                }
+                //Auto ajuste de las columnas
+                hojaR.autoSizeColumn(0);
+                hojaR.autoSizeColumn(1);
+                hojaR.autoSizeColumn(2);
+                hojaR.autoSizeColumn(3);
+                hojaR.autoSizeColumn(4);
+                hojaR.autoSizeColumn(5);
+                hojaR.autoSizeColumn(6);
+                hojaR.autoSizeColumn(7);
+                
+                //Zoom en el excel
+                hojaR.setZoom(130);
+
+            } 
            
            //Archivo a generar
            FileOutputStream archivoReporte = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\PrimerReporteCompras.xlsx");
