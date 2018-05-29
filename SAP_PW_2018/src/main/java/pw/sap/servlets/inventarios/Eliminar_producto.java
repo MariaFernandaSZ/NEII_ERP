@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Inventarios.QuerysProducto;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,6 +40,12 @@ public class Eliminar_producto extends HttpServlet {
   String codigo ="";  
         QuerysProducto qp= new QuerysProducto();
         qp.eliminar(codigo);//cambiar productos por variables
+        
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de un producto");        
         
         PrintWriter out=response.getWriter();
             out.println("<script>");
