@@ -639,11 +639,12 @@ public class Conexion {
     }
     
     
-     public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
-        openDB();        
+      public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        openDB();
+        int valor=1;
         PreparedStatement ps;
         ps=conn.prepareStatement("INSERT INTO log(id_emp,area,des) VALUES ("+id_emp+",'"+area+"','"+des+"');");
-        int valor= ps.executeUpdate();
+        valor= ps.executeUpdate();
         closeDB();        
         return valor;
     }
@@ -662,11 +663,15 @@ public class Conexion {
           System.out.println(rs.getString(1));
           System.out.println(rs.getString(2));
           System.out.println(rs.getString(3));
+          System.out.println(rs.getString(4));
+          System.out.println(rs.getString(5));
             while (rs.next()) {                
                 //System.out.println(rs.getInt(1));
                 r.add(rs.getString(1));
                 r.add(rs.getString(2));
-                r.add(rs.getString(3));                            
+                r.add(rs.getString(3));  
+                r.add(rs.getString(4));
+                r.add(rs.getString(5));  
             }
             
         closeDB();        
