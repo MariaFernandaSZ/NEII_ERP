@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +44,15 @@ public class eliminarprov extends HttpServlet {
 
         QuerysCompras nuevo = new QuerysCompras();
      
+        
+              HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de Proveedor");        
+        
+        
             nuevo.eliminar_prov(rfc);
+        
             PrintWriter out = response.getWriter();            
             out.println("<script>");
             out.println("alert('REGISTRO ELIMINADO CORRECTAMENTE');");
