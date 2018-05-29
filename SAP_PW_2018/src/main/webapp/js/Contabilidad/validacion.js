@@ -136,48 +136,70 @@ function libromayor(){
     }
 }
 
+function plancuentasAgr(){
+ var tipocuentaAgr = document.getElementById('tipocuentaAgr').value;
+    var numeros=/[0-9]/;    
+    if(numeros.test(tipocuentaAgr) || tipocuentaAgr===""){
+        alert('el campo tipo de cuenta debe contener letras');
+        return false;
+    }
+   
+   var clasecuentaAgr = document.getElementById('clasecuentaAgr').value;
+    var numeros=/[0-9]/;    
+    if(numeros.test(clasecuentaAgr) || clasecuentaAgr===""){
+        alert('el campo clase cuenta debe contener letras');
+        return false;
+    }
+   
+   var naturalezaAgr = document.getElementById('naturalezaAgr').value;
+    var numeros=/[0-9]/;    
+    if(numeros.test(naturalezaAgr) || naturalezaAgr===""){
+        alert('el campo naturaleza de cuenta debe contener letras');
+        return false;
+    }
+    
+     else{
+        alert('Plan de cuentas agregado satisfactoriamente');
+        return true;
+    }
+   }
+
+
 function plancuentaseditar(){
     
-    var id = document.getElementById('csup').value;
-    var numeros=/[a-zA-Z]/;    
-    if(numeros.test(id)||id===""){
-        alert('el campo de cuenta superior debe contener numeros');
+ var tipocuenta = document.getElementById('tipocuenta').value;
+    var numeros=/[0-9]/;    
+    if(numeros.test(tipocuenta) || tipocuenta===""){
+        alert('el campo tipo de cuenta debe contener letras');
+        return false;
+    }
+   
+   var clasecuenta = document.getElementById('clasecuenta').value;
+    var numeros=/[0-9]/;    
+    if(numeros.test(clasecuenta) || clasecuenta===""){
+        alert('el campo clase cuenta debe contener letras');
+        return false;
+    }
+   
+   var naturaleza = document.getElementById('naturaleza').value;
+    var numeros=/[0-9]/;    
+    if(numeros.test(naturaleza) || naturaleza===""){
+        alert('el campo naturaleza de cuenta debe contener letras');
         return false;
     }
     
-    var naturaleza=document.getElementById('naturaleza').value;
-    if(naturaleza==="x"){
-        alert('debes seleccionar la naturaleza de la cuenta');
-        return false;
-    }
-    var aso=document.getElementById('asociacion').value;
-    if(aso==="x"){
-        alert('debes seleccionar la asociacion');
-        return false;
-    }
-    
-    var id=document.getElementById('nclave').value;
-    var numeros=/[a-zA-Z]/;  
-  if(numeros.test(id)||id===""){
-        alert('el campo clave debe contener numeros');
-        return false;
-    }
-    
-   var desc=document.getElementById('descripcion').value;    
-    if(desc===""){
-        alert('el campo descripción no debe estar vacío');        
-        return false;
-    }
-    var sat=document.getElementById('codigosat').value;
-    if(sat==="x"){
-        alert('debes seleccionar el codigo sat');
-        return false;
-    }  
-    
-    else{
+   else{
         alert('Plan de cuentas editado satisfactoriamente');
         return true;
     }
+   
+   
+   
+    
+  
+    
+    
+   
 }
 
 function comprasconfig(){
