@@ -40,6 +40,12 @@ public class Servlet_modBuscaNomina extends HttpServlet {
                 " = "+request.getParameter("modificarIdNomina"),"", 11);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
+                   //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de una nomina");        
+        
             response.getWriter().write(json);
         }
     }
