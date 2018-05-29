@@ -49,23 +49,32 @@ public class ClienteID extends HttpServlet {
         
            ResultSet rs = c.consultarIDEMP();
             if(rs == null){
-         
-             PrintWriter out=response.getWriter();
+                //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insertar cliente");        
+        
+            PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
             out.print("window.location='Ventas/clientes.jsp'");
             out.println("</script>");
 
             }else{
-           
+           //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Registro de cliente");        
+        
              PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
             out.print("window.location='Ventas/clientes.jsp'");
             out.println("</script>");
             }
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una registro de cliente");
-        
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
