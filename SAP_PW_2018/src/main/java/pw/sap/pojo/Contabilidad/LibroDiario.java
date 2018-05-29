@@ -51,15 +51,13 @@ public class LibroDiario {
     public ArrayList consultaLibroDiario(String modulo, String tipo, String fechainicio, String fechafin) throws SQLException {
         openDB();
         ArrayList r = new ArrayList();
-        PreparedStatement ps;
-        
-        ps = conn.prepareStatement("select ag.clave,a.nombre_area,ag.tipo_comprobante,ag.concepto,ad.descripcion,ag.fecha_apli,ad.porcentaje_dedu,ad.monto  from asientogeneral as ag, asientodetalle as ad, areas as a where ag.id=ad.id_general and ag.modulo=a.id_area;");
-        
-            ps.setNull(1,0);
-            ps.setString(2, tipo);
-        
-        
+        PreparedStatement ps = conn.prepareStatement("select ag.clave,a.nombre_area,ag.tipo_comprobante,ag.concepto,ad.descripcion,ag.fecha_apli,ad.porcentaje_dedu,ad.monto  from asientogeneral as ag, asientodetalle as ad, areas as a where ag.id=ad.id_general and ag.modulo=a.id_area;");
+        ps.setString(1, modulo);
+        ps.setString(2, tipo);
+        ps.setString(3, fechainicio);
+        ps.setString(4, fechafin);
         ResultSet rs = ps.executeQuery();
+        
         while (rs.next()) {
             r.add(rs.getString(1));
             r.add(rs.getString(2));

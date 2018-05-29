@@ -41,6 +41,13 @@ public class LibroDiarioConsulta extends HttpServlet {
         ArrayList l = new ArrayList();
         ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("tipoconsulta"), request.getParameter("fechaIni"), request.getParameter("fechaFin"));
         
+        request.getSession().setAttribute("cuenta", l.get(1));
+        request.getSession().setAttribute("descripcion", l.get(2));
+        request.getSession().setAttribute("tipo_cuenta", l.get(3));
+        request.getSession().setAttribute("clase_cuenta", l.get(4));
+        request.getSession().setAttribute("clase_sat", l.get(5));
+        request.getSession().setAttribute("naturaleza", l.get(6));
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -53,7 +60,12 @@ public class LibroDiarioConsulta extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+        
+        response.sendRedirect("Contabilidad/ct_libro_diario.jsp");
+        
     }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

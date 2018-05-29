@@ -179,27 +179,14 @@
                                     <td>350</td>                                                                           
                                 </tr>                        
                                 <tr>
-                                    <td>Activa</td>
-                                    <td><input id="reportediario" name="reportediario[]" type="checkbox" value="2"></td>
-                                    <td>19/03/2018</td>
-                                    <td>618</td>
-                                    <td>Compras</td>
-                                    <td>Compras</td>
-                                    <td>proveedor</td>
-                                    <td>350</td>
-                                    <td>350</td>                                                   
-                                </tr>                        
-                                <tr>
-                                    <td>Activa</td>
-                                    <td><input id="reportediario" name="reportediario[]" type="checkbox" value="3"></td>
-                                    <td>19/03/2018</td>
-                                    <td>618</td>
-                                    <td>Compras</td>
-                                    <td>Compras</td>
-                                    <td>proveedor</td>
-                                    <td>350</td>
-                                    <td>350</td>                                                                           
-                                </tr>
+                                    <td><%=request.getSession().getAttribute("cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("descripcion")%></td>
+                                    <td><%=request.getSession().getAttribute("tipo_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("clase_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("clase_sat")%></td>  
+                                    <td><%=request.getSession().getAttribute("naturaleza")%></td>    
+                                </tr>                     
+                                
                             </table> 
                             <br/>
                             <button class="btn btn-danger text-white" onclick="return exportar(); return false;" style="background-color: #9F150D">Exportar pdf</button>
