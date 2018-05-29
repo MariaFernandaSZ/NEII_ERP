@@ -72,6 +72,7 @@ public class generaFactura extends HttpServlet {
         double subtotal_pago=Double.parseDouble(request.getParameter("subtotal_pago"));
         double total_pago=Double.parseDouble(request.getParameter("total_pago"));
         String tipo_venta = request.getParameter("tipo_venta");
+        String forma_pago = request.getParameter("forma_pago");
         
         QuerysVentas c = null;
         try {
@@ -83,10 +84,10 @@ public class generaFactura extends HttpServlet {
         }
         
         
-//        String rfc = c.consultaRFCReceptor(id_intermC);
+        String rfc = c.consultaRFCReceptor(id_intermC);
         
 //        Factura fac = new Factura("EMIS101097HCL","RECE111197HCL",subtotal_pago,total_iva,total_pago,"Toluca, EdoMex","Tarjeta",tipo_venta);
-        Factura f = new Factura("EMIS101097HCL","RECE111197HCL", subtotal_pago, total_iva,total_pago, "Toluca, EdoMex","Tarjeta", "Contado");
+        Factura f = new Factura("EMIS101097HCL",rfc, subtotal_pago, total_iva,total_pago, "Toluca, EdoMex",forma_pago, tipo_venta);
         try {
             boolean sw = c.agregarFactura(f);
             

@@ -141,8 +141,8 @@
                             <select id="tipoPago" name="pago">
                                 <optgroup label="Pago">
                                     <option value="select">Selecciona</option>
-                                    <option value="efectivo">Efectivo</option>
-                                    <option value="tarjeta">Tarjeta</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Tarjeta">Tarjeta</option>
                                 </optgroup>
                             </select>
                         </form>
