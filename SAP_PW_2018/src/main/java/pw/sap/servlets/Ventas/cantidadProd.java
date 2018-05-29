@@ -68,7 +68,12 @@ public class cantidadProd extends HttpServlet {
         String ivaprod = request.getParameter("ivaprod");
         
         double subtotal = (Double.parseDouble(precioprod) + Double.parseDouble(ivaprod) ) * Integer.parseInt(cant);
-        
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de la cantidad de producto");    
+
         PrintWriter out = response.getWriter();
         
         out.print(String.valueOf(subtotal));
