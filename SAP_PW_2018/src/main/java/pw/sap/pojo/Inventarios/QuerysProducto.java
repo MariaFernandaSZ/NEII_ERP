@@ -67,15 +67,27 @@ public class QuerysProducto {
             return valor;
         }
     
-     public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
-        openDB();
-        int valor=1;
-        PreparedStatement ps;
-        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,des) VALUES ("+id_emp+",'"+area+"','"+des+"');");
-        valor= ps.executeUpdate();
-        closeDB();        
-        return valor;
-    }
+       public ResultSet consultaGeneral() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                  
+                                                    ps = conn.prepareStatement("select id_producto,nombre,tipo_producto,prov_nom_emp,cantidad,minimo,costo_unitario, costo_venta  \n" +
+                                                    "from producto\n" +
+                                                    "inner join proveedor\n" +
+                                                    "on producto.proveedor=proveedor.prov_rfc; "
+                                                   );
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         
+                    
+                    
+          
+                  
+        }
     
     
    
