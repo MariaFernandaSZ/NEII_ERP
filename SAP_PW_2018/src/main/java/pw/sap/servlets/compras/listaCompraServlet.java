@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Compras.OrdenCompraPojo;
+import javax.servlet.http.HttpSession;
 import pw.sap.pojo.Compras.QuerysCompras;
 import pw.sap.pojo.Compras.listCompraPojo;
 import pw.sap.pojo.Compras.requisicionPojo;
@@ -43,6 +44,12 @@ public class listaCompraServlet extends HttpServlet {
        
         QuerysCompras c = new QuerysCompras();
         
+         HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de la lista de compra");        
+        
+        
         String list_folio = request.getParameter("list_folio");
         String ord_folio = request.getParameter("ord_folio");
         String lis_pago = request.getParameter("list_pago");
@@ -53,9 +60,7 @@ public class listaCompraServlet extends HttpServlet {
         
         listCompraPojo litaBean = new listCompraPojo(list_folio, id_producto, prov_rfc, list_fecha);
         
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de la lista de compra");
-         
-        
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
