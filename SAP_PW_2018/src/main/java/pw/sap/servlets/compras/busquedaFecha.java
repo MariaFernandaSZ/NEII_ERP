@@ -7,6 +7,7 @@ package pw.sap.servlets.compras;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,17 +43,28 @@ public class busquedaFecha extends HttpServlet {
         
         //list_fecha
         
-        String list_fecha = request.getParameter("list_fecha");
+        String where_fecha = request.getParameter("where_fecha");
         
-        listCompraPojo listCBean = new listCompraPojo(list_fecha);
+        listCompraPojo listCBean = new listCompraPojo(where_fecha);
         
-        c.tablaLCF(listCBean);
-        
-        PrintWriter out=response.getWriter();
+        boolean sw = c.tablaFechas(listCBean);
+        if (sw) {
+            
+            PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
+           
             out.print("window.location='Compras/html/com_listadecom.jsp'");
             out.println("</script>");
+        }else{
+            
+            PrintWriter out=response.getWriter();
+            out.println("<script>");
+            out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
+            out.print("window.location='Compras/html/CompraOrden.jsp'");
+            out.println("</script>");
+        }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

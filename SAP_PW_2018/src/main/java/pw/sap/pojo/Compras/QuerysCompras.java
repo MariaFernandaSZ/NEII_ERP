@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 import pw.sap.db.Conexion;
+import pw.sap.servlets.compras.busquedaFecha;
 /**
  *
  * @author Nesto
@@ -251,7 +252,7 @@ public class QuerysCompras {
          try{
           openDB();
           Statement st=conn.createStatement();
-          rs=st.executeQuery("SELECT list_folio, id_producto, prov_rfc, list_fecha from lista_compra;");
+          rs=st.executeQuery("SELECT list_folio, list_pago, id_producto, prov_rfc, list_fecha from lista_compra;");
          }catch(SQLException se){
           se.printStackTrace();
          }
@@ -259,20 +260,22 @@ public class QuerysCompras {
          
      }
      
-     public ResultSet tablaLCF(listCompraPojo listPojo) throws SQLException, ClassNotFoundException{
-         
-         ResultSet rs = null;
-         try{
-             openDB();
-          Statement st=conn.createStatement();
-          rs=st.executeQuery("SELECT list_folio, id_producto, prov_rfc,'"+listPojo.getList_fecha()+"', from lista_compra;");
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
-         return rs;
-         
-         
-     }
+//     public ResultSet tablaLCF() throws SQLException, ClassNotFoundException{
+//         
+//         
+//         
+//         ResultSet rs = null;
+//         try{
+//             openDB();
+//          Statement st=conn.createStatement();
+//       //   rs=st.executeQuery("SELECT list_folio, id_producto, prov_rfc, list_fecha, from lista_compra where list_fecha = '"++"';");
+//         }catch(SQLException se){
+//          se.printStackTrace();
+//         }
+//         return rs;
+//         
+//         //'"+listPojo.getList_fecha()+"'
+//     }
      
 //     public boolean agregarOrdenCompra(OrdenCompraPojo ordenPojo) throws SQLException, ClassNotFoundException{
 //            boolean agregado=false;
@@ -365,6 +368,43 @@ public class QuerysCompras {
         return r;
     
      }
+
+
+    public boolean tablaFechas(listCompraPojo listCBean) throws SQLException {
+        boolean eliminado=false;
+        
+        openDB();
+        
+        try {
+                
+                    if(conn!=null){
+                        Statement st;
+                        st = conn.createStatement();
+                        st.executeUpdate("select list_folio, id_producto, prov_rfc, list_fecha from lista_compra where list_fecha = '"+listCBean.getWhere_fecha()+"'");
+                        eliminado=true;
+                        st.close();
+                    }
+                closeDB();
+                    } catch (SQLException e) {
+                        eliminado=false;
+                        e.printStackTrace();
+                    }
+            return eliminado;
+    }
+    
+    public ResultSet tablaNuevaBF(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("SELECT req_folio, id_producto, req_cantidad from requisicion;");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+     }
+    
+    
     
      
 }
