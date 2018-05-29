@@ -31,7 +31,6 @@
         <tr><td><input type="checkbox" id="licencia" name="mostrar[]" value="licencia_medica"></td><td><label class="form-check-label" for="licencia">Licencia&nbsp;m&eacute;dica</label></td></tr>
         <tr><td><input type="checkbox" id="edo_civil" name="mostrar[]" value="edo_civil_emp"></td><td><label class="form-check-label" for="edo_civil">Estado&nbsp;civil</label></td></tr>
         <tr><td><input type="checkbox" id="sueldo" name="mostrar[]" value="sueldo_emp"></td><td><label class="form-check-label" for="sueldo">Sueldo</label></td></tr>
-        <tr><td><input type="checkbox" id="sueldo_dia" name="mostrar[]" value="sueldo_por_dia"></td><td><label class="form-check-label" for="sueldo_dia">Sueldo&nbsp;diario</label></td></tr>
         <tr><td><input type="checkbox" id="cargo" name="mostrar[]" value="cargo_emp"></td><td><label class="form-check-label" for="cargo">Cargo</label></td></tr>
         <tr><td><input type="checkbox" id="area_emp" name="mostrar[]" value="area_emp"></td><td><label class="form-check-label" for="area_emp">&Aacute;rea</label></td></tr>
     </table>

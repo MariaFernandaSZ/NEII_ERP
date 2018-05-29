@@ -2,12 +2,19 @@ package pw.sap.servlets.rh;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.db.Conexion;
 
 /**
  *
@@ -26,9 +33,24 @@ public class Servlet_numeroEmpleados extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        Conexion c = new Conexion();
+        ArrayList lista;
+        Map <String,Object> empleado = new LinkedHashMap();
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Recursos Humanos'", "", 1);
+        empleado.put("RH",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Compras'", "", 1);
+        empleado.put("COM",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Gerencia'", "", 1);
+        empleado.put("GER",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Ventas'", "", 1);
+        empleado.put("VEN",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Inventarios'", "", 1);
+        empleado.put("INV",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Contabilidad'", "", 1);
+        empleado.put("CON",lista.get(0));
+        for(String area: empleado.keySet()){System.out.println(area + " TIENE "+empleado.get(area));}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,7 +65,13 @@ public class Servlet_numeroEmpleados extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -57,7 +85,13 @@ public class Servlet_numeroEmpleados extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
