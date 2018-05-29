@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.Inventarios.Merma;
+import javax.servlet.http.HttpSession;
 import pw.sap.pojo.Inventarios.Modificar;
 
 /**
