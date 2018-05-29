@@ -53,8 +53,12 @@ public class ConsultaE_G extends HttpServlet {
         request.setAttribute("fecha_registro", l.get(6));
         request.setAttribute("fecha_caducidad", l.get(7));
         
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta general");
-            
+         //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta general de inventario");        
+        
         
         request.getRequestDispatcher("Inventarios/Inventario/inventario_g.jsp").forward(request, response);
         
