@@ -246,22 +246,22 @@ public class ExcelReportes
         
         try
         {
-            //Fuente del archivo que se utilizara
-            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\download.png");
-            byte[] bytes = IOUtils.toByteArray(is);
-            //Tipo de imagen  y se cierra el archivo is
-            int imgIndex = libroReporte.addPicture(bytes, libroReporte.PICTURE_TYPE_PNG);
-            is.close();
-            
-           CreationHelper ayuda = libroReporte.getCreationHelper();
-           Drawing draw = hojaR.createDrawingPatriarch();
-           //Se coloca en que fila y columna se colocara la imagen
-           ClientAnchor ancho = ayuda.createClientAnchor();
-           ancho.setCol1(0);
-           ancho.setRow1(1);
-           Picture imagen = draw.createPicture(ancho, imgIndex);
-           //Cambiar tamaño de la imagen (donde empieza, cuanto puede usar)
-           imagen.resize(1, 3);
+//            //Fuente del archivo que se utilizara
+//            InputStream is = new FileInputStream("C:\\Users\\Adrian\\Mis documentos\\NetBeansProjects\\SAP_PW_2018\\SAP_PW_2018\\src\\main\\java\\pw\\sap\\pojo\\Compras\\imgReportes\\download.png");
+//            byte[] bytes = IOUtils.toByteArray(is);
+//            //Tipo de imagen  y se cierra el archivo is
+//            int imgIndex = libroReporte.addPicture(bytes, libroReporte.PICTURE_TYPE_PNG);
+//            is.close();
+//            
+//           CreationHelper ayuda = libroReporte.getCreationHelper();
+//           Drawing draw = hojaR.createDrawingPatriarch();
+//           //Se coloca en que fila y columna se colocara la imagen
+//           ClientAnchor ancho = ayuda.createClientAnchor();
+//           ancho.setCol1(0);
+//           ancho.setRow1(1);
+//           Picture imagen = draw.createPicture(ancho, imgIndex);
+//           //Cambiar tamaño de la imagen (donde empieza, cuanto puede usar)
+//           imagen.resize(1, 3);
            //Titulo del Reporte
            CellStyle tituloEstilo = libroReporte.createCellStyle();
            tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -269,22 +269,22 @@ public class ExcelReportes
            Font fuenteTitulo = libroReporte.createFont();
            fuenteTitulo.setFontName("Arial");
            fuenteTitulo.setBold(true);
-           fuenteTitulo.setFontHeightInPoints((short)14);
+           fuenteTitulo.setFontHeightInPoints((short)25);
            //Se asina al estilo, se envia objeto de la fuente que se a creado
            tituloEstilo.setFont(fuenteTitulo);
            
            Row filaTitulo = hojaR.createRow(0);
-           Cell celdaTitulo = filaTitulo.createCell(1);
+           Cell celdaTitulo = filaTitulo.createCell(0);
            celdaTitulo.setCellStyle(tituloEstilo);
            celdaTitulo.setCellValue("Reporte Productos");
            //Combinar celdas, parametros (fila donde empieza, ultima fila que utilizara, primer columna que utilizara, ultima columna que utilizara)
-           hojaR.addMergedRegion(new CellRangeAddress(0, 3, 1, 7));
+           hojaR.addMergedRegion(new CellRangeAddress(0, 3, 0, 7));
            
            String[] cabecera = new String[]{"RFC Proveedor", "Nombre Empresa", "Nombre Contacto", "Correo", "Teléfono", "Estado", "Municipio", "Codigo Postal"};
            
            //Cabecera
            CellStyle cabeceraEstilo = libroReporte.createCellStyle();
-           cabeceraEstilo.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+           cabeceraEstilo.setFillForegroundColor(IndexedColors.RED1.getIndex());
            cabeceraEstilo.setFillPattern(FillPatternType.SOLID_FOREGROUND);
            cabeceraEstilo.setBorderBottom(BorderStyle.THIN);
            cabeceraEstilo.setBorderLeft(BorderStyle.THIN);
@@ -369,7 +369,7 @@ public class ExcelReportes
             } 
            
            //Archivo a generar
-           FileOutputStream archivoReporte = new FileOutputStream("C:\\Users\\Adrian\\Escritorio\\excel\\PrimerReporteCompras.xlsx");
+           FileOutputStream archivoReporte = new FileOutputStream("PrimerReporteCompras.xlsx");
            //Se escribe en el libro
            libroReporte.write(archivoReporte);
            //Se Cierra el archivo
@@ -381,6 +381,15 @@ public class ExcelReportes
         {
             Logger.getLogger(ExcelReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void abrirExcel()
+    {
+        try{
+          Runtime.getRuntime().exec("cmd /c start PrimerReporteCompras.xlsx");
+          }catch(IOException  e){
+              e.printStackTrace();
+          }
     }
 
 }
