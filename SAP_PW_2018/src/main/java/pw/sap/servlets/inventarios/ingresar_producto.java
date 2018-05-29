@@ -39,7 +39,7 @@ public class ingresar_producto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
        
         QuerysProducto qp= new QuerysProducto();
-        qp.agregar("id_prod", "prov", "nombre", "tipo", "cant","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
+        qp.agregar("id_prod", "prov", "nombre", "tipo","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
         
           //registro para log
         HttpSession sesion=request.getSession(true);
