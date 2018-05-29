@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Compras.Proveedores;
+import javax.servlet.http.HttpSession;
 import pw.sap.pojo.Compras.QuerysCompras;
 
 
@@ -46,14 +47,18 @@ public class proveedor extends HttpServlet {
              
       nuevo.agregarProveedor(rfc, nom_emp, nom_cont, correo, tel, estado, muni, cp);
  
+             HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de proveedor");        
+        
         
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
             out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
-       int i = nuevo.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de proveedor");
-        
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
