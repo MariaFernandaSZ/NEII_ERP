@@ -40,19 +40,28 @@ public class Servlet_agregarNomina extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList lista = new ArrayList();
                     Conexion c = new Conexion();
-             c.openDB();
+           c.openDB();
+            Double deducciones=Double.parseDouble(request.getParameter("deducciones"));
+            Double percepciones=Double.parseDouble(request.getParameter("percepciones"));
+            Double diast=Double.parseDouble(request.getParameter("diasPagados"));
+            Double sueldod=Double.parseDouble(request.getParameter("SueldoDiario"));
+            
+            Double pago;
+            pago = ((percepciones-deducciones)+(diast*sueldod));
         try (PrintWriter out = response.getWriter()) {
             String valores = ("'"
                     +request.getParameter("empresa")+"','"
                     + request.getParameter("fechaCreacion")+"','"
-                    + request.getParameter("fechaLimite") + "','"
-                    + request.getParameter("idEmpleado") + "','"
-                    + request.getParameter("percepciones")+"','"
-                    + request.getParameter("deducciones") + "','"
-                    + request.getParameter("diasPagados") + "','"
-                    + request.getParameter("pagoTotal") + "','"
-                    + request.getParameter("formaPago")+"'");        
-            Integer query = c.insertar("nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,dias_pagados,pago_total,forma_pago",
+                    + request.getParameter("fechaLimite") + "',"
+                    + request.getParameter("idEmpleado") + ","
+                    + request.getParameter("percepciones")+","
+                    + request.getParameter("deducciones") + ","
+                    + request.getParameter("diasPagados") + ","
+                    + request.getParameter("SueldoDiario")+","
+                    + pago + ",'"
+                    + request.getParameter("formaPago")+"'"); 
+
+            Integer query = c.insertar("nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,dias_pagados,sueldo_por_dia,pago_total,forma_pago",
                     "nomina", valores);
             lista.add(c.consulta("id_nomina", "nomina", "id_nomina", "is not null", "ORDER BY id_emp DESC LIMIT 1", 1));
             if(query == 1){
