@@ -44,7 +44,7 @@ public class ReportesExcel extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             ExcelReportes excr = new ExcelReportes();
-            excr.reporteProveedorBD();
+            excr.crearExcelNuevo();
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<script>");
