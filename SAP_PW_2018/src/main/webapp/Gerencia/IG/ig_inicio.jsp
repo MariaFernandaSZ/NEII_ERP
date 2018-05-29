@@ -18,20 +18,6 @@
         <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
-        <script>
-            function habilitar(value)
-            {
-                if (value == true)
-                {
-                    // habilitamos
-                   $("#hora").css("display", "block");
-                } else if (value == false) {
-                    // deshabilitamos
-                     $("#hora").css("display", "none");
-                    
-                }
-            }
-        </script>
     </head>
 
     <body> 
@@ -53,15 +39,40 @@
                             <form action="../../Consultalog" name="formulario" method="post">
                                 <input type="date" name="bday" id="bday" max="3000-12-31"  min="1000-01-01" class="form-control">
                                 <br>
-                                <label><input type="checkbox" id="check" onchange="habilitar(this.checked);" checked> Hora</label>
+                                <label>Intervalo&nbsp;de&nbsp;tiempo</label>
+                                <br/>
                                 <div id="hora">
                                     <br>
                                     <label>De: <input id="horaInicio" for="example-time-input" type="time" name="horaInicio" ></label>
                                     <br>
-                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="horaFin" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></label>  
+                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="horaFin" max="22:30:00" min="10:00:00" step="1"></label>  
                                 </div>
                                  <br>
                                 <input type="submit" value="Generar">
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" style="list-style:none;">
+                    <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >Generar&nbsp;CSV</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item dropdown-submenu">
+                            <form action="../../GenerarCSV" name="formularioCSV" method="POST">
+                                <input type="text" name="rutaCSV" placeholder="Ingrese la ruta del archivo" class="form-control" required/>
+                                <br>
+                                <p href="#" >Fecha</p>
+                                <input type="date" name="bdayG" id="bdayG" max="3000-12-31"  min="1000-01-01" class="form-control">
+                                <br>
+                                <label>Intervalo&nbsp;de&nbsp;tiempo</label>
+                                <br/>
+                                <div id="hora">
+                                    <br>
+                                    <label>De: <input id="horaInicioG" for="example-time-input" type="time" name="horaInicioG"></label>
+                                    <br>
+                                    <label>A: <input id="horaFinG" for="example-time-input" type="time" name="horaFinG" max="22:30:00" min="10:00:00" step="1"></label>  
+                                </div>
+                                <br>
+                                <input type="submit" value="Generar CSV">
                             </form>
                         </li>
                     </ul>
@@ -137,8 +148,6 @@
                 <div class="row">
                     <br>
                 </div>
-
-
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div style="background-color: #fff; margin: 20px 2px;">

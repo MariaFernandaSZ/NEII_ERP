@@ -31,6 +31,11 @@
             <version>2.8.0</version>
         </dependency>
         <dependency>
+            <groupId>CSV</groupId>
+            <artifactId>CSV</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
