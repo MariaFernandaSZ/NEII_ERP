@@ -74,14 +74,14 @@ public class registro {
                
    
    
-   public int agregarDevolucion(String codigo, String fecha, String cantidad, String observaciones) throws SQLException, ClassNotFoundException{
+ public int agregarDevolucion(String id,String codigo, String fecha, String cantidad, String observaciones) throws SQLException, ClassNotFoundException{
          
             openDB();
             int valor=1;
                      PreparedStatement ps;
                     
-                     ps = conn.prepareStatement("INSERT INTO devolucion(id_compra,cantidad_devuelta,fecha_devolucion,motivo) "
-                                       + " VALUES ("+codigo+","+cantidad+",'now()','"+observaciones+"')");
+                     ps = conn.prepareStatement("INSERT INTO devolucion(id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo) "
+                                       + " VALUES ("+id+","+codigo+","+cantidad+",'now()','"+observaciones+"')");
                     valor = ps.executeUpdate();
                     System.out.println(ps);
         
