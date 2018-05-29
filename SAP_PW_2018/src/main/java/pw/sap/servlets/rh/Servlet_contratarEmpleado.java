@@ -58,14 +58,24 @@ public class Servlet_contratarEmpleado extends HttpServlet {
                     "empleado", valores);
             lista.add(c.consulta("id_emp", "empleado", "id_emp", "is not null", "ORDER BY id_emp DESC LIMIT 1", 1));
             if(query == 1){
-               
+                      //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se contrato un empleado");        
+        
                 response.getWriter().write("Registro ingresado correctamente: "+lista.get(0));
             }else{
+                       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de contratacion");        
+        
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
             
-             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de empleados");
-         
+            
         }
     }
 
