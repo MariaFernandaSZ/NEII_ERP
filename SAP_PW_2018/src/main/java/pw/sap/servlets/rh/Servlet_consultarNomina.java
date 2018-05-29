@@ -41,10 +41,10 @@ public class Servlet_consultarNomina extends HttpServlet {
         String nomina = request.getParameter("id_empleado");
         String referencia = validar.referenciaConsultaNomina(nomina, empleado);
         String [] campos = {"ID","EMPRESA","FECHA CREACION","FECHA LIMITE","EMPLEADO","PERCEPCIONES","DEDUCCIONES","DIAS PAGADOS",
-                            "TOTAL","FORMA DE PAGO"};
+                            "SUELDO POR DIA","TOTAL","FORMA DE PAGO"};
         lista = c.consulta("id_nomina,nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,"
-                            + "dias_pagados,pago_total,forma_pago",
-                            "nomina", referencia, "ORDER BY id_nomina ASC", "", 10);
+                            + "dias_pagados,sueldo_por_dia,pago_total,forma_pago",
+                            "nomina", referencia, "ORDER BY id_nomina ASC", "", 11);
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
@@ -54,7 +54,7 @@ public class Servlet_consultarNomina extends HttpServlet {
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%10==0){out.println("</tr><tr>");}
+                if(j%11==0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");

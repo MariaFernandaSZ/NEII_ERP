@@ -51,14 +51,14 @@
                         <li class="dropdown-item dropdown-submenu">
                             <p href="#" >Fecha</p>
                             <form action="../../Consultalog" name="formulario" method="post">
-                                <input type="date" name="bday" max="3000-12-31"  min="1000-01-01" class="form-control">
+                                <input type="date" name="bday" id="bday" max="3000-12-31"  min="1000-01-01" class="form-control">
                                 <br>
                                 <label><input type="checkbox" id="check" onchange="habilitar(this.checked);" checked> Hora</label>
                                 <div id="hora">
                                     <br>
-                                    <label>De: <input id="horaInicio" for="example-time-input" type="time" name="hora" ></label>
+                                    <label>De: <input id="horaInicio" for="example-time-input" type="time" name="horaInicio" ></label>
                                     <br>
-                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></label>  
+                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="horaFin" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></label>  
                                 </div>
                                  <br>
                                 <input type="submit" value="Generar">

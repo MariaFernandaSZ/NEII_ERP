@@ -26,8 +26,9 @@ public class Consultalog extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         Filtros filtro = new Filtros();
-        //String referencia = filtro.filtrosQuery(fecha, horaInferior, horaSuperior);
-        //ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);
+        String referencia = filtro.filtrosQuery(request.getParameter("bday"), request.getParameter("horaInicio"),
+                                                request.getParameter("horaFin"));
+        ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -40,10 +41,10 @@ public class Consultalog extends HttpServlet {
             out.println("<tr>");
             out.println("</tr>");
             out.println("<tr>");
-//            for(int j = 0 ; j < lista.size() ; j++){
-//                if(j%5==0){out.println("</tr><tr>");}
-//                out.print("<td>"+lista.get(j)+"</td>");
-//            }
+            for(int j = 0 ; j < lista.size() ; j++){
+                if(j%5==0){out.println("</tr><tr>");}
+                out.print("<td>"+lista.get(j)+"</td>");
+            }
             out.println("</tr>");
             out.println("</table>");
             out.println("</body>");
@@ -52,26 +53,6 @@ public class Consultalog extends HttpServlet {
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consultalog.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Consultalog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *

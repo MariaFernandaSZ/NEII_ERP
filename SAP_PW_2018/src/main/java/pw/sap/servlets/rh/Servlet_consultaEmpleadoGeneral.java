@@ -34,10 +34,9 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO",
-                            "SUELDO DIARIO","AREA","CARGO"};
+        String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO","AREA","CARGO"};
         ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,sueldo_por_dia,area_emp,cargo_emp","empleado", "id_emp", "is not null", "order by id_emp asc", 12);
+                + "licencia_medica,sueldo_emp,area_emp,cargo_emp","empleado", "id_emp", "is not null", "order by id_emp asc", 11);
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
@@ -45,7 +44,7 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%12 == 0){out.println("</tr><tr>");}
+                if(j%11 == 0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
