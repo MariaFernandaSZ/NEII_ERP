@@ -284,7 +284,7 @@ public class ExcelReportes
            
            //Cabecera
            CellStyle cabeceraEstilo = libroReporte.createCellStyle();
-           cabeceraEstilo.setFillForegroundColor(IndexedColors.RED1.getIndex());
+           cabeceraEstilo.setFillForegroundColor(IndexedColors.DARK_RED.getIndex());
            cabeceraEstilo.setFillPattern(FillPatternType.SOLID_FOREGROUND);
            cabeceraEstilo.setBorderBottom(BorderStyle.THIN);
            cabeceraEstilo.setBorderLeft(BorderStyle.THIN);
