@@ -55,7 +55,7 @@ public class proveedor extends HttpServlet {
         
             PrintWriter out=response.getWriter();
             out.println("<script>");
-            out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
+            out.println("alert('REGISTRO AGREGADO CORRECTAMENTE');");
             out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
       
