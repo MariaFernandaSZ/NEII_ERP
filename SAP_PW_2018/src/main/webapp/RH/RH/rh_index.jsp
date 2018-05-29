@@ -104,7 +104,7 @@
                           </div>
                           <div>
                               <center>
-                                  <h6>PUESTO</h6><label><img src="../imagen/persona.png" width="50" height="50" alt=''></label><!-- Puesto y foto del administrador en sesion -->
+                                  <h6>USUARIO:&nbsp;${usuario}</h6><label><img src="../imagen/persona.png" width="50" height="50" alt=''></label><!-- Puesto y foto del administrador en sesion -->
                               </center>
                           </div>
                           <div>

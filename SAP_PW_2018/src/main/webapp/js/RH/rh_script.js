@@ -10,15 +10,15 @@ function fecha(){
 }
 
 function cargaFiltrosEmp(){
-    $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#resultadoConsultaEmp").html(carga);});
+    $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function cargaFiltrosTarea(){
-    $.get("../Vistas/consultar_tareas.jsp",function(carga){$("#resultadoConsultaTarea").html(carga);});
+    $.get("../Vistas/consultar_tareas.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function cargaFiltrosNomina(){
-    $.get("../Vistas/consultar_nomina.jsp",function(carga){$("#resultadoConsultaNomina").html(carga);});
+    $.get("../Vistas/consultar_nomina.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function agregarNomina(){
@@ -134,56 +134,6 @@ function eliminarTarea(){
                document.forms[0].action="../../Servlet_eliminarTarea";
 }
    
-function validaConsulta(){
-    var area = document.getElementById('area').value;
-    var id = document.getElementById('id_empleado').value;
-    var datos = document.getElementsByName('mostrar[]');
-    var orden = document.getElementsByName('ordenar');
-    var mensaje = '';
-    mensaje = mensaje+'Mostrando datos de '+area+' \n\ ';
-    if(id!==''){mensaje = mensaje+'ID del empleado: '+id+' \n\ ';}
-    for(var i = 0 ; i < datos.length ; i++){
-        if(datos[i].checked){
-            switch(i){
-                case 0:
-                    mensaje = mensaje+'Vacaciones \n\ ';
-                    break;
-                case 1:
-                    mensaje = mensaje+'Dias trabajados \n\ ';
-                    break;
-                case 2:
-                    mensaje = mensaje+'Dias de entrada puntual \n\ ';
-                    break;
-                case 3:
-                    mensaje = mensaje+'Cargo \n\ ';
-                    break;
-                case 4:
-                    mensaje = mensaje+'Licencia médica \n\ ';
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    for(var j = 0 ; j < orden.length ; j++){
-        if(orden[j].checked){
-            switch(j){
-                case 0:
-                    mensaje = mensaje+'Orden alfabético \n\ ';
-                    break;
-                case 1:
-                    mensaje = mensaje+'Orden por fecha de ingreso \n\ ';
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    alert(''+mensaje);
-    $.get('../Vistas/consulta.jsp',function(carga){$('#tareaActual').html(carga);});
-    return false;
-}
-
 function validarContratar(){
     var numeros = /[0-9]/;
     var letras = /[A-Za-z]/;
@@ -351,7 +301,7 @@ $(document).ready(function(){
      $(document).on("submit","#formEmpleadoG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaEmp').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -359,7 +309,7 @@ $(document).ready(function(){
     $(document).on("submit","#formConsultarEmpleado",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaEmp').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -367,7 +317,7 @@ $(document).ready(function(){
     $(document).on("submit","#formTareaG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaTarea').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -375,7 +325,7 @@ $(document).ready(function(){
     $(document).on("submit","#formConsultarTarea",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaTarea').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -383,7 +333,7 @@ $(document).ready(function(){
     $(document).on("submit","#formNominaG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaNomina').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -391,7 +341,7 @@ $(document).ready(function(){
     $(document).on("submit","#formConsultarNomina",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaNomina').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
