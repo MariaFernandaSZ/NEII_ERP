@@ -46,12 +46,23 @@ public class Servlet_despedirEmpleado extends HttpServlet {
                 
            
             if(resultado == 1){
+                       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se despidio a un empleado");        
+        
                 response.getWriter().write("Empleado Despedido");
             }else{
+                       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento de despido");        
+        
                 response.getWriter().write("El ID del empleado no existe");
             }
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Despido de empleados");
-         
+        
         }
     }
 
