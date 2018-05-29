@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -140,6 +141,28 @@ public class Con_Calendario {
         closeDB();
         return r;
     }
+    
+    public ResultSet consultaAsientoDetalle() throws SQLException{
+        ArrayList r=new ArrayList();
+        openDB();        
+        PreparedStatement ps;        
+        ps=conn.prepareStatement("select ag.clave,ad.foliofac,ad.descripcion,ad.folio_fiscal,ad.fecha_fac,ad.cuenta,ad.monto from asientodetalle as ad, asientogeneral as ag where ad.id_general=ag.id;");        
+        ResultSet rs= ps.executeQuery();
+//            while (rs.next()) {                
+//                //System.out.println(rs.getInt(1));
+//              r.add(rs.getString(1));
+//              r.add(rs.getString(2));
+//              r.add(rs.getString(3));
+//              r.add(rs.getString(4));
+//              r.add(rs.getString(5));
+//              r.add(rs.getString(6));
+//              r.add(rs.getDouble(7));
+//            }        
+        closeDB();
+        return rs;
+    }
+    
+    
                     
     public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
         openDB();

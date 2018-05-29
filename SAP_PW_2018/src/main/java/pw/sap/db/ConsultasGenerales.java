@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.Properties;
+import pw.sap.pojo.Contabilidad.AsientoDetallado;
 import pw.sap.pojo.Contabilidad.AsientoGeneral;
 import pw.sap.pojo.Contabilidad.Calen_Contable;
 import pw.sap.pojo.Contabilidad.Modulos;
@@ -108,6 +109,32 @@ public class ConsultasGenerales {
                 a.setFecha_cap(rs.getString("fecha_apli"));
                 a.setConcepto(rs.getString("concepto"));
                 a.setPeriodo_conta(rs.getString("periodo_conta"));               
+                l.add(a);
+            }                    
+        conn.close();
+        return l;
+    }
+    
+    public static LinkedList consultaAsientoDetallado() throws SQLException, ClassNotFoundException {        
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+        LinkedList <AsientoDetallado> l=new LinkedList<AsientoDetallado>();
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        Statement stmt;        
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select ag.clave as clave,ad.foliofac as foliofac,ad.descripcion as descripcion,ad.folio_fiscal as folio_fiscal,ad.fecha_fac as fecha_fac,ad.cuenta as cuenta,ad.monto as monto from asientodetalle as ad, asientogeneral as ag where ad.id_general=ag.id;");
+            while (rs.next()) {
+                AsientoDetallado a=new AsientoDetallado();                
+                a.setClave(rs.getString("clave"));
+                a.setFoliofac(rs.getString("foliofac"));
+                a.setDescripcion(rs.getString("descripcion"));
+                a.setFolio_fiscal(rs.getString("folio_fiscal"));
+                a.setFecha_fac(rs.getString("fecha_fac"));
+                a.setCuenta(rs.getString("cuenta"));
+                a.setMonto(rs.getDouble("monto"));                
                 l.add(a);
             }                    
         conn.close();

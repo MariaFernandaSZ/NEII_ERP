@@ -1,3 +1,5 @@
+<%@page import="pw.sap.pojo.Contabilidad.AsientoDetallado"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="pw.sap.pojo.Contabilidad.AsientoGeneral"%>
 <%@page import="pw.sap.pojo.Contabilidad.Modulos"%>
 <%@page import="pw.sap.db.ConsultasGenerales"%>
@@ -147,30 +149,33 @@
                     </div>
                     <div id="cont-central" class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central -->
                         <div class="table-responsive">
-                            <h1 class="text-center">Asientos contables</h1>
+                            <h1 class="text-center">Asientos contables detallados</h1>
                             <table class="table table-bordered">
                                 <tr>
                                     <th>clave</th>
-                                    <th>Modulo</th>
-                                    <th>Tipo</th>
-                                    <th>Fecha</th>
-                                    <th>Concepto</th>
-                                    <th>Periodo contable</th>
+                                    <th>foliofac</th>
+                                    <th>Descripci&oacute;n</th>
+                                    <th>uuid</th>
+                                    <th>fecha_fac</th>
+                                    <th>cuenta</th>
+                                    <th>monto</th>
                                 </tr>
-                                    <%
-                                        LinkedList<AsientoGeneral> asientog =ConsultasGenerales.consultaAsientoGeneral();
-                                        for (int i=0;i<asientog.size();i++)
+                                <%
+                                        LinkedList<AsientoDetallado> asientod =ConsultasGenerales.consultaAsientoDetallado();
+                                        for (int i=0;i<asientod.size();i++)
                                         {
                                            out.println("<tr>");                               
-                                           out.println("<td>"+asientog.get(i).getClave()+"</td>");    
-                                           out.println("<td>"+asientog.get(i).getModulo()+"</td>");
-                                           out.println("<td>"+asientog.get(i).getTipo_comprobante()+"</td>");
-                                           out.println("<td>"+asientog.get(i).getFecha_cap()+"</td>");
-                                           out.println("<td>"+asientog.get(i).getConcepto()+"</td>");
-                                           out.println("<td>"+asientog.get(i).getPeriodo_conta()+"</td>");
+                                           out.println("<td>"+asientod.get(i).getClave()+"</td>");    
+                                           out.println("<td>"+asientod.get(i).getFoliofac()+"</td>");
+                                           out.println("<td>"+asientod.get(i).getDescripcion()+"</td>");
+                                           out.println("<td>"+asientod.get(i).getFolio_fiscal()+"</td>");
+                                           out.println("<td>"+asientod.get(i).getFecha_fac()+"</td>");
+                                           out.println("<td>"+asientod.get(i).getCuenta()+"</td>");
+                                           out.println("<td>"+asientod.get(i).getMonto()+"</td>");
                                            out.println("</tr>");
                                         }
                                     %>
+                                        
                             </table>                                
                         </div>                        
                     </div>
