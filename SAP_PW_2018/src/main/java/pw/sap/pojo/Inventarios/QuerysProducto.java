@@ -89,6 +89,16 @@ public class QuerysProducto {
                   
         }
     
+    public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        openDB();
+        int valor=1;
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO log(id_emp,area,des) VALUES ("+id_emp+",'"+area+"','"+des+"');");
+        valor= ps.executeUpdate();
+        closeDB();        
+        return valor;
+    }
+    
     
    
 }
