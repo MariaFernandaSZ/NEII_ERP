@@ -153,7 +153,42 @@ public class QuerysInventarios {
 //                  return rs;
 //                    
                     }
+  public ResultSet consultaEntrada() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+//                    if (producto != null) {
+                                                    ps = conn.prepareStatement("select ord_folio,  prov_nom_emp, nombre, req_cantidad, ord_fecha \n" +
+"from orden_compra \n" +
+"inner join requisicion on orden_compra.req_folio = requisicion.req_folio\n" +
+"inner join producto on producto.id_producto = requisicion.id_producto\n" +
+"inner join proveedor on proveedor.prov_rfc = producto.proveedor;");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
                     
+                    closeDB();
+                  return rs;
+//           
+//                    
+                    }  
+  
+  
+    public ResultSet consultaLote() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+//                    if (producto != null) {
+                                                    ps = conn.prepareStatement("select * from entrada;");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+//           
+//                    
+                    }                    
+  
+  
   
          public ResultSet ConsultaGM() throws SQLException, ClassNotFoundException{
                           openDB();

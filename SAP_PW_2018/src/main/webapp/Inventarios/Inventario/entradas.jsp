@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -115,48 +116,87 @@
                     </div>
 
                     <div class="form-style-5">
-                        <form action="../../Consulta_Entradas" method="POST">
+                        <form action="../../ingresarEntrada" method="POST">
 
-                            <span id="titulo"><span class="number">1</span> Consultar registro</span><br><br>
-                            <br><span class="idemp"><input type="text" name="no_lote" id="no_lote" placeholder="N&uacute;mero de lote" required="required" pattern="[0-9]{7}" maxlength="7" title="El n&uacute;mero de lote debe ser de 7 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
-                            <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
-                            <center>
-                                <button type="button" name="ConEs" data-toggle="modal" data-target="#ConsultaEsp" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
-                            </center>
+                            <span id="titulo"><span class="number">1</span> Ingresar lote </span><br><br>
+                            <br><span class="idemp"><input type="text" name="no_lote" id="no_lote" placeholder="N&uacute;mero de compra" required="required" pattern="[0-9]{7}" maxlength="7" title="El n&uacute;mero de lote debe ser de 7 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Ingresar"/><br><br>
+                            
                         </form>
                     </div>
-                    <div class="form-style-5">
-                        <form action="Entradas.jsp" method="POST">
-                            <span id="titulo"><span class="number">3</span> Acciones:</span><br><br>
-                            <button type="button" name="Insertar" data-toggle="modal" data-target="#Insertar" style="background-color: #9F150D; width:185px;" class="btn btn-danger" >Ingresa un nuevo producto</button><br><br>
-                            <button type="button" name="Imprimir" data-toggle="modal" data-target="#Imprimir" style="background-color: #9F150D;  width:185px;" class="btn btn-danger" onclick="window.location = '../imagenes/Salidas.pdf'">Imprimir</button><br><br>
-
-
-                        </form>
-                    </div>
+                  
 
                 </div>
 
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>N&uacute;mero de lote</th>
-                                <th>Id orden de compra</th>
-                                <th>Id de producto</th>
-                                <th>Cantidad recibida</th>
-                                <th>Fecha de registro</th>
+                         <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                             <th scope="col">Orden de compra</th>
+                                            <th scope="col">Proveedor</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                           <th scope="col">Fecha</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    <%
+                                      
+                                        ResultSet rsTabla = interTabla.consultaEntrada();
 
-                            </tr>
-                            <tr>
-                                <td><%= request.getAttribute("no_lote")%></td>
-                                <td><%= request.getAttribute("id_compra")%></td>
-                                <td><%= request.getAttribute("id_producto")%></td>
-                                <td><%= request.getAttribute("cantidad_recibido")%></td>
-                                <td><%= request.getAttribute("fecha_registro")%></td>
-                                
-                            </tr>
-                        </table>    
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                          <td><%=rsTabla.getString(5)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                                     <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                             <th scope="col">Lote</th>
+                                            <th scope="col">id_compra</th>
+                                            <th scope="col">fecha_ingreso</th>
+                                          
+                                            
+                                        </tr>
+                                    </thead>
+                                    
+                                    <%
+                                      
+                                        ResultSet rs = interTabla.consultaLote();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rs.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rs.getString(1)%></td>
+                                            <td><%=rs.getString(2)%></td>
+                                            <td><%=rs.getString(3)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table>
+                        
+                        
+                        
+                        
                     </div> 
                 </div>
 

@@ -47,8 +47,8 @@ public class insertar_merma extends HttpServlet {
        int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
        String total= String.valueOf(cantidad_prod - cantidad_merma);
        if(cantidad_merma<=cantidad_prod){
-        rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
-            PrintWriter out=response.getWriter();
+       rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
+         PrintWriter out=response.getWriter();
             
            
 
