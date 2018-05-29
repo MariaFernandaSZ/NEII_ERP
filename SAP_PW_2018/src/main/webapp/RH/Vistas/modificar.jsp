@@ -67,10 +67,6 @@
                 <td><input type='number' min="88.90" id='modificarSueldoEmpleado' name='modificarSueldoEmpleado' class='form-control form-control-sm' required="required"></td>
             </tr>
             <tr>
-                <td>Sueldo&nbsp;por&nbsp;d&iacute;a</td>
-                <td><input type='number' min="88.90" id='modificarSueldoDEmpleado' name='modificarSueldoDEmpleado' class='form-control form-control-sm' required="required"></td>
-            </tr>
-            <tr>
                 <td>&Aacute;rea</td>
                 <td>
                     <select name='modificarAreaEmpleado' id='modificarAreaEmpleado' class='form-control form-control-sm' required="required">

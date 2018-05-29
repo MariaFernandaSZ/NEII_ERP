@@ -399,9 +399,8 @@ $(document).ready(function(){
             $("#modificarEdocivilEmpleado").val(responseJson[6]);
             $("#modificarLicEmpleado").val(responseJson[7]);
             $("#modificarSueldoEmpleado").val(responseJson[8]);
-            $("#modificarSueldoDEmpleado").val(responseJson[9]);
-            $("#modificarAreaEmpleado").val(responseJson[10]);
-            $("#modificarCargoEmpleado").val(responseJson[11]);
+            $("#modificarAreaEmpleado").val(responseJson[9]);
+            $("#modificarCargoEmpleado").val(responseJson[10]);
         });
         event.preventDefault();
     });
@@ -423,7 +422,6 @@ $(document).ready(function(){
                 $("#modificarEdocivilEmpleado").val("");
                 $("#modificarLicenciaEmpleado").val("");
                 $("#modificarSueldoEmpleado").val("");
-                $("#modificarSueldoDEmpleado").val("");
                 $("#modificarAreaEmpleado").val("");
                 $("#modificarCargoEmpleado").val("");
             }else{
@@ -448,8 +446,9 @@ $(document).ready(function(){
             $("#modificarNominaPercepciones").val(responseJson[5]);
             $("#modificarNominaDeducciones").val(responseJson[6]);
             $("#modificarNominaDias").val(responseJson[7]);
-            $("#modificarNominaTotal").val(responseJson[8]);
-            $("#modificarNominaPago").val(responseJson[9]);
+            $("#modificarNominaPagoDias").val(responseJson[8]);
+            $("#modificarNominaTotal").val(responseJson[9]);
+            $("#modificarNominaPago").val(responseJson[10]);
         });
         event.preventDefault();
     });
@@ -471,6 +470,7 @@ $(document).ready(function(){
                 $("#modificarNominaPercepciones").val("");
                 $("#modificarNominaDeducciones").val("");
                 $("#modificarNominaDias").val("");
+                $("#modificarNominaPagoDias").val("");
                 $("#modificarNominaTotal").val("");
                 $("#modificarNominaPago").val("");
             }else{

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pw.sap.servlets.log;
 
 import java.io.IOException;
@@ -31,8 +26,8 @@ public class Consultalog extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         Filtros filtro = new Filtros();
-//        String referencia = filtro.filtrosQuery(area, fechaInferior, fechaSuperior, fechaFija, horaInferior, horaSuperior, horaFija);
-//        ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);
+        //String referencia = filtro.filtrosQuery(fecha, horaInferior, horaSuperior);
+        //ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

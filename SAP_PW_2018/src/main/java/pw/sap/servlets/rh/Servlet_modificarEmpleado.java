@@ -39,10 +39,8 @@ public class Servlet_modificarEmpleado extends HttpServlet {
                             request.getParameter("modificarDireccionEmpleado"),request.getParameter("modificarRFC"),
                             request.getParameter("modificarTelefonoEmpleado"),request.getParameter("modificarEdocivilEmpleado"),
                             request.getParameter("modificarLicEmpleado"),request.getParameter("modificarSueldoEmpleado"),
-                            request.getParameter("modificarSueldoDEmpleado"),request.getParameter("modificarAreaEmpleado"),
-                            request.getParameter("modificarCargoEmpleado")};
-        String [] numero = {request.getParameter("modificarTelefonoEmpleado"),request.getParameter("modificarSueldoEmpleado"),
-                            request.getParameter("modificarSueldoDEmpleado")};
+                            request.getParameter("modificarAreaEmpleado"),request.getParameter("modificarCargoEmpleado")};
+        String [] numero = {request.getParameter("modificarTelefonoEmpleado"),request.getParameter("modificarSueldoEmpleado")};
         String [] letra = {request.getParameter("modificarNombreEmpleado"),request.getParameter("modificarApellidoEmpleado"),
                            request.getParameter("modificarEdocivilEmpleado"),request.getParameter("modificarLicEmpleado"),
                            request.getParameter("modificarAreaEmpleado"),request.getParameter("modificarCargoEmpleado")};
@@ -50,8 +48,8 @@ public class Servlet_modificarEmpleado extends HttpServlet {
             if(validar.sinLetras(numero) && validar.sinNumeros(letra)){
                 String campos = "nombre_emp='"+valores[0]+"',apellido_emp='"+valores[1]+"',direccion_emp='"+valores[2]+
                 "',rfc_emp='"+valores[3]+"',telefono_emp='"+valores[4]+"',edo_civil_emp='"+valores[5]+
-                    "',licencia_medica='"+valores[6]+"',sueldo_emp="+valores[7]+",sueldo_por_dia="+valores[8]+
-                ",area_emp='"+valores[9]+"',cargo_emp='"+valores[10]+"'";
+                    "',licencia_medica='"+valores[6]+"',sueldo_emp="+valores[7]+",area_emp='"+valores[8]+
+                        "',cargo_emp='"+valores[9]+"'";
                 if(empleado != null && !empleado.equals("")){
                     Integer query = c.actualizar(campos, "empleado", "id_emp","="+empleado);
                     if(query == 1){

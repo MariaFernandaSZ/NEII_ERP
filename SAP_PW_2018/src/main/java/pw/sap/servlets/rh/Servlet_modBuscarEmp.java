@@ -2,7 +2,6 @@ package pw.sap.servlets.rh;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -36,8 +35,8 @@ public class Servlet_modBuscarEmp extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Conexion c = new Conexion();
         ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,sueldo_por_dia,area_emp,cargo_emp","empleado", "id_emp",
-                " = "+request.getParameter("modificarIdEmpleado"),"", 12);
+                + "licencia_medica,sueldo_emp,area_emp,cargo_emp","empleado", "id_emp",
+                " = "+request.getParameter("modificarIdEmpleado"),"", 11);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
             response.getWriter().write(json);
