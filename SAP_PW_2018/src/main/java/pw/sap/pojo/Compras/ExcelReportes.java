@@ -276,7 +276,7 @@ public class ExcelReportes
            Row filaTitulo = hojaR.createRow(0);
            Cell celdaTitulo = filaTitulo.createCell(0);
            celdaTitulo.setCellStyle(tituloEstilo);
-           celdaTitulo.setCellValue("Reporte Productos");
+           celdaTitulo.setCellValue("Reporte Proveedores");
            //Combinar celdas, parametros (fila donde empieza, ultima fila que utilizara, primer columna que utilizara, ultima columna que utilizara)
            hojaR.addMergedRegion(new CellRangeAddress(0, 3, 0, 7));
            
