@@ -20,7 +20,6 @@
                 <tr><td>Licencia M&eacute;dica</td><td><input type='text' id='contratarlicenciaMedica' name='contratarlicenciaMedica' class='form-control form-control-sm' required></td></tr>
 
                 <tr><td>Sueldo</td><td><input type='number' id='contratarSueldo' name='contratarSueldo' class='form-control form-control-sm' required></td></tr>
-                 <tr><td>Sueldo por día</td><td><input type='number' id='contratarSueldoDiario' name='contratarSueldoDiario' class='form-control form-control-sm' required></td></tr>
                
                 <tr><td>&Aacute;rea</td>
                     <td><select id='contratarArea' name="contratarArea" class='form-control form-control-sm' required>
