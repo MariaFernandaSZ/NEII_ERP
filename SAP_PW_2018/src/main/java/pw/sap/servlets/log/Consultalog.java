@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pw.sap.servlets.log;
 
 import java.io.IOException;
@@ -17,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.log.Filtros;
 
 /**
  *
@@ -29,7 +25,9 @@ public class Consultalog extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", "id_emp", "is not null", "", 5);
+        Filtros filtro = new Filtros();
+        //String referencia = filtro.filtrosQuery(fecha, horaInferior, horaSuperior);
+        //ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -40,15 +38,12 @@ public class Consultalog extends HttpServlet {
             out.println("<body>");
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
-//            for (String arreglo1 : arreglo) {
-//                out.println("<td>"+arreglo1+"</td>");
-//            }
             out.println("</tr>");
             out.println("<tr>");
-            for(int j = 0 ; j < lista.size() ; j++){
-                if(j%5==0){out.println("</tr><tr>");}
-                out.print("<td>"+lista.get(j)+"</td>");
-            }
+//            for(int j = 0 ; j < lista.size() ; j++){
+//                if(j%5==0){out.println("</tr><tr>");}
+//                out.print("<td>"+lista.get(j)+"</td>");
+//            }
             out.println("</tr>");
             out.println("</table>");
             out.println("</body>");

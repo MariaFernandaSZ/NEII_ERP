@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,22 +37,33 @@ public class eliminarprov extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String rfc = request.getParameter("rfc");
-              
+        String btn = request.getParameter("Buscar");
+        System.out.println(btn);
+
         QuerysCompras nuevo = new QuerysCompras();
+     
         
-        nuevo.eliminar_prov(rfc);       
-            PrintWriter out=response.getWriter();
+              HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de Proveedor");        
+        
+        
+            nuevo.eliminar_prov(rfc);
+        
+            PrintWriter out = response.getWriter();            
             out.println("<script>");
-            out.println("alert('REGISTRO INSERTADO CORRECTAMENTE');");
+            out.println("alert('REGISTRO ELIMINADO CORRECTAMENTE');");
             out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
-        
-         int i = nuevo.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de proveedor");
+           
          
-     
-    }
+           
+          
+        
+   }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

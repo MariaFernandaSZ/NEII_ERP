@@ -482,6 +482,7 @@ function validaTipoPago(){
               var total_ovVar=$('#totalOV').val();
               var fecha_entregaVar=$('#fecha2').val();
               var id_empVar=$('#idVendedor').val();
+              var tipo_ventaVar = $('#tipo_venta').text();
             
                 $.ajax({
                     type:'POST',
@@ -494,7 +495,8 @@ function validaTipoPago(){
                         subtotal_pago:subtotalVar,
                         total_pago:total_ovVar,
                         fecha_entrega:fecha_entregaVar,
-                        id_emp:id_empVar
+                        id_emp:id_empVar,
+                        tipo_venta:tipo_ventaVar
                     },
                     success: function (result) {
                         alert("ORDEN DE VENTA CREADA, PAGO: "+result)

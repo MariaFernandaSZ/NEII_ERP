@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pw.sap.pojo.Ventas.ProductoBean;
 import pw.sap.pojo.Ventas.QuerysVentas;
 
@@ -58,7 +59,13 @@ public class AgregaProd extends HttpServlet {
             JsonElement element = gson.toJsonTree(new ProductoBean(nombre,precio,iva));
             out.write(element.toString());
         }
-          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una agregacion de producto");
+        
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se agrego un producto");        
+        
         
     }
 

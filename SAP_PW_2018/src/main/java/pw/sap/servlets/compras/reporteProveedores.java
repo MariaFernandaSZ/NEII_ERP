@@ -44,12 +44,12 @@ public class reporteProveedores extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             ExcelReportes excr = new ExcelReportes();
-            excr.reporteProveedorBD();
+            excr.crearExcelNuevo();
             
             /* TODO output your page here. You may use following sample code. */
             out.println("<script>");
             out.println("alert('Reporte de Proveedores Generado Corectamente!!');");
-            out.print("window.location='Compras/html/com_consultaprov.jsp'");
+            out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
         }
     }

@@ -157,8 +157,7 @@
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord9" value="telefono">
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Teléfono</label>
                             </div>-->
-                            <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>                            
-                            
+                            <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                         </form>
                         <br>
                         <form method="POST" action="../../eliminarprov">
@@ -172,7 +171,7 @@
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->  
-                              <form method="POST" action="com_imprimir.jsp" target="_blank">
+                              <form method="POST" action="../../reporteProveedores" target="_blank">
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -188,7 +187,10 @@
                                     </thead>
                                     <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
                                     <%
-                                        ResultSet rsTabla = interTabla.consultaProveedor();
+                                        String buscar= request.getParameter("rfc");
+                                        
+                                        ResultSet rsTabla = interTabla.consultaProvEspecifica(buscar);
+
                                     %> 
                                     <tbody>
                                         <%
@@ -208,7 +210,7 @@
                                             }
                                         %>
                                     </tbody>
-                                </table></div>  
+                                </table></div> 
                                     <br>
                             <center><input type="submit" value="Generar PDF" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">
                                 <input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"></center>
@@ -227,7 +229,7 @@
                             <input  type="text" name="nuevo_correo" placeholder="Correo" id="nuevo_correo" required>
                             <input  type="number" name="nuevo_tel" placeholder="Teléfono" id="nuevo_tel" required>
                             <select id="nuevo_estado" name="nuevo_estado">
-                                <optgroup label="Estado">
+                                  <optgroup label="Estado">
                                     <option value="@">Seleccione una estado</option>
                                     <option value=”Aguascalientes">Aguascalientes</option>
                                     <option value="Baja California">Baja California </option>

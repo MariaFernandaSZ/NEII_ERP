@@ -10,19 +10,18 @@ function fecha(){
 }
 
 function cargaFiltrosEmp(){
-    $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#resultadoConsultaEmp").html(carga);});
+    $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function cargaFiltrosTarea(){
-    $.get("../Vistas/consultar_tareas.jsp",function(carga){$("#resultadoConsultaTarea").html(carga);});
+    $.get("../Vistas/consultar_tareas.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function cargaFiltrosNomina(){
-    $.get("../Vistas/consultar_nomina.jsp",function(carga){$("#resultadoConsultaNomina").html(carga);});
+    $.get("../Vistas/consultar_nomina.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function agregarNomina(){
-    alert('entre');
     var numeros = /[0-9]/;
     var letras = /[A-Za-z]/;
     var empresa = document.getElementById('empresa').value;
@@ -63,11 +62,12 @@ function agregarNomina(){
         alert('Modifique los días pagados, no deben ser negativos');
         return false;
     }
-    var pagoTotal = document.getElementById('pagoTotal').value;
-    if (pagoTotal < 0) {
-        alert('Modifique el pago total, no deben ser negativo');
+    var sueldo_dia = document.getElementById('SueldoDiario').value;
+    if (sueldo_dia < 0) {
+        alert('Modifique el sueldo por dia, no deben ser negativo');
         return false;
     }
+     
     var formaPago = document.getElementById('formaPago').value;
     if (numeros.test(formaPago)) {
         alert('Modifique la forma de pago, no es numerico');
@@ -134,56 +134,6 @@ function eliminarTarea(){
                document.forms[0].action="../../Servlet_eliminarTarea";
 }
    
-function validaConsulta(){
-    var area = document.getElementById('area').value;
-    var id = document.getElementById('id_empleado').value;
-    var datos = document.getElementsByName('mostrar[]');
-    var orden = document.getElementsByName('ordenar');
-    var mensaje = '';
-    mensaje = mensaje+'Mostrando datos de '+area+' \n\ ';
-    if(id!==''){mensaje = mensaje+'ID del empleado: '+id+' \n\ ';}
-    for(var i = 0 ; i < datos.length ; i++){
-        if(datos[i].checked){
-            switch(i){
-                case 0:
-                    mensaje = mensaje+'Vacaciones \n\ ';
-                    break;
-                case 1:
-                    mensaje = mensaje+'Dias trabajados \n\ ';
-                    break;
-                case 2:
-                    mensaje = mensaje+'Dias de entrada puntual \n\ ';
-                    break;
-                case 3:
-                    mensaje = mensaje+'Cargo \n\ ';
-                    break;
-                case 4:
-                    mensaje = mensaje+'Licencia médica \n\ ';
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    for(var j = 0 ; j < orden.length ; j++){
-        if(orden[j].checked){
-            switch(j){
-                case 0:
-                    mensaje = mensaje+'Orden alfabético \n\ ';
-                    break;
-                case 1:
-                    mensaje = mensaje+'Orden por fecha de ingreso \n\ ';
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    alert(''+mensaje);
-    $.get('../Vistas/consulta.jsp',function(carga){$('#tareaActual').html(carga);});
-    return false;
-}
-
 function validarContratar(){
     var numeros = /[0-9]/;
     var letras = /[A-Za-z]/;
@@ -215,11 +165,7 @@ function validarContratar(){
         alert('El sueldo debe ser mayor a $88.50');
         return false;
     }
-    var sueldo_diario = document.getElementById('contratarSueldoDiario').value;
-     if (sueldo_diario < 88.50) {
-        alert('El sueldo debe ser mayor a $88.50');
-        return false;
-    }
+  
     var area = document.getElementById('contratarArea').value;
     var cargo = document.getElementById('contratarCargo').value;
    document.forms[0].action="../../Servlet_contratarEmpleado";
@@ -351,7 +297,7 @@ $(document).ready(function(){
      $(document).on("submit","#formEmpleadoG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaEmp').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -359,7 +305,7 @@ $(document).ready(function(){
     $(document).on("submit","#formConsultarEmpleado",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaEmp').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -367,7 +313,7 @@ $(document).ready(function(){
     $(document).on("submit","#formTareaG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaTarea').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -375,7 +321,7 @@ $(document).ready(function(){
     $(document).on("submit","#formConsultarTarea",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaTarea').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -383,7 +329,7 @@ $(document).ready(function(){
     $(document).on("submit","#formNominaG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaNomina').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -391,7 +337,7 @@ $(document).ready(function(){
     $(document).on("submit","#formConsultarNomina",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
-            $('#resultadoConsultaNomina').html(responseText);
+            $('#tareaActual').html(responseText);
         });
         event.preventDefault();
     });
@@ -449,9 +395,8 @@ $(document).ready(function(){
             $("#modificarEdocivilEmpleado").val(responseJson[6]);
             $("#modificarLicEmpleado").val(responseJson[7]);
             $("#modificarSueldoEmpleado").val(responseJson[8]);
-            $("#modificarSueldoDEmpleado").val(responseJson[9]);
-            $("#modificarAreaEmpleado").val(responseJson[10]);
-            $("#modificarCargoEmpleado").val(responseJson[11]);
+            $("#modificarAreaEmpleado").val(responseJson[9]);
+            $("#modificarCargoEmpleado").val(responseJson[10]);
         });
         event.preventDefault();
     });
@@ -473,7 +418,6 @@ $(document).ready(function(){
                 $("#modificarEdocivilEmpleado").val("");
                 $("#modificarLicenciaEmpleado").val("");
                 $("#modificarSueldoEmpleado").val("");
-                $("#modificarSueldoDEmpleado").val("");
                 $("#modificarAreaEmpleado").val("");
                 $("#modificarCargoEmpleado").val("");
             }else{
@@ -498,8 +442,9 @@ $(document).ready(function(){
             $("#modificarNominaPercepciones").val(responseJson[5]);
             $("#modificarNominaDeducciones").val(responseJson[6]);
             $("#modificarNominaDias").val(responseJson[7]);
-            $("#modificarNominaTotal").val(responseJson[8]);
-            $("#modificarNominaPago").val(responseJson[9]);
+            $("#modificarNominaPagoDias").val(responseJson[8]);
+            $("#modificarNominaTotal").val(responseJson[9]);
+            $("#modificarNominaPago").val(responseJson[10]);
         });
         event.preventDefault();
     });
@@ -521,6 +466,7 @@ $(document).ready(function(){
                 $("#modificarNominaPercepciones").val("");
                 $("#modificarNominaDeducciones").val("");
                 $("#modificarNominaDias").val("");
+                $("#modificarNominaPagoDias").val("");
                 $("#modificarNominaTotal").val("");
                 $("#modificarNominaPago").val("");
             }else{

@@ -139,10 +139,10 @@
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
-                        <form method="POST" action="../../eliminarprov" onsubmit="return vali_rfc();">
+                        <form method="POST" action="com_consultaprovesp.jsp" onsubmit="return vali_rfc();">
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda&nbsp;por<br>RFC del proveedor</span>
                             <br><br>
-                            <input type="text" name="RFC" placeholder="RFC" id="rfc" required>
+                            <input type="text" name="frc" placeholder="RFC" id="rfc" required>
 
                             <!--<span style="font-size: 18px">Solo&nbsp;mostrar:</span>
                             <div class="form-check">
@@ -158,8 +158,14 @@
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Teléfono</label>
                             </div>-->
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
-                            <br><center><input type="submit" value="Modificar" style="background-color: #9F150D" name="Modificar" class="btn btn-danger"></center>
-                            <br> <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
+                            
+                        </form>
+                        <br>
+                        <form method="POST" action="../../eliminarprov">
+                            <span id="titulo"><span class="number">3</span>Eliminar por<br>RFC del proveedor</span>
+                            <br><br>
+                            <input type="text" name="rfc" placeholder="RFC" id="rfc" required>
+                        <br> <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                         </form>
                     </div>
 
@@ -216,7 +222,7 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         <form method="POST" action="../../proveedor" onsubmit="return vali_nuevoproveedor();">
 
-                            <span id="titulo"><span class="number">3</span>Agregar<br>nuevo proveedor</span><br>
+                            <span id="titulo"><span class="number">4</span>Agregar<br>nuevo proveedor</span><br>
                             <br>
                             <input  type="text" name="nuevo_rfc" placeholder="RFC" id="nuevo_rfc" required>                             
                             <input  type="text" name="nuevo_nomemp" placeholder="Nombre de la empresa" id="nuevo_nomemp" required>

@@ -116,8 +116,8 @@
                                     %>
                                 </optgroup>
                             </select> 
-                            <select id="nomInter" name="nombreEmp">
-                                <optgroup label="Empresa">
+                            <select id="nomInter" name="nomInter">
+                                <optgroup label="Intermediario">
                                     <option value="emp1">Intermediario</option>
                                     <%
                                         while(rss.next()){
@@ -129,7 +129,7 @@
                                 </optgroup>
                             </select>
 
-                            <span id="titulo"><span class="number">2</span>Apartado de producto</span><br>
+                                <span id="titulo"><span class="number">2</span><span id="tipo_venta">Apartado de producto</span></span><br>
                             <br><span>N&uacute;m. apartado&nbsp;&nbsp;</span><br><span class="idemp"><input style="width: 110px; height: 30px;text-align: center;" type="text" name="nocot" readonly="readonly" placeholder="001"/></span><br>
 
                             <br><span style="font-size: 18px">Fecha de apartado</span><br><span class="idemp"><input min="2010-01-01" style="width: 180px; height: 30px;text-align: center;" readonly="readonly" type="date" id="fecha1" name="fechaC" /></span><br>

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
 
@@ -39,6 +40,12 @@ public class Servlet_modBuscaTarea extends HttpServlet {
                 "tarea", "id_tarea"," = "+request.getParameter("modificarIdTarea"),"", 5);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
+                   //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "consulta de una tarea");        
+        
             response.getWriter().write(json);
         }
     }

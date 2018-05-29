@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,8 +43,12 @@ public class PlanDeCuentasEditar extends HttpServlet {
         
         c.editaPlan(Integer.parseInt(request.getParameter("neliminapcclave")), request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
        
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito un plan de cuenta");
-            
+       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Edicion de plan de cuentas");        
+        
          response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }
 

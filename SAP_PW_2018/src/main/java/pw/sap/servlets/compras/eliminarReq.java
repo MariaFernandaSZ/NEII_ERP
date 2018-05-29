@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Compras.QuerysCompras;
@@ -47,6 +48,12 @@ public class eliminarReq extends HttpServlet {
        boolean sw = c.eliminaReq(reqBean);
        if (sw) {
             
+          //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de requerimiento");        
+        
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
@@ -54,6 +61,13 @@ public class eliminarReq extends HttpServlet {
             out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }else{
+           
+          //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de eliminacion");        
+        
             
             PrintWriter out=response.getWriter();
             out.println("<script>");
@@ -62,8 +76,7 @@ public class eliminarReq extends HttpServlet {
             out.println("</script>");
         }
         
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de requerimiento");
-         
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

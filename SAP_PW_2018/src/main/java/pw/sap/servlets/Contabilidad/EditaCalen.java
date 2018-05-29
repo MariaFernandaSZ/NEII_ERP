@@ -49,7 +49,11 @@ public class EditaCalen extends HttpServlet {
         request.getSession().setAttribute("fechafin", l.get(3));
         request.getSession().setAttribute("status", l.get(4));
         HttpSession sesion=request.getSession();
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se edito el calendario");
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Edición del calendario");        
         
         response.sendRedirect("Contabilidad/calen_contable_edita.jsp");
         

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Compras.QuerysCompras;
@@ -42,7 +43,12 @@ public class Gerencia extends HttpServlet {
        
              nuevo.gerencia(mes);
  
-        
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de registro ");    
+
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
