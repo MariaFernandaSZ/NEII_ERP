@@ -45,13 +45,14 @@ public class listaCompraServlet extends HttpServlet {
         
         String list_folio = request.getParameter("list_folio");
         String ord_folio = request.getParameter("ord_folio");
+        String list_pago = request.getParameter("list_pago");
         String lis_pago = request.getParameter("list_pago");
         String list_fecha = request.getParameter("list_fecha");
         String list_uuid = request.getParameter("list_uuid");
         String id_producto = request.getParameter("id_producto");
         String prov_rfc = request.getParameter("prov_rfc");
         
-        listCompraPojo litaBean = new listCompraPojo(list_folio, id_producto, prov_rfc, list_fecha);
+        listCompraPojo litaBean = new listCompraPojo(list_folio, list_pago, id_producto, prov_rfc, list_fecha);
         
          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de la lista de compra");
          
