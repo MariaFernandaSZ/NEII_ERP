@@ -17,7 +17,8 @@
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
-        
+        <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
+         
         
         <script>
 function EspecificaMC(){
@@ -153,7 +154,7 @@ function EspecificaMC(){
                                             <td><%=rsTabla.getString(3)%></td>
                                             <td><%=rsTabla.getString(4)%></td>
                                             <td><%=rsTabla.getString(5)%></td>
-                                            <td>$<%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
                                             
                                       
                                         </tr>
