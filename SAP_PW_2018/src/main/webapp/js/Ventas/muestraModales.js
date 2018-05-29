@@ -502,6 +502,22 @@ function validaTipoPago(){
                         alert("ORDEN DE VENTA CREADA, PAGO: "+result)
                     }
                 });
+                
+                $.ajax({
+                    type:'POST',
+                    url: '../generaFactura',
+                    datatype: 'json',
+                    data: {
+                        id_intermC:id_interVar,
+                        total_iva:total_ivaVar,
+                        subtotal_pago:subtotalVar,
+                        total_pago:total_ovVar,
+                        tipo_venta:tipo_ventaVar
+                    },
+                    success: function (result) {
+                        alert("FACTURA CREADA, PAGO: "+result);
+                    }
+                });
                   
             $.post('modales/pagoTarjeta.jsp',function(xx){
 
