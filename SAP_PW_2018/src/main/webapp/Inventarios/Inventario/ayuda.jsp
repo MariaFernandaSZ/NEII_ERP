@@ -75,7 +75,7 @@ and open the template in the editor.
         </header>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            <embed height="100%" width="100%" src="../doc/PW_2018_Manual_de_Usuario.pdf" type="application/pdf">
+            <embed height="100%" width="100%" src="../doc/Inventario Manual de Usuario.pdf" type="application/pdf">
         </div>
         <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>

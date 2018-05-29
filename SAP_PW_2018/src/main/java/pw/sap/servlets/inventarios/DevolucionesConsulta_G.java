@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -49,8 +50,12 @@ public class DevolucionesConsulta_G extends HttpServlet {
         request.setAttribute("cantidad_devuelta", l.get(3));
         request.setAttribute("fecha_devolucion", l.get(4));
         request.setAttribute("motivo", l.get(5));
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de general de devolucion");
-         
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta general de las devoluciones");        
+        
         request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
        
         

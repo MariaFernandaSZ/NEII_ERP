@@ -67,6 +67,28 @@ public class QuerysProducto {
             return valor;
         }
     
+       public ResultSet consultaGeneral() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                  
+                                                    ps = conn.prepareStatement("select id_producto,nombre,tipo_producto,prov_nom_emp,cantidad,minimo,costo_unitario, costo_venta  \n" +
+                                                    "from producto\n" +
+                                                    "inner join proveedor\n" +
+                                                    "on producto.proveedor=proveedor.prov_rfc; "
+                                                   );
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         
+                    
+                    
+          
+                  
+        }
+    
     
    
 }

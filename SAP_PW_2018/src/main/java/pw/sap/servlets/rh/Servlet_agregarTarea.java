@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import javax.servlet.http.HttpSession;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,12 +51,23 @@ public class Servlet_agregarTarea extends HttpServlet {
             Integer query = c.insertar("nombre_tarea,id_emp,fecha_inicio,fecha_fin", "tarea", valores);
             lista.add(c.consulta("id_tarea", "tarea", "id_tarea", "is not null", "ORDER BY id_tarea DESC LIMIT 1", 1));
             if(query == 1){
+                       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "se agrego una tarea");        
+        
                 response.getWriter().write("El ID de tarea registrada es : "+lista.get(0));
             }else{
+                       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "intento fallido de agregar tarea");        
+        
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
-             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de empleados");
-          
+            
         }
     }
 

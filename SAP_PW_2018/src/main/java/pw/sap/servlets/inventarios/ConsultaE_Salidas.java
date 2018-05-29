@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,8 +48,12 @@ public class ConsultaE_Salidas extends HttpServlet {
         request.setAttribute("id_ordenventa", l.get(2));
         request.setAttribute("fecha_salida", l.get(3));
         request.setAttribute("cantidad_vendida", l.get(4));
-       int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta especifica de salidas");
-            
+       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta especifica de salidas");        
+        
         request.getRequestDispatcher("Inventarios/Inventario/salidas.jsp").forward(request, response);
         
         

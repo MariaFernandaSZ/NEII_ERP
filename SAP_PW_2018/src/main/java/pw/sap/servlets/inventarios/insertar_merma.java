@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.Inventarios.Modificar;
 import pw.sap.pojo.Inventarios.registro;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author migue_f4t6hjx

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Ventas.Factura;
@@ -91,7 +92,12 @@ public class CreaOrdenVenta extends HttpServlet {
         try {
             boolean sw=c.agregarOrdenVenta(ordenV);
 //             Factura fac = new Factura("EMIS101097HCL",c.consultaRFCReceptor(id_intermC),subtotal_pago,total_iva,total_pago,"Toluca, EdoMex",null,tipo_venta);
-            if (sw) {                        
+            if (sw) {    
+                //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Impresion de Orden de Venta");    
                 PrintWriter out = response.getWriter();
                 out.print(total_pago);
             }else{

@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
 
@@ -43,7 +44,12 @@ public class PlanCuentas extends HttpServlet {
         
         request.getSession().setAttribute("codigosat", l.get(0));
         request.getSession().setAttribute("descripcion", l.get(1));
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta del plan de cuentas");
+        
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta especifica Asientos contables");        
         
         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
     }

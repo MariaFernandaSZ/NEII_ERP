@@ -46,8 +46,7 @@ public class CalenElimina extends HttpServlet {
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se elimino un periodo contable");
-        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una eliminacion de calendario");
-        
+       
         response.sendRedirect("Contabilidad/calen_contable.jsp");
         
     }

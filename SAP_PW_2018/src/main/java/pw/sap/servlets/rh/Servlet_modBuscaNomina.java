@@ -2,12 +2,12 @@ package pw.sap.servlets.rh;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,10 +36,16 @@ public class Servlet_modBuscaNomina extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Conexion c = new Conexion();
         ArrayList lista = c.consulta("id_nomina,nombre_emp,to_char(fecha_creacion,'yyyy-mm-dd'),to_char(fecha_limite,'yyyy-mm-dd'),id_emp,percepciones,deducciones,"
-                + "dias_pagados,pago_total,forma_pago","nomina", "id_nomina",
-                " = "+request.getParameter("modificarIdNomina"),"", 10);
+                + "dias_pagados,sueldo_por_dia,pago_total,forma_pago","nomina", "id_nomina",
+                " = "+request.getParameter("modificarIdNomina"),"", 11);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
+                   //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de una nomina");        
+        
             response.getWriter().write(json);
         }
     }

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.Inventarios.registro;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,16 +48,23 @@ public class Eliminar_Devolucion extends HttpServlet {
          
          
           if(rg.eliminarDevolucion(codigo)== 1){
-                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se elimino una devolucion");
-            
+               //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de una devolucion");        
+        
                 response.getWriter().write("Devolucion eliminada");
               
                
             }else{
                 
-                int i = rg.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Intento de eliminacion de devolucion");
-            
-                
+                 //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de eliminacion de una devolucion");        
+        
                 response.getWriter().write("El registro no pudo ser eliminado");
             }
          

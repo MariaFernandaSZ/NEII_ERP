@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.pojo.Compras.OrdenCompraPojo;
@@ -54,6 +55,12 @@ public class OrdenCompra extends HttpServlet {
         
         if (sw) {
             
+          //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Registro de Orden de Compra");        
+                    
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
@@ -61,14 +68,19 @@ public class OrdenCompra extends HttpServlet {
             out.println("</script>");
         }else{
             
+          //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insercion");        
+        
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
             out.print("window.location='Compras/html/CompraOrden.jsp'");
             out.println("</script>");
         }
-          int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una orden de compra");
-         
+          
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

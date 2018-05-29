@@ -12,6 +12,10 @@ public class listCompraPojo  {
     private String list_uuid;
     private String id_producto;
     private String prov_rfc;
+    private String where_fecha;
+    
+    
+    
 
     public listCompraPojo() {
     }
@@ -28,6 +32,16 @@ public class listCompraPojo  {
         this.id_producto = id_producto;
         this.prov_rfc = prov_rfc;
     }
+
+    public listCompraPojo(String list_folio, String list_pago, String id_producto, String prov_rfc, String list_fecha) {
+        this.list_folio = list_folio;
+        this.list_pago = list_pago;
+        this.list_fecha = list_fecha;
+        this.id_producto = id_producto;
+        this.prov_rfc = prov_rfc;
+    }
+    
+    
     
     
 
@@ -112,6 +126,14 @@ public class listCompraPojo  {
     @Override
     public String toString() {
         return list_folio;
+    }
+
+    public String getWhere_fecha() {
+        return where_fecha;
+    }
+
+    public void setWhere_fecha(String where_fecha) {
+        this.where_fecha = where_fecha;
     }
     
  

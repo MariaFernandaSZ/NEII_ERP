@@ -159,7 +159,7 @@ function EspecificaMC(){
                                             <td><%=rsTabla.getString(3)%></td>
                                             <td><%=rsTabla.getString(4)%></td>
                                             <td><%=rsTabla.getString(5)%></td>
-                                            <td>$<%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
                                             
                                       
                                         </tr>

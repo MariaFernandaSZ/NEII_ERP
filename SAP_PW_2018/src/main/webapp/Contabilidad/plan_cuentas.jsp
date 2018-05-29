@@ -178,7 +178,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-style-5">
-                                    <form action="../PlanDeCuentasAdd" onsubmit="return seleccion();" method="post">
+                                    <form action="../PlanDeCuentasAdd" onsubmit="return plancuentasAgr()" method="post">
                                         <div class="table-responsive" style="overflow:scroll; height:200px; width:100%;">
                                             <table class="table table-bordered">
                                                 <tr>
@@ -207,13 +207,13 @@
                                         </div>        
                                         <div class="row">
                                             <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
-                                                <input type="text" name="tipocuenta" id="tipocuenta" placeholder="Tipo de cuenta">    
+                                                <input type="text" name="tipocuenta" id="tipocuentaAgr" placeholder="Tipo de cuenta">    
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
-                                                <input type="text" name="clasecuenta" id="clasecuenta" placeholder="Clase de cuenta">    
+                                                <input type="text" name="clasecuenta" id="clasecuentaAgr" placeholder="Clase de cuenta">    
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
-                                                <input type="text" name="naturaleza" id="naturaleza" placeholder="Naturaleza">    
+                                                <input type="text" name="naturaleza" id="naturalezaAgr" placeholder="Naturaleza">    
                                             </div>
                                         </div>
                                         <div class="row">

@@ -8,6 +8,7 @@ package pw.sap.servlets.rh;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +40,7 @@ public class Servlet_contratarEmpleado extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList lista = new ArrayList();
                     Conexion c = new Conexion();
-             c.openDB();
+            c.openDB();
         try (PrintWriter out = response.getWriter()) {
             String valores = ("'"
                     +request.getParameter("contratarNombre")+"','"
@@ -50,21 +51,30 @@ public class Servlet_contratarEmpleado extends HttpServlet {
                     + request.getParameter("contratarEdocivil") + "','"
                     + request.getParameter("contratarlicenciaMedica") + "','"
                     + request.getParameter("contratarSueldo") + "','"
-                    + request.getParameter("contratarSueldoDiario") + "','"
                     + request.getParameter("contratarArea") + "','"
                     + request.getParameter("contratarCargo")+"'");        
-            Integer query = c.insertar("nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,licencia_medica,sueldo_emp,sueldo_por_dia,area_emp,cargo_emp",
+            Integer query = c.insertar("nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,licencia_medica,sueldo_emp,area_emp,cargo_emp",
                     "empleado", valores);
             lista.add(c.consulta("id_emp", "empleado", "id_emp", "is not null", "ORDER BY id_emp DESC LIMIT 1", 1));
             if(query == 1){
-               
+                      //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se contrato un empleado");        
+        
                 response.getWriter().write("Registro ingresado correctamente: "+lista.get(0));
             }else{
+                       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de contratacion");        
+        
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
             
-             int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Solicitud de empleados");
-         
+            
         }
     }
 

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
@@ -55,7 +56,13 @@ public class PlanDeCuentas extends HttpServlet {
         request.getSession().setAttribute("clase_cuenta", l.get(4));
         request.getSession().setAttribute("clase_sat", l.get(5));
         request.getSession().setAttribute("naturaleza", l.get(6));
-        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Consulta del plan de cuentas");
+        
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de Plan de Cuentas");        
+        
         
         response.sendRedirect("Contabilidad/plan_cuentas_1.jsp");
 

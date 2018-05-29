@@ -1,30 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pw.sap.servlets.inventarios;
+package pw.sap.servlets.rh;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Emilio Gorostieta
+ * @author Josafat Rosas Ortiz
  */
-@WebServlet(name = "Consulta_Devolucion", urlPatterns = {"/Consulta_Devolucion"})
-public class Consulta_Devolucion extends HttpServlet {
+@WebServlet(name = "Servlet_numeroEmpleados", urlPatterns = {"/Servlet_numeroEmpleados"})
+public class Servlet_numeroEmpleados extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,28 +35,22 @@ public class Consulta_Devolucion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-         Conexion c=new Conexion();
-        
-        ArrayList l=c.consultaDevolucion(Integer.parseInt(request.getParameter("id_devolucion")));
-        
-     
-        request.getSession().setAttribute("id_devolucion", l.get(0));
-        request.getSession().setAttribute("id_compra", l.get(1));
-        request.getSession().setAttribute("cantidad_devuelta", l.get(2));
-        request.getSession().setAttribute("fecha_devolucion", l.get(3));
-        request.getSession().setAttribute("motivo", l.get(4));
-       
-        //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de una devolucion");        
-        
-        
-        request.getRequestDispatcher("Inventarios/Inventario/Producto_Re.jsp").forward(request, response);
-        
-       
+        Conexion c = new Conexion();
+        ArrayList lista;
+        Map <String,Object> empleado = new LinkedHashMap();
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Recursos Humanos'", "", 1);
+        empleado.put("RH",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Compras'", "", 1);
+        empleado.put("COM",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Gerencia'", "", 1);
+        empleado.put("GER",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Ventas'", "", 1);
+        empleado.put("VEN",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Inventarios'", "", 1);
+        empleado.put("INV",lista.get(0));
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Contabilidad'", "", 1);
+        empleado.put("CON",lista.get(0));
+        for(String area: empleado.keySet()){System.out.println(area + " TIENE "+empleado.get(area));}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,9 +68,9 @@ public class Consulta_Devolucion extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consulta_Devolucion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Consulta_Devolucion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -97,9 +88,9 @@ public class Consulta_Devolucion extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consulta_Devolucion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Consulta_Devolucion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servlet_numeroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,9 +53,11 @@ public class Interm extends HttpServlet {
         
            boolean sw=c.agregarInterm(interBean);
             if(sw){
-            
-//                int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Iinsercion de Intermediario");
-            
+            //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Registro de intermediario ");    
 
              PrintWriter out=response.getWriter();
             out.println("<script>");
@@ -63,14 +66,19 @@ public class Interm extends HttpServlet {
             out.println("</script>");
 
             }else{
+             //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de registro intermediario ");    
+
              PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
             out.print("window.location='Ventas/clientes.jsp'");
             out.println("</script>");
             }
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Iinsercion de Intermediario");
-       
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

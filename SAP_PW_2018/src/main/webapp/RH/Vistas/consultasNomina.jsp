@@ -13,4 +13,3 @@
         </tr>
     </table>
 </div>
-<div id="resultadoConsultaNomina"></div>

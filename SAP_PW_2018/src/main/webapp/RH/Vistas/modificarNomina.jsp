@@ -54,6 +54,10 @@
                 <td><input type='number' min="1" id='modificarNominaDias' name='modificarNominaDias' class='form-control form-control-sm' required="required"></td>
             </tr>
             <tr>
+                <td>Sueldo&nbsp;diario</td>
+                <td><input type='number' min="88.90" id='modificarNominaPagoDias' name='modificarNominaPagoDias' class='form-control form-control-sm' required="required"></td>
+            </tr>
+            <tr>
                 <td>Pago&nbsp;total:&nbsp;</td>
                 <td><input type='number' min="88.90" id='modificarNominaTotal' name='modificarNominaTotal' class='form-control form-control-sm' required="required"></td>
             </tr>

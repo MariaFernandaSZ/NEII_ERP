@@ -85,7 +85,7 @@
                                         <a class="nav-link text-white color" href="#" id="ayuda_imprimir">Imprimir</a>
                                     </div>
                                 </li>
-                                <li class="nav-item"><a href="../../CerrarSesion" class="nav-link text-white color">Salir</a></li>                              
+                                <li class="nav-item"><a href="../../CerrarSesion" class="nav-link text-white color">Salir</a></li>
                             </ul>
                       </div>
                   </nav>
@@ -104,7 +104,7 @@
                           </div>
                           <div>
                               <center>
-                                  <h6>PUESTO</h6><label><img src="../imagen/persona.png" width="50" height="50" alt=''></label><!-- Puesto y foto del administrador en sesion -->
+                                  <h6>USUARIO:&nbsp;${usuario}</h6><label><img src="../imagen/persona.png" width="50" height="50" alt=''></label><!-- Puesto y foto del administrador en sesion -->
                               </center>
                           </div>
                           <div>
