@@ -7,12 +7,16 @@ package pw.sap.servlets.Ventas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pw.sap.pojo.Ventas.QuerysVentas;
 
 /**
  *
@@ -63,6 +67,15 @@ public class cantidadProd extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
+        QuerysVentas c = null;
+        try {
+            c = new QuerysVentas();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(cantidadProd.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(cantidadProd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         String cant = request.getParameter("cant");
         String precioprod = request.getParameter("precioprod");
         String ivaprod = request.getParameter("ivaprod");
@@ -72,7 +85,11 @@ public class cantidadProd extends HttpServlet {
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-//        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de la cantidad de producto");    
+        try {    
+            c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de la cantidad de producto");
+        } catch (SQLException ex) {
+            Logger.getLogger(cantidadProd.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         PrintWriter out = response.getWriter();
         
