@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.servlets.inventarios;
+package pw.sap.servlets.Ventas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,15 +15,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.pojo.Inventarios.QuerysProducto;
-import javax.servlet.http.HttpSession;
+import pw.sap.pojo.Ventas.Factura;
+import pw.sap.pojo.Ventas.QuerysVentas;
 
 /**
  *
- * @author migue_f4t6hjx
+ * @author ricar
  */
-@WebServlet(name = "Eliminar_producto", urlPatterns = {"/Eliminar_producto"})
-public class Eliminar_producto extends HttpServlet {
+@WebServlet(name = "generaFactura", urlPatterns = {"/generaFactura"})
+public class generaFactura extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,23 +35,8 @@ public class Eliminar_producto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-  String codigo ="";  
-        QuerysProducto qp= new QuerysProducto();
-        qp.eliminar(codigo);//cambiar productos por variables
-        
-        //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        qp.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de un producto");        
-        
-        PrintWriter out=response.getWriter();
-            out.println("<script>");
-            out.println("alert('No se puede mermar más de lo que existe');");
-            out.print("window.location='Compras/html/com_index.jsp'");
-            out.println("</script>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,13 +51,7 @@ public class Eliminar_producto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Eliminar_producto.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Eliminar_producto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -86,12 +65,44 @@ public class Eliminar_producto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
+        
+        String id_intermC= request.getParameter("id_intermC");
+        double total_iva=Double.parseDouble(request.getParameter("total_iva"));
+        double subtotal_pago=Double.parseDouble(request.getParameter("subtotal_pago"));
+        double total_pago=Double.parseDouble(request.getParameter("total_pago"));
+        String tipo_venta = request.getParameter("tipo_venta");
+        String forma_pago = request.getParameter("forma_pago");
+        
+        QuerysVentas c = null;
         try {
-            processRequest(request, response);
+            c = new QuerysVentas();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Eliminar_producto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(generaFactura.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Eliminar_producto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(generaFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        String rfc = c.consultaRFCReceptor(id_intermC);
+        
+//        Factura fac = new Factura("EMIS101097HCL","RECE111197HCL",subtotal_pago,total_iva,total_pago,"Toluca, EdoMex","Tarjeta",tipo_venta);
+        Factura f = new Factura("EMIS101097HCL",rfc, subtotal_pago, total_iva,total_pago, "Toluca, EdoMex",forma_pago, tipo_venta);
+        try {
+            boolean sw = c.agregarFactura(f);
+            
+            if (sw) {
+                PrintWriter out = response.getWriter();
+                out.print(total_pago);
+            }else{
+                PrintWriter out = response.getWriter();
+                out.print(total_pago);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(generaFactura.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(generaFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

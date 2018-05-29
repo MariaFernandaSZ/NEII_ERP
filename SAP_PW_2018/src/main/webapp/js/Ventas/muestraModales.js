@@ -483,6 +483,7 @@ function validaTipoPago(){
               var fecha_entregaVar=$('#fecha2').val();
               var id_empVar=$('#idVendedor').val();
               var tipo_ventaVar = $('#tipo_venta').text();
+              var forma_pagoVar=$("#tipoPago option:selected").val();
             
                 $.ajax({
                     type:'POST',
@@ -500,6 +501,23 @@ function validaTipoPago(){
                     },
                     success: function (result) {
                         alert("ORDEN DE VENTA CREADA, PAGO: "+result)
+                    }
+                });
+                
+                $.ajax({
+                    type:'POST',
+                    url: '../generaFactura',
+                    datatype: 'json',
+                    data: {
+                        id_intermC:id_interVar,
+                        total_iva:total_ivaVar,
+                        subtotal_pago:subtotalVar,
+                        total_pago:total_ovVar,
+                        tipo_venta:tipo_ventaVar,
+                        forma_pago:forma_pagoVar
+                    },
+                    success: function (result) {
+                        alert("FACTURA CREADA, PAGO: "+result);
                     }
                 });
                   

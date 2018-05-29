@@ -47,16 +47,19 @@ public class insertar_merma extends HttpServlet {
        int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
        String total= String.valueOf(cantidad_prod - cantidad_merma);
        if(cantidad_merma<=cantidad_prod){
-        rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
+
+       rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
+         PrintWriter out=response.getWriter();
+
             
             
              //registro para log
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de merma");        
+        rg.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de merma");        
         
-            PrintWriter out=response.getWriter();
+        
             out.println("<script>");
             out.println("alert('Merma ingresada correctamente');");
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
@@ -69,7 +72,7 @@ public class insertar_merma extends HttpServlet {
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insercion de merma");        
+        rg.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insercion de merma");        
         
         PrintWriter out=response.getWriter();
             out.println("<script>");

@@ -47,7 +47,7 @@ public class AgregaProducto extends HttpServlet {
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se agrego un producto");        
+//        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se agrego un producto");        
         
         
         response.setContentType("text/html;charset=UTF-8");

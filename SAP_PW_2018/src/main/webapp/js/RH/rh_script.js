@@ -178,20 +178,21 @@ function despedirEmpleado(){
     var despedirIdEmpleado = document.getElementById('despedirIdEmpleado').value;
     var fechadespedir = document.getElementById('despedirFecha').value;
     var despedirMotivo = document.getElementById('despedirMotivo').value;
+
     var now = moment();
                     var fechad = new Date(fechadespedir);
-                    if (fechad > now) {
-                alert('Modifique la fecha de despido, no puede ser superior a la actual');
+                    if (fechad < now) {
+                alert('Modifique la fecha de despido no debe ser la actual');
                      return false;
-                 }     
-//    if(!(/^[a-zA-z0-9]{8}$/.test(despedirIdEmpleado))){
-//                alert("Favor de ingresar el ID de empleado con los 8 digitos");                
-//                return false;
-//            }
+                 }  
+                
     alert('El empleado con ID '+despedirIdEmpleado+' '+' \n\ ha sido retirado debido a: '+despedirMotivo);
        document.forms[0].action="../../Servlet_despedirEmpleado";
+
     $.get('../Vistas/despedir.jsp',function(carga){$('#tareaActual').html(carga);});
-}
+    
+    }
+    
 
 $(document).ready(function(){
     $('#verCalendario').click(function(){

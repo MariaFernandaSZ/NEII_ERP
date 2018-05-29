@@ -50,12 +50,12 @@ public class proveedor extends HttpServlet {
              HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de proveedor");        
+//        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Eliminacion de proveedor");        
         
         
             PrintWriter out=response.getWriter();
             out.println("<script>");
-            out.println("alert('REGISTRO Eliminado CORRECTAMENTE');");
+            out.println("alert('REGISTRO AGREGADO CORRECTAMENTE');");
             out.print("window.location='Compras/html/com_proveedor.jsp'");
             out.println("</script>");
       

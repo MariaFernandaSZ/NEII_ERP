@@ -39,13 +39,13 @@ public class ingresar_producto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
        
         QuerysProducto qp= new QuerysProducto();
-        qp.agregar("id_prod", "prov", "nombre", "tipo", "cant","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
+        qp.agregar("id_prod", "prov", "nombre", "tipo","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
         
           //registro para log
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de producto");        
+        qp.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de producto");        
         
         
         

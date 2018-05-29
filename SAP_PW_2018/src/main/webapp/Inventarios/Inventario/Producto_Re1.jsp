@@ -1,3 +1,9 @@
+<%-- 
+    Document   : Producto_Re1
+    Created on : 28/05/2018, 10:22:19 PM
+    Author     : montse
+--%>
+
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -116,14 +122,15 @@
 
                 <div class="form-style-5">
                     <form action="../Inventario/Producto_Re.jsp" method="GET">
+                        
                             <span id="titulo"><span class="number">1</span> Consultar registro</span><br><br>
-                            <span class="idemp"><input type="text" name="id_devoluciones" id="id_devoluciones" placeholder="Id de devoluci&oacute;n" required="required" maxlength="7" pattern="[0-9]{7}"title="El ide de producto debe ser de 7 digitos numericos"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
+                            <br><span class="idemp"><input type="text" name="id_devoluciones" id="id_devoluciones" placeholder="Id de devoluci&oacute;n" required="required" maxlength="7" pattern="[0-9]{7}"title="El ide de producto debe ser de 7 digitos numericos"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                             <span id="titulo"><span class="number">2</span> Consulta especifica de registro</span><br><br>
                             <center>
                             <button type="button" name="ConEs" data-toggle="modal" data-target="#ConsultaEsp" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
                             </center>
                            </form>
-                   <form action="../Inventario/Producto_Re1.jsp" method="POST">
+                            <form action="../Inventario/Producto_Re1.jsp" method="POST">
                             <span id="titulo"><span class="number">3</span> Consulta General</span><br><br>
                             <input type="submit" name="ConsultaInG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
                            </form>
@@ -160,37 +167,33 @@
             <div class="table-responsive">
                              <table class="table table-striped">
                                     <thead>
-                                        <tr>
+                                       <tr>
                                             <th scope="col">ID Devoluci&oacute;n</th>
                                             <th scope="col">ID Compra</th>
                                             <th scope="col">Cantidad devuelta</th>
                                             <th scope="col">Fecha de devoluci&oacute;n</th>
                                             <th scope="col">Motivo</th>
                                             <th scope="col">ID de producto</th>
-                                    
                                             
                                         </tr>
                                     </thead>
                                     <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
                                     <%
-                                        String id_devolucion=request.getParameter("id_devoluciones");
-                                        String producto=request.getParameter("id_producto");
-                                        String compra=request.getParameter("id_compras");
-                                        
-                                        ResultSet rsTabla = interTabla.consultaEDev(id_devolucion, producto, compra);
+                                      
+                                        ResultSet rsTabla = interTabla.ConsultaDev();
 
                                     %> 
                                     <tbody>
                                         <%
                                             while (rsTabla.next()) {
                                         %>
-                                        <tr id="modalInter">
+                                         <tr id="modalInter">
                                             <td><%=rsTabla.getString(1)%></td>
                                             <td><%=rsTabla.getString(2)%></td>
                                             <td><%=rsTabla.getString(3)%></td>
                                             <td><%=rsTabla.getString(4)%></td>
                                             <td><%=rsTabla.getString(5)%></td>
-                                            <td>$<%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
                                             
                                       
                                         </tr>
@@ -198,7 +201,7 @@
                                             }
                                         %>
                                     </tbody>
-                                </table>  
+                                </table> 
                         </div>        
             </div>
             </div>  
@@ -206,9 +209,7 @@
             
           
         
-        
-        
-         <!-- Modal AGREGAR PRODUCTOS-->
+    <!-- Modal AGREGAR PRODUCTOS-->
         <div class="modal fade" id="agregaProductos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">

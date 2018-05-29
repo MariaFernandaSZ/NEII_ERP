@@ -95,13 +95,13 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
                         <div class="form-style-5">
                             <span id="titulo"><span class="number">1</span>Libro diario</span>
-                            <form action="ct_libro_diario.jsp" onsubmit="return diario();" method="POST">
+                            <form action="../LibroDiarioConsulta" onsubmit="return diario();" method="POST">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                         M&oacute;dulo:
                                     </div>
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <select id="modulo1">
+                                        <select name="modulo1" id="modulo1">
                                             <option value="x">Selecciona...</option>
                                             <option value="0">Todos</option>
                                             <option value="1">compras</option>
@@ -117,7 +117,7 @@
                                         Tipo:
                                     </div>
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <select id="tipoconsulta">
+                                        <select name="tipoconsulta" id="tipoconsulta">
                                             <option value="x">Selecciona...</option>
                                             <option value="0">Todos</option>
                                             <option value="1">ajustes</option>
@@ -134,7 +134,7 @@
                                         Fecha inicial: 
                                     </div>
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaIni">  
+                                        <input type="date"  id="fechaIni" name="fechaIni">  
                                     </div>    
                                 </div>
                                 <div class="row">
@@ -142,7 +142,7 @@
                                         Fecha final: 
                                     </div>
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaFin">
+                                        <input type="date"  id="fechaFin" name="fechaFin">
                                     </div>    
                                 </div>
                                 <div class="row">

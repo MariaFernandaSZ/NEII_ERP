@@ -44,8 +44,8 @@ public class ig_reporte extends HttpServlet {
         Reporte pdf = new Reporte();
         pdf.generarReporte();
         int i = con.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Genero reporte");
-            
         
+        response.sendRedirect("Gerencia/IG/ig_inicio.jsp");
         
         
     }
