@@ -139,7 +139,7 @@
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
-                        <form method="POST" action="../../eliminarprov" onsubmit="return vali_rfc();">
+                        <form method="POST" action="com_consultaprovesp.jsp" onsubmit="return vali_rfc();">
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda&nbsp;por<br>RFC del proveedor</span>
                             <br><br>
                             <input type="text" name="rfc" placeholder="RFC" id="rfc" required>
@@ -157,16 +157,22 @@
                                 <input class="form-check-input" type="checkbox" name="busprov" id="ord9" value="telefono">
                                 <label style="font-size: 18px" class="form-check-label" for="ord9">Teléfono</label>
                             </div>-->
-                            <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
-                            <br><center><input type="submit" value="Modificar" style="background-color: #9F150D" name="Modificar" class="btn btn-danger"></center>
-                            <br> <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
+                            <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>                            
+                            
+                        </form>
+                        <br>
+                        <form method="POST" action="../../eliminarprov">
+                            <span id="titulo"><span class="number">3</span>Eliminar por<br>RFC del proveedor</span>
+                            <br><br>
+                            <input type="text" name="rfc" placeholder="RFC" id="rfc" required>
+                        <br> <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                         </form>
                     </div>
 
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->  
-                              <form method="POST" action="../../ReportesExcel" target="">
+                              <form method="POST" action="com_imprimir.jsp" target="_blank">
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -204,7 +210,8 @@
                                     </tbody>
                                 </table></div>  
                                     <br>
-                            <center><input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"></center>
+                            <center><input type="submit" value="Generar PDF" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">
+                                <input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"></center>
 
                         </form>  
                     </div>
@@ -212,7 +219,7 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         <form method="POST" action="../../proveedor" onsubmit="return vali_nuevoproveedor();">
 
-                            <span id="titulo"><span class="number">3</span>Agregar<br>nuevo proveedor</span><br>
+                            <span id="titulo"><span class="number">4</span>Agregar<br>nuevo proveedor</span><br>
                             <br>
                             <input  type="text" name="nuevo_rfc" placeholder="RFC" id="nuevo_rfc" required>                             
                             <input  type="text" name="nuevo_nomemp" placeholder="Nombre de la empresa" id="nuevo_nomemp" required>
