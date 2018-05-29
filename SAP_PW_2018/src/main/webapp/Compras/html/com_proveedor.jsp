@@ -172,7 +172,7 @@
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->  
-                              <form method="POST" action="com_imprimir.jsp" target="_blank">
+                              <form method="POST" action="../../ReportesExcel" target="_blank">
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
