@@ -40,6 +40,12 @@ public class Servlet_modBuscarEmp extends HttpServlet {
                 " = "+request.getParameter("modificarIdEmpleado"),"", 11);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
+                   //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de un empleado");        
+        
             response.getWriter().write(json);
         }
     }
