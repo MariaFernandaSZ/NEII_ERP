@@ -54,6 +54,12 @@ public class Servlet_modificarEmpleado extends HttpServlet {
                 if(empleado != null && !empleado.equals("")){
                     Integer query = c.actualizar(campos, "empleado", "id_emp","="+empleado);
                     if(query == 1){
+                               //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "se modifico a un empleado");        
+        
                         response.getWriter().write("1");
                     }else{
                         response.getWriter().write("0");
