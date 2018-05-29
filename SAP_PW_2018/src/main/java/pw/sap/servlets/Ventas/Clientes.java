@@ -74,9 +74,12 @@ public class Clientes extends HttpServlet {
                 
 //                request.getRequestDispatcher("Ventas/modales/detalleCliente.jsp").forward(request, response);
 
-//int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Insercion de cliente");
-            
-
+//registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Registro de cliente");        
+        
              PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('REGISTRO INSERTADO CORRECTAMENTE!!!');");
@@ -84,6 +87,12 @@ public class Clientes extends HttpServlet {
             out.println("</script>");
 
             }else{
+                
+                //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insercion de cliente");    
              PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('ERROR EN LA CONEXIÓN DE BASE DE DATOS');");
@@ -92,8 +101,7 @@ public class Clientes extends HttpServlet {
             }
 //      request.getRequestDispatcher("Ventas/clientes.jsp").forward(request, response);
 //        response.sendRedirect("Ventas/clientes.jsp");
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Insercion de cliente");
-          
+        
 
     }
 
