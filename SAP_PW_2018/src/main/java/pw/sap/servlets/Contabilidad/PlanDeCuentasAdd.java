@@ -47,7 +47,11 @@ public class PlanDeCuentasAdd extends HttpServlet {
         
         c.agregaPlan(Integer.parseInt(request.getParameter("idsat")), descripcion, request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
         
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se agrego un plan de cuenta");
+       //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Inserccion del Plan de Cuentas");        
         
          response.sendRedirect("Contabilidad/plan_cuentas.jsp");
         
