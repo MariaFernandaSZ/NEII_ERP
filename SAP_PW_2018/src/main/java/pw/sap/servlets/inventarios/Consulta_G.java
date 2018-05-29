@@ -52,9 +52,13 @@ public class Consulta_G extends HttpServlet {
         request.getSession().setAttribute("costo_unitario", l.get(6));
         request.getSession().setAttribute("costo_venta", l.get(7));
         
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta general");        
         
-        //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta general");
-            
+          
         request.getRequestDispatcher("Inventarios/Inventario/Inventari_g1.jsp").forward(request, response);
         
     }
