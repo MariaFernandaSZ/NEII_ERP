@@ -99,12 +99,57 @@ public class QuerysInventarios {
           
                   
         }
+      public ResultSet consultaSalidas(String producto, String venta) throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    if (producto != null) {
+                                                    ps = conn.prepareStatement("select id_producto,venta_por_prod.id_ordenventa,cantidad,monto,fecha_ordv  \n" +
+                                                    "from venta_por_prod\n" +
+                                                    "inner join ordenventa\n" +
+                                                    "on venta_por_prod.id_ordenventa=ordenventa.id_ordenventa\n"
+                                                    +"where id_producto='"+producto+"' ;");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         }else  if(venta !=null){
+                     ps = conn.prepareStatement("select id_producto,venta_por_prod.id_ordenventa,cantidad,monto,fecha_ordv \n" +
+                                                    "from venta_por_prod\n" +
+                                                    "inner join ordenventa\n" +
+                                                    "on venta_por_prod.id_ordenventa=ordenventa.id_ordenventa\n"
+                                                    + "where venta_por_prod.id_ordenventa='"+venta+"'"
+                                                   );
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                                                       closeDB();
+                  return rs;
+                    
+                    }else {
+                     ps = conn.prepareStatement("select id_producto,venta_por_prod.id_ordenventa,cantidad,monto,fecha_ordv  \n" +
+                                                    "from venta_por_prod\n" +
+                                                    "inner join ordenventa\n" +
+                                                    "on venta_por_prod.id_ordenventa=ordenventa.id_ordenventa");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                                                       closeDB();
+                  return rs;
+                    
+                    
+                    }
+                  
+        }
      public ResultSet Consultasalidas() throws SQLException, ClassNotFoundException{
                           openDB();
                   PreparedStatement ps;
                     
-                     ps = conn.prepareStatement("select id_producto,id_ordenventa,cantidad,monto\n" +
-                                                    "from venta_por_prod");
+                     ps = conn.prepareStatement("select id_producto,venta_por_prod.id_ordenventa,cantidad,monto,fecha_ordv  \n" +
+                                                    "from venta_por_prod\n" +
+                                                    "inner join ordenventa\n" +
+                                                    "on venta_por_prod.id_ordenventa=ordenventa.id_ordenventa");
                     ResultSet rs= ps.executeQuery();
           
                     System.out.println(ps);
@@ -303,7 +348,9 @@ public class QuerysInventarios {
                     
                     closeDB();
                   return rs;
-        } 
+        }
+    
+    
 }     
 
     
