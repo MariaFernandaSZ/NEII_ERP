@@ -53,7 +53,12 @@ public class ingresarEntrada extends HttpServlet {
 //             Modificar mod = new Modificar();
 //             mod.modificarCantidad(String.valueOf(l.get(1)), String.valueOf(cantidad_com+cantidad_exist));
             
-            
+             //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        rg.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Entrada de producto");        
+        
              
             PrintWriter out=response.getWriter();
             out.println("<script>");
