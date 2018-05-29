@@ -1,9 +1,3 @@
-<%-- 
-    Document   : SalidasporOrd
-    Created on : 28/05/2018, 12:01:54 AM
-    Author     : montse
---%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -41,16 +35,6 @@
             alert("Se han insertado los datos correctamente");
             }
         
-            function EspecificaSal(){
-            var coba = document.getElementById('CoBa');
-            var IDSal = document.getElementById('IDSal');
-            var IDOrdenVen = document.getElementById('IDOrdenVen');
-            if (coba.length===0 && IDSal.length===0 && IDOrdenVen.length===0){
-            alert("Consulta vacia");
-            }else{
-            alert("Consultando"); 
-        }
-            }
         </script>
 
 
@@ -116,22 +100,27 @@
                 </div>
 
                 <div class="form-style-5">
-                    <form action="../../Consulta_Salidas" method="POST">
+                    <form action="../Inventario/SalidasporOrd.jsp" method="GET">
                         
                            <span id="titulo"><span class="number">1</span> Consultar registro por id de producto</span><br><br>
                            <span class="idemp"><input type="text" name="id_producto" id="id_producto" placeholder="Id de producto" required="required" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                     </form>
-                    <form action="../../Consulta_SalidaOrden" method="POST">  
+                    <form action="../Inventario/SalidasporOrd.jsp" method="GET">
+                           
                            <span id="titulo"><span class="number">2</span> Consulta registro por orden de venta</span><br><br>
                            <span class="idemp"><input type="text" name="id_ordenventa" id="id_venta" placeholder="Orden de venta" maxlength="7" pattern="[0-9]{7}" title="El id de orden de venta debe ser de 7 digitos (n&uacute;meros)" required/></span><input type="submit" name="Busca" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Consultar"/><br><br>
                             
                             </form>
+                     <form action="../Inventario/salidas.jsp" method="POST">
+                            <span id="titulo"><span class="number">3</span> Consulta General</span><br><br>
+                            <input type="submit" name="ConsultaInG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
+                           </form>
                     </div>
                  <div class="form-style-5">
                     <form action="salidas.jsp" method="POST">
                          
                          
-                         <span id="titulo"><span class="number">3</span>Imprimir</span><br><br>
+                         <span id="titulo"><span class="number">4</span>Imprimir</span><br><br>
                             
                            <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_Re.pdf'">Generar PDF</button><br><br>
                            <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_RE.ods'">Generar Excel</button><br><br>
@@ -144,34 +133,43 @@
 
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
            <div class="table-responsive">
-               <table class="table table-striped table-responsive">
-                                    
+                <table class="table table-striped">
+                                    <thead>
                                         <tr>
                                             <th scope="col">ID Producto</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Tipo</th>
-                                            <th scope="col">Proveedor</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Minimo</th>
-                                            <th scope="col">Costo Unitario</th>
-                                            <th scope="col">Costo de venta</th>
+                                            <th scope="col">ID Orden de venta</th>
+                                            <th scope="col">Cantidad vendida</th>
+                                            <th scope="col">Monto total</th>
+                                            <th scope="col">Fecha de salida</th>
                                             
+                                            </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    <%
+                                        String producto=request.getParameter("id_producto");
+                                        String venta=request.getParameter("id_venta");
+                                        
+                                        ResultSet rsTabla = interTabla.consultaSalidas(producto, venta);
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            
+                                      
                                         </tr>
-                                        <tr>
-                                         <td><%=request.getSession().getAttribute("id_producto")%></td>
-                                         <td><%=request.getSession().getAttribute("nombre")%></td>
-                                         <td><%=request.getSession().getAttribute("tipo_producto")%></td>
-                                         <td><%=request.getSession().getAttribute("prov_nom_emp")%></td>
-                                         <td><%=request.getSession().getAttribute("cantidad")%></td>
-                                         <td><%=request.getSession().getAttribute("minimo")%></td>
-                                         <td><%=request.getSession().getAttribute("costo_unitario")%></td>
-                                         <td><%=request.getSession().getAttribute("prov_nom_emp")%></td>
-                                         <td><%=request.getSession().getAttribute("costo_venta")%></td>
-                                         
-                                         
-                                        </tr>
+                                        <%
+                                            }
+                                        %>  </tbody>
                                 </table>
-                
+                               
                         </div> 
 
             </div>
