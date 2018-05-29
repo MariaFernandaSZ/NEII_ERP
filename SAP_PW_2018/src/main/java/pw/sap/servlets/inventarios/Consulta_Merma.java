@@ -51,8 +51,14 @@ public class Consulta_Merma extends HttpServlet {
         request.getSession().setAttribute("cant_mer", l.get(4));
         request.getSession().setAttribute("motivo_mer", l.get(5));
         
-         int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de merma desconocida");
-        response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de merma ");        
+        
+        
+         response.sendRedirect("Inventarios/Inventario/merma_con.jsp");
         
         
         
