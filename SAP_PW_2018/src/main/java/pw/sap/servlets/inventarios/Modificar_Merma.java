@@ -58,6 +58,12 @@ public class Modificar_Merma extends HttpServlet {
 //        int cantidad_merma_actual = Integer.parseInt((String) m.get(0));
 //        int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
 
+             //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Modificacion de merma");        
+        
             PrintWriter out=response.getWriter();
             out.println("<script>");
             out.println("alert('Merma ingresada correctamente');");
