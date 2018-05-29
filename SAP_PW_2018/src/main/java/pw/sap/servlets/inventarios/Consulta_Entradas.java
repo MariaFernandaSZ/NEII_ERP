@@ -50,8 +50,12 @@ public class Consulta_Entradas extends HttpServlet {
         request.getSession().setAttribute("fecha_registro", l.get(6));
         request.getSession().setAttribute("fecha_caducidad", l.get(7));
         
-        int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Se realizo una consulta de entradas ");
-            
+        //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de entradas");        
+        
         request.getRequestDispatcher("Inventarios/Inventario/entradas.jsp").forward(request, response);
         
         
