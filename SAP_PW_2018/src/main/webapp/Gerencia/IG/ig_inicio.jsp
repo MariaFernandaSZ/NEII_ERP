@@ -45,20 +45,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 </div>
-                <li class="nav-item dropdown">
-                    <a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white">Historia</a>
+                <li class="nav-item dropdown" style="list-style:none;">
+                    <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >Historia</a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item dropdown-submenu">
                             <p href="#" >Fecha</p>
-                            <form action="" name="formulario">
+                            <form action="../../Consultalog" name="formulario" method="post">
                                 <input type="date" name="bday" max="3000-12-31"  min="1000-01-01" class="form-control">
                                 <br>
                                 <label><input type="checkbox" id="check" onchange="habilitar(this.checked);" checked> Hora</label>
                                 <div id="hora">
                                     <br>
-                                    <label>De: <input id="horaInicio" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></label>
+                                    <label>De: <input id="horaInicio" for="example-time-input" type="time" name="hora" ></label>
                                     <br>
-                                    <label>A:   <input id="horaFin" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></label>  
+                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1"></label>  
                                 </div>
                                  <br>
                                 <input type="submit" value="Generar">
@@ -67,7 +67,7 @@
                     </ul>
                 </li>
                 <li class="nav-item" style="list-style:none">
-                    <a class="nav-link" href="../../Consultalog" style="color: white">Historial</a>
+                    <a>_________</a>
                 </li>
                 <li class="nav-item" style="list-style:none">
                     <a class="nav-link" href="../../CerrarSesion" style="color: white">Salir</a>
