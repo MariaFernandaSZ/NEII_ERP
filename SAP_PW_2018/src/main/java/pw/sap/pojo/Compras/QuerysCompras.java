@@ -58,7 +58,7 @@ public class QuerysCompras {
                     }
                 return agregado; 
         }
-    public boolean eliminar_prov(String rfc) throws SQLException, ClassNotFoundException{
+     public boolean eliminar_prov(String rfc) throws SQLException, ClassNotFoundException{
          boolean agregado=false;
          Genera_IDCom idorden = new Genera_IDCom();
                  openDB();
@@ -110,6 +110,17 @@ public class QuerysCompras {
                     
                     closeDB();
                   return rs;
+        }
+    public ResultSet consultaProvEspecifica(String buscar) throws SQLException, ClassNotFoundException{
+         openDB();
+                  PreparedStatement ps;               
+                  ps = conn.prepareStatement("select * from proveedor where prov_rfc='"+buscar+"';");
+                    ResultSet rs= ps.executeQuery();
+         
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs; 
         }
         public ResultSet consultaProvOrdenby(String ordenar, String buscar) throws SQLException, ClassNotFoundException{
          
