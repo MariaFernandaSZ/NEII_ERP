@@ -22,7 +22,6 @@ function cargaFiltrosNomina(){
 }
 
 function agregarNomina(){
-    alert('entre');
     var numeros = /[0-9]/;
     var letras = /[A-Za-z]/;
     var empresa = document.getElementById('empresa').value;
@@ -63,11 +62,12 @@ function agregarNomina(){
         alert('Modifique los días pagados, no deben ser negativos');
         return false;
     }
-    var pagoTotal = document.getElementById('pagoTotal').value;
-    if (pagoTotal < 0) {
-        alert('Modifique el pago total, no deben ser negativo');
+    var sueldo_dia = document.getElementById('SueldoDiario').value;
+    if (sueldo_dia < 0) {
+        alert('Modifique el sueldo por dia, no deben ser negativo');
         return false;
     }
+     
     var formaPago = document.getElementById('formaPago').value;
     if (numeros.test(formaPago)) {
         alert('Modifique la forma de pago, no es numerico');
@@ -165,11 +165,7 @@ function validarContratar(){
         alert('El sueldo debe ser mayor a $88.50');
         return false;
     }
-    var sueldo_diario = document.getElementById('contratarSueldoDiario').value;
-     if (sueldo_diario < 88.50) {
-        alert('El sueldo debe ser mayor a $88.50');
-        return false;
-    }
+  
     var area = document.getElementById('contratarArea').value;
     var cargo = document.getElementById('contratarCargo').value;
    document.forms[0].action="../../Servlet_contratarEmpleado";
