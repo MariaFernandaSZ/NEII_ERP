@@ -36,19 +36,19 @@
                     <ul class="dropdown-menu">
                         <li class="dropdown-item dropdown-submenu">
                             <p href="#" >Fecha</p>
-                            <form action="../../Consultalog" name="formulario" method="post">
+                            <form action="../../Consultalog" name="formulario" method="post" autocomplete="off">
                                 <input type="date" name="bday" id="bday" max="3000-12-31"  min="1000-01-01" class="form-control">
                                 <br>
                                 <label>Intervalo&nbsp;de&nbsp;tiempo</label>
                                 <br/>
                                 <div id="hora">
                                     <br>
-                                    <label>De: <input id="horaInicio" for="example-time-input" type="time" name="horaInicio" ></label>
+                                    <label>De: <input id="horaInicio" for="example-time-input" type="time" name="horaInicio" class="form-control"></label>
                                     <br>
-                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="horaFin" max="22:30:00" min="10:00:00" step="1"></label>  
+                                    <label>A:   <input id="horaFin" for="example-time-input" type="time" name="horaFin" max="22:30:00" min="10:00:00" step="1" class="form-control"></label>  
                                 </div>
                                  <br>
-                                <input type="submit" value="Generar">
+                                <input type="submit" class="btn btn-danger text-white" value="Generar">
                             </form>
                         </li>
                     </ul>
@@ -57,8 +57,8 @@
                     <a id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle" style="color: white;" >Generar&nbsp;CSV</a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item dropdown-submenu">
-                            <form action="../../GenerarCSV" name="formularioCSV" method="POST">
-                                <input type="text" name="rutaCSV" placeholder="Ingrese la ruta del archivo" class="form-control" required/>
+                            <form autocomplete="off" id="formularioCSV" method="POST" action="../../GenerarCSV">
+                                <input type="text" name="rutaCSV" id="rutaCSV" placeholder="Guardar en..." class="form-control" required/>
                                 <br>
                                 <p href="#" >Fecha</p>
                                 <input type="date" name="bdayG" id="bdayG" max="3000-12-31"  min="1000-01-01" class="form-control">
@@ -67,12 +67,12 @@
                                 <br/>
                                 <div id="hora">
                                     <br>
-                                    <label>De: <input id="horaInicioG" for="example-time-input" type="time" name="horaInicioG"></label>
+                                    <label>De: <input id="horaInicioG" for="example-time-input" type="time" name="horaInicioG" class="form-control"></label>
                                     <br>
-                                    <label>A: <input id="horaFinG" for="example-time-input" type="time" name="horaFinG" max="22:30:00" min="10:00:00" step="1"></label>  
+                                    <label>A: <input id="horaFinG" for="example-time-input" type="time" name="horaFinG" max="22:30:00" min="10:00:00" step="1" class="form-control"></label>  
                                 </div>
                                 <br>
-                                <input type="submit" value="Generar CSV">
+                                <input type="submit" class="btn btn-danger text-white" value="Generar CSV">
                             </form>
                         </li>
                     </ul>

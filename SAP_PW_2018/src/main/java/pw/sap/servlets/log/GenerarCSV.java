@@ -1,9 +1,11 @@
 package pw.sap.servlets.log;
 
+import java.io.BufferedWriter;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
-import pw.sap.pojo.log.Filtros;
+import pw.sap.pojo.log.Log;
 
 /**
  *
@@ -38,24 +40,27 @@ public class GenerarCSV extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        String csv = "./log.csv";
-        CSVPrinter csvPrinter = null;
-        CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader();
-        FileWriter writer = new FileWriter(csv);
-        csvPrinter = new CSVPrinter(writer,csvFormat);
-        Filtros filtro = new Filtros();
-        String referencia = filtro.filtrosQuery(request.getParameter("bdayG"), request.getParameter("horaInicioG"),
-                                                request.getParameter("horaFinG"));
-        ArrayList lista = c.consulta("des,to_char(id_emp,'99999'),area,to_char(fecha,'yyyy-mm-dd'),to_char(hora,'HH24:MI:SS')", "log", referencia, "", "", 5);
-        for(int i = 0 ; i < lista.size() ; i++){
-            if(i%5==0 && i!=0){
-                csvPrinter.printRecord(lista.get(i-5),lista.get(i-4),lista.get(i-3),lista.get(i-2),lista.get(i-1));
+        Log filtro = new Log();
+        String nombre = filtro.fechaArchivo();
+        String path = request.getParameter("rutaCSV");
+        if(filtro.directorio(path)){
+            String csv = path+"\\"+nombre+".csv";
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get(csv));
+            CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("DESCRIPCION","EMPLEADO","AREA","FECHA","HORA"));
+            String referencia = filtro.filtrosQuery(request.getParameter("bdayG"), request.getParameter("horaInicioG"),
+                                                    request.getParameter("horaFinG"));
+            ArrayList lista = c.consulta("des,to_char(id_emp,'99999'),area,to_char(fecha,'yyyy-mm-dd'),to_char(hora,'HH24:MI:SS')", "log", referencia, "", "", 5);
+            for(int i = 0 ; i < lista.size() ; i++){
+                if(i%5==0 && i!=0){
+                    csvPrinter.printRecord(lista.get(i-5),lista.get(i-4),lista.get(i-3),lista.get(i-2),lista.get(i-1));
+                }
             }
+            csvPrinter.flush();
+            csvPrinter.close();
+            response.sendRedirect("Gerencia/IG/ig_inicio.jsp");
+        }else{
+            response.getWriter().write("ERROR. La ruta del archivo es incorrecta");
         }
-        writer.flush();
-        writer.close();
-        csvPrinter.close();
-        response.sendRedirect("Gerencia/IG/ig_inicio.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

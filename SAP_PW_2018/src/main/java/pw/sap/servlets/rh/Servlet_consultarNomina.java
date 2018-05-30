@@ -54,7 +54,7 @@ public class Servlet_consultarNomina extends HttpServlet {
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%11==0){out.println("</tr><tr>");}
+                if(j%11==0 && j!=0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");

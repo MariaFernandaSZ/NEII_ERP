@@ -1,10 +1,14 @@
 package pw.sap.pojo.log;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Josafat Rosas Ortiz
  */
-public class Filtros {
+public class Log {
     
     public String filtrosQuery(String fecha, String horaInferior, String horaSuperior){
         String referencia = "id_emp is not null";
@@ -14,4 +18,19 @@ public class Filtros {
         return referencia;
     }
     
+    public boolean directorio(String path){
+        File ruta = new File(path);
+        if(ruta.isDirectory()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public String fechaArchivo(){
+        SimpleDateFormat formatoNombre = new SimpleDateFormat("yyyy_MM_dd_HHmm");
+        Date fecha = new Date();
+        String nombre = formatoNombre.format(fecha);
+        return nombre;
+    }
 }

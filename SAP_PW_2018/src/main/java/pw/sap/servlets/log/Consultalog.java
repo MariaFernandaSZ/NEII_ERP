@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
-import pw.sap.pojo.log.Filtros;
+import pw.sap.pojo.log.Log;
 
 /**
  *
@@ -25,7 +25,7 @@ public class Consultalog extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        Filtros filtro = new Filtros();
+        Log filtro = new Log();
         String referencia = filtro.filtrosQuery(request.getParameter("bday"), request.getParameter("horaInicio"),
                                                 request.getParameter("horaFin"));
         ArrayList lista = c.consulta("des,id_emp,area,fecha,hora", "log", referencia, "", "", 5);

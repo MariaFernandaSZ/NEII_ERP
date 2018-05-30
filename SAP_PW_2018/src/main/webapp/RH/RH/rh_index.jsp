@@ -115,7 +115,7 @@
                           <div>
                               <center>
                                   <button class="btn btn-info text-white boton" data-toggle="modal" data-target="#tipo_reporte" type="button" id="generarReporte">Generar&nbsp;reporte</button>
-                                  <button class="btn text-white boton" type="button" id="imprimir">Imprimir</button>
+                                  <button class="btn text-white boton" type="button" id="imprimir" name="imprimir">Imprimir</button>
                               </center>
                           </div>
                       </div>
