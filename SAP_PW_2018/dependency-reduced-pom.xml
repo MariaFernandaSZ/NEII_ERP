@@ -85,9 +85,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>CSV</groupId>
-      <artifactId>CSV</artifactId>
-      <version>1.0</version>
+      <groupId>org.easybatch</groupId>
+      <artifactId>easybatch-apache-commons-csv</artifactId>
+      <version>5.2.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
