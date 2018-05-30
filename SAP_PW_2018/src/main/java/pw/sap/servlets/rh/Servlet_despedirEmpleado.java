@@ -8,10 +8,11 @@ package pw.sap.servlets.rh;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,8 @@ import pw.sap.db.Conexion;
  *
  * @author Katy Manjarrez
  */
+@WebServlet(name = "Servlet_despedirEmpleado", urlPatterns = {"/Servlet_despedirEmpleado"})
+
 public class Servlet_despedirEmpleado extends HttpServlet {
 
     /**
@@ -31,41 +34,33 @@ public class Servlet_despedirEmpleado extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
+     * @throws java.text.ParseException
      */
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+ 
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, ClassNotFoundException, SQLException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        c.openDB();
+        
         try (PrintWriter out = response.getWriter()) {
             String id = request.getParameter("despedirIdEmpleado");
             String fecha = request.getParameter("despedirFecha");
-            Integer resultado = 0;
-         
-                resultado = c.borrar("empleado", "id_emp", "= "+id);
-                
-           
-            if(resultado == 1){
-                       //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Se despidio a un empleado");        
-        
-                response.getWriter().write("Empleado Despedido");
+            String status="Despedido";
+
+            
+            if(!id.equals("")){
+                    Integer query = c.actualizarCampoTextod("empleado","status","'Despedido'","id_emp",id);
+                    if(query == 1){
+                       response.getWriter().write("Empleado Despedido");
             }else{
-                       //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento de despido");        
-        
-                response.getWriter().write("El ID del empleado no existe");
+                response.getWriter().write("El registro no pudo ser eliminado");
             }
-        
         }
     }
-
+                
+}
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -78,13 +73,11 @@ public class Servlet_despedirEmpleado extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         try {
+             processRequest(request, response);
+         } catch (ClassNotFoundException | SQLException | ParseException ex) {
+             Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     /**
@@ -98,13 +91,11 @@ public class Servlet_despedirEmpleado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         try {
+             processRequest(request, response);
+         } catch (ClassNotFoundException | SQLException | ParseException ex) {
+             Logger.getLogger(Servlet_despedirEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     /**
@@ -118,4 +109,3 @@ public class Servlet_despedirEmpleado extends HttpServlet {
     }// </editor-fold>
 
 }
-
