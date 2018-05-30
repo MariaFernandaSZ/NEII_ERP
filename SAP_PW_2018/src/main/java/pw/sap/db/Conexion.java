@@ -513,6 +513,17 @@ public class Conexion {
         closeDB();
         return r;        
     }
+ 
+ 
+    public int actualizarCampoTextod(String tabla, String campoMod,String valor1, String campocriterio,String valor2) throws SQLException {
+        openDB();
+        //System.out.println("V2 Conexión: " + conn);
+        PreparedStatement ps = conn.prepareStatement("UPDATE "+tabla+" SET "+campoMod+"= "+valor1+" WHERE "+campocriterio+"="+valor2+";");        
+        System.out.println(ps);
+        int r = ps.executeUpdate();
+        closeDB();
+        return r;        
+    }
     /**
      *      
      * @param tabla nombre de la tabla donde se ingresarán los datos
