@@ -52,6 +52,8 @@ public class Servlet_despedirEmpleado extends HttpServlet {
             
             if(!id.equals("")){
                     Integer query = c.actualizarCampoTextod("empleado","status","'Despedido'","id_emp",id);
+                    Integer queri = c.borrar("nomina", "id_emp", "= "+id);
+
                     if(query == 1){
                        response.getWriter().write("Empleado Despedido");
             }else{
