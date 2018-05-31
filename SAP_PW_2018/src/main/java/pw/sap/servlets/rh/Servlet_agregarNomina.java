@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
@@ -40,7 +39,7 @@ public class Servlet_agregarNomina extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList lista = new ArrayList();
                     Conexion c = new Conexion();
-           c.openDB();
+             c.openDB();
             Double deducciones=Double.parseDouble(request.getParameter("deducciones"));
             Double percepciones=Double.parseDouble(request.getParameter("percepciones"));
             Double diast=Double.parseDouble(request.getParameter("diasPagados"));
@@ -63,25 +62,15 @@ public class Servlet_agregarNomina extends HttpServlet {
 
             Integer query = c.insertar("nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,dias_pagados,sueldo_por_dia,pago_total,forma_pago",
                     "nomina", valores);
-            lista.add(c.consulta("id_nomina", "nomina", "id_nomina", "is not null", "ORDER BY id_emp DESC LIMIT 1", 1));
+            lista.add(c.consulta("id_nomina", "nomina", "id_nomina", "is not null", "ORDER BY id_nomina DESC LIMIT 1", 1));
             if(query == 1){
-               //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "se agrego una nomina");        
-        
-                response.getWriter().write("Registro ingresado correctamente: "+lista.get(0));
+               
+                response.getWriter().write("Nómina creada satisfactoriamente el ID es: "+lista.get(0));
             }else{
-                       //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "intento de ingresar nomina");        
-        
                 response.getWriter().write("Registro incorrecto, revisar datos");
             }
             
+         //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Agregacion de nomina");
          
         }
     }
