@@ -3,7 +3,7 @@
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
     } else {
         if (!request.getSession().getAttribute("area").equals("Gerencia")) {
-            response.sendRedirect("../../archivos/errorSesion.jsp");
+            response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
         }
     }
 %>
