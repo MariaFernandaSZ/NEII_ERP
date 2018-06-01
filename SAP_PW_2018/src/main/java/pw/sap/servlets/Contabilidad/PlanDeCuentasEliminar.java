@@ -41,7 +41,17 @@ public class PlanDeCuentasEliminar extends HttpServlet {
         
         PlanCuentas c =new PlanCuentas();
         
-        c.eliminaPlan(Integer.parseInt(request.getParameter("neliminapcclave")));
+        int r=c.eliminaPlan(Integer.parseInt(request.getParameter("neliminapcclave")));
+        System.out.println("el resultado es:"+r);
+        if(r==0){
+            try (PrintWriter out = response.getWriter()) {            
+                
+                out.println("<script>");
+                out.println("alert('la clave no se puede eliminar ya que otros valores dependen de ella');");
+                out.println("window.location='Contabilidad/plan_cuentas.jsp';");
+                out.println("</script>");
+            }
+        }
         //registro para log
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));

@@ -168,9 +168,16 @@ public class PlanCuentas {
     
     public int eliminaPlan(int id) throws SQLException {
         openDB();
+        int r=0;
         PreparedStatement ps=conn.prepareStatement("delete from cuentas_empresa where id=?");
         ps.setInt(1, id);
-        int r= ps.executeUpdate();
+        try{
+        r=ps.executeUpdate();
+        }catch(Exception e){
+            System.out.println("error:"+e.getMessage());
+            r=0;
+        }
+        System.out.println("el resultado es:"+r);
         closeDB();
         return r;
     }
