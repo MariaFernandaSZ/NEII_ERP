@@ -104,28 +104,8 @@
                                         <select name="modulo1" id="modulo1">
                                             <option value="x">Selecciona...</option>
                                             <option value="0">Todos</option>
-                                            <option value="1">compras</option>
-                                            <option value="2">ventas</option>
-                                            <option value="3">nomina</option>
-                                            <option value="4">financiero</option>
-                                            <option value="5">activo fijo</option>
-                                        </select>
-                                    </div>    
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Tipo:
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <select name="tipoconsulta" id="tipoconsulta">
-                                            <option value="x">Selecciona...</option>
-                                            <option value="0">Todos</option>
-                                            <option value="1">ajustes</option>
-                                            <option value="2">compras</option>
-                                            <option value="3">diario</option>
-                                            <option value="4">egreso</option>
-                                            <option value="5">ingreso</option>
-                                            <option value="6">venta</option>
+                                            <option value="1">Compras</option>
+                                            <option value="2">Ventas</option>
                                         </select>
                                     </div>    
                                 </div>
@@ -157,24 +137,14 @@
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Estatus</th>
-                                    <th>Seleccion</th>
                                     <th>Fecha</th>
-                                    <th>Folio</th>
                                     <th>M&oacute;dulo</th>
-                                    <th>Tipo</th>
-                                    <th>Concepto</th>
                                     <th>Cargo</th>
                                     <th>Abono</th>
                                 </tr>
                                 <tr>
-                                    <td>Activa</td>
-                                    <td><input id="reportediario" name="reportediario[]" type="checkbox" value="1"></td>
                                     <td>19/03/2018</td>
-                                    <td>618</td>
                                     <td>Compras</td>
-                                    <td>Compras</td>
-                                    <td>proveedor</td>
                                     <td>350</td>
                                     <td>350</td>                                                                           
                                 </tr>                        
@@ -183,8 +153,6 @@
                                     <td><%=request.getSession().getAttribute("descripcion")%></td>
                                     <td><%=request.getSession().getAttribute("tipo_cuenta")%></td>
                                     <td><%=request.getSession().getAttribute("clase_cuenta")%></td>
-                                    <td><%=request.getSession().getAttribute("clase_sat")%></td>  
-                                    <td><%=request.getSession().getAttribute("naturaleza")%></td>    
                                 </tr>                     
                                 
                             </table> 

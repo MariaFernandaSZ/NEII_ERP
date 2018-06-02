@@ -243,6 +243,8 @@ var valoresRH = {
 }
 
 // definimos los valores de nuestra gráfica
+
+
 var valoresContabilidad = {
     "Pasivos": {valor: 60, color: "blue"},
     "Activos": {valor: 40, color: "red"}
