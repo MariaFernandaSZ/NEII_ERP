@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Properties;
+import pw.sap.obj.Contabilidad.ObjLibroDiario;
+import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
 import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
 
 /**
@@ -48,29 +51,56 @@ public class LibroDiario {
         conn.close();
     }
     
-    public ArrayList consultaLibroDiario(String modulo, String tipo, String fechainicio, String fechafin) throws SQLException {
+    public LinkedList consultaLibroDiario(String modulo,String fechainicio, String fechafin) throws SQLException {
         openDB();
-        ArrayList r = new ArrayList();
-        PreparedStatement ps = conn.prepareStatement("select ag.clave,a.nombre_area,ag.tipo_comprobante,ag.concepto,ad.descripcion,ag.fecha_apli,ad.porcentaje_dedu,ad.monto  from asientogeneral as ag, asientodetalle as ad, areas as a where ag.id=ad.id_general and ag.modulo=a.id_area;");
+        LinkedList <ObjLibroDiario> l=new LinkedList<ObjLibroDiario>();
+        
+        PreparedStatement ps = conn.prepareStatement("select ag.fecha_apli,a.nombre_area from asientogeneral as ag, asientodetalle as ad, areas as a \n" +
+"where ag.id=ad.id_general \n" +
+"and (a.nombre_area=? \n" +
+"or (ag.fecha_apli >= ? \n" +
+"  and ag.fecha_apli < ?) \n" +
+"        );");
         ps.setString(1, modulo);
-        ps.setString(2, tipo);
-        ps.setString(3, fechainicio);
-        ps.setString(4, fechafin);
+        ps.setString(2, fechainicio);
+        ps.setString(3, fechafin);
         ResultSet rs = ps.executeQuery();
         
         while (rs.next()) {
-            r.add(rs.getString(1));
-            r.add(rs.getString(2));
-            r.add(rs.getString(3));
-            r.add(rs.getString(4));
-            r.add(rs.getString(5));
-            r.add(rs.getString(6));
-            r.add(rs.getString(7));
+            ObjLibroDiario ld=new ObjLibroDiario();
+            ld.setModulo(rs.getString("modulo"));
+            ld.setFecha(rs.getString("fecha_apli"));
+            ld.setCargo(consultaLibroDiarioCargo(rs.getString("fecha_apli")));
+            ld.setAbono(consultaLibroDiarioAbono(rs.getString("fecha_apli")));
+            l.add(ld);
         }
 
+        closeDB();
+        return l;
+    }
+    
+    public double consultaLibroDiarioCargo(String fecha) throws SQLException {
+        openDB();
+        double r ;
+        PreparedStatement ps = conn.prepareStatement("select sum(monto) from asientogeneral as ag, asientodetalle as ad where ag.id=ad.id_general and (cuenta='cargo' and ag.fecha_apli=?);");
+        ps.setString(1, fecha);
+        ResultSet rs = ps.executeQuery();
+         r = rs.getDouble(0);
+        closeDB();
+        return r;
+    }
+    
+    public double consultaLibroDiarioAbono(String fecha) throws SQLException {
+        openDB();
+        double r ;
+        PreparedStatement ps = conn.prepareStatement("select sum(monto) from asientogeneral as ag, asientodetalle as ad where ag.id=ad.id_general and (cuenta='abono' and ag.fecha_apli=?);");
+        ps.setString(1, fecha);
+        ResultSet rs = ps.executeQuery();
+         r = rs.getDouble(0);
         closeDB();
         return r;
     }
     
     
 }
+

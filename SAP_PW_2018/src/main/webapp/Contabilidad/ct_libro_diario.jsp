@@ -103,10 +103,10 @@
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                         <select name="modulo1" id="modulo1">
                                             <option value="x">Selecciona...</option>
-                                            <option value="0">Todos</option>
-                                            <option value="1">Compras</option>
-                                            <option value="2">Ventas</option>
-                                            <option value="2">Nominas</option>
+                                            <option value="">Todos</option>
+                                            <option value="compra">Compras</option>
+                                            <option value="venta">Ventas</option>
+                                            <option value="nomina">Nominas</option>
                                         </select>
                                     </div>    
                                 </div>
@@ -150,10 +150,10 @@
                                     <td>350</td>                                                                           
                                 </tr>                        
                                 <tr>
-                                    <td><%=request.getSession().getAttribute("cuenta")%></td>
-                                    <td><%=request.getSession().getAttribute("descripcion")%></td>
-                                    <td><%=request.getSession().getAttribute("tipo_cuenta")%></td>
-                                    <td><%=request.getSession().getAttribute("clase_cuenta")%></td>
+                                    <td><%=request.getSession().getAttribute("fecha")%></td>
+                                    <td><%=request.getSession().getAttribute("modulo")%></td>
+                                    <td><%=request.getSession().getAttribute("cargo")%></td>
+                                    <td><%=request.getSession().getAttribute("abono")%></td>
                                 </tr>                     
                                 
                             </table> 
@@ -173,3 +173,4 @@
         </div>
     </body>
 </html>
+
