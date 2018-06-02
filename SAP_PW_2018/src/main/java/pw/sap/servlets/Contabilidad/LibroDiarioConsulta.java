@@ -45,8 +45,6 @@ public class LibroDiarioConsulta extends HttpServlet {
         request.getSession().setAttribute("descripcion", l.get(2));
         request.getSession().setAttribute("tipo_cuenta", l.get(3));
         request.getSession().setAttribute("clase_cuenta", l.get(4));
-        request.getSession().setAttribute("clase_sat", l.get(5));
-        request.getSession().setAttribute("naturaleza", l.get(6));
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

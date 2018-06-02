@@ -106,6 +106,7 @@
                                             <option value="0">Todos</option>
                                             <option value="1">Compras</option>
                                             <option value="2">Ventas</option>
+                                            <option value="2">Nominas</option>
                                         </select>
                                     </div>    
                                 </div>
