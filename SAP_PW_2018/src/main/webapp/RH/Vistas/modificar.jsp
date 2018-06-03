@@ -93,6 +93,10 @@
                 </td>
             </tr>
             <tr>
+                <td>Status</td>
+                <td><input type='text' id='modificarStatusEmpleado' name='modificarStatusEmpleado' class='form-control form-control-sm' disabled="disabled"/></td>
+            </tr>
+            <tr>
                 <td colspan="2" align="center"><input type="submit" class='btn text-white boton' id="modificacionesEmpleado" value="Guardar"/></td><td></td>
             </tr>
         </table>

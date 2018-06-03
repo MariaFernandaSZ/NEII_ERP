@@ -34,9 +34,9 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
-        String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO","AREA","CARGO"};
+        String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO","AREA","CARGO","ESTADO"};
         ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,area_emp,cargo_emp","empleado", "id_emp", "is not null", "order by id_emp asc", 11);
+                + "licencia_medica,sueldo_emp,area_emp,cargo_emp,status","empleado", "status", "!= 'Despedido'", "order by id_emp asc", 12);
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");
@@ -44,7 +44,7 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
             out.println("</tr>");
             out.println("<tr>");
             for(int j = 0 ; j < lista.size() ; j++){
-                if(j%11==0 && j!=0){out.println("</tr><tr>");}
+                if(j%12==0 && j!=0){out.println("</tr><tr>");}
                 out.print("<td>"+lista.get(j)+"</td>");
             }
             out.println("</tr>");
@@ -54,8 +54,7 @@ public class Servlet_consultaEmpleadoGeneral extends HttpServlet {
         HttpSession sesion=request.getSession(true);
         System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
         System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "consulta de empleado");        
-        
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "consulta de empleado");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

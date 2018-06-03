@@ -294,8 +294,16 @@ $(document).ready(function(){
     $('#ayuda_imprimir').click(function(){
         $.get('../Vistas/ayuda_imprimir.jsp',function(carga){$('#tareaActual').html(carga);});
     });
+    
+    $(document).on("submit","#formEmpleadoD",function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            $('#tareaActual').html(responseText);
+        });
+        event.preventDefault();
+    });
 
-     $(document).on("submit","#formEmpleadoG",function(event){
+    $(document).on("submit","#formEmpleadoG",function(event){
         var $form = $(this);
         $.post($form.attr("action"), $form.serialize(), function(responseText){
             $('#tareaActual').html(responseText);
@@ -398,6 +406,7 @@ $(document).ready(function(){
             $("#modificarSueldoEmpleado").val(responseJson[8]);
             $("#modificarAreaEmpleado").val(responseJson[9]);
             $("#modificarCargoEmpleado").val(responseJson[10]);
+            $("#modificarStatusEmpleado").val(responseJson[11]);
         });
         event.preventDefault();
     });
@@ -421,6 +430,7 @@ $(document).ready(function(){
                 $("#modificarSueldoEmpleado").val("");
                 $("#modificarAreaEmpleado").val("");
                 $("#modificarCargoEmpleado").val("");
+                $("#modificarStatusEmpleado").val("");
             }else{
                 alert("ERROR. Verificar datos.");
             }

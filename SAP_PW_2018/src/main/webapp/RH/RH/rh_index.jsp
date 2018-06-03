@@ -120,8 +120,7 @@
                           </div>
                       </div>
                       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Seccion central -->
-                          <scroll-container id="tareaActual">
-                          </scroll-container>  
+                            <scroll-container id="tareaActual"></scroll-container>
                       </div>
                       <div id="tipo_reporte" class="modal fade" role="modal-dialog"><!-- Modal para elegir formato del reporte -->
                           <div class="modal-dialog">
@@ -132,9 +131,9 @@
                                   <div class="modal-body">
                                       <table class="tabla">
                                           <tr>
-                                              <td align="center"><button type="button" class="btn text-white boton" id="texto">Texto</button></td>
-                                              <td align="center"><button type="button" class="btn text-white boton" id="pdf">PDF</button></td>
-                                              <td align="center"><button type="button" class="btn text-white boton" id="excel">Excel</button></td>
+                                              <td align="center"><input type="button" class="btn text-white boton" id="texto" name="texto" value="Texto"></td>
+                                              <td align="center"><input type="button" class="btn text-white boton" id="pdf" name="pdf" onclick="generarPDF();" value="PDF"></td>
+                                              <td align="center"><input type="button" class="btn text-white boton" id="excel" name="excel" value="EXCEL"></td>
                                           </tr>
                                       </table>
                                   </div>

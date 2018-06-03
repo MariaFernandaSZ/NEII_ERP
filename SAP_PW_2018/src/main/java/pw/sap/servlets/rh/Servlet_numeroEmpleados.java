@@ -1,7 +1,6 @@
 package pw.sap.servlets.rh;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -12,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
 
@@ -38,17 +36,17 @@ public class Servlet_numeroEmpleados extends HttpServlet {
         Conexion c = new Conexion();
         ArrayList lista;
         Map <String,Object> empleado = new LinkedHashMap();
-        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Recursos Humanos'", "", 1);
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Recursos Humanos'", "AND status != 'Despedido'", 1);
         empleado.put("RH",lista.get(0));
-        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Compras'", "", 1);
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Compras'", "AND status != 'Despedido", 1);
         empleado.put("COM",lista.get(0));
-        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Gerencia'", "", 1);
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Gerencia'", "AND status != 'Despedido'", 1);
         empleado.put("GER",lista.get(0));
-        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Ventas'", "", 1);
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Ventas'", "AND status != 'Despedido'", 1);
         empleado.put("VEN",lista.get(0));
-        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Inventarios'", "", 1);
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Inventarios'", "AND status != 'Despedido'", 1);
         empleado.put("INV",lista.get(0));
-        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Contabilidad'", "", 1);
+        lista = c.consulta("count(*)", "empleado", "area_emp", " = 'Contabilidad'", "AND status != 'Despedido'", 1);
         empleado.put("CON",lista.get(0));
         for(String area: empleado.keySet()){System.out.println(area + " TIENE "+empleado.get(area));}
     }

@@ -36,8 +36,8 @@ public class Servlet_modBuscarEmp extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Conexion c = new Conexion();
         ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,area_emp,cargo_emp","empleado", "id_emp",
-                " = "+request.getParameter("modificarIdEmpleado"),"", 11);
+                + "licencia_medica,sueldo_emp,area_emp,cargo_emp,status","empleado", "id_emp",
+                " = "+request.getParameter("modificarIdEmpleado"),"", 12);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
                    //registro para log
