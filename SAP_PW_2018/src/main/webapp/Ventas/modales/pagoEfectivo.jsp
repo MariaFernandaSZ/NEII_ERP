@@ -4,6 +4,8 @@
     Author     : ricardozaldivar
 --%>
 
+<%@page import="pw.sap.pojo.Ventas.VentaPorProducto"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +18,49 @@
         <link rel="stylesheet" type="text/css" href="../css/VenTabla.css">
     </head>
     <body>
+        <jsp:useBean id="inVentas" scope="page" class="pw.sap.pojo.Ventas.insertVentaPorProd"/>   
+    <jsp:useBean id="insertVPP" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+    <script type="text/javascript">
+            
+    function validamodalapagoEfectivo(){
+        var moneda = document.getElementById("job").selectedIndex;
+        var efec=document.getElementById("efectivo").value;
+        var tota=document.getElementById("total").value;
+
+            //select group lista
+
+        if( (moneda == null )) {
+  
+            alert("seleccione una moneda");
+  
+            return false;
+        }else if(efec == "" || efec == null || efec.length == 0 || /^\s+$/.test(efec)){
+            alert("Ingrese cantidad con la que se pagará")
+            return false;
+        }else{
+              <%
+              ArrayList<VentaPorProducto> vpp = inVentas.cargaVentas();
+              boolean sw = insertVPP.insertVPP(vpp);
+              if(sw){
+                  %>
+                  alert("VENTA CONCLUIDA");
+                  $('#pagoTarjeta').modal('hide');
+                  location.reload();
+                  <%
+              }else{
+                  %>
+                  alert("VENTA FALLIDA");
+                  $('#pagoTarjeta').modal('hide');
+                  location.reload();
+                  <%
+              }
+              
+              %>
+        }
+
+    }
+            
+    </script>
         <!-- Modal PAGAR EFECTIVO-->
         <div class="modal fade" id="pagoEfectivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">

@@ -464,7 +464,53 @@ function validaTipoPago(){
           return false;
       }else{
                  
-          if(tipoDePago=="efectivo"){
+          if(tipoDePago=="Efectivo"){
+              
+              var id_interVar=$("#nomInter option:selected").val();
+              var fecha_ovVar=$('#fecha1').val();
+              var total_ivaVar=$('#totalIvaOV').val();
+              var subtotalVar=$('#subtotalOV').val();
+              var total_ovVar=$('#totalOV').val();
+              var fecha_entregaVar=$('#fecha2').val();
+              var id_empVar=$('#idVendedor').val();
+              var tipo_ventaVar = $('#tipo_venta').text();
+              var forma_pagoVar=$("#tipoPago option:selected").val();
+            
+                $.ajax({
+                    type:'POST',
+                    url: '../CreaOrdenVenta',
+                    datatype: 'json',
+                    data: {
+                        id_intermC:id_interVar,
+                        fecha_ordv:fecha_ovVar,
+                        total_iva:total_ivaVar,
+                        subtotal_pago:subtotalVar,
+                        total_pago:total_ovVar,
+                        fecha_entrega:fecha_entregaVar,
+                        id_emp:id_empVar,
+                        tipo_venta:tipo_ventaVar
+                    },
+                    success: function (result) {
+                        alert("ORDEN DE VENTA CREADA, PAGO: "+result)
+                    }
+                });
+                
+                $.ajax({
+                    type:'POST',
+                    url: '../generaFactura',
+                    datatype: 'json',
+                    data: {
+                        id_intermC:id_interVar,
+                        total_iva:total_ivaVar,
+                        subtotal_pago:subtotalVar,
+                        total_pago:total_ovVar,
+                        tipo_venta:tipo_ventaVar,
+                        forma_pago:forma_pagoVar
+                    },
+                    success: function (result) {
+                        alert("FACTURA CREADA, PAGO: "+result);
+                    }
+                });
                   
             $.post('modales/pagoEfectivo.jsp',function(xx){
 
