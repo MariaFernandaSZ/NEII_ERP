@@ -9,7 +9,7 @@
     }else{
         if(!request.getSession().getAttribute("area").equals("Contabilidad")&&!request.getSession().getAttribute("area").equals("Gerencia")){
             response.sendRedirect("../archivos/errorSesion.jsp");
-        }
+        }        
     }
 %>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@
                       </div>
                     </li>
                     <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link color" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
+                        <a id="btn_gerencia" name="gerencia" class="nav-link color" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
                         <script src="../js/gerencia.js"></script>
                     </li>
                   </ul>
@@ -137,6 +137,7 @@
                                         <button id="btn-cc-add" type="button" class="btn btn-danger" onclick="location.href='asientos_conta_detallado.jsp'">Continuar Captura</button>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
                                         <button id="btn-cc-add" type="button" class="btn btn-danger" onclick="location.href='asientosdetalles.jsp'">Consultar Asientos Detallados</button>

@@ -139,6 +139,12 @@
                                         <button id="btn-cc-add" type="button" class="btn btn-danger" onclick="location.href='asientos_conta_detallado.jsp'">Continuar Captura</button>
                                     </div>
                                 </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12">
+                                        <button id="btn-cc-add" type="button" class="btn btn-danger" onclick="location.href='asientosdetalles.jsp'">Consultar Asientos Detallados</button>
+                                    </div>                
+                                </div>
                             </form> 
                         </div> 
                     </div>                

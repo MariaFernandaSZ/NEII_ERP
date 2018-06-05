@@ -125,7 +125,7 @@ public class ConsultasGenerales {
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
         Statement stmt;        
         stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select ag.clave as clave,ad.foliofac as foliofac,ad.descripcion as descripcion,ad.folio_fiscal as folio_fiscal,ad.fecha_fac as fecha_fac,ad.cuenta as cuenta,ad.monto as monto from asientodetalle as ad, asientogeneral as ag where ad.id_general=ag.id;");
+        ResultSet rs = stmt.executeQuery("select ag.clave as clave,ad.foliofac as foliofac,ad.descripcion as descripcion,ad.folio_fiscal as folio_fiscal,ad.fecha_fac as fecha_fac,ad.cuenta as cuenta,ad.monto as monto from asientodetalle as ad, asientogeneral as ag where ad.id_general=ag.id order by ag.clave;");
             while (rs.next()) {
                 AsientoDetallado a=new AsientoDetallado();                
                 a.setClave(rs.getString("clave"));
