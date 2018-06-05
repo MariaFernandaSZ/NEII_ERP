@@ -95,7 +95,7 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
                         <div class="form-style-5">
                             <span id="titulo"><span class="number">1</span>Libro diario</span>
-                            <form action="ct_libro_diario_1.jsp" onsubmit="return diario();" method="POST">
+                            <form action="../LibroDiarioConsulta" onsubmit="return diario();" method="POST">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                         M&oacute;dulo:
@@ -142,14 +142,7 @@
                                     <th>M&oacute;dulo</th>
                                     <th>Cargo</th>
                                     <th>Abono</th>
-                                </tr>
-                                <tr>
-                                    <td>19/03/2018</td>
-                                    <td>Compras</td>
-                                    <td>350</td>
-                                    <td>350</td>                                                                           
-                                </tr>                    
-                                
+                                </tr>     
                             </table> 
                             <br/>
                             <button class="btn btn-danger text-white" onclick="return exportar(); return false;" style="background-color: #9F150D">Exportar pdf</button>

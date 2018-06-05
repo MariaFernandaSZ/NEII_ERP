@@ -98,7 +98,7 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
                         <div class="form-style-5">
                             <span id="titulo"><span class="number">1</span>Libro diario</span>
-                            <form action="../LibroDiarioConsulta" onsubmit="return diario();" method="POST">
+                            <form action="ct_libro_diario_1.jsp" onsubmit="return diario();" method="POST">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                         M&oacute;dulo:
@@ -146,9 +146,10 @@
                                     <th>Cargo</th>
                                     <th>Abono</th>
                                 </tr>                     
-                                <tr>
+                                <tr>    
                                     <%
-                                        LinkedList<ObjLibroDiario> librod = LibroDiario.consultaLibroDiariop("Compras", "", "");
+                                        
+                                        LinkedList<ObjLibroDiario> librod = LibroDiario.consultaLibroDiariop(String.valueOf(request.getSession().getAttribute("modulo")), String.valueOf(request.getSession().getAttribute("fechaini")),String.valueOf(request.getSession().getAttribute("fechafin")), String.valueOf(request.getSession().getAttribute("cargo")),String.valueOf(request.getSession().getAttribute("abono")));
                                         for (int i = 0; i < librod.size(); i++) {
                                             out.println("<tr>");
                                             out.println("<td>" + librod.get(i).getFecha() + "</td>");

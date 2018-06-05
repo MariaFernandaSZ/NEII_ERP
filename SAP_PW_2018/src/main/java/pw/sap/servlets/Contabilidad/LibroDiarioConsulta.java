@@ -8,6 +8,7 @@ package pw.sap.servlets.Contabilidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -37,38 +38,28 @@ public class LibroDiarioConsulta extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
 
         LibroDiario ld = new LibroDiario();
+        String fechainicio;
+        String fechafinal;
+        fechainicio = request.getParameter("fechaIni");
+        fechafinal = request.getParameter("fechaFin");
+        double abono;
+        double cargo;
+        abono = ld.consultaLibroDiarioAbono(fechainicio, fechafinal);
+        cargo = ld.consultaLibroDiarioCargo(fechainicio, fechafinal);
 
-        //LinkedList<ObjLibroDiario> libro = ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("fechaIni"), request.getParameter("fechaFin"));
-
-//        for (int i = 0; i < libro.size(); i++) {
-//            request.getSession().setAttribute("fecha", libro.get(i).getFecha());
-//            request.getSession().setAttribute("modulo", libro.get(i).getModulo());
-//            request.getSession().setAttribute("cargo", libro.get(i).getCargo());
-//            request.getSession().setAttribute("abono", libro.get(i).getAbono());
-//        }
-
+        request.getSession().setAttribute("fechaini", request.getParameter("fechaIni"));
+        request.getSession().setAttribute("fechafin", request.getParameter("fechaFin"));
+        request.getSession().setAttribute("modulo", request.getParameter("modulo1"));
+        request.getSession().setAttribute("abono", abono);
+        request.getSession().setAttribute("cargo", cargo);
         // ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("tipoconsulta"), request.getParameter("fechaIni"), request.getParameter("fechaFin"));
 
+        response.sendRedirect("Contabilidad/ct_libro_diario_1.jsp");
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LibroDiarioConsulta</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LibroDiarioConsulta at " + request.getParameter("modulo1") + "</h1>");
-            out.println("<h1>Servlet LibroDiarioConsulta at " + ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("fechaIni"), request.getParameter("fechaFin"))+ "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-
-        //response.sendRedirect("Contabilidad/ct_libro_diario.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -89,6 +80,8 @@ public class LibroDiarioConsulta extends HttpServlet {
             Logger.getLogger(LibroDiarioConsulta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LibroDiarioConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(LibroDiarioConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,6 +101,8 @@ public class LibroDiarioConsulta extends HttpServlet {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LibroDiarioConsulta.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(LibroDiarioConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(LibroDiarioConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
