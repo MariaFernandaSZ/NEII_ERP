@@ -42,14 +42,14 @@ public class LibroDiarioConsulta extends HttpServlet {
 
         LibroDiario ld = new LibroDiario();
 
-        LinkedList<ObjLibroDiario> libro = ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("fechaIni"), request.getParameter("fechaFin"));
+        //LinkedList<ObjLibroDiario> libro = ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("fechaIni"), request.getParameter("fechaFin"));
 
-        for (int i = 0; i < libro.size(); i++) {
-            request.getSession().setAttribute("fecha", libro.get(i).getFecha());
-            request.getSession().setAttribute("modulo", libro.get(i).getModulo());
-            request.getSession().setAttribute("cargo", libro.get(i).getCargo());
-            request.getSession().setAttribute("abono", libro.get(i).getAbono());
-        }
+//        for (int i = 0; i < libro.size(); i++) {
+//            request.getSession().setAttribute("fecha", libro.get(i).getFecha());
+//            request.getSession().setAttribute("modulo", libro.get(i).getModulo());
+//            request.getSession().setAttribute("cargo", libro.get(i).getCargo());
+//            request.getSession().setAttribute("abono", libro.get(i).getAbono());
+//        }
 
         // ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("tipoconsulta"), request.getParameter("fechaIni"), request.getParameter("fechaFin"));
 
@@ -63,11 +63,12 @@ public class LibroDiarioConsulta extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LibroDiarioConsulta at " + request.getParameter("modulo1") + "</h1>");
+            out.println("<h1>Servlet LibroDiarioConsulta at " + ld.consultaLibroDiario(request.getParameter("modulo1"), request.getParameter("fechaIni"), request.getParameter("fechaFin"))+ "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
 
-        response.sendRedirect("Contabilidad/ct_libro_diario.jsp");
+        //response.sendRedirect("Contabilidad/ct_libro_diario.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
