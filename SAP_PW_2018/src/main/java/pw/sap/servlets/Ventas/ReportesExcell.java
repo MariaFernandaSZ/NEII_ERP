@@ -18,11 +18,11 @@ import pw.sap.pojo.Ventas.ExcelReportes;
  *
  * @author gio
  */
-@WebServlet(name = "ReportesExcel", urlPatterns =
+@WebServlet(name = "ReportesExcell", urlPatterns =
 {
-    "/ReportesExcel"
+    "/ReportesExcell"
 })
-public class ReportesExcel extends HttpServlet
+public class ReportesExcell extends HttpServlet
 {
 
     /**
@@ -69,10 +69,10 @@ public class ReportesExcel extends HttpServlet
             processRequest(request, response);
         } catch (ClassNotFoundException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportesExcell.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportesExcell.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -93,10 +93,10 @@ public class ReportesExcel extends HttpServlet
             processRequest(request, response);
         } catch (ClassNotFoundException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportesExcell.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
-            Logger.getLogger(ReportesExcel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReportesExcell.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

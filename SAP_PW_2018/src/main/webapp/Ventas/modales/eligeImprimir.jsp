@@ -14,6 +14,10 @@
         <link href="../../css/VenEstilos.css" rel="stylesheet" type="text/CSS">
         <link href="../../css/VenLaterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/VenTabla.css">
+        <link rel="stylesheet" type="text/css" href="../css/VenTablareporteventas1.css">
+        <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>   
+        <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
         <!-- Modal -->
@@ -52,7 +56,8 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" style="background-color: #9F150D" onclick="valmodalimprimir()" class="btn btn-danger">Imprimir</button>
+           <button type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger">Imprimir</button>
+           <<%--type="button" style="background-color: #9F150D" onclick="valmodalimprimir()" class="btn btn-danger"--%>
               </div>
             </div>
           </div>
@@ -63,6 +68,9 @@
     <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
     <script src="../../js/Ventas/VenGeneral.js"></script>
     <script src="../../js/Ventas/VenValidaciones.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
     </body>
 </html>

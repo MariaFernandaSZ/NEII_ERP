@@ -172,7 +172,7 @@
                 </div>
 
  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
-      <form method="POST" action="../../ReportesExcel" target="">
+      <form method="POST" action="../../ReportesExcell" target="">
                     <div class="table-responsive">
                         <table class="table table-striped"> 
                                     <thead>
@@ -180,9 +180,9 @@
                                             <th scope="col">id_venta</th>
                                             <th scope="col">C&oacute;digo</th>
                                             <th scope="col">Producto</th>
-                                            <th scope="col">Cliente</th>
+                                            <th scope="col">IdCliente</th>
                                             <th scope="col">Cantidad</th>
-                                            <th scope="col">Proveedor</th>
+                                            <th scope="col">RfcProveedor</th>
                                             <th scope="col">Precio unitario</th>
                                             <th scope="col">IVA</th>
                                             <th scope="col">Subtotal</th>
@@ -214,7 +214,7 @@
                                     </tbody>
                                 </table></div>  
                                     <br>
-
+                                    
                         </form>  
  </div>
                     </div>    
