@@ -58,3 +58,29 @@ function cantOnPress(e)
         }
 }
 
+function abono_cargoAparta(e)
+{
+        var anticipoVar=$('#anticipo').val();
+        var totalVar=$('#totalOV').val();
+        
+        if (e.keyCode == 13)
+        {
+            
+            if( !/^([0-9])*$/.test(anticipoVar)||anticipoVar==null||anticipoVar==0)  {
+   
+                 alert("Ingrese cantidad de anticipo.");
+   
+                 return false;
+             }else{
+                $.ajax({
+                    type:'POST',
+                    url: '../anticipoAparta',
+                    data: {abono_apart:anticipoVar,total_OV:totalVar},
+                    success: function (result) {
+                        $('#restante').val(result);
+                    }
+                });
+            } 
+        }
+}
+

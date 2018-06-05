@@ -139,8 +139,8 @@
                             <span style="font-size: 18px">Fecha de entrega</span><br><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" id="fecha2" name="fechaC" /></span><br>    
 
                             <span id="titulo"><span class="number">3</span>Pago</span><br>
-                            <br><span >Anticipo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;" onkeypress="return SoloNumeros(event)" type="text" id="anticipo" name="anticipo" placeholder="$000.00"/></span>
-                            <br><span >Restante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;" type="text" name="restante" readonly="readonly" placeholder="$000.00"/></span>
+                            <br><span >Anticipo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;" onkeypress="return abono_cargoAparta(event)" type="text" id="anticipo" name="anticipo" placeholder="$000.00"/></span>
+                            <br><span >Restante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 110px; height: 30px;" type="text" name="restante" id="restante" readonly="readonly" placeholder="$000.00"/></span>
                             <br><span style="font-size: 18px;">Forma pago</span>
                             <br>
                             <select id="tipoPago" name="pago">

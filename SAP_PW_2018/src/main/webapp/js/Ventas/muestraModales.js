@@ -475,6 +475,29 @@ function validaTipoPago(){
               var id_empVar=$('#idVendedor').val();
               var tipo_ventaVar = $('#tipo_venta').text();
               var forma_pagoVar=$("#tipoPago option:selected").val();
+              
+              if(tipo_ventaVar=="Apartado de producto"){
+                  
+                $.ajax({
+                    type:'POST',
+                    url: '../ApartaProd',
+                    datatype: 'json',
+                    data: {
+                        id_intermC:id_interVar,
+                        fecha_ordv:fecha_ovVar,
+                        total_iva:total_ivaVar,
+                        subtotal_pago:subtotalVar,
+                        total_pago:total_ovVar,
+                        fecha_entrega:fecha_entregaVar,
+                        id_emp:id_empVar,
+                        tipo_venta:tipo_ventaVar
+                    },
+                    success: function (result) {
+                        alert("ORDEN DE VENTA CREADA, PAGO: "+result)
+                    }
+                });
+                  
+              }
             
                 $.ajax({
                     type:'POST',
