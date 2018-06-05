@@ -132,7 +132,7 @@
                                       <table class="tabla">
                                           <tr>
                                               <td align="center"><input type="button" class="btn text-white boton" id="texto" name="texto" value="Texto"></td>
-                                              <td align="center"><input type="button" class="btn text-white boton" id="pdf" name="pdf" onclick="generarPDF();" value="PDF"></td>
+                                              <td align="center"><input type="button" class="btn text-white boton" id="pdf" name="pdf" value="PDF"></td>
                                               <td align="center"><input type="button" class="btn text-white boton" id="excel" name="excel" value="EXCEL"></td>
                                           </tr>
                                       </table>

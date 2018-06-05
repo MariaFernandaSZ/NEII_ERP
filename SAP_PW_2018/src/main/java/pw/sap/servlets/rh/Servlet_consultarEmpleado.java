@@ -69,8 +69,6 @@ public class Servlet_consultarEmpleado extends HttpServlet {
         }
                //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta especifica de empleado");        
         
     }
