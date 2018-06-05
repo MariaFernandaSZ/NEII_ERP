@@ -163,8 +163,11 @@
 
                             </table> 
                             <br/>
-                            <button class="btn btn-danger text-white" onclick="return exportar(); return false;" style="background-color: #9F150D">Exportar pdf</button>
-
+                            <form action="../LibroDiarioPdf" method="post">
+                                <center>
+                                    <input class="btn btn-danger text-white" style="background-color: #9F150D" type="submit" value="Exportar pdf" />
+                                </center>
+                            </form>
                         </div>
                     </div>
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
