@@ -1,3 +1,6 @@
+<%@page import="pw.sap.servlets.Ventas.reporte"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -16,24 +19,9 @@
         <link href="../css/VenEstilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/VenLaterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/VenTablareporteventas1.css">
-      <%--  <script>
-    function descargarExcel(){
-        //Creamos un Elemento Temporal en forma de enlace
-        var tmpElemento = document.createElement('a');
-        // obtenemos la información desde el div que lo contiene en el html
-        // Obtenemos la información de la tabla
-        var data_type = 'data:application/vnd.ms-excel';
-        //var data_type = 'application/msword';
-        var tabla_div = document.getElementById('tblReporte');
-        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html;
-        //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Nombre_De_Mi_Excel.xls';
-        // Simulamos el click al elemento creado para descargarlo
-        tmpElemento.click();
-    }
-    descargarExcel();
-</script>--%>
+        <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>   
+        <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     </head>
 
     <body style="width:100%; height:100%;">
@@ -118,7 +106,7 @@
 
 
                     <div class="form-style-5">
-                        <form>
+                        <form  name="reporte" action="/SAP_PW/pdf">
 
                             <span id="titulo"><span class="number">1</span>Reporte</span><br><br>
                             <span style="font-size: 18px">Fecha de inicio</span><br><span class="idemp">
@@ -175,7 +163,7 @@
                                 </div> <br>
 
                                 <button type="button" name="cargaReport" style="background-color: #9F150D" id="btnReporte" onclick="validaFechasReportes()" class="btn btn-danger">Cargar reporte</button><br>
-                                <br><button type="button" name="impReport" style="background-color: #9F150D" id="btnImprimir" onclick="validaFechasReportes()" class="btn btn-danger">Imprimir reporte</button><br>
+                                <br><button type="submit" value="Visualizar PDF" name="btnver" onsubmit="return InsertarEnt()" style="background-color: #9F150D" id="btnImprimir" onclick="validaFechasReportes()" class="btn btn-danger">Imprimir reporte</button><br>
                                 <br><button type="button" name="mandaCorreoReport" style="background-color: #9F150D" id="btnMail" onclick="validaFechasReportes()" class="btn btn-danger">Mandar reporte por correo</button>
                             </center>
                         </form>
@@ -183,40 +171,55 @@
 
                 </div>
 
-
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+ <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+      <form method="POST" action="../../ReportesExcel" target="">
                     <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">id_venta</th>
-                                    <th scope="col">C&oacute;digo</th>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Proveedor</th>
-                                    <th scope="col">Precio unitario</th>
-                                    <th scope="col">IVA</th>
-                                    <th scope="col">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ven42576</td>
-                                    <td>7702111333581</td>
-                                    <td>Laptop HP</td>
-                                    <td>ITTOL</td>
-                                    <td>10</td>
-                                    <td>Hewlett-Packard</td>
-                                    <td>$8,500.00</td>
-                                    <td>$1,360.00</td>
-                                    <td>$98,600.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> 
+                        <table class="table table-striped"> 
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id_venta</th>
+                                            <th scope="col">C&oacute;digo</th>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Proveedor</th>
+                                            <th scope="col">Precio unitario</th>
+                                            <th scope="col">IVA</th>
+                                            <th scope="col">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                       <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                                    <%
+                                        ResultSet rsTabla = interTabla.consultaProducto();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+            
+                                              <td><%=rsTabla.getString(1)%></td>
+                                    <td><%=rsTabla.getString(2)%></td>
+                                    <td><%=rsTabla.getString(3)%></td>
+                                    <td><%=rsTabla.getString(4)%></td>
+                                    <td><%=rsTabla.getString(5)%></td>
+                                    <td><%=rsTabla.getString(6)%></td>
+                                      <td><%=rsTabla.getString(7)%></td>
+                                    <td><%=rsTabla.getString(8)%></td>
+                                    <td><%=rsTabla.getString(9)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>  
+                                    <br>
 
-                </div>
+                        </form>  
+ </div>
+                    </div>    
+                                    
+                                   
 
             </div>
 
@@ -231,6 +234,8 @@
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
         <script src="../js/Ventas/muestraModales.js"></script>
-
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>

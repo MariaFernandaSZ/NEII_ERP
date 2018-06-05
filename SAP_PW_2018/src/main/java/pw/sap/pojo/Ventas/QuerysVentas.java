@@ -362,4 +362,19 @@ public class QuerysVentas {
         closeDB();        
         return valor;
     }
+          
+             public ResultSet consultaProducto() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select factura.id, producto.id_producto, producto.nombre, factura.folio, producto.cantidad, producto.proveedor, producto.costo_unitario, factura.total_iva, factura.subtotal from producto INNER JOIN factura ON producto.proveedor = factura.rfc_receptor ;");
+                     //ON producto.proveedor = factura.rfc_receptor
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
 }
