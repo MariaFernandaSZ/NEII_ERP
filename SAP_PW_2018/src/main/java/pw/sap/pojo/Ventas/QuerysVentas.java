@@ -94,6 +94,26 @@ public class QuerysVentas {
             return agregado;
         }
         
+        public boolean insertApartado(ApartaProducto ap) throws SQLException, ClassNotFoundException{
+            boolean agregado=false;
+            Genera_IDs idcli = new Genera_IDs();
+            openDB();
+            try {
+                    if(conn!=null){
+                        Statement st;
+                        st = conn.createStatement();
+                        st.executeUpdate("INSERT INTO apartaprod VALUES ('"+idcli.idApartado()+"','"+consultarOrdenVenta()+"','Deuda',"+ap.getAbono_apart()+","+ap.getCargo_apart()+")");
+                        agregado=true;
+                        st.close();
+                    }
+                closeDB();
+                    } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    }
+            return agregado;
+        }
+        
         public boolean insertVPP(ArrayList<VentaPorProducto> vpp) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
             Genera_IDs idcli = new Genera_IDs();
@@ -117,7 +137,7 @@ public class QuerysVentas {
             return agregado;
         }
         
-        public String consultarCli(){
+                public String consultarCli(){
          String id="";
          try{
           openDB();

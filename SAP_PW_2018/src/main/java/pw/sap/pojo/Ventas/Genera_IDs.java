@@ -75,6 +75,21 @@ public class Genera_IDs {
         }
     }
         
+        public String idApartado() throws ClassNotFoundException, SQLException{
+        
+        QuerysVentas c = new QuerysVentas();
+        
+        String idCli = c.consultarFactu();
+        
+        if ("".equals(idCli) || idCli == null) {
+            return "apr1";
+        }else{
+            String num = idCli.replace("apr", "");
+            int con = Integer.parseInt(num)+1;
+            return "apr"+String.valueOf(con);
+        }
+    }        
+        
     public String uuid()
     {
         String result = java.util.UUID.randomUUID().toString();

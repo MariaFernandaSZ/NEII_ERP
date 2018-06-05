@@ -478,22 +478,19 @@ function validaTipoPago(){
               
               if(tipo_ventaVar=="Apartado de producto"){
                   
+                  var anticipoVar=$('#anticipo').val();
+                  var restanteVar=$('#restante').val();
+                  
                 $.ajax({
                     type:'POST',
                     url: '../ApartaProd',
                     datatype: 'json',
                     data: {
-                        id_intermC:id_interVar,
-                        fecha_ordv:fecha_ovVar,
-                        total_iva:total_ivaVar,
-                        subtotal_pago:subtotalVar,
-                        total_pago:total_ovVar,
-                        fecha_entrega:fecha_entregaVar,
-                        id_emp:id_empVar,
-                        tipo_venta:tipo_ventaVar
+                        abono_apart:anticipoVar,
+                        cargo_apart:restanteVar
                     },
                     success: function (result) {
-                        alert("ORDEN DE VENTA CREADA, PAGO: "+result)
+                        alert("APARTADO REGISTRADO, RESTANTE: "+result);
                     }
                 });
                   

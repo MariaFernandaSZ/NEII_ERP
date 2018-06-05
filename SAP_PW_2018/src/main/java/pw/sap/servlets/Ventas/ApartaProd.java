@@ -7,11 +7,17 @@ package pw.sap.servlets.Ventas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pw.sap.pojo.Ventas.ApartaProducto;
+import pw.sap.pojo.Ventas.QuerysVentas;
 
 /**
  *
@@ -61,6 +67,44 @@ public class ApartaProd extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        double abono_apart = Double.parseDouble(request.getParameter("abono_apart"));
+        double cargo_apart = Double.parseDouble(request.getParameter("cargo_apart"));
+        
+        ApartaProducto ap = new ApartaProducto(abono_apart,cargo_apart);
+        
+         QuerysVentas c = null;
+        
+        try {
+            c = new QuerysVentas();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ApartaProd.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ApartaProd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            boolean sw = c.insertApartado(ap);
+            
+            if (sw) {    
+                //registro para log
+        HttpSession sesion=request.getSession(true);
+        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
+        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
+        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Registra apartado de producto");    
+                PrintWriter out = response.getWriter();
+                out.print(cargo_apart);
+            }else{
+                        
+                PrintWriter out = response.getWriter();
+
+                out.print(cargo_apart);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ApartaProd.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ApartaProd.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

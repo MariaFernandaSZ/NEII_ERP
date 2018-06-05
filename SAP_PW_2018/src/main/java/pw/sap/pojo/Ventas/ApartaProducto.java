@@ -25,6 +25,13 @@ public class ApartaProducto {
         this.cargo_apart = cargo_apart;
     }
 
+    public ApartaProducto(double abono_apart, double cargo_apart) {
+        this.abono_apart = abono_apart;
+        this.cargo_apart = cargo_apart;
+    }
+
+    
+    
     /**
      * @return the id_aparta
      */
