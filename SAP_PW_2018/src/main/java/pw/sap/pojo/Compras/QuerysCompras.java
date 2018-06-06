@@ -88,7 +88,7 @@ public class QuerysCompras {
                     if(conn!=null){
                         Statement st;
                         st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO orden_compra VALUES('"+ordenPojo.getOrd_folio()+"','"+ordenPojo.getReq_folio()+"',"+ordenPojo.getProv_rfc()+",'"+ordenPojo.getOrd_fecha()+"','"+ordenPojo.getOrd_pagotot()+"')");
+                        st.executeUpdate("INSERT INTO orden_compra (ord_codprod, prov_rfc, ord_fecha, ord_pagotot, ord_cantidad) VALUES('"+ordenPojo.getOrd_codprod()+"','"+ordenPojo.getProv_rfc()+"','"+ordenPojo.getOrd_fecha()+"','"+ordenPojo.getOrd_pagotot()+"','"+ordenPojo.getOrd_cantidad()+"')");
                         agregado=true;
                         st.close();
                     }
