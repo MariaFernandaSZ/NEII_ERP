@@ -34,20 +34,43 @@ public class OrdenCompraPojo {
     }
     
     
-    private String ord_folio;
-    private String req_folio;
-    private requisicionPojo requisicionpojo;
-    private Proveedores proveedores;
+   
+    private String ord_codprod;
+    private String ord_cantidad;
     private String prov_rfc;
     private String ord_fecha;
     private String ord_pagotot;
 
-    public String getReq_folio() {
-        return req_folio;
+    public OrdenCompraPojo(String ord_codprod, String ord_cantidad, String prov_rfc, String ord_fecha, String ord_pagotot) {
+        this.ord_codprod = ord_codprod;
+        this.ord_cantidad = ord_cantidad;
+        this.prov_rfc = prov_rfc;
+        this.ord_fecha = ord_fecha;
+        this.ord_pagotot = ord_pagotot;
     }
 
-    public void setReq_folio(String req_folio) {
-        this.req_folio = req_folio;
+    public Connection getConn() {
+        return conn;
+    }
+
+    public void setConn(Connection conn) {
+        this.conn = conn;
+    }
+
+    public String getOrd_codprod() {
+        return ord_codprod;
+    }
+
+    public void setOrd_codprod(String ord_codprod) {
+        this.ord_codprod = ord_codprod;
+    }
+
+    public String getOrd_cantidad() {
+        return ord_cantidad;
+    }
+
+    public void setOrd_cantidad(String ord_cantidad) {
+        this.ord_cantidad = ord_cantidad;
     }
 
     public String getProv_rfc() {
@@ -56,70 +79,6 @@ public class OrdenCompraPojo {
 
     public void setProv_rfc(String prov_rfc) {
         this.prov_rfc = prov_rfc;
-    }
-    
-
-    public OrdenCompraPojo(String ord_folio, String req_folio, String prov_rfc, String ord_fecha, String ord_pagotot) {
-        this.ord_folio = ord_folio;
-        this.req_folio = req_folio;
-        this.prov_rfc = prov_rfc;
-        this.ord_fecha = ord_fecha;
-        this.ord_pagotot = ord_pagotot;
-    }
-
-    
-    public OrdenCompraPojo(String req_folio, String prov_rfc, String ord_fecha, String ord_pagotot) {
-        this.req_folio = req_folio;
-        this.prov_rfc = prov_rfc;
-        this.ord_fecha = ord_fecha;
-        this.ord_pagotot = ord_pagotot;
-    }
-    
-    
-
-    
-
-    public OrdenCompraPojo(String ord_folio, requisicionPojo requisicionpojo, Proveedores proveedores, String ord_fecha, String ord_pagotot) {
-        this.ord_folio = ord_folio;
-        this.requisicionpojo = requisicionpojo;
-        this.proveedores = proveedores;
-        this.ord_fecha = ord_fecha;
-        this.ord_pagotot = ord_pagotot;
-    }
-    
-    
-
-    public OrdenCompraPojo(requisicionPojo requisicionpojo, Proveedores proveedores, String ord_fecha, String ord_pagotot) {
-        this.requisicionpojo = requisicionpojo;
-        this.proveedores = proveedores;
-        this.ord_fecha = ord_fecha;
-        this.ord_pagotot = ord_pagotot;
-    }
-    
-    
-
-    public String getOrd_folio() {
-        return ord_folio;
-    }
-
-    public void setOrd_folio(String ord_folio) {
-        this.ord_folio = ord_folio;
-    }
-
-    public requisicionPojo getRequisicionpojo() {
-        return requisicionpojo;
-    }
-
-    public void setRequisicionpojo(requisicionPojo requisicionpojo) {
-        this.requisicionpojo = requisicionpojo;
-    }
-
-    public Proveedores getProveedores() {
-        return proveedores;
-    }
-
-    public void setProveedores(Proveedores proveedores) {
-        this.proveedores = proveedores;
     }
 
     public String getOrd_fecha() {
@@ -136,11 +95,6 @@ public class OrdenCompraPojo {
 
     public void setOrd_pagotot(String ord_pagotot) {
         this.ord_pagotot = ord_pagotot;
-    }
-
-    @Override
-    public String toString() {
-        return ord_folio; //To change body of generated methods, choose Tools | Templates.
     }
     
     
