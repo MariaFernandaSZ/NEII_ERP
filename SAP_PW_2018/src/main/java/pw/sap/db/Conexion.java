@@ -7,13 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Properties;
-import pw.sap.pojo.Contabilidad.Calen_Contable;
-import pw.sap.pojo.Inventarios.Merma;
-import pw.sap.pojo.Ventas.ClienteBean;
-import pw.sap.pojo.Ventas.QuerysVentas;
 
  
 public class Conexion {
@@ -628,7 +622,7 @@ public class Conexion {
         openDB();
         ArrayList r=new ArrayList();
         PreparedStatement ps;
-        ps=conn.prepareStatement("SELECT nomina.id_nomina,nomina.id_emp,empleado.cuenta,nomina.pago_total,nomina.status FROM nomina JOIN empleado ON nomina.id_emp = empleado.id_emp WHERE nomina.status != 0;");
+        ps=conn.prepareStatement("SELECT nomina.id_nomina,nomina.id_emp,empleado.cuenta,nomina.pago_total,estado.descripcion FROM nomina,estado,empleado WHERE nomina.id_emp = empleado.id_emp AND nomina.status = estado.id_estado AND nomina.status != 0;");
         ResultSet rs= ps.executeQuery();
         while(rs.next()){
             for(int i = 1 ; i <= 5 ; i++){r.add(rs.getObject(i));}

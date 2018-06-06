@@ -1,6 +1,6 @@
 <table class='tabla'>
     <tr><td align='center' class='form-group'>
-            <form autocomplete='off' method="POST" id="formAgregarNomina" onsubmit="return agregarNomina();">
+            <form autocomplete='off' method="POST" id="formAgregarNomina" onsubmit="return agregarNomina();" action="../../Servlet_agregarNomina">
                 <table style="margin: 0 auto;">
                     <tr><td align='center' colspan='2'><h1 style='text-align:center;'>AGREGAR&nbsp;UNA&nbsp;N&Oacute;MINA</h1></td></tr>
                     <tr><td align='left'><label>Empresa: &nbsp; </label></td><td><input type='text' id='empresa' name='empresa' class='form-control form-control-sm' required></td></tr>

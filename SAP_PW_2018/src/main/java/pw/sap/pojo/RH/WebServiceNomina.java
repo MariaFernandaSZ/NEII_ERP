@@ -9,9 +9,8 @@ import java.util.ArrayList;
 public class WebServiceNomina {
     
     public String servicio(String cliente, String cuenta, String monto){
-        String servicio="";
+        String servicio;
         while(monto.length() < 18){monto = "0" + monto;}
-        System.out.println(monto + " length: "+monto.length());
         servicio = cliente + cuenta + monto;
         return servicio;
     }

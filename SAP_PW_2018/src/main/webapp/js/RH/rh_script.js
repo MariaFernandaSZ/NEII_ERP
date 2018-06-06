@@ -73,13 +73,7 @@ function agregarNomina(){
         alert('Modifique la forma de pago, no es numerico');
         return false;
     }
-    document.forms[0].action = "../../Servlet_agregarNomina";
     $.get('../Vistas/agregarNomina.jsp', function (carga) {$('#tareaActual').html(carga);});
-//    if(letras.test(idEmpleado)){alert('Modifique el ID del empleado, es numerico');return false;}
-//    if(!(/^[a-zA-z0-9]{8}$/.test(idEmpleado))){
-//                alert('Favor de ingresar el ID de empleado con los 8 digitos');                
-//                return false;
-//            }
 }
 
 function agregarTarea(){

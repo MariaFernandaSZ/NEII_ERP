@@ -2,6 +2,7 @@ package pw.sap.servlets.rh;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -11,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.MalformedURLException;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.RH.WebServiceNomina;
 
@@ -31,15 +35,23 @@ public class ServiceNomina extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException, MalformedURLException {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         WebServiceNomina servicio = new WebServiceNomina();
+        URL url = new URL(request.getParameter("url"));
+        String [] nomina = request.getParameterValues("nominasPendiente");
+        ArrayList lista;
         String cad;
-        ArrayList lista = c.consulta("nomina.id_nomina,nomina.id_emp,nomina.pago_total,empleado.cuenta",
-                "nomina JOIN empleado ON nomina.id_emp = empleado.id_emp", "nomina.status", "!= 0", "", 4);
-        cad = String.valueOf((BigDecimal) lista.get(2));
-        response.getWriter().write(servicio.servicio("00000001",lista.get(3).toString(),servicio.conversion(cad)));
+  //      QName qname = new QName("http://implementation.services.com.mx/", "WagesImplService");
+//        Service service = Service.create(url, qname);
+        for(String arreglo: nomina){
+            lista = c.consulta("empleado.cuenta,nomina.pago_total","nomina JOIN empleado ON nomina.id_emp = empleado.id_emp",
+                                "nomina.status != 0", "AND nomina.id_nomina = "+arreglo, "", 2);
+            cad = String.valueOf((BigDecimal) lista.get(1));
+            System.out.println(servicio.servicio("00000001",lista.get(0).toString(),servicio.conversion(cad)));
+        }
+        response.getWriter().write("Proceso Completado");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

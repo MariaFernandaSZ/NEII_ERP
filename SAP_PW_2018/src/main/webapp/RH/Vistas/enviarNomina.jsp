@@ -7,7 +7,7 @@
 <form autocomplete="off" id="formEnviarNomina" name="formEnviarNomina" method="POST" action="../../ServiceNomina">
     <table style="margin: 0 auto;">
         <tr>
-            <td>URL</td><td align="center"><input type="number" id="url" name="url" class="form-control form-control-sm"/></td>
+            <td>URL</td><td align="center"><input type="text" id="url" name="url" class="form-control form-control-sm"/></td>
         </tr>
         <tr>
             <td>Puerto</td><td align="center"><input type="number" id="puerto" name="puerto" class="form-control form-control-sm"/></td>
@@ -21,7 +21,7 @@
     <div>
         <table class="tabla table-bordered">
             <tr>
-                <td align="center">N&oacute;mina</td>
+                <td align="center">Seleccionar&nbsp;n&oacute;mina</td>
                 <td align="center">Empleado</td>
                 <td align="center">Cuenta</td>
                 <td align="center">Monto</td>
@@ -31,7 +31,11 @@
                 <%
                     for(int i = 0 ; i < lista.size() ; i++){
                         if(i%5==0 && i!=0){out.println("</tr><tr>");}
-                        out.print("<td  align='center'>"+lista.get(i)+"</td>");
+                        if(i%5==0){
+                            out.print("<td  align='center'><input type='checkbox' name='nominasPendiente' value="+lista.get(i)+" /></td>");
+                        }else{
+                            out.print("<td  align='center'>"+lista.get(i)+"</td>");
+                        }
                     }
                 %>
             </tr>

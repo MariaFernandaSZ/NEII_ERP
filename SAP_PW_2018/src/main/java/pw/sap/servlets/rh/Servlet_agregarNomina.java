@@ -43,7 +43,7 @@ public class Servlet_agregarNomina extends HttpServlet {
             Double deducciones=Double.parseDouble(request.getParameter("deducciones"));
             Double percepciones=Double.parseDouble(request.getParameter("percepciones"));
             Double diast=Double.parseDouble(request.getParameter("diasPagados"));
-            Double sueldod=Double.parseDouble(request.getParameter("SueldoDiario"));
+            Double sueldod=Double.parseDouble(request.getParameter("contratarSueldoDiario"));
             
             Double pago;
             pago = ((percepciones-deducciones)+(diast*sueldod));
@@ -56,22 +56,18 @@ public class Servlet_agregarNomina extends HttpServlet {
                     + request.getParameter("percepciones")+","
                     + request.getParameter("deducciones") + ","
                     + request.getParameter("diasPagados") + ","
-                    + request.getParameter("SueldoDiario")+","
+                    + request.getParameter("contratarSueldoDiario")+","
                     + pago + ",'"
-                    + request.getParameter("formaPago")+"'"); 
-
-            Integer query = c.insertar("nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,dias_pagados,sueldo_por_dia,pago_total,forma_pago",
+                    + request.getParameter("formaPago")+"',"+(-1)); 
+            System.out.println(valores);
+            Integer query = c.insertar("nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,dias_pagados,sueldo_por_dia,pago_total,forma_pago,status",
                     "nomina", valores);
             lista.add(c.consulta("id_nomina", "nomina", "id_nomina", "is not null", "ORDER BY id_nomina DESC LIMIT 1", 1));
             if(query == 1){
-               
-                response.getWriter().write("Nómina creada satisfactoriamente el ID es: "+lista.get(0));
+                response.sendRedirect("RH/RH/rh_index.jsp");
             }else{
                 response.getWriter().write("Registro incorrecto, revisar datos");
-            }
-            
-         //int i = c.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Agregacion de nomina");
-         
+            }         
         }
     }
 
