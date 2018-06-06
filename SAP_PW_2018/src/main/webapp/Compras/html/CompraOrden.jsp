@@ -143,25 +143,26 @@
                             
                             <br>
                             <div class="row">
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                    <input type="text" name="ord_folio" placeholder="id&nbsp;orden&nbsp;de&nbsp;compra" id="ord_folio"/> 
-                                </div>
-                                
+                                                               
                                 <div class="form-style-5">
                     <div>
                     <table>
-                        <span class="number">R</span>
+                       
                         <tr>
                             <td><fieldset>
-                                    <legend>id&nbsp;requisici&oacute;n</legend>
-                            <input type="text" name="req_folio" id="req_folio" required>
+                                    <legend>Código del producto</legend>
+                            <input type="text" name="ord_codprod" id="ord_codprod" required>
+                                </fieldset>
+                            </td> 
+                            
+                              <td><fieldset>
+                                    <legend>Cantidad</legend>
+                            <input type="number" name="ord_cantidad" id="ord_cantidad" required>
                                 </fieldset>
                             </td>
-                            <td><fieldset><legend>Fecha&nbsp;de&nbsp;orden</legend>
-                            <input type="date" name="ord_fecha" id="canPed" min="0" required>
-                                </fieldset>
-                            </td>
+                           
                         </tr>
+                        
                         <tr>
                             <td><fieldset>
                                     <legend>RFC&nbsp;proveedor</legend>
@@ -173,7 +174,12 @@
                                 </fieldset>
                             </td>
                         </tr>
-                        
+                       <tr>
+                             <td><fieldset><legend>Fecha&nbsp;de&nbsp;orden</legend>
+                            <input type="date" name="ord_fecha" id="canPed" min="0" required>
+                                </fieldset>
+                            </td>
+                        </tr> 
                        
                     </table>
                         <button type="submit" style="background-color: #9F150D" name="requisitos" class="btn btn-danger">Ingresar</button>
