@@ -13,7 +13,6 @@
                     <tr><td align='left'><label>Sueldo por d&iacute;a</label></td><td><input type='number' id='contratarSueldoDiario' name='contratarSueldoDiario' class='form-control form-control-sm' required></td></tr>
                     <tr><td align='left'><label>Forma&nbsp;de&nbsp;Pago:&nbsp;</label></td><td><input type='text' id='formaPago' name='formaPago' class='form-control form-control-sm' required></td></tr>
                     <tr><td align='center'><input type='submit' class='btn text-white boton' value='Aceptar'></td><td align='center'><input type='reset' class='btn text-white boton' value='Reiniciar'></td></tr>
-
                 </table>
             </form>
     </td></tr>

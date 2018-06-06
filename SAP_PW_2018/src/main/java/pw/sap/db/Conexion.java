@@ -634,6 +634,19 @@ public class Conexion {
         return rs;
     }
     
+    public ArrayList pendienteNomina() throws SQLException{
+        openDB();
+        ArrayList r=new ArrayList();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("SELECT nomina.id_nomina,nomina.id_emp,empleado.cuenta,nomina.pago_total,nomina.status FROM nomina JOIN empleado ON nomina.id_emp = empleado.id_emp WHERE nomina.status != 0;");
+        ResultSet rs= ps.executeQuery();
+        while(rs.next()){
+            for(int i = 1 ; i <= 5 ; i++){r.add(rs.getObject(i));}
+        }
+        closeDB();        
+        return r;
+    }
+    
     public ArrayList sesion(int usuario, String pass) throws SQLException{
         openDB();
         ArrayList r = new ArrayList();

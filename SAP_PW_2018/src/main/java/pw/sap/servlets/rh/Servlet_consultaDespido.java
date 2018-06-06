@@ -36,7 +36,7 @@ public class Servlet_consultaDespido extends HttpServlet {
         Conexion c = new Conexion();
         String [] campos = {"ID","NOMBRE","APELLIDO","DIRECCION","RFC","TELEFONO","EDO. CIVIL","LICENCIA","SUELDO","AREA","CARGO","ESTADO"};
         ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,area_emp,cargo_emp,status","empleado", "status", "= 'Despedido'", "order by id_emp asc", 12);
+                + "licencia_medica,sueldo_emp,area_emp,cargo_emp,status","empleado", "status", "= 'Despedido'", "ORDER BY id_emp ASC", 12);
         try (PrintWriter out = response.getWriter()) {
             out.println("<table class='table table-bordered'>");
             out.println("<tr>");

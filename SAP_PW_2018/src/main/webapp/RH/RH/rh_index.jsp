@@ -55,7 +55,7 @@
                                         <a class="nav-link text-white color" href="#" id="agregarNomina">Agregar&nbsp;N&oacute;mina</a>
                                         <a class="nav-link text-white color" href="#" id="modificarNomina">Modificar&nbsp;N&oacute;mina</a>
                                         <a class="nav-link text-white color" href="#" id="consultarNomina">Consultar&nbsp;N&oacute;mina</a>
-                                        
+                                        <a class="nav-link text-white color" href="#" id="enviarNomina">Enviar&nbsp;N&oacute;mina</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -95,7 +95,7 @@
               <div class="container-fluid">
                   <div class="row"><br></div>
                   <div class="row">
-                      <div style="background-color: #E6E6E6;" class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion izquierda -->
+                      <div style="background-color: #E6E6E6;" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"><!-- Seccion izquierda -->
                           <div>
                               <center>
                                   <br>
@@ -115,11 +115,10 @@
                           <div>
                               <center>
                                   <button class="btn btn-info text-white boton" data-toggle="modal" data-target="#tipo_reporte" type="button" id="generarReporte">Generar&nbsp;reporte</button>
-                                  <button class="btn text-white boton" type="button" id="imprimir" name="imprimir">Imprimir</button>
                               </center>
                           </div>
                       </div>
-                      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Seccion central -->
+                      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"><!-- Seccion central -->
                             <scroll-container id="tareaActual"></scroll-container>
                       </div>
                       <div id="tipo_reporte" class="modal fade" role="modal-dialog"><!-- Modal para elegir formato del reporte -->

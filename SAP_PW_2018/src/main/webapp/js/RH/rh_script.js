@@ -196,103 +196,103 @@ function validarContratar(){
 
 $(document).ready(function(){
     $('#verCalendario').click(function(){
-        $.get('../Vistas/verCalendario.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/verCalendario.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#agregarTarea').click(function(){
-        $.get('../Vistas/agregarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/agregarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#modificarTarea').click(function(){
-        $.get('../Vistas/modificarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/modificarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
     });
    
     $('#consultarTarea').click(function(){
-        $.get('../Vistas/consultasTareas.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/consultasTareas.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#eliminarTarea').click(function(){
-        $.get('../Vistas/eliminarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/eliminarTarea.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
      $('#agregarNomina').click(function(){
-        $.get('../Vistas/agregarNomina.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/agregarNomina.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
      $('#modificarNomina').click(function(){
-        $.get('../Vistas/modificarNomina.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/modificarNomina.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
-      $('#consultarNomina').click(function(){
-        $.get('../Vistas/consultasNomina.jsp',function(carga){$('#tareaActual').html(carga);});
+    $('#consultarNomina').click(function(){
+        $.post('../Vistas/consultasNomina.jsp',function(carga){$('#tareaActual').html(carga);});
+    });
+    
+    $('#enviarNomina').click(function(){
+        $.post('../Vistas/enviarNomina.jsp',function(carga){$('#tareaActual').html(carga);});
     });
         
     $('#contratar_empleado').click(function(){
-        $.get('../Vistas/contratar.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/contratar.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#despedir_empleado').click(function(){
-        $.get('../Vistas/despedir.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/despedir.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#modificar_empleado').click(function(){
-        $.get('../Vistas/modificar.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/modificar.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#buscar_empleado').click(function(){
-        $.get('../Vistas/consultas.jsp',function(carga){$('#tareaActual').html(carga);});
-    });
-    
-      $('#imprimir').click(function(){
-        $.get('../Vistas/imprimir.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/consultas.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_calen').click(function(){
-        $.get('../Vistas/ayuda_calen.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_calen.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_agTarea').click(function(){
-        $.get('../Vistas/ayuda_agTarea.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_agTarea.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_eliTarea').click(function(){
-        $.get('../Vistas/ayuda_eliTarea.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_eliTarea.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_modTarea').click(function(){
-        $.get('../Vistas/ayuda_modTarea.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_modTarea.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_nomina').click(function(){
-        $.get('../Vistas/ayuda_nomina.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_nomina.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_consulta').click(function(){
-        $.get('../Vistas/ayuda_consulta.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_consulta.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_informacion').click(function(){
-        $.get('../Vistas/ayuda_informacion.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_informacion.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_modifica').click(function(){
-        $.get('../Vistas/ayuda_modifica.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_modifica.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_contrata').click(function(){
-        $.get('../Vistas/ayuda_contrata.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_contrata.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_despedir').click(function(){
-        $.get('../Vistas/ayuda_despedir.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_despedir.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_reporte').click(function(){
-        $.get('../Vistas/ayuda_reporte.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_reporte.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $('#ayuda_imprimir').click(function(){
-        $.get('../Vistas/ayuda_imprimir.jsp',function(carga){$('#tareaActual').html(carga);});
+        $.post('../Vistas/ayuda_imprimir.jsp',function(carga){$('#tareaActual').html(carga);});
     });
     
     $(document).on("submit","#formEmpleadoD",function(event){
