@@ -43,8 +43,8 @@ public class ServiceNomina extends HttpServlet {
         String cad;
         String procesar;
         ArrayList lista;
-        URL url = new URL(request.getParameter("url"));
         String [] nomina = request.getParameterValues("nominasPendiente");
+        URL url = new URL(request.getParameter("url"));
         QName qname = new QName("http://implementation.service.com.mx/", "nominaImplementacion");
         Service service = Service.create(url, qname);
         nominaServicio nm = service.getPort(nominaServicio.class);
