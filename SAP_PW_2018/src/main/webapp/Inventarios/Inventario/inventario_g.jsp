@@ -111,15 +111,15 @@ and open the template in the editor.
                             </center> <br>
                             
                             
-                    <form>
+                    <form method="POST" action="../../reporte_inventario">
 
                             <span id="titulo"><span class="number">4</span> Reporte</span><br><br>
                             
-                           <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_Re.pdf'">Generar PDF</button><br><br>
-                           <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Pro_RE.ods'">Generar Excel</button><br><br>
-                           
-
-                    </form>
+                                
+                             <input type="submit" value="Generar PDF" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger"><br><br>
+                             
+                            </form>
+                   
                 
 
             </div>
