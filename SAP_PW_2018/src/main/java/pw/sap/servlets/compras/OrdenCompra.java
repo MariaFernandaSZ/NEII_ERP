@@ -43,13 +43,13 @@ public class OrdenCompra extends HttpServlet {
         
         QuerysCompras c = new QuerysCompras();
         
-        String ord_folio = request.getParameter("ord_folio");
-        String req_folio = request.getParameter("req_folio");
+        String ord_cantidad = request.getParameter("ord_cantidad");
+        String ord_codprod = request.getParameter("ord_codprod");
         String prov_rfc = request.getParameter("prov_rfc");
         String ord_fecha = request.getParameter("ord_fecha");
         String ord_pagotot = request.getParameter("ord_pagotot");
         
-        OrdenCompraPojo ordenBean = new OrdenCompraPojo(ord_folio, req_folio, prov_rfc, ord_fecha, ord_pagotot);
+        OrdenCompraPojo ordenBean = new OrdenCompraPojo(ord_codprod, ord_cantidad, prov_rfc, ord_fecha, ord_pagotot);
         
         boolean sw = c.agregarOrdenCompra(ordenBean);
         
