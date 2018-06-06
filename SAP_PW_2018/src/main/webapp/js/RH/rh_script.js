@@ -10,15 +10,15 @@ function fecha(){
 }
 
 function cargaFiltrosEmp(){
-    $.get("../Vistas/consultar_empleado.jsp",function(carga){$("#tareaActual").html(carga);});
+    $.post("../Vistas/consultar_empleado.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function cargaFiltrosTarea(){
-    $.get("../Vistas/consultar_tareas.jsp",function(carga){$("#tareaActual").html(carga);});
+    $.post("../Vistas/consultar_tareas.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function cargaFiltrosNomina(){
-    $.get("../Vistas/consultar_nomina.jsp",function(carga){$("#tareaActual").html(carga);});
+    $.post("../Vistas/consultar_nomina.jsp",function(carga){$("#tareaActual").html(carga);});
 }
 
 function agregarNomina(){
@@ -293,6 +293,14 @@ $(document).ready(function(){
     
     $('#ayuda_imprimir').click(function(){
         $.post('../Vistas/ayuda_imprimir.jsp',function(carga){$('#tareaActual').html(carga);});
+    });
+    
+    $(document).on("submit","#formEnviarNomina",function(event){
+        var $form = $(this);
+        $.post($form.attr("action"), $form.serialize(), function(responseText){
+            alert(responseText);
+        });
+        event.preventDefault();
     });
     
     $(document).on("submit","#formEmpleadoD",function(event){

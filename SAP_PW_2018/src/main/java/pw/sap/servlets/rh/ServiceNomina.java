@@ -3,6 +3,7 @@ package pw.sap.servlets.rh;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -34,9 +35,11 @@ public class ServiceNomina extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         WebServiceNomina servicio = new WebServiceNomina();
-        BigDecimal numero = BigDecimal.valueOf(123456789012345.1);
-        String cad = String.valueOf(numero);
-        servicio.servicio(servicio.conversion(cad));
+        String cad;
+        ArrayList lista = c.consulta("nomina.id_nomina,nomina.id_emp,nomina.pago_total,empleado.cuenta",
+                "nomina JOIN empleado ON nomina.id_emp = empleado.id_emp", "nomina.status", "!= 0", "", 4);
+        cad = String.valueOf((BigDecimal) lista.get(2));
+        response.getWriter().write(servicio.servicio("00000001",lista.get(3).toString(),servicio.conversion(cad)));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

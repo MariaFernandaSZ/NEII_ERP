@@ -181,12 +181,7 @@ public class Conexion {
         closeDB();        
         return r;
     }
-     
-     
-     
-   
-     
-     
+       
     public ArrayList consultaSalidasId(String id_producto) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
@@ -208,6 +203,7 @@ public class Conexion {
         closeDB();        
         return r;
     }
+    
     public ArrayList consultaSalidasOrden(int id_ordenventa) throws SQLException {
         openDB();    
         ArrayList r=new ArrayList();
@@ -229,10 +225,6 @@ public class Conexion {
         closeDB();        
         return r;
     }
-     
-     
-     
-     
      
      public ArrayList consultaDevolucion(int id_devolucion) throws SQLException {
         openDB();    
@@ -257,8 +249,6 @@ public class Conexion {
         closeDB();        
         return r;
     }
-     
-     
      
      public ArrayList consultaMermac(int id_merma) throws SQLException {
         openDB();    

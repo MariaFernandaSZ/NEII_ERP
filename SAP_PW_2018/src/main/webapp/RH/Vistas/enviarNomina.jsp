@@ -4,7 +4,7 @@
     Conexion c = new Conexion();
     ArrayList lista = c.pendienteNomina();
 %>
-<form autocomplete="off" id="formEnviarNomina" name="formEnviarNomina" method="POST" action="">
+<form autocomplete="off" id="formEnviarNomina" name="formEnviarNomina" method="POST" action="../../ServiceNomina">
     <table style="margin: 0 auto;">
         <tr>
             <td>URL</td><td align="center"><input type="number" id="url" name="url" class="form-control form-control-sm"/></td>
