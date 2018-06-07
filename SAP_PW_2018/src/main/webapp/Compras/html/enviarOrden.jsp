@@ -102,7 +102,7 @@
         </tr>
     </table><br>
     <div>
-        <table class="tabla table-bordered">
+        <table class="table table-striped">
             <tr>
                 <td align="center">Seleccionar&nbsp;orden</td>
                 <td align="center">Proveedor</td>
