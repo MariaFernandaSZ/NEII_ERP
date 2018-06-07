@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -112,7 +113,7 @@
                             <br>
                         </form>
 
-                        <form method="POST" action="com_prod.html" onsubmit="return vali_codigo();">
+                        <form method="POST" action="com_prod.html">
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda por<br>c&oacute;digo de producto</span>
                             <br><br>
                             <input type="number" name="codprod" placeholder="Código" id="codigo" required>
@@ -132,42 +133,56 @@
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                         </form>
                         <br>
-                         <form method="POST" action="com_prod.html" onsubmit="return vali_codigo();">
-                            <span id="titulo"><span class="number">3</span>Eliminar por<br>c&oacute;digo de producto</span>
-                            <br><br>
-                            <input type="number" name="codprod" placeholder="Código" id="codigo" required>
-                             <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
-                             </from>
+                        
                     </div>                       
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
-                        <form method="POST" action="../../ReportesExcel">
-                            <div class="table-responsive"><table class="table table-striped">
+                         <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Código</th>
+                                            <th scope="col">código producto</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Precio</th>
                                             <th scope="col">Unidad</th>
                                             <th scope="col">Proveedor</th>
-                                            <th scope="col">Almacen</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Mínimo</th>
+                                            <th scope="col">Precio Costo</th>
+                                            <th scope="col">Precio Venta</th>
                                         </tr>
                                     </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysProducto"/>
+                                    <%
+                                        String buscar= request.getParameter("codprod");
+                                        ResultSet rsTabla = interTabla.consultaespe(buscar);
+                                    %> 
                                     <tbody>
-                                        
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(7)%></td>
+                                            <td><%=rsTabla.getString(8)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
-                                </table></div>              
-                            <center><input type="submit" value="Generar Excel" style="background-color: #9F150D" name="imprimir" class="btn btn-danger"> </center> 
-                        </form>
+                                </table></div>
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
-                        <form action="../../ingresar_producto" method="post" onsubmit="return vali_nuevoproducto();">                        
+                        <form method="POST" action="../../ingresar_producto" onsubmit="return vali_nuevoproducto();">                        
                             <span id="titulo"><span class="number">4</span>Agregar<br>nuevo producto</span><br>
                             <br><input type="number" name="codprodnuevo" placeholder="Código de barras" id="codigo_nuevoprod" required>                             
                             <input type="text" name="nomproducto" placeholder="Nombre" id="nom_producto" required>
-                            <select id="unidad" name="unidadprod">
+                            <select id="unidad" name="field4">
                                 <optgroup label="Unidades">
                                     <option value="@">Seleccione&nbsp;una&nbsp;unidad</option>
                                     <option value="l">Litros</option>
@@ -178,11 +193,11 @@
                                     <option value="unidad">unidades</option>
                                 </optgroup>
                             </select>
-                            <input type="text" name="costoproducto" placeholder="Costo del porducto" id="costo" required>
-                            <input type="text" name="ventaproducto" placeholder="Precio de venta" id="costo" required>
+                            <input type="text" name="costoproducto" placeholder="Costo" id="costo" required>
+                            <input type="text" name="costoproducto" placeholder="Precio de venta" id="precio" required>
                             <input type="text" name="provproducto" placeholder="Proveedor" id="proveedor" required>
-                            <input type="number" name="maxproducto" placeholder="Máximo en inventario" id="max_inventario" required>
-                            <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="min_inventario" required>
+                            <input type="number" name="maxproducto" placeholder="Máximo en inventario" id="proveedor" required>
+                            <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="proveedor" required>
                             <center><input type="submit" value="Agregar" style="background-color: #9F150D" name="nuevo" class="btn btn-danger"></center>                       
                         </form>
                     </div>    
