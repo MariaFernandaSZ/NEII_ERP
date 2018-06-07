@@ -37,14 +37,14 @@ public class QuerysProducto {
     }
     
     
-            public int agregar (String id_prod, String prov, String nombre, String tipo, String min, String max, String costo_uni, String costo_ven) throws SQLException, ClassNotFoundException{
+                public int agregar (String id_prod, String prov, String nombre, String tipo, String min, String max, String costo, String venta) throws SQLException, ClassNotFoundException{
          
                  openDB();
                  int valor=1;
                   PreparedStatement ps;
                     
                      ps = conn.prepareStatement("INSERT INTO producto (id_producto, proveedor, nombre, tipo_producto, cantidad ,minimo, maximo,costo_unitario,costo_venta) "
-                                       + " VALUES ('"+id_prod+"','"+prov+"','"+nombre+"','"+tipo+"',0,"+min+","+max+","+costo_uni+","+costo_ven+")");
+                                       + " VALUES ('"+id_prod+"','"+prov+"','"+nombre+"','"+tipo+"',0,"+min+","+max+","+costo+","+venta+");");
                     valor = ps.executeUpdate();
           
                     System.out.println(ps);
