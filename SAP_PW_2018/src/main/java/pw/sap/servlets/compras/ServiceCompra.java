@@ -68,6 +68,9 @@ public class ServiceCompra extends HttpServlet {
                 case 3:
                     c.actualizar("estatus = "+3, "orden_compra", "ord_folio = ", arreglo);
                     break;
+                case 3:
+                    c.actualizar("status = "+3, "nomina", "id_nomina = ", arreglo);
+                    break;
                 default:
                     c.actualizar("estatus = "+1, "orden_compra", "ord_folio = ", arreglo);
                     break;
