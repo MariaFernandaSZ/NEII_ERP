@@ -54,7 +54,7 @@ public class ServiceCompra extends HttpServlet {
                                 "nomina.status != 0", "AND nomina.id_nomina = "+arreglo, "", 2);
             cod_producto = String.valueOf((BigDecimal) lista.get(1));
             cantidad = String.valueOf((BigDecimal) lista.get(2));
-            procesar = servicio.fecha(lista.get(0).toString(),servicio.serviciocompra(cod_producto, cantidad),lista.get(3).toString());
+            procesar = servicio.fecha(lista.get(0).toString(),servicio.cod_cantidad(cod_producto, cantidad),lista.get(3).toString());
             switch(Integer.parseInt(nm.processor(procesar))){
                 case 0:
                     c.actualizar("status = "+0, "nomina", "id_nomina = ", arreglo);
