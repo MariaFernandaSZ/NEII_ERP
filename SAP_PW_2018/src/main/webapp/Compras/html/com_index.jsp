@@ -117,7 +117,43 @@
                     </div>                       
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->                          
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->   
+                         <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">código producto</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Unidad</th>
+                                            <th scope="col">Proveedor</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Mínimo</th>
+                                            <th scope="col">Precio Costo</th>
+                                            <th scope="col">Precio Venta</th>
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysProducto"/>
+                                    <%
+                                        ResultSet rsTabla = interTabla.consultaGeneral();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            <td><%=rsTabla.getString(4)%></td>
+                                            <td><%=rsTabla.getString(5)%></td>
+                                            <td><%=rsTabla.getString(6)%></td>
+                                            <td><%=rsTabla.getString(7)%></td>
+                                            <td><%=rsTabla.getString(8)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>
                     </div>
 
                  <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
