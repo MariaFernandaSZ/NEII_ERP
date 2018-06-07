@@ -163,7 +163,7 @@
 
                             </table> 
                             <br/>
-                            <form action="../LibroDiarioPdf" method="post">
+                            <form action="../LibroDiarioPdf" method="post" onsubmit="return libroPDF();">
                                 <center>
                                     <input class="btn btn-danger text-white" style="background-color: #9F150D" type="submit" value="Exportar pdf" />
                                 </center>
