@@ -1041,3 +1041,9 @@ function valor(){
     alert(asiento);
     document.getElementsByName('idasientogeneral').value=asiento;
 }
+
+function libroPDF(){
+    
+    alert('reporte generado');
+    
+}
