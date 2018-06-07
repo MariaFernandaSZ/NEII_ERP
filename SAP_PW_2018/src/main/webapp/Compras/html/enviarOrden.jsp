@@ -80,14 +80,14 @@
                     
 
 
-                    <div style="background-color: #f4f7f8;" class="col-lg-5 col-md-5 col-sm-5 col-xs-11 form-style-5"><!-- Seccion central -->                          
+                    <div style="background-color: #f4f7f8;" class="col-lg-10 col-md-10 col-sm-10 col-xs-11 form-style-5"><!-- Seccion central -->                          
        <%@page import="pw.sap.db.Conexion" %>
 <%@page import="java.util.ArrayList" %>
 <% 
     Conexion c = new Conexion();
     ArrayList lista = c.pendienteOrden();
 %>
-<form autocomplete="off" id="formEnviarNomina" name="formEnviarNomina" method="POST" action="../../ServiceNomina">
+<form autocomplete="off" id="formEnviarNomina" name="formEnviarCompra" method="POST" action="../../ServiceCompra">
     <table style="margin: 0 auto;">
         <tr>
             <td>URL</td><td align="center"><input type="text" id="url" name="url" class="form-control form-control-sm"/></td>
@@ -109,6 +109,7 @@
                 <td align="center">Producto</td>
                 <td align="center">Cantidad</td>
                 <td align="center">Fecha</td>
+                <td align="center">Estatus</td>
                 
             </tr>
             <tr>
