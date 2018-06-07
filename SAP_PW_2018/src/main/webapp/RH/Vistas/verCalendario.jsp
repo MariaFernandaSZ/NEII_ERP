@@ -32,7 +32,8 @@
     }
 </style>
 <div id="calendario" >
-    <h1>Ejemplo de un simple calendario en JavaScript</h1>
+    <center><h1>Calendario</h1></center>
+    <br>
     <table id="calendar"  border="1">
         <caption></caption>
         <thead>
