@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
+  <endpoint implementation="mx.com.service.nominaImplementacion" name="nominaImplementacionService" url-pattern="/nominaImplementacionService"/>
+  <endpoint implementation="mx.com.servicecompra.compraImplementacion" name="compraImplementacionService" url-pattern="/compraImplementacionService"/>
+</endpoints>

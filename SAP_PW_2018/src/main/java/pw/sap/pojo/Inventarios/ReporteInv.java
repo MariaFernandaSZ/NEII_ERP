@@ -45,7 +45,7 @@ public class ReporteInv
 
     Connection conn;
 
-    private static String FILE = "C:\\Users\\Adrian\\Escritorio\\pdf\\reporte-inventarios.pdf";
+    private static String FILE = "C:\\Users\\Adrian\\Escritorio\\pdf\\reporte-inventario-general.pdf";
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -247,7 +247,7 @@ public class ReporteInv
         Connection conn;
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "root");
+        connProp.put("password", "Gorostieta123");
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
 
         PreparedStatement ps;

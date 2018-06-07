@@ -44,7 +44,7 @@ public class reporte_inventario extends HttpServlet
         ReporteInv pdf = new ReporteInv();
         pdf.generarReporte();
         
-        //int i = con.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Genero reporte");
+        int i = con.insercionRegistro((int)request.getSession().getAttribute("usuario"), (String)request.getSession().getAttribute("area"), "Genero reporte");
         
         response.sendRedirect("Inventarios/Inventario/inventari_g1.jsp");
         
