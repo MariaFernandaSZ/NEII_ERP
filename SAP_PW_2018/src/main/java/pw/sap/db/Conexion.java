@@ -647,7 +647,7 @@ public class Conexion {
         ps=conn.prepareStatement("SELECT ord_folio,prov_rfc, ord_codpro, ord_cantida, ord_fecha, estado_orden.descripcion FROM  orden_compra, estado_orden WHERE orden_compra.estatus = estado_orden.id_estado AND orden_compra.estatus != 0 ;");
         ResultSet rs= ps.executeQuery();
         while(rs.next()){
-            for(int i = 1 ; i <= 5 ; i++){r.add(rs.getObject(i));}
+            for(int i = 1 ; i <= 6 ; i++){r.add(rs.getObject(i));}
         }
         closeDB();        
         return r;
