@@ -60,7 +60,7 @@ public class QuerysProducto {
             
                      PreparedStatement ps;
                     
-                     ps = conn.prepareStatement("delete from producto where id_producto="+codigo);
+                     ps = conn.prepareStatement("delete from producto where id_producto='"+codigo+"';");
                     valor = ps.executeUpdate();
         
             closeDB();
