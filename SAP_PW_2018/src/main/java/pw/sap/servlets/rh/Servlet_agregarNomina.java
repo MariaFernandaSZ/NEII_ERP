@@ -59,7 +59,7 @@ public class Servlet_agregarNomina extends HttpServlet {
                     + request.getParameter("contratarSueldoDiario")+","
                     + pago + ",'"
                     + request.getParameter("formaPago")+"',"+(-1)); 
-            System.out.println(valores);
+            System.out.println(valores);           
             Integer query = c.insertar("nombre_emp,fecha_creacion,fecha_limite,id_emp,percepciones,deducciones,dias_pagados,sueldo_por_dia,pago_total,forma_pago,status",
                     "nomina", valores);
             lista.add(c.consulta("id_nomina", "nomina", "id_nomina", "is not null", "ORDER BY id_nomina DESC LIMIT 1", 1));

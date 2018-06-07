@@ -3,7 +3,8 @@
             <form autocomplete='off' method="POST" id="formContratarEmpleado" onsubmit="return validarContratar();">
             <table style="margin: 0 auto;">
                 <tr><td colspan='2' align='center'><h1>CONTRATACI&Oacute;N</h1></td></tr>
-                <tr><td>Nombre</td><td><input type='text'id='contratarNombre' name='contratarNombre' class='form-control form-control-sm' required></td></tr>
+                
+                <tr><td>Nombre</td><td><input type='text' id='contratarNombre' name='contratarNombre' class='form-control form-control-sm' required></td></tr>
                 <tr><td>Apellido</td><td><input type='text' id='contratarApellido' name='contratarApellido' class='form-control form-control-sm' required></td></tr>
                 <tr><td>Direcci&oacute;n</td><td><input type='text' id='contratarDireccion' name='contratarDireccion' class='form-control form-control-sm' required></td></tr>
                 <tr><td>RFC</td><td><input type='text' id='contratarRfc' name='contratarRfc' class='form-control form-control-sm' required></td></tr>
@@ -20,7 +21,7 @@
                 <tr><td>Licencia M&eacute;dica</td><td><input type='text' id='contratarlicenciaMedica' name='contratarlicenciaMedica' class='form-control form-control-sm' required></td></tr>
 
                 <tr><td>Sueldo</td><td><input type='number' id='contratarSueldo' name='contratarSueldo' class='form-control form-control-sm' required></td></tr>
-               
+                <tr><td>Cuenta</td><td><input type='text' id='cuenta' name='cuenta' class='form-control form-control-sm' required></td></tr>               
                 <tr><td>&Aacute;rea</td>
                     <td><select id='contratarArea' name="contratarArea" class='form-control form-control-sm' required>
                             <option value='' selected='selected'>Selecciona&nbsp;una&nbsp;opci&oacute;n...</option>

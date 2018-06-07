@@ -42,7 +42,7 @@ public class Servlet_contratarEmpleado extends HttpServlet {
                     Conexion c = new Conexion();
             c.openDB();
         try (PrintWriter out = response.getWriter()) {
-            String valores = ("'"
+            String valores = ("'"+request.getParameter("cuenta")+"','"
                     +request.getParameter("contratarNombre")+"','"
                     + request.getParameter("contratarApellido") + "','"
                     + request.getParameter("contratarDireccion") + "','"
@@ -53,7 +53,7 @@ public class Servlet_contratarEmpleado extends HttpServlet {
                     + request.getParameter("contratarSueldo") + "','"
                     + request.getParameter("contratarArea") + "','"
                     + request.getParameter("contratarCargo")+"'");        
-            Integer query = c.insertar("nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,licencia_medica,sueldo_emp,area_emp,cargo_emp",
+            Integer query = c.insertar("cuenta,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,licencia_medica,sueldo_emp,area_emp,cargo_emp",
                     "empleado", valores);
             lista.add(c.consulta("id_emp", "empleado", "id_emp", "is not null", "ORDER BY id_emp DESC LIMIT 1", 1));
             if(query == 1){

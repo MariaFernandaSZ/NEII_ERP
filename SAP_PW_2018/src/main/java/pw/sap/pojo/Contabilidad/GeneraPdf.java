@@ -45,7 +45,7 @@ public class GeneraPdf {
     Connection conn;
 //    JFileChooser selecciona_archivo;
 
-    private static String FILE = "c:/Users/maxim/Desktop/respaldo/reporte-libro-diario.pdf";
+    private static String FILE = "/home/fgb/reporte-libro-diario.pdf";
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 25,
             Font.BOLD);

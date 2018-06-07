@@ -5,9 +5,7 @@
  */
 package pw.sap.pojo.Contabilidad;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,11 +15,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Properties;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import pw.sap.obj.Contabilidad.ObjCuentaSat;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
 

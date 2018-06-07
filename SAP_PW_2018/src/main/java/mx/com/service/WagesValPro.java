@@ -7,7 +7,10 @@ package mx.com.service;
 class WagesValPro {
 
     static String processor(String data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+        
+        
+        
     }
     
 }
