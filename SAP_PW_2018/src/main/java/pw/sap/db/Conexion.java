@@ -25,7 +25,7 @@ public class Conexion {
     public void openDB() throws SQLException {
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
-        connProp.put("password", "Bioshock05");
+        connProp.put("password", "root");
         conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
     }
 
@@ -605,6 +605,15 @@ public class Conexion {
         closeDB();
         return rs;
     }
+    /**
+     * este metodo permite actualizar datos de cualquier tabla
+     * @param campos
+     * @param tabla
+     * @param referencia
+     * @param condicion
+     * @return
+     * @throws SQLException 
+     */
     
     public Integer actualizar(String campos, String tabla, String referencia, String condicion) throws SQLException {
         openDB();
@@ -623,6 +632,19 @@ public class Conexion {
         ArrayList r=new ArrayList();
         PreparedStatement ps;
         ps=conn.prepareStatement("SELECT nomina.id_nomina,nomina.id_emp,empleado.cuenta,nomina.pago_total,estado.descripcion FROM nomina,estado,empleado WHERE nomina.id_emp = empleado.id_emp AND nomina.status = estado.id_estado AND nomina.status != 0;");
+        ResultSet rs= ps.executeQuery();
+        while(rs.next()){
+            for(int i = 1 ; i <= 5 ; i++){r.add(rs.getObject(i));}
+        }
+        closeDB();        
+        return r;
+    }
+    
+    public ArrayList pendienteOrden() throws SQLException{
+        openDB();
+        ArrayList r=new ArrayList();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("SELECT ord_folio,prov_rfc, ord_codpro, ord_cantida, ord_fecha, estado_orden.descripcion FROM  orden_compra, estado_orden WHERE orden_compra.estatus = estado_orden.id_estado AND orden_compra.estatus != 0 ;");
         ResultSet rs= ps.executeQuery();
         while(rs.next()){
             for(int i = 1 ; i <= 5 ; i++){r.add(rs.getObject(i));}
