@@ -102,10 +102,11 @@
         <table class="tabla table-bordered">
             <tr>
                 <td align="center">Seleccionar&nbsp;orden</td>
+                <td align="center">Proveedor</td>
                 <td align="center">Producto</td>
                 <td align="center">Cantidad</td>
                 <td align="center">Fecha</td>
-                <td align="center">Estatus</td>
+                
             </tr>
             <tr>
                 <%
