@@ -128,13 +128,11 @@
                                       <p class="modal-title">Elige&nbsp;el&nbsp;tipo&nbsp;de&nbsp;documento</p>
                                   </div>
                                   <div class="modal-body">
-                                      <table class="tabla">
-                                          <tr>
-                                              <td align="center"><input type="button" class="btn text-white boton" id="texto" name="texto" value="Texto"></td>
-                                              <td align="center"><input type="button" class="btn text-white boton" id="pdf" name="pdf" value="PDF"></td>
-                                              <td align="center"><input type="button" class="btn text-white boton" id="excel" name="excel" value="EXCEL"></td>
-                                          </tr>
-                                      </table>
+                                       <form action="../../ReporteRH" method="POST">
+                                           
+                                              <input type="submit" class="btn text-white boton" id="pdf" name="pdf" value="PDF">
+                                               
+                                          </form>
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

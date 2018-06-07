@@ -50,23 +50,26 @@ public class ServiceCompra extends HttpServlet {
         Service service = Service.create(url, qname);
         compraServicio nm = service.getPort(compraServicio.class);
         for(String arreglo: compra){
-            lista = c.consulta("empleado.cuenta,nomina.pago_total","nomina JOIN empleado ON nomina.id_emp = empleado.id_emp",
-                                "nomina.status != 0", "AND nomina.id_nomina = "+arreglo, "", 2);
+           lista = c.consulta("prov_rfc, ord_codpro, ord_cantida, ord_fecha, estado_orden.descripcion","orden_compra, estado_orden",
+                                "orden_compra.estatus != 0", "AND ord_folio = "+arreglo, "", 5);
             cod_producto = String.valueOf((BigDecimal) lista.get(1));
             cantidad = String.valueOf((BigDecimal) lista.get(2));
             procesar = servicio.fecha(lista.get(0).toString(),servicio.cod_cantidad(cod_producto, cantidad),lista.get(3).toString());
             switch(Integer.parseInt(nm.processor(procesar))){
                 case 0:
-                    c.actualizar("status = "+0, "nomina", "id_nomina = ", arreglo);
+                    c.actualizar("estatus = "+0, "orden_compra", "ord_folio = ", arreglo);
                     break;
                 case 1:
-                    c.actualizar("status = "+1, "nomina", "id_nomina = ", arreglo);
+                    c.actualizar("estatus = "+1, "orden_compra", "ord_folio = ", arreglo);
                     break;
                 case 2:
-                    c.actualizar("status = "+2, "nomina", "id_nomina = ", arreglo);
+                    c.actualizar("estatus = "+2, "orden_compra", "ord_folio = ", arreglo);
+                    break;
+                case 3:
+                    c.actualizar("estatus = "+3, "orden_compra", "ord_folio = ", arreglo);
                     break;
                 default:
-                    c.actualizar("status = "+1, "nomina", "id_nomina = ", arreglo);
+                    c.actualizar("estatus = "+1, "orden_compra", "ord_folio = ", arreglo);
                     break;
             }
         }
