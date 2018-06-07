@@ -37,9 +37,18 @@ public class ingresar_producto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        String id_prod=request.getParameter("codprodnuevo");
+        String prov=request.getParameter("provproducto");
+        String nombre=request.getParameter("nomproducto");
+        String costo=request.getParameter("costoproducto");
+        String tipo=request.getParameter("unidadprod");
+        String max=request.getParameter("maxproducto");
+        String min=request.getParameter("minproducto");
+        String venta=request.getParameter("ventaproducto");
        
         QuerysProducto qp= new QuerysProducto();
-        qp.agregar("id_prod", "prov", "nombre", "tipo","min"," max", "costo_uni", "costo_ven");//cambiar productos por variables
+        qp.agregar(id_prod, prov, nombre, tipo,min, max,costo, venta);
+        
         
           //registro para log
         HttpSession sesion=request.getSession(true);
