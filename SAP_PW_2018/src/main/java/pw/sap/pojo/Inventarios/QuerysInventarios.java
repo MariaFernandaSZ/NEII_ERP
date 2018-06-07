@@ -203,11 +203,9 @@ public class QuerysInventarios {
                  openDB();
                   PreparedStatement ps;
 //                    if (producto != null) {
-                                                    ps = conn.prepareStatement("select ord_folio,  prov_nom_emp, nombre, req_cantidad, ord_fecha \n" +
+                                                    ps = conn.prepareStatement("select ord_folio,  prov_nom_emp, ord_codpro, ord_cantida, ord_fecha \n" +
 "from orden_compra \n" +
-"inner join requisicion on orden_compra.req_folio = requisicion.req_folio\n" +
-"inner join producto on producto.id_producto = requisicion.id_producto\n" +
-"inner join proveedor on proveedor.prov_rfc = producto.proveedor;");
+"inner join proveedor on orden_compra.prov_rfc = proveedor.prov_rfc where estatus=0" );
                                                     ResultSet rs= ps.executeQuery();
                                                       System.out.println(ps);
                     
@@ -305,12 +303,10 @@ public class QuerysInventarios {
                  openDB();
                   PreparedStatement ps;
                     if (producto != null) {
-                                                    ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,id_producto \n" +
+                                                    ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,ord_codpro \n" +
                                                     "from devolucion "+
                                                     "inner join orden_compra\n" +
                                                     "on devolucion.id_compra=orden_compra.ord_folio\n"
-                                                    + " inner join requisicion\n"
-                                                    + "on orden_compra.req_folio=requisicion.req_folio\n"
                                                     + "where id_devolucion="+id_devolucion+";");
                                                     ResultSet rs= ps.executeQuery();
                                                       System.out.println(ps);
@@ -318,13 +314,12 @@ public class QuerysInventarios {
                     closeDB();
                   return rs;
          }else {
-                     ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,id_producto \n" +
+                     ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,ord_codpro \n" +
                                                     "from devolucion "+
                                                     "inner join orden_compra\n" +
                                                     "on devolucion.id_compra=orden_compra.ord_folio\n"
-                                                    + " inner join requisicion\n"
-                                                    + "on orden_compra.req_folio=requisicion.req_folio\n"
-                                                    + "where id_producto='"+producto+"' or id_compra="+compra);
+                                                  
+                                                    + "where ord_codpro='"+producto+"' or id_compra="+compra);
                                                     ResultSet rs= ps.executeQuery();
                                                       System.out.println(ps);
                     
@@ -332,16 +327,15 @@ public class QuerysInventarios {
                   return rs;
                     }                  
                     }
+    
     public ResultSet ConsultaDev() throws SQLException, ClassNotFoundException{
                           openDB();
                   PreparedStatement ps;
                     
-                     ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,id_producto \n" +
-                                                    "from devolucion "+
-                                                    "inner join orden_compra\n" +
-                                                    "on devolucion.id_compra=orden_compra.ord_folio\n"
-                                                    + " inner join requisicion\n"
-                                                    + "on orden_compra.req_folio=requisicion.req_folio\n");
+                     ps = conn.prepareStatement("select id_devolucion,id_compra,cantidad_devuelta,fecha_devolucion,motivo,ord_codpro\n" +
+"from devolucion \n" +
+"inner join orden_compra \n" +
+"on devolucion.id_compra=orden_compra.ord_folio;");
                     ResultSet rs= ps.executeQuery();
           
                     System.out.println(ps);
