@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -100,25 +101,25 @@
                             <br>
                         </form>
 
-                        <form method="POST" action="com_prod.jsp" onsubmit="return vali_codigo();">
+                        <form method="POST" action="com_prod.jsp" >
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda por<br>c&oacute;digo de producto</span>
                             <br><br>
-                            <input type="number" name="codprod" placeholder="Código" id="codigo" required>
+                            <input type="number" name="codprod" placeholder="Código" id="codprod" required>
                             
                             <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>                          
                         </form>
                         <br>
-                         <form method="POST" action="com_prod.html" onsubmit="return vali_codigo();">
+                         <!--<form method="POST" action="com_prod.html" onsubmit="return vali_codigo();">
                             <span id="titulo"><span class="number">3</span>Eliminar por<br>c&oacute;digo de producto</span>
                             <br><br>
                             <input type="number" name="codprod" placeholder="Código" id="codigo" required>
                              <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Eliminar" class="btn btn-danger"></center>
-                             </from>
+                             </from>-->
                     </div>                       
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->   
-                         <div class="table-responsive"><table class="table table-striped">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
+                        <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th scope="col">código producto</th>
@@ -156,7 +157,7 @@
                                 </table></div>
                     </div>
 
-                 <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
+                    <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         <form action="../../ingresar_producto" method="post" onsubmit="return vali_nuevoproducto();">                        
                             <span id="titulo"><span class="number">4</span>Agregar<br>nuevo producto</span><br>
                             <br><input type="number" name="codprodnuevo" placeholder="Código de barras" id="codigo_nuevoprod" required>                             
@@ -179,7 +180,7 @@
                             <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="min_inventario" required>
                             <center><input type="submit" value="Agregar" style="background-color: #9F150D" name="nuevo" class="btn btn-danger"></center>                       
                         </form>
-                    </div>  
+                    </div> 
                         
                 </div>
             </div> 
