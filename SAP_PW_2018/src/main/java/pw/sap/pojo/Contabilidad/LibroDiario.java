@@ -78,7 +78,7 @@ public class LibroDiario {
 //
 //        ResultSet rs = ps.executeQuery();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select ad.fecha_fac,a.nombre_area from asientogeneral as ag, asientodetalle as ad, areas as a where ag.id=ad.id_general and (a.nombre_area='"+modulo+"' or (ag.fecha_apli >= '"+fechainicio+"'  and ag.fecha_apli < '"+fechafin+"') );");
+        ResultSet rs = stmt.executeQuery("select ad.fecha_fac,a.nombre_area from asientogeneral as ag, asientodetalle as ad, areas as a where (ag.id=ad.id_general and a.id_area = ad.id_general) and (a.nombre_area='"+modulo+"' or (ag.fecha_apli >= '"+fechainicio+"'  and ag.fecha_apli < '"+fechafin+"') );");
 
         double ca = Double.parseDouble(cargo);
         double ab = Double.parseDouble(abono);

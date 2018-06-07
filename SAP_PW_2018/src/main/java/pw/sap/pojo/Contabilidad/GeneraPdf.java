@@ -24,9 +24,14 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Properties;
+import pw.sap.obj.Contabilidad.ObjLibroDiario;
 
 /**
  *
@@ -36,7 +41,7 @@ public class GeneraPdf {
     
     Connection conn;
 
-    private static String FILE = "c:/Users/maxim/Desktop/respaldo/reporte-gerencial.pdf";
+    private static String FILE = "c:/Users/maxim/Desktop/respaldo/reporte-libro-diario.pdf";
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -125,7 +130,7 @@ public class GeneraPdf {
         document.newPage();
     }
 
-    private static void addContent(Document document) throws DocumentException {
+    private static void addContent(Document document) throws DocumentException, BadElementException, SQLException, ClassNotFoundException {
         Anchor anchor = new Anchor("First Chapter", catFont);
         anchor.setName("First Chapter");
 
@@ -171,33 +176,41 @@ public class GeneraPdf {
     }
 
     private static void createTable(Section subCatPart)
-            throws BadElementException {
-        PdfPTable table = new PdfPTable(3);
+            throws BadElementException, SQLException, ClassNotFoundException {
+        PdfPTable table = new PdfPTable(4);
 
         // t.setBorderColor(BaseColor.GRAY);
         // t.setPadding(4);
         // t.setSpacing(4);
         // t.setBorderWidth(1);
 
-        PdfPCell c1 = new PdfPCell(new Phrase("Table Header 1"));
+        PdfPCell c1 = new PdfPCell(new Phrase("Fecha"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Table Header 2"));
+        c1 = new PdfPCell(new Phrase("Módulo"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Table Header 3"));
+        c1 = new PdfPCell(new Phrase("Monto"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
-        table.setHeaderRows(1);
+        
+         c1 = new PdfPCell(new Phrase("Cuenta"));
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+        
+        ResultSet rsLibro = consultaLibroDiarioc();
+        
+        while(rsLibro.next()){
+            table.setHeaderRows(1);
 
-        table.addCell("1.0");
-        table.addCell("1.1");
-        table.addCell("1.2");
-        table.addCell("2.1");
-        table.addCell("2.2");
-        table.addCell("2.3");
+            table.addCell(rsLibro.getString(1));
+            table.addCell(rsLibro.getString(2));
+            table.addCell(rsLibro.getString(3));
+            table.addCell(rsLibro.getString(4));    
+        }
+        
 
         subCatPart.add(table);
 
@@ -215,6 +228,22 @@ public class GeneraPdf {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }
+    }
+    
+    public static ResultSet consultaLibroDiarioc() throws SQLException, ClassNotFoundException {
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+
+        PreparedStatement ps;
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select ad.fecha_fac,a.nombre_area, ad.monto, ad.cuenta from asientogeneral as ag, asientodetalle as ad, areas as a where ag.id=ad.id_general and a.id_area = ad.id_general;");
+
+        conn.close();
+        return rs;
     }
     
 }
