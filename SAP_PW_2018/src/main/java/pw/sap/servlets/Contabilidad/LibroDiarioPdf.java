@@ -45,7 +45,7 @@ public class LibroDiarioPdf extends HttpServlet {
         Conexion con = new Conexion();
 
         GeneraPdf pdf = new GeneraPdf();
-        
+       
         pdf.generarReporte();
         int i = con.insercionRegistro((int) request.getSession().getAttribute("usuario"), (String) request.getSession().getAttribute("area"), "Genero reporte");
 
