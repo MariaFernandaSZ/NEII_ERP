@@ -60,7 +60,7 @@ public class ingresar_producto extends HttpServlet {
         
         PrintWriter out=response.getWriter();
             out.println("<script>");
-            out.println("alert('No se puede mermar más de lo que existe');");
+            out.println("alert('Producto agregado correctamente');");
             out.print("window.location='Compras/html/com_index.jsp'");
             out.println("</script>");
         
