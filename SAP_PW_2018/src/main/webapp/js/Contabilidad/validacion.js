@@ -1044,6 +1044,6 @@ function valor(){
 
 function libroPDF(){
     
-    alert('reporte generado');
+    alert('Reporte generado');
     
 }
