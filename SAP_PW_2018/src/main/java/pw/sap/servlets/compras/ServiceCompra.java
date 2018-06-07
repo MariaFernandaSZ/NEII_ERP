@@ -40,7 +40,8 @@ public class ServiceCompra extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Conexion c = new Conexion();
         WebServiceCompra servicio = new WebServiceCompra();
-        String cad;
+        String cod_producto;
+        String cantidad;
         String procesar;
         ArrayList lista;
         URL url = new URL(request.getParameter("url"));
@@ -51,8 +52,9 @@ public class ServiceCompra extends HttpServlet {
         for(String arreglo: compra){
             lista = c.consulta("empleado.cuenta,nomina.pago_total","nomina JOIN empleado ON nomina.id_emp = empleado.id_emp",
                                 "nomina.status != 0", "AND nomina.id_nomina = "+arreglo, "", 2);
-            cad = String.valueOf((BigDecimal) lista.get(1));
-            procesar = servicio.servicio("00000001",lista.get(0).toString(), servicio.conversion(cad));
+            cod_producto = String.valueOf((BigDecimal) lista.get(1));
+            cantidad = String.valueOf((BigDecimal) lista.get(2));
+            procesar = servicio.fecha(lista.get(0).toString(),servicio.serviciocompra(cod_producto, cantidad),lista.get(3).toString());
             switch(Integer.parseInt(nm.processor(procesar))){
                 case 0:
                     c.actualizar("status = "+0, "nomina", "id_nomina = ", arreglo);
