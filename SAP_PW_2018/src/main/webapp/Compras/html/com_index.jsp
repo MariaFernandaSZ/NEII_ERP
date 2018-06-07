@@ -73,31 +73,13 @@
                 </div>
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
-                        <form method="POST" action="com_prod.jsp" onsubmit="return vali_almacen();">
+                        <form method="POST" action="../../Eliminar_producto" onsubmit="return vali_almacen();">
                             <div id="titulo" class="col-12">
-                                <span class="number">1</span>B&uacute;squeda de<br>producto por almacen</div>
-                            <select id="almacen" name="field4">
-                                <optgroup label="Almacenes">
-                                    <option value="@">Seleccione&nbsp;una&nbsp;opci&oacute;n</option>
-                                    <option value="almacen1">Almacen&nbsp;1</option>
-                                    <option value="almacen2">Almacen&nbsp;2</option>
-                                    <option value="almacen3">Almacen&nbsp;3</option>
-                                    <option value="almacen4">Almacen&nbsp;4</option>
-                                    <option value="todos">Todos</option>
-                                </optgroup>
-                            </select>
-
-                            <span style="font-size: 18px">Ordenar&nbsp;por:</span>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busprod" id="ord2" value="proveedor">
-                                <label style="font-size: 18px" class="form-check-label" for="ord2">Proveedor</label>
-                                <input class="form-check-input" type="radio" name="busprod" id="ord3" value="codigo">
-                                <label style="font-size: 18px" class="form-check-label" for="ord3">C&oacute;digo</label>
-                                <input class="form-check-input" type="radio" name="busprod" id="ord4" value="precio">
-                                <label style="font-size: 18px" class="form-check-label" for="ord4">Precio</label>
-                            </div>
-                            
-                            <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
+                                <span class="number">1</span>Eliminar<br>producto por código</div>
+                           <br>
+                            <input type="number" name="codprod" placeholder="Código" id="codprod" required>
+                                                       
+                            <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
 
