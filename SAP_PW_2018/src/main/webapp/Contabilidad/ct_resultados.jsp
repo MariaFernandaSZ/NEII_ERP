@@ -121,8 +121,11 @@
                                     </tr>
                                 </table> 
                                 <br>
+                                </form>
+                            <form method="POST" action="../ReporteER">
                                 <input class="btn btn-danger text-white"  style="background-color: #9F150D" type="submit" value="GENERAR REPORTE"/>                        
-                            </form>
+                                </form>
+                           
                         </div>
                     </div>
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
