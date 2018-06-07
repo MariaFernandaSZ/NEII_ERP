@@ -115,7 +115,7 @@ function EspecificaMC(){
                            
                             
                             
-                             <form method="POST" action="../../reporte_mermaC">
+                             <form method="POST" action="../../reporte_mermaD">
 
                             <span id="titulo"><span class="number">4</span> Reporte</span><br><br>
                             
