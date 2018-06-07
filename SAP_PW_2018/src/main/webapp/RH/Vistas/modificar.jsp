@@ -93,6 +93,10 @@
                 </td>
             </tr>
             <tr>
+                <td>Cuenta</td>
+                <td><input type="number" id="modificarCuentaEmpleado" name="modificarCuentaEmpleado" class='form-control form-control-sm' required="required"/></td>
+            </tr>
+            <tr>
                 <td>Status</td>
                 <td><input type='text' id='modificarStatusEmpleado' name='modificarStatusEmpleado' class='form-control form-control-sm' disabled="disabled"/></td>
             </tr>

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.net.MalformedURLException;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
-import mx.com.service.nominaServicio;
+import mx.com.service.interfaces.IPayroll;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.RH.WebServiceNomina;
 
@@ -41,33 +41,22 @@ public class ServiceNomina extends HttpServlet {
         Conexion c = new Conexion();
         WebServiceNomina servicio = new WebServiceNomina();
         String cad;
-        String procesar;
+        String procesar = "TNM140723GFA";
         ArrayList lista;
         String [] nomina = request.getParameterValues("nominasPendiente");
         URL url = new URL(request.getParameter("url"));
-        QName qname = new QName("http://implementation.service.com.mx/", "nominaImplementacion");
-        //Service service = Service.create(url, qname);
-        //nominaServicio nm = service.getPort(nominaServicio.class);
+        QName qname = new QName("http://implementation.service.com.mx/", "PayrollImplService");
+        Service service = Service.create(url, qname);
+        IPayroll nm = service.getPort(IPayroll.class);
         for(String arreglo: nomina){
             lista = c.consulta("empleado.cuenta,nomina.pago_total","nomina JOIN empleado ON nomina.id_emp = empleado.id_emp",
                                 "nomina.status != 0", "AND nomina.id_nomina = "+arreglo, "", 2);
             cad = String.valueOf((BigDecimal) lista.get(1));
-            procesar = servicio.servicio("TNM140723GFA ",lista.get(0).toString(), servicio.conversion(cad));
-            System.out.println("la cadena es:"+procesar);
-//            switch(Integer.parseInt(nm.processor(procesar))){
-//                case 0:
-//                    c.actualizar("status = "+0, "nomina", "id_nomina = ", arreglo);
-//                    break;
-//                case 1:
-//                    c.actualizar("status = "+1, "nomina", "id_nomina = ", arreglo);
-//                    break;
-//                case 2:
-//                    c.actualizar("status = "+2, "nomina", "id_nomina = ", arreglo);
-//                    break;
-//                default:
-//                    c.actualizar("status = "+1, "nomina", "id_nomina = ", arreglo);
-//                    break;
-//            }
+            procesar = procesar + servicio.servicio(lista.get(0).toString(), servicio.conversion(cad));
+        }
+        char [] resultado = nm.processor(procesar).toCharArray();
+        for(int i = 0 ; i < nomina.length ; i++){
+            c.actualizar("status = "+resultado[i], "nomina", "id_nomina = ", nomina[i]);
         }
         response.getWriter().write("Proceso Completado");
     }

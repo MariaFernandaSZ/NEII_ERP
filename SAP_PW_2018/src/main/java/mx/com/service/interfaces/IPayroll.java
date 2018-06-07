@@ -1,17 +1,14 @@
-package mx.com.service;
+package mx.com.service.interfaces;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
-/**
- *
- * @author Josafat, Maximiliano y Francisco
- */
-@WebService()
+@WebService
 @SOAPBinding(style = Style.RPC)
-public interface nominaServicio {
+public interface IPayroll {
+
     @WebMethod
     String processor(String data);
 }

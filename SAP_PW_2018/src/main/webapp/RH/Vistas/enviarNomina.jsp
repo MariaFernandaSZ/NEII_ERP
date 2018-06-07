@@ -10,9 +10,6 @@
             <td>URL</td><td align="center"><input type="text" id="url" name="url" class="form-control form-control-sm"/></td>
         </tr>
         <tr>
-            <td>Puerto</td><td align="center"><input type="number" id="puerto" name="puerto" class="form-control form-control-sm"/></td>
-        </tr>
-        <tr>
             <td colspan="2" align="center">
                 <input type="submit" id="servicioNomina" name="servicioNomina" class="btn text-white boton" value="Enviar"/>
             </td>

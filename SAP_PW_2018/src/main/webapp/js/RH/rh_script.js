@@ -409,6 +409,7 @@ $(document).ready(function(){
             $("#modificarAreaEmpleado").val(responseJson[9]);
             $("#modificarCargoEmpleado").val(responseJson[10]);
             $("#modificarStatusEmpleado").val(responseJson[11]);
+            $("#modificarCuentaEmpleado").val(responseJson[12]);
         });
         event.preventDefault();
     });
@@ -433,6 +434,7 @@ $(document).ready(function(){
                 $("#modificarAreaEmpleado").val("");
                 $("#modificarCargoEmpleado").val("");
                 $("#modificarStatusEmpleado").val("");
+                $("#modificarCuentaEmpleado").val("");
             }else{
                 alert("ERROR. Verificar datos.");
             }

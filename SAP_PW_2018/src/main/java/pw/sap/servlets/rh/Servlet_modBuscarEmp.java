@@ -36,14 +36,12 @@ public class Servlet_modBuscarEmp extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         Conexion c = new Conexion();
         ArrayList lista = c.consulta("id_emp,nombre_emp,apellido_emp,direccion_emp,rfc_emp,telefono_emp,edo_civil_emp,"
-                + "licencia_medica,sueldo_emp,area_emp,cargo_emp,status","empleado", "id_emp",
-                " = "+request.getParameter("modificarIdEmpleado"),"", 12);
+                + "licencia_medica,sueldo_emp,area_emp,cargo_emp,status,cuenta","empleado", "id_emp",
+                " = "+request.getParameter("modificarIdEmpleado"),"", 13);
         if(!lista.isEmpty()){
             String json = new Gson().toJson(lista);
                    //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Consulta de un empleado");        
         
             response.getWriter().write(json);

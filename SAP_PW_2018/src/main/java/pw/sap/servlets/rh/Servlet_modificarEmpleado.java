@@ -39,8 +39,10 @@ public class Servlet_modificarEmpleado extends HttpServlet {
                             request.getParameter("modificarDireccionEmpleado"),request.getParameter("modificarRFC"),
                             request.getParameter("modificarTelefonoEmpleado"),request.getParameter("modificarEdocivilEmpleado"),
                             request.getParameter("modificarLicEmpleado"),request.getParameter("modificarSueldoEmpleado"),
-                            request.getParameter("modificarAreaEmpleado"),request.getParameter("modificarCargoEmpleado")};
-        String [] numero = {request.getParameter("modificarTelefonoEmpleado"),request.getParameter("modificarSueldoEmpleado")};
+                            request.getParameter("modificarAreaEmpleado"),request.getParameter("modificarCargoEmpleado"),
+                            request.getParameter("modificarCuentaEmpleado")};
+        String [] numero = {request.getParameter("modificarTelefonoEmpleado"),request.getParameter("modificarSueldoEmpleado"),
+                            request.getParameter("modificarCuentaEmpleado")};
         String [] letra = {request.getParameter("modificarNombreEmpleado"),request.getParameter("modificarApellidoEmpleado"),
                            request.getParameter("modificarEdocivilEmpleado"),request.getParameter("modificarLicEmpleado"),
                            request.getParameter("modificarAreaEmpleado"),request.getParameter("modificarCargoEmpleado")};
@@ -49,22 +51,18 @@ public class Servlet_modificarEmpleado extends HttpServlet {
                 String campos = "nombre_emp='"+valores[0]+"',apellido_emp='"+valores[1]+"',direccion_emp='"+valores[2]+
                 "',rfc_emp='"+valores[3]+"',telefono_emp='"+valores[4]+"',edo_civil_emp='"+valores[5]+
                     "',licencia_medica='"+valores[6]+"',sueldo_emp="+valores[7]+",area_emp='"+valores[8]+
-                        "',cargo_emp='"+valores[9]+"'";
+                        "',cargo_emp='"+valores[9]+"',cuenta="+valores[10]+"";
                 if(empleado != null && !empleado.equals("")){
                     Integer query = c.actualizar(campos, "empleado", "id_emp","="+empleado);
                     if(query == 1){
                                //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "se modifico a un empleado");        
         
                         response.getWriter().write("1");
                     }else{
                          //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento de modificacion de un empleado");        
         
                         response.getWriter().write("0");
@@ -72,8 +70,6 @@ public class Servlet_modificarEmpleado extends HttpServlet {
                 }else{
                      //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento de modificacion de un empleado");        
         
                     response.getWriter().write("0");
@@ -81,8 +77,6 @@ public class Servlet_modificarEmpleado extends HttpServlet {
             }else{
                  //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento de modificacion de un empleado");        
         
                 response.getWriter().write("0");
@@ -90,8 +84,6 @@ public class Servlet_modificarEmpleado extends HttpServlet {
         }else{
              //registro para log
         HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
         c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento de modificacion de un empleado");        
         
             response.getWriter().write("0");
