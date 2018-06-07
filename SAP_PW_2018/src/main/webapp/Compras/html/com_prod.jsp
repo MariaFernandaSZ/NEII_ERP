@@ -163,11 +163,11 @@
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
-                        <form method="POST" action="../../ingresar_producto" onsubmit="return vali_nuevoproducto();">                        
+                        <form action="../../ingresar_producto" method="post" onsubmit="return vali_nuevoproducto();">                        
                             <span id="titulo"><span class="number">4</span>Agregar<br>nuevo producto</span><br>
                             <br><input type="number" name="codprodnuevo" placeholder="Código de barras" id="codigo_nuevoprod" required>                             
                             <input type="text" name="nomproducto" placeholder="Nombre" id="nom_producto" required>
-                            <select id="unidad" name="field4">
+                            <select id="unidad" name="unidadprod">
                                 <optgroup label="Unidades">
                                     <option value="@">Seleccione&nbsp;una&nbsp;unidad</option>
                                     <option value="l">Litros</option>
@@ -178,11 +178,11 @@
                                     <option value="unidad">unidades</option>
                                 </optgroup>
                             </select>
-                            <input type="text" name="costoproducto" placeholder="Costo" id="costo" required>
-                            <input type="text" name="costoproducto" placeholder="Precio de venta" id="precio" required>
+                            <input type="text" name="costoproducto" placeholder="Costo del porducto" id="costo" required>
+                            <input type="text" name="ventaproducto" placeholder="Precio de venta" id="costo" required>
                             <input type="text" name="provproducto" placeholder="Proveedor" id="proveedor" required>
-                            <input type="number" name="maxproducto" placeholder="Máximo en inventario" id="proveedor" required>
-                            <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="proveedor" required>
+                            <input type="number" name="maxproducto" placeholder="Máximo en inventario" id="max_inventario" required>
+                            <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="min_inventario" required>
                             <center><input type="submit" value="Agregar" style="background-color: #9F150D" name="nuevo" class="btn btn-danger"></center>                       
                         </form>
                     </div>    
