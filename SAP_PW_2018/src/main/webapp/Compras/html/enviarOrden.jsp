@@ -114,8 +114,8 @@
             <tr>
                 <%
                     for(int i = 0 ; i < lista.size() ; i++){
-                        if(i%5==0 && i!=0){out.println("</tr><tr>");}
-                        if(i%5==0){
+                        if(i%6==0 && i!=0){out.println("</tr><tr>");}
+                        if(i%6==0){
                             out.print("<td  align='center'><input type='checkbox' name='compraPendiente' value="+lista.get(i)+" /></td>");
                         }else{
                             out.print("<td  align='center'>"+lista.get(i)+"</td>");
