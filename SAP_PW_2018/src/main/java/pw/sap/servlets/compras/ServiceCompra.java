@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.net.MalformedURLException;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
-import mx.com.service.nominaServicio;
 import mx.com.servicecompra.compraServicio;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.Compras.WebServiceCompra;
