@@ -111,11 +111,21 @@ function EspecificaMC(){
                     
                 </div>
                 <div class="form-style-5">
-                    <form>
-                            <span id="titulo"><span class="number">4</span>Reporte</span><br><br>
+                
+                           
                             
-                            <button type="button" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Merma Conocida.pdf'">Generar PDF</button><br><br>
-                            <button type="button" name="GE" style="background-color: #9F150D; width: 180px;" class="btn btn-danger" onclick="window.location='../imagenes/Merma Conocida.ods'">Generar Excel</button><br><br>
+                            
+                             <form method="POST" action="../../reporte_mermaC">
+
+                            <span id="titulo"><span class="number">4</span> Reporte</span><br><br>
+                            
+                                
+                             <input type="submit" value="Generar PDF" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger"><br><br>
+                             
+                            </form>
+                            
+                            
+                            
                             <span id="titulo"><span class="number">5</span>Regresar</span><br><br>
                             <button type="button" name="Regresa" style="background-color: #9F150D" class="btn btn-danger" onclick="location.href='merma.jsp'">Regresar</button><br><br>
                     
