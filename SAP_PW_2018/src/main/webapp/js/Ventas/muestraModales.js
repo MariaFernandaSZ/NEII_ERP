@@ -478,7 +478,6 @@ function validaTipoPago(){
               
               if(tipo_ventaVar=="Apartado de producto"){
                   
-                  alert("PASA POR AQUI APARTADO");
                   
                   var anticipoVar=$('#anticipo').val();
                   var restanteVar=$('#restante').val();
@@ -552,6 +551,27 @@ function validaTipoPago(){
               var id_empVar=$('#idVendedor').val();
               var tipo_ventaVar = $('#tipo_venta').text();
               var forma_pagoVar=$("#tipoPago option:selected").val();
+              
+               if(tipo_ventaVar=="Apartado de producto"){
+                  
+                  
+                  var anticipoVar=$('#anticipo').val();
+                  var restanteVar=$('#restante').val();
+                  
+                $.ajax({
+                    type:'POST',
+                    url: '../ApartaProd',
+                    datatype: 'json',
+                    data: {
+                        abono_apart:anticipoVar,
+                        cargo_apart:restanteVar
+                    },
+                    success: function (result) {
+                        alert("APARTADO REGISTRADO, RESTANTE: "+result);
+                    }
+                });
+                  
+              }
             
                 $.ajax({
                     type:'POST',
