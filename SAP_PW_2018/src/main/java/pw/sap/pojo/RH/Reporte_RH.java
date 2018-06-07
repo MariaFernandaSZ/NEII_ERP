@@ -45,12 +45,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 public class Reporte_RH {
 
-    private static void createTab(Section subCatPart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
  Connection conn;
 
-    private static String FILE = "C:\\Users\\Adrian\\Escritorio\\pdf\\reporte-RH.pdf";
+    private static String FILE = "/home/montse/reporte/reporte-RH.pdf";
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -174,7 +172,7 @@ public class Reporte_RH {
         createTable(subCatPart);
         
         createTabl(subCatPart);
-        createTab(subCatPart);
+        createTabla(subCatPart);
 
         // now add all this to the document
         document.add(catPart);
