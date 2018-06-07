@@ -114,6 +114,7 @@ function estado(){
        alert('debes elegir un tipo de reporte')
        return false;
    }else{
+        alert('Se ha generado reporte seleccionado');
        window.open('../archivos/contabilidad/ESTADO DE GANANCIAS Y PERDIDAS   PDF-1-2.pdf', '_blank', 'fullscreen=yes'); 
        return false;
    }
