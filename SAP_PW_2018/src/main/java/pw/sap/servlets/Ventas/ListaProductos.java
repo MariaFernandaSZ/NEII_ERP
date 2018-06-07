@@ -119,12 +119,12 @@ public class ListaProductos extends HttpServlet {
 			out.println("<td>"+prod.getNombre()+"</td>");
 			out.println("<td>"+prod.getCantidad()+"</td>");
 			out.println("<td>"+prod.getPrecioUnitario()+"</td>");
-			out.println("<td>"+prod.getIva()+"</td>");
+			out.println("<td>"+(prod.getIva()*prod.getCantidad())+"</td>");
 			out.println("<td>"+prod.getSubtotal()+"</td>");
 			out.println("</tr>");
                         
-                        subtotalTotal_ov += prod.getPrecioUnitario();
-                        totalIva_ov += prod.getIva();
+                        subtotalTotal_ov += (prod.getPrecioUnitario()*prod.getCantidad());
+                        totalIva_ov += (prod.getIva()*prod.getCantidad());
                         TOTAL_ov +=prod.getSubtotal();
 		}
 		out.println("</tbody>");
