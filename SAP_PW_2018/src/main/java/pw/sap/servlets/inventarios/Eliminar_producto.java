@@ -36,10 +36,10 @@ public class Eliminar_producto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-  String codigo ="";  
+    response.setContentType("text/html;charset=UTF-8");
+  String codigo =request.getParameter("codprod");  
         QuerysProducto qp= new QuerysProducto();
-        qp.eliminar(codigo);//cambiar productos por variables
+        qp.eliminar(codigo);
         
         //registro para log
         HttpSession sesion=request.getSession(true);
@@ -49,7 +49,7 @@ public class Eliminar_producto extends HttpServlet {
         
         PrintWriter out=response.getWriter();
             out.println("<script>");
-            out.println("alert('No se puede mermar más de lo que existe');");
+            out.println("alert('Producto Eliminado');");
             out.print("window.location='Compras/html/com_index.jsp'");
             out.println("</script>");
     }
