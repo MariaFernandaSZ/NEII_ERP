@@ -43,6 +43,9 @@
                             <a class="nav-link" href="CompraOrden.jsp" style="color: white">Orden&nbsp;de&nbsp;compra</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="enviarOrden.jsp" style="color: white">Enviar Orden&nbsp;de&nbsp;compra</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="com_listadecom.jsp" style="color: white">Lista&nbsp;de&nbsp;compras</a>
                         </li> 
                     </ul>
