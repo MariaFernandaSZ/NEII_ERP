@@ -171,6 +171,23 @@ public class QuerysVentas {
          return id;
         }
         
+        public String consultarApartado(){
+         String id="";
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          ResultSet rs=st.executeQuery("select id_aparta from apartaprod order by id_aparta desc limit 1");
+          while(rs.next()){
+           id = rs.getString(1);
+          }
+          rs.close();
+          st.close();
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return id;
+        }
+        
         public int consultarIDFactura(){
          int id = 0;
          try{

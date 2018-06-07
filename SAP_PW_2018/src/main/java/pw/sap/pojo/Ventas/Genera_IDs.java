@@ -79,7 +79,7 @@ public class Genera_IDs {
         
         QuerysVentas c = new QuerysVentas();
         
-        String idCli = c.consultarFactu();
+        String idCli = c.consultarApartado();
         
         if ("".equals(idCli) || idCli == null) {
             return "apr1";

@@ -478,6 +478,8 @@ function validaTipoPago(){
               
               if(tipo_ventaVar=="Apartado de producto"){
                   
+                  alert("PASA POR AQUI APARTADO");
+                  
                   var anticipoVar=$('#anticipo').val();
                   var restanteVar=$('#restante').val();
                   
