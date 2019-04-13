@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.colorPrincipal{
+    background-color: #3c4564;
+}
+
+.ic{
+display:block;
+margin:auto;
+}
+
+.imagen{
+margin:auto;
+margin-top: 10px;
+}
+
+.titulos{
+    padding: 5px;
+    background-color: #dcdcde;
+}
+
+.completo{
+    width: 100%;
+}
+
+#barraNavegadora{
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#barraNavegadora li:hover a{
+    background-color: #333a56;
+}

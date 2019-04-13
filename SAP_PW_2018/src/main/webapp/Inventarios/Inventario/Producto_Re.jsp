@@ -15,6 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/estilosMax.css" rel="stylesheet" type="text/CSS">
         <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
@@ -54,51 +55,47 @@
     </head>
     <body onload="fecha();">
 
-        <header style="z-index: 2">
-            <nav class="navbar navbar-expand-lg navbar-light menu" style="background-color: #9F150D;">
-                <a class="navbar-brand" style="color: white;" href="#">Inventario</a>
+         <header class="sticky-top">
+            <!--barra de navegacion creada con bootstrap-->
+            <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="principal.jsp" style="color: white"> Principal</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">                    
+                        <li class="nav-item">
+                            <a href="principal.jsp" class="nav-link text-white"  aria-haspopup="true" aria-expanded="false"><h4>Modulo<br>Inventario</h4></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="principal.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_inicio.png" /><p>Inicio</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="inventario_g.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_productos.png" /><p>Inventario</p></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="inventario_g.jsp" style="color: white"> Inventario</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Problemas de Producto
-                            </a>
+                            <a class="nav-link text-white dropdown-toggle"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"><img class="ic"  border="0" height="25" width="25" src="../../archivos/img/ic_problema.png" /><p>Problemas de Producto</p></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="merma.jsp">Merma</a><span class="sr-only"></span>
-                                <a class="dropdown-item" href="Producto_Re.jsp">Devoluciones</a><span class="sr-only">(current)</span>
+                                <a class="dropdown-item" href="merma.jsp" style="color: white;">Merma</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="Producto_Re.jsp" style="color: white;">Devoluciones</a><span class="sr-only">(current)</span>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Recepci&oacute;n de productos
-                            </a>
+                            <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_recibe.png" /><p>Recepci&oacute;n de productos</p></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="entradas.jsp" >Historial de Entradas</a>
-                                <a class="dropdown-item" href="salidas.jsp" >Historial de Salidas</a>
-                                </di>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="ayuda.jsp" style="color: white">Ayuda(?)</a>
-                                </li>
-                    </ul>
-                    <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link" href="../../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                        <script src="../../js/gerencia.js"></script>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../CerrarSesion" style="color: white">Salir</a>                                
-                    </li>
+                                <a class="dropdown-item" href="entradas.jsp" style="color: white;">Historial de Entradas</a>
+                                <a class="dropdown-item" href="salidas.jsp" style="color: white;">Historial de Salidas</a>
+                            </div>
+                        </li>
+                    </ul> 
                 </div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="ayuda.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_ayuda.png" /><p>Ayuda(?)</p></a>                       
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../CerrarSesion" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_salir.png" /><p>Salir</p></a>                       
+                    </li>
+                </ul>
             </nav>
         </header>
 

@@ -32,7 +32,7 @@ html,body,#menu-izquierdo
 #campo-login{
     width: 70%;
     height: 220px;
-    background:#9F150D;
+    background:#3c4564;
     color:white;    
     margin-right: auto;
     margin-left: auto;
@@ -52,23 +52,23 @@ html,body,#menu-izquierdo
 }
 
 legend{
-    background: #9F150D; 
+    background: #3c4564; 
     text-align: center;
     padding: 5px;
 }
 /*fin login*/
 .barra{/* cambiar el color de la barra de navegación*/
-    background:#9F150D;
+    background:#3c4564;
 }
 .color:hover{    /* cambiar el color de los iconos al pasar el mouse sobre cada uno*/
     background:#ccc;
     color:#fff;
 }
 #submenu{ /* cambiar el color del div de los submenu*/
-    background:#9F150D;
+    background:#3c4564;
 }
 #submenu2{ /* cambiar el color del div de los submenu*/
-    background:#9F150D;
+    background:#3c4564;
 }
 #modulo{
     color:white;
@@ -83,14 +83,14 @@ legend{
 #menu-izquierdo{
     width:90%;
     float: left;
-    background:#9F150D;
+    background:#3c4564;
 } 
 
 #menu-derecha{
     width:10%;
     float: left;
     text-align: center;
-    background:#9F150D;
+    background:#3c4564;
 }  
 
 #menu-derecha .menu li:hover{

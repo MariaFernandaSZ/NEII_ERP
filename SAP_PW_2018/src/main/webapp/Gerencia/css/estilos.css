@@ -14,7 +14,7 @@ header{ /* espacio para el encabezado de la pagina*/
 header nav{ /*ajustes para el tamaño de la barra de menu*/
     font-family:Arial;  
     padding: 0;
-	background:#9F150D;/*#000;*/
+	background:#3c4564;/*#000;*/
 	z-index:1500;
         /*max-width:1000px;*/
 	width:100%;

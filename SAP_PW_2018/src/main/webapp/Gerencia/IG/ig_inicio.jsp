@@ -21,9 +21,10 @@
     </head>
 
     <body> 
-        <header class="sticky-top">
+    
+      <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
-            <nav class="navbar navbar-expand-lg navbar-light barra">
+            <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal">
                 <a class="navbar-brand text-white" href="ig_inicio.jsp">Informaci&oacute;n Gerencial</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

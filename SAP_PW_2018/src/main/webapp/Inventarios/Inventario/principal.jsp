@@ -1,9 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    if(request.getSession().getAttribute("usuario") == null){
+    if (request.getSession().getAttribute("usuario") == null) {
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Inventarios")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+    } else {
+        if (!request.getSession().getAttribute("area").equals("Inventarios") && !request.getSession().getAttribute("area").equals("Gerencia")) {
             response.sendRedirect("../../archivos/errorSesion.jsp");
         }
     }
@@ -23,6 +23,7 @@ and open the template in the editor.
         <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>  
         <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../css/estilosMax.css" rel="stylesheet" type="text/CSS">
         <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
@@ -51,53 +52,49 @@ and open the template in the editor.
     </head>
     <body onload="fecha();">
 
-        <header style="z-index: 2">
-            <nav class="navbar navbar-expand-lg navbar-light menu" style="background-color: #9F150D;">
-                <a class="navbar-brand" style="color: white;" href="#">Inventario</a>
+        <header class="sticky-top">
+            <!--barra de navegacion creada con bootstrap-->
+            <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="principal.jsp" style="color: white"> Principal</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">                    
+                        <li class="nav-item">
+                            <a href="principal.jsp" class="nav-link text-white"  aria-haspopup="true" aria-expanded="false"><h4>Modulo<br>Inventario</h4></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="principal.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_inicio.png" /><p>Inicio</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="inventario_g.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_productos.png" /><p>Inventario</p></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="inventario_g.jsp" style="color: white"> Inventario</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Problemas de Producto
-                            </a>
+                            <a class="nav-link text-white dropdown-toggle"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"><img class="ic"  border="0" height="25" width="25" src="../../archivos/img/ic_problema.png" /><p>Problemas de Producto</p></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" href="merma.jsp">Merma</a><span class="sr-only"></span>
-                                <a class="dropdown-item" href="Producto_Re.jsp">Devoluciones</a><span class="sr-only">(current)</span>
+                                <a class="dropdown-item" href="merma.jsp" style="color: white;">Merma</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="Producto_Re.jsp" style="color: white;">Devoluciones</a><span class="sr-only">(current)</span>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Recepci&oacute;n de productos
-                            </a>
+                            <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_recibe.png" /><p>Recepci&oacute;n de productos</p></a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="entradas.jsp" >Historial de Entradas</a>
-                                <a class="dropdown-item" href="salidas.jsp" >Historial de Salidas</a>
-                                </di>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="ayuda.jsp" style="color: white">Ayuda(?)</a>
-                                </li>
-                    </ul>
-                    <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link" href="../../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                        <script src="../../js/gerencia.js"></script>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../CerrarSesion" style="color: white">Salir</a>                                
-                    </li>
+                                <a class="dropdown-item" href="entradas.jsp" style="color: white;">Historial de Entradas</a>
+                                <a class="dropdown-item" href="salidas.jsp" style="color: white;">Historial de Salidas</a>
+                            </div>
+                        </li>
+                    </ul> 
                 </div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="ayuda.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_ayuda.png" /><p>Ayuda(?)</p></a>                       
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../CerrarSesion" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_salir.png" /><p>Salir</p></a>                       
+                    </li>
+                </ul>
             </nav>
-</header>
+        </header>
 
         <!-- CONTENIDO-->
 
@@ -134,179 +131,180 @@ and open the template in the editor.
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
                     <div class="form-style-5" id="cono">
-                      <div style="">
-	<canvas id="canvas1"></canvas>
-	<div id="leyenda1" class="leyenda"></div>
-</div>
- 
+                        <div style="">
+                            <canvas id="canvas1"></canvas>
+                            <div id="leyenda1" class="leyenda"></div>
+                        </div>
 
-                      
-                      <script>
-/**
- * Clase para generar graficos de pastel
- * Tiene que recibir:
- *	el id del canvas
- *	la anchura y altura del canvas
- *	un array con los valores a mostrar del tipo:
- *		var valores={
- *			"Access":	{valor:10,color:"blue"},
- *			"PHP":		{valor:23,color:"red"},
- *			"Python":	{valor:18,color:"green"},
- *			".NET":		{valor:12,color:"Orange"},
- *			"C++":		{valor:30,color:"Cyan"}
- *		}
- */
-var miPastel=function(canvasId,width,height,valores) {
-	this.canvas=document.getElementById(canvasId);;
-	this.canvas.width=width;
-	this.canvas.height=height;
-	this.radio=Math.min(this.canvas.width/2,this.canvas.height/2)
-	this.context=this.canvas.getContext("2d");
-	this.valores=valores;
-	this.tamanoDonut=0;
- 
-	/**
-	 * Dibuja un gráfico de pastel
-	 */
-	this.dibujar=function() {
-		this.total=this.getTotal();
-		var valor=0;
-		var inicioAngulo=0;
-		var angulo=0;
- 
-		// creamos los quesos del pastel
-		for(var i in this.valores)
-		{
-			valor=valores[i]["valor"];
-			color=valores[i]["color"];
-			angulo=2*Math.PI*valor/this.total;
- 
-			this.context.fillStyle=color;
-			this.context.beginPath();
-			this.context.moveTo(this.canvas.width/2, this.canvas.height/2);
-			this.context.arc(this.canvas.width/2, this.canvas.height/2, this.radio, inicioAngulo, (inicioAngulo+angulo));
-			this.context.closePath();
-			this.context.fill();
-			inicioAngulo+=angulo;
-		}
-	}
- 
-	/**
-	 * Dibuja un gráfico de pastel con una redonda en medio en modo de donut
-	 * Tiene que recibir:
-	 *	el tamaño de la redonda central (0 no hay redonda - 1 es todo)
-	 *	el color de la redonda
-	 */
-	this.dibujarDonut=function(tamano,color) {
-		this.tamanoDonut=tamano;
-		this.dibujar();
- 
-		// creamos un circulo del color recibido en medio
-		this.context.fillStyle=color;
-		this.context.beginPath();
-		this.context.moveTo(this.canvas.width/2, this.canvas.height/2);
-		this.context.arc(this.canvas.width/2, this.canvas.height/2, this.radio*tamano, 0, 2*Math.PI);
-		this.context.closePath();
-		this.context.fill();
-	}
- 
-	/**
-	 * Pone el tanto por ciento de cada uno de los valores
-	 * Tiene que recibir:
-	 *	el color del texto
-	 */
-	this.ponerPorCiento=function(color){
-		var valor=0;
-		var etiquetaX=0;
-		var etiquetaY=0;
-		var inicioAngulo=0;
-		var angulo=0;
-		var texto="";
-		var incrementar=0;
- 
-		// si hemos dibujado un donut, tenemos que incrementar el valor del radio
-		// para que quede centrado
-		if(this.tamanoDonut)
-			incrementar=(this.radio*this.tamanoDonut)/2;
- 
-		this.context.font="bold 12pt Calibri";
-		this.context.fillStyle=color;
-		for(var i in this.valores)
-		{
-			valor=valores[i]["valor"];
-			angulo=2*Math.PI*valor/this.total;
- 
-			// calculamos la posición del texto
-			etiquetaX=this.canvas.width/2+(incrementar+this.radio/2)*Math.cos(inicioAngulo+angulo/2);
-			etiquetaY=this.canvas.height/2+(incrementar+this.radio/2)*Math.sin(inicioAngulo+angulo/2);
- 
-			texto=Math.round(100*valor/this.total);
- 
-			// movemos la posición unos pixels si estamos en la parte izquierda
-			// del pastel para que quede mas centrado
-			if(etiquetaX<this.canvas.width/2)
-				etiquetaX-=10;
- 
-			// ponemos los valores
-			this.context.beginPath();
-			this.context.fillText(texto+"%", etiquetaX, etiquetaY);
-			this.context.stroke();
- 
-			inicioAngulo+=angulo;
-		}
-	}
- 
-	/**
-	 * Function que devuelve la suma del total de los valores recibidos en el array
-	 */
-	this.getTotal=function() {
-		var total=0;
-		for(var i in this.valores)
-		{
-			total+=valores[i]["valor"];
-		}
-		return total;
-	}
- 
-	/**
-	 * Función que devuelve una lista (<ul><li>) con la leyenda
-	 * Tiene que recibir el id donde poner la leyenda
-	 */
-	this.ponerLeyenda=function(leyendaId) {
-		var codigoHTML="<ul class='leyenda'>";
- 
-		for(var i in this.valores)
-		{
-			codigoHTML+="<li><span style='background-color:"+valores[i]["color"]+"'></span>"+i+"</li>";
-		}
-		codigoHTML+="</ul>";
-		document.getElementById(leyendaId).innerHTML=codigoHTML;
-	}
-}
- 
-// definimos los valores de nuestra gráfica
-var valores={
-	"Merma 30%":{valor:30,color:"blue"},
-	"Devoluciones 20%":{valor:20,color:"red"},
-	"Existencia 50%":{valor:50,color:"green"},
-	
-}
- 
-// generamos el primer pastel
-var pastel=new miPastel("canvas1",300,300,valores);
-pastel.dibujar();
-pastel.ponerPorCiento("white");
-pastel.ponerLeyenda("leyenda1");
- 
-// generamos el segundo pastel
-var pastel=new miPastel("canvas2",300,300,valores);
-pastel.dibujarDonut(0.5,"white");
-pastel.ponerPorCiento("white");
-pastel.ponerLeyenda("leyenda2");
-</script>
-                      
-                      
-                      <br>
+
+
+                        <script>
+                            /**
+                             * Clase para generar graficos de pastel
+                             * Tiene que recibir:
+                             *	el id del canvas
+                             *	la anchura y altura del canvas
+                             *	un array con los valores a mostrar del tipo:
+                             *		var valores={
+                             *			"Access":	{valor:10,color:"blue"},
+                             *			"PHP":		{valor:23,color:"red"},
+                             *			"Python":	{valor:18,color:"green"},
+                             *			".NET":		{valor:12,color:"Orange"},
+                             *			"C++":		{valor:30,color:"Cyan"}
+                             *		}
+                             */
+                            var miPastel = function (canvasId, width, height, valores) {
+                                this.canvas = document.getElementById(canvasId);
+                                ;
+                                this.canvas.width = width;
+                                this.canvas.height = height;
+                                this.radio = Math.min(this.canvas.width / 2, this.canvas.height / 2)
+                                this.context = this.canvas.getContext("2d");
+                                this.valores = valores;
+                                this.tamanoDonut = 0;
+
+                                /**
+                                 * Dibuja un gráfico de pastel
+                                 */
+                                this.dibujar = function () {
+                                    this.total = this.getTotal();
+                                    var valor = 0;
+                                    var inicioAngulo = 0;
+                                    var angulo = 0;
+
+                                    // creamos los quesos del pastel
+                                    for (var i in this.valores)
+                                    {
+                                        valor = valores[i]["valor"];
+                                        color = valores[i]["color"];
+                                        angulo = 2 * Math.PI * valor / this.total;
+
+                                        this.context.fillStyle = color;
+                                        this.context.beginPath();
+                                        this.context.moveTo(this.canvas.width / 2, this.canvas.height / 2);
+                                        this.context.arc(this.canvas.width / 2, this.canvas.height / 2, this.radio, inicioAngulo, (inicioAngulo + angulo));
+                                        this.context.closePath();
+                                        this.context.fill();
+                                        inicioAngulo += angulo;
+                                    }
+                                }
+
+                                /**
+                                 * Dibuja un gráfico de pastel con una redonda en medio en modo de donut
+                                 * Tiene que recibir:
+                                 *	el tamaño de la redonda central (0 no hay redonda - 1 es todo)
+                                 *	el color de la redonda
+                                 */
+                                this.dibujarDonut = function (tamano, color) {
+                                    this.tamanoDonut = tamano;
+                                    this.dibujar();
+
+                                    // creamos un circulo del color recibido en medio
+                                    this.context.fillStyle = color;
+                                    this.context.beginPath();
+                                    this.context.moveTo(this.canvas.width / 2, this.canvas.height / 2);
+                                    this.context.arc(this.canvas.width / 2, this.canvas.height / 2, this.radio * tamano, 0, 2 * Math.PI);
+                                    this.context.closePath();
+                                    this.context.fill();
+                                }
+
+                                /**
+                                 * Pone el tanto por ciento de cada uno de los valores
+                                 * Tiene que recibir:
+                                 *	el color del texto
+                                 */
+                                this.ponerPorCiento = function (color) {
+                                    var valor = 0;
+                                    var etiquetaX = 0;
+                                    var etiquetaY = 0;
+                                    var inicioAngulo = 0;
+                                    var angulo = 0;
+                                    var texto = "";
+                                    var incrementar = 0;
+
+                                    // si hemos dibujado un donut, tenemos que incrementar el valor del radio
+                                    // para que quede centrado
+                                    if (this.tamanoDonut)
+                                        incrementar = (this.radio * this.tamanoDonut) / 2;
+
+                                    this.context.font = "bold 12pt Calibri";
+                                    this.context.fillStyle = color;
+                                    for (var i in this.valores)
+                                    {
+                                        valor = valores[i]["valor"];
+                                        angulo = 2 * Math.PI * valor / this.total;
+
+                                        // calculamos la posición del texto
+                                        etiquetaX = this.canvas.width / 2 + (incrementar + this.radio / 2) * Math.cos(inicioAngulo + angulo / 2);
+                                        etiquetaY = this.canvas.height / 2 + (incrementar + this.radio / 2) * Math.sin(inicioAngulo + angulo / 2);
+
+                                        texto = Math.round(100 * valor / this.total);
+
+                                        // movemos la posición unos pixels si estamos en la parte izquierda
+                                        // del pastel para que quede mas centrado
+                                        if (etiquetaX < this.canvas.width / 2)
+                                            etiquetaX -= 10;
+
+                                        // ponemos los valores
+                                        this.context.beginPath();
+                                        this.context.fillText(texto + "%", etiquetaX, etiquetaY);
+                                        this.context.stroke();
+
+                                        inicioAngulo += angulo;
+                                    }
+                                }
+
+                                /**
+                                 * Function que devuelve la suma del total de los valores recibidos en el array
+                                 */
+                                this.getTotal = function () {
+                                    var total = 0;
+                                    for (var i in this.valores)
+                                    {
+                                        total += valores[i]["valor"];
+                                    }
+                                    return total;
+                                }
+
+                                /**
+                                 * Función que devuelve una lista (<ul><li>) con la leyenda
+                                 * Tiene que recibir el id donde poner la leyenda
+                                 */
+                                this.ponerLeyenda = function (leyendaId) {
+                                    var codigoHTML = "<ul class='leyenda'>";
+
+                                    for (var i in this.valores)
+                                    {
+                                        codigoHTML += "<li><span style='background-color:" + valores[i]["color"] + "'></span>" + i + "</li>";
+                                    }
+                                    codigoHTML += "</ul>";
+                                    document.getElementById(leyendaId).innerHTML = codigoHTML;
+                                }
+                            }
+
+                            // definimos los valores de nuestra gráfica
+                            var valores = {
+                                "Merma 30%": {valor: 30, color: "blue"},
+                                "Devoluciones 20%": {valor: 20, color: "red"},
+                                "Existencia 50%": {valor: 50, color: "green"},
+
+                            }
+
+                            // generamos el primer pastel
+                            var pastel = new miPastel("canvas1", 300, 300, valores);
+                            pastel.dibujar();
+                            pastel.ponerPorCiento("white");
+                            pastel.ponerLeyenda("leyenda1");
+
+                            // generamos el segundo pastel
+                            var pastel = new miPastel("canvas2", 300, 300, valores);
+                            pastel.dibujarDonut(0.5, "white");
+                            pastel.ponerPorCiento("white");
+                            pastel.ponerLeyenda("leyenda2");
+                        </script>
+
+
+                        <br>
                     </div>
 
                 </div>
