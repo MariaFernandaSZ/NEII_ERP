@@ -30,9 +30,13 @@
                             <td><input type="number" class="form-control form-control-sm" id="user" name="user" required="required" /></td>
                         </tr>
                         <tr>
+                        <td><br></td>
+                        </tr>
+                        <tr>
                             <td><label>Contrase&ntilde;a:&nbsp;</label></td>
                             <td><input type="password" class="form-control form-control-sm" id="pswd" name="pswd" required="required" /></td>
                         </tr>
+                        <td><br></td>
                         <tr>
                             <td align="center"><input type="submit" class="btn" id="ingresar" name="ingresar" value="Ingresar" /></td>
                             <td align="center"><input type="reset" class="btn" id="reiniciar" name="reiniciar" value="Reiniciar" /></td>
