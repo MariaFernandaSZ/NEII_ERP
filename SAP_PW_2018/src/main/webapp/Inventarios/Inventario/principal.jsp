@@ -19,12 +19,12 @@ and open the template in the editor.
         <title>Principal</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>  
         <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>  
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../../css/estilosMax.css" rel="stylesheet" type="text/CSS">
-        <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <script src="../js/general.js"></script>
@@ -98,236 +98,42 @@ and open the template in the editor.
 
         <!-- CONTENIDO-->
 
-        <div class="container-fluid contenido">
+        <div id="principal">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion izquierda -->
-                    <div class="form-style-5">
-                        <center>
-                            <h4>Estad&iacute;sticas de inventario</h4>  
-                        </center>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;"><!-- Seccion central (Visualizar tarea) -->
+                    <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
                     </div>
-
-                    <div class="form-style-5">
-                        <form>
-                            <span id="titulo"><span class="number">1</span>Gr&aacute;fica:</span><br><br>
-                            <label style="font-size: 18px" class="form-check-label">
+                    <div class="row">
+                        <table style="width:100%;"><tr><td align="center"><input type="text" id="fecha" size="6" disabled></td></tr></table>
+                    </div>
+                    <div  class="row">
+                        <h4>Estadísticas de inventario</h4>
+                        <div class="list-group" style="width: 100%;">
+                            <label class="form-check-label">
                                 Total de productos: <input type="text" disabled="disable" placeholder="12500" name="TotalPro" id="TotalPro"> 
                                 Porcentaje de Merma: <input type="text" disabled="disable" placeholder="30%" name="PorcenProP" id="PorcenMerm"> 
                                 Porcentaje de Devoluciones: <input type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo"> 
                                 Porcentaje de compra de producto: <input type="text" disabled="disable" placeholder="30%" name="PorcenComP" id="PorcenComP"> 
                                 Porcentaje de venta de producto: <input type="text" disabled="disable" placeholder="20%" name="PorcenVenP" id="PorcenVenP"> 
                             </label>
-                            <br>
-                            <center>
-                                <button type="button" name="Actualizar" data-toggle="modal" style="background-color: #9F150D" class="btn btn-danger">Actualizar</button><br>
-                            </center> 
-
-
-                        </form>
-                    </div>
-
-                </div>
-
-
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
-                    <div class="form-style-5" id="cono">
-                        <div style="">
-                            <canvas id="canvas1"></canvas>
-                            <div id="leyenda1" class="leyenda"></div>
                         </div>
-
-
-
-                        <script>
-                            /**
-                             * Clase para generar graficos de pastel
-                             * Tiene que recibir:
-                             *	el id del canvas
-                             *	la anchura y altura del canvas
-                             *	un array con los valores a mostrar del tipo:
-                             *		var valores={
-                             *			"Access":	{valor:10,color:"blue"},
-                             *			"PHP":		{valor:23,color:"red"},
-                             *			"Python":	{valor:18,color:"green"},
-                             *			".NET":		{valor:12,color:"Orange"},
-                             *			"C++":		{valor:30,color:"Cyan"}
-                             *		}
-                             */
-                            var miPastel = function (canvasId, width, height, valores) {
-                                this.canvas = document.getElementById(canvasId);
-                                ;
-                                this.canvas.width = width;
-                                this.canvas.height = height;
-                                this.radio = Math.min(this.canvas.width / 2, this.canvas.height / 2)
-                                this.context = this.canvas.getContext("2d");
-                                this.valores = valores;
-                                this.tamanoDonut = 0;
-
-                                /**
-                                 * Dibuja un gráfico de pastel
-                                 */
-                                this.dibujar = function () {
-                                    this.total = this.getTotal();
-                                    var valor = 0;
-                                    var inicioAngulo = 0;
-                                    var angulo = 0;
-
-                                    // creamos los quesos del pastel
-                                    for (var i in this.valores)
-                                    {
-                                        valor = valores[i]["valor"];
-                                        color = valores[i]["color"];
-                                        angulo = 2 * Math.PI * valor / this.total;
-
-                                        this.context.fillStyle = color;
-                                        this.context.beginPath();
-                                        this.context.moveTo(this.canvas.width / 2, this.canvas.height / 2);
-                                        this.context.arc(this.canvas.width / 2, this.canvas.height / 2, this.radio, inicioAngulo, (inicioAngulo + angulo));
-                                        this.context.closePath();
-                                        this.context.fill();
-                                        inicioAngulo += angulo;
-                                    }
-                                }
-
-                                /**
-                                 * Dibuja un gráfico de pastel con una redonda en medio en modo de donut
-                                 * Tiene que recibir:
-                                 *	el tamaño de la redonda central (0 no hay redonda - 1 es todo)
-                                 *	el color de la redonda
-                                 */
-                                this.dibujarDonut = function (tamano, color) {
-                                    this.tamanoDonut = tamano;
-                                    this.dibujar();
-
-                                    // creamos un circulo del color recibido en medio
-                                    this.context.fillStyle = color;
-                                    this.context.beginPath();
-                                    this.context.moveTo(this.canvas.width / 2, this.canvas.height / 2);
-                                    this.context.arc(this.canvas.width / 2, this.canvas.height / 2, this.radio * tamano, 0, 2 * Math.PI);
-                                    this.context.closePath();
-                                    this.context.fill();
-                                }
-
-                                /**
-                                 * Pone el tanto por ciento de cada uno de los valores
-                                 * Tiene que recibir:
-                                 *	el color del texto
-                                 */
-                                this.ponerPorCiento = function (color) {
-                                    var valor = 0;
-                                    var etiquetaX = 0;
-                                    var etiquetaY = 0;
-                                    var inicioAngulo = 0;
-                                    var angulo = 0;
-                                    var texto = "";
-                                    var incrementar = 0;
-
-                                    // si hemos dibujado un donut, tenemos que incrementar el valor del radio
-                                    // para que quede centrado
-                                    if (this.tamanoDonut)
-                                        incrementar = (this.radio * this.tamanoDonut) / 2;
-
-                                    this.context.font = "bold 12pt Calibri";
-                                    this.context.fillStyle = color;
-                                    for (var i in this.valores)
-                                    {
-                                        valor = valores[i]["valor"];
-                                        angulo = 2 * Math.PI * valor / this.total;
-
-                                        // calculamos la posición del texto
-                                        etiquetaX = this.canvas.width / 2 + (incrementar + this.radio / 2) * Math.cos(inicioAngulo + angulo / 2);
-                                        etiquetaY = this.canvas.height / 2 + (incrementar + this.radio / 2) * Math.sin(inicioAngulo + angulo / 2);
-
-                                        texto = Math.round(100 * valor / this.total);
-
-                                        // movemos la posición unos pixels si estamos en la parte izquierda
-                                        // del pastel para que quede mas centrado
-                                        if (etiquetaX < this.canvas.width / 2)
-                                            etiquetaX -= 10;
-
-                                        // ponemos los valores
-                                        this.context.beginPath();
-                                        this.context.fillText(texto + "%", etiquetaX, etiquetaY);
-                                        this.context.stroke();
-
-                                        inicioAngulo += angulo;
-                                    }
-                                }
-
-                                /**
-                                 * Function que devuelve la suma del total de los valores recibidos en el array
-                                 */
-                                this.getTotal = function () {
-                                    var total = 0;
-                                    for (var i in this.valores)
-                                    {
-                                        total += valores[i]["valor"];
-                                    }
-                                    return total;
-                                }
-
-                                /**
-                                 * Función que devuelve una lista (<ul><li>) con la leyenda
-                                 * Tiene que recibir el id donde poner la leyenda
-                                 */
-                                this.ponerLeyenda = function (leyendaId) {
-                                    var codigoHTML = "<ul class='leyenda'>";
-
-                                    for (var i in this.valores)
-                                    {
-                                        codigoHTML += "<li><span style='background-color:" + valores[i]["color"] + "'></span>" + i + "</li>";
-                                    }
-                                    codigoHTML += "</ul>";
-                                    document.getElementById(leyendaId).innerHTML = codigoHTML;
-                                }
-                            }
-
-                            // definimos los valores de nuestra gráfica
-                            var valores = {
-                                "Merma 30%": {valor: 30, color: "blue"},
-                                "Devoluciones 20%": {valor: 20, color: "red"},
-                                "Existencia 50%": {valor: 50, color: "green"},
-
-                            }
-
-                            // generamos el primer pastel
-                            var pastel = new miPastel("canvas1", 300, 300, valores);
-                            pastel.dibujar();
-                            pastel.ponerPorCiento("white");
-                            pastel.ponerLeyenda("leyenda1");
-
-                            // generamos el segundo pastel
-                            var pastel = new miPastel("canvas2", 300, 300, valores);
-                            pastel.dibujarDonut(0.5, "white");
-                            pastel.ponerPorCiento("white");
-                            pastel.ponerLeyenda("leyenda2");
-                        </script>
-
-
-                        <br>
                     </div>
-
+                    <br>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion derecha -->
-                    <div class="form-style-5">
-                        <center>
-                            <h4>Informaci&oacute;n de la empresa:</h4> 
-                        </center>
-
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    <div class="row">
+                        <p style="padding: 10px 10px"><span style="margin-right: 10px;"><img border="0" height="50" width="50" src="../../archivos/img/ic_inicio_grande.png" /></span>Inicio</p>
                     </div>
-
-                    <div class="form-style-5">
-
-                        <form>
-                            <table style="width:100%;height:10%;"><tr><td align="center"><input type="text" id="fecha" size="6" disabled></td></tr></table>
-                            <center><label style="font-size: 18px" class="form-check-label">&Aacute;rea: Inventario&nbsp;&nbsp;&nbsp;&nbsp;<img src="../imagenes/persona.png" width="50" height="50" alt=''></label></center>
-
-                        </form>
+                    <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <p class="titulos text-center" style="width: 100%;">Estadísticas </p>  
+                        <br>
+                        <canvas id="gInventarios" width="100%" height="30px"></canvas>
+                        <br>
+                        <script type="text/javascript" src="../graficas/graficaInventarios.js"></script>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </body>
 </html>

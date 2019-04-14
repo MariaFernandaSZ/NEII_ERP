@@ -29,7 +29,6 @@ and open the template in the editor.
    <script>
         function EspecificaIG(){
            alert("Consultando");
-            
             }
         </script>
     </head>
