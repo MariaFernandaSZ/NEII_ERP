@@ -62,7 +62,7 @@ legend{
 }
 .color:hover{    /* cambiar el color de los iconos al pasar el mouse sobre cada uno*/
     background:#ccc;
-    color:#fff;
+    color:#0A5778;
 }
 #submenu{ /* cambiar el color del div de los submenu*/
     background:#3c4564;
