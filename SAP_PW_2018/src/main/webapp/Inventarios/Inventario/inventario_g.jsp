@@ -249,7 +249,7 @@ and open the template in the editor.
                     <div class="modal-body">
                         <div style="background: #f8f8f8;">
                             <form style="margin-left: 15px; margin-right: 15px;" method="GET" action="../Inventario/inventario_g.jsp" onsubmit="return EspecificaIG()">
-                                <h2 class="text-center" style="width: 100%;">Ingrese los Datos a consultar</h2> 
+                                <h2 class="text-center" style="width: 100%;">Ingrese los datos a consultar</h2> 
                                 <table border="0" cellspacing="0">
                                     <tbody>
                                     <td colspan="2">
