@@ -243,7 +243,7 @@
                                         <td><input  class="form-control" type="text" name="id_producto" id="id_producto" placeholder="0000000000" maxlength="7" pattern="[0-9]{7}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/></td>
                                     </tr>
                                     <td colspan="2">
-                                         <h2 class="text-center" style="width: 100%;">Inserte datos</h2> 
+                                        <h2 class="text-center" style="width: 100%;">Inserte datos</h2> 
                                     </td>
                                     <td colspan="2">
                                         <br>
@@ -274,7 +274,7 @@
                                     <tr>
                                         <td>Cantidad merma:</td>
                                         <td>
-                                          <input class="form-control" type="number" id="cant_mer" name="cant_mer" placeholder="" min="1" max="999999999" pattern="[0-9]{1,999999999}" title="La cantidad merma debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/>
+                                            <input class="form-control" type="number" id="cant_mer" name="cant_mer" placeholder="" min="1" max="999999999" pattern="[0-9]{1,999999999}" title="La cantidad merma debe contener almenos 1 producto (campo n&uacute;merico)" required="required"/>
                                         </td>
                                     </tr>
                                     <td colspan="2">
@@ -283,7 +283,7 @@
                                     <tr>
                                         <td>Observaciones:</td>
                                         <td>
-                                           <input class="form-control"  type="text" id="motivo_mer" name="motivo_mer" pattern="[A-Za-z0-9]{1,150}" title="Debe contener de 1 a 150 car&aacute;cteres" placeholder="Comentarios" required="required" />
+                                            <input class="form-control"  type="text" id="motivo_mer" name="motivo_mer" pattern="[A-Za-z0-9]{1,150}" title="Debe contener de 1 a 150 car&aacute;cteres" placeholder="Comentarios" required="required" />
                                         </td>
                                     </tr>
                                     <td colspan="2">
@@ -330,7 +330,7 @@
                                         <td><input  class="form-control" type="text" name="id_merma" id="id_merma" placeholder="0000000000" maxlength="7" pattern="[0-9]{7}" title="El id de merma debe ser de 7 digitos (n&uacute;meros)"/></td>
                                     </tr>
                                     <td colspan="2">
-                                         <h2 class="text-center" style="width: 100%;">Inserte datos a modificar</h2> 
+                                        <h2 class="text-center" style="width: 100%;">Inserte datos a modificar</h2> 
                                     </td>
                                     <td colspan="2">
                                         <br>
@@ -361,7 +361,7 @@
                                     <tr>
                                         <td>Observaciones:</td>
                                         <td>
-                                           <input class="form-control"  type="text" id="motivo_mer" name="motivo_mer" pattern="[A-Za-z0-9]{1,150}" title="Debe contener de 1 a 150 car&aacute;cteres" placeholder="Comentarios" required="required" />
+                                            <input class="form-control"  type="text" id="motivo_mer" name="motivo_mer" pattern="[A-Za-z0-9]{1,150}" title="Debe contener de 1 a 150 car&aacute;cteres" placeholder="Comentarios" required="required" />
                                         </td>
                                     </tr>
                                     <td colspan="2">
@@ -372,7 +372,7 @@
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                         </td>
                                         <td>
-                                           <input type="submit"  class="btn btn-secondary form-control mx-auto" value="Modificar" id="ModificarM" onclick="return formularioModifica() location.href = 'merma.jsp'"><br>
+                                            <input type="submit"  class="btn btn-secondary form-control mx-auto" value="Modificar" id="ModificarM" onclick="return formularioModifica() location.href = 'merma.jsp'"><br>
                                         </td>
                                     </tr>
                                     <td colspan="2">
