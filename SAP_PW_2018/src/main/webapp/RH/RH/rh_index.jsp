@@ -1,5 +1,6 @@
-<%
-    if(request.getSession().getAttribute("usuario") == null){
+ <%
+    
+     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
     }else{
         if(!request.getSession().getAttribute("area").equals("Recursos Humanos")&&!request.getSession().getAttribute("area").equals("Gerencia")){

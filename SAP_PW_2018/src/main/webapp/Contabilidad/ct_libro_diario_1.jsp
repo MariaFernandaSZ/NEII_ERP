@@ -1,15 +1,7 @@
 <%@page import="pw.sap.pojo.Contabilidad.LibroDiario"%>
 <%@page import="pw.sap.obj.Contabilidad.ObjLibroDiario"%>
 <%@page import="java.util.LinkedList"%>
-<%
-    if (request.getSession().getAttribute("usuario") == null) {
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    } else {
-        if (!request.getSession().getAttribute("area").equals("Contabilidad") && !request.getSession().getAttribute("area").equals("Gerencia")) {
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,72 +14,60 @@
         <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Contabilidad/validacion.js" type="text/javascript"></script>
+        <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
         <script src="../js/Contabilidad/modales.js"    type="text/javascript"></script>
     </head>
     <body>
-        <header class="sticky-top">
+         <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
-            <nav class="navbar navbar-expand-lg navbar-light barra">
-                <a class="navbar-brand text-white" href="ct_index.jsp">Contabilidad</a>
+            <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white color" href="#" id="catalogos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cat&aacute;logos
-                            </a>
-                            <div class="dropdown-menu" id="submenu" >
-                                <a class="nav-link text-white color" id="calenContable" href="calen_contable.jsp">Calendario contable</a>
-                                <a class="nav-link text-white color" id="planCuentas" href="plan_cuentas.jsp">Plan de cuentas</a>                    
-                                <a class="nav-link text-white color" id="grupoPlanCuentas" href="grupo_plan_cuentas.jsp">Grupo plan de cuentas</a>
-                            </div>
-                        </li>              
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">                    
                         <li class="nav-item">
-                            <a class="nav-link text-white color" id="impuestos" href="ct_impuestos.jsp">Impuestos</a>
+                            <a href="ct_index.jsp" class="nav-link text-white"  aria-haspopup="true" aria-expanded="false"><h3>Contabilidad</h3></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ct_index.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_inicio.png" /><p>Inicio</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ct_impuestos.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_financiera.png" /><p>Impuestos</p></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Libros
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_comercial.png" /> Libros
                             </a>
                             <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="ct_libro_diario.jsp">Libro Diario<span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white color" href="ct_libro_mayor.jsp">Libro Mayor</a>
+                                <a class="nav-link text-white color" href="ct_libro_diario.jsp">Diario<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_libro_mayor.jsp">Mayor<span class="sr-only">(current)</span></a>
                             </div>
                         </li>
-
-                        <li class="nav-item dropdown">
+                          <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Movimientos
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Abrobaciones
                             </a>
                             <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="asientos_conta.jsp">Asientos Contables<span class="sr-only">(current)</span></a>                        
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Consultas
-                            </a>
-                            <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="ct_con_plan_cuentas.jsp">Plan de cuentas<span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white color" href="ct_resultados.jsp">Estado de resultados</a>
+                                <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_prov.jsp">Compras<span class="sr-only">(current)</span></a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a id="btn_gerencia" class="nav-link color" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                            <script src="../js/gerencia.js"></script>
+                            <a href="plan_cuentas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /><p>Cuentas</p></a>
                         </li>
-                    </ul>
-
-                    <form class="form-inline my-2 my-lg-0" action="../CerrarSesion" method="POST">                
-                        <button class="btn barra text-white my-2 my-sm-0" id="cerrarSesion" type="submit">Cerrar Sesi&oacute;n</button>
-                    </form>
+                    </ul> 
                 </div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="ayuda.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_ayuda.png" /><p>Ayuda</p></a>                       
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../CerrarSesion" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_salir.png" /><p>Salir</p></a>                       
+                    </li>
+                </ul>
             </nav>
         </header>
-
 
         <div id="principal">
             <div class="container-fluid">
