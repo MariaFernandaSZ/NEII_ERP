@@ -1,15 +1,7 @@
 <%@page import="pw.sap.pojo.Contabilidad.LibroDiario"%>
 <%@page import="pw.sap.obj.Contabilidad.ObjLibroDiario"%>
 <%@page import="java.util.LinkedList"%>
-<%
-    if (request.getSession().getAttribute("usuario") == null) {
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    } else {
-        if (!request.getSession().getAttribute("area").equals("Contabilidad") && !request.getSession().getAttribute("area").equals("Gerencia")) {
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
+
 <!DOCTYPE html>
 <html>
     <head>

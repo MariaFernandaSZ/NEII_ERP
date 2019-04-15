@@ -1,11 +1,12 @@
 <%
-    if(request.getSession().getAttribute("usuario") == null){
+   /* if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
     }else{
         if(!request.getSession().getAttribute("area").equals("Contabilidad")&&!request.getSession().getAttribute("area").equals("Gerencia")){
             response.sendRedirect("../archivos/errorSesion.jsp");
         }
     }
+*/
 %>
 <!DOCTYPE html>
 <html>
@@ -20,6 +21,7 @@
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Contabilidad/validacion.js" type="text/javascript"></script>
         <script src="../js/Contabilidad/modales.js"    type="text/javascript"></script>
+        <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
          <header class="sticky-top">
