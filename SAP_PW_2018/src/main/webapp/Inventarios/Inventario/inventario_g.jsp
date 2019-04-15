@@ -1,10 +1,10 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    if(request.getSession().getAttribute("usuario") == null){
+    if (request.getSession().getAttribute("usuario") == null) {
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Inventarios")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+    } else {
+        if (!request.getSession().getAttribute("area").equals("Inventarios") && !request.getSession().getAttribute("area").equals("Gerencia")) {
             response.sendRedirect("../../archivos/errorSesion.jsp");
         }
     }
@@ -26,14 +26,33 @@ and open the template in the editor.
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <script src="../js/validaciones.js" type="text/javascript"></script>
-   <script>
-        function EspecificaIG(){
-           alert("Consultando");
+
+        <script>
+            function EspecificaIG() {
+                alert("Consultando");
+            }
+            function fecha() {
+                var valor = document.getElementById('fecha');
+                var fecha = new Date();
+                var dia;
+                var mes;
+                if (fecha.getDate() < 10) {
+                    dia = '0' + fecha.getDate();
+                } else {
+                    dia = fecha.getDate();
+                }
+                if (fecha.getMonth() + 1 < 10) {
+                    mes = '0' + (fecha.getMonth() + 1);
+                } else {
+                    mes = fecha.getMonth() + 1;
+                }
+                valor.value = (dia + '/' + mes + '/' + fecha.getFullYear());
+                document.getElementById('fecha').innerHTML = valor.value;
             }
         </script>
     </head>
-    <body>
-<header class="sticky-top">
+    <body onload="fecha();">
+        <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,132 +95,207 @@ and open the template in the editor.
                 </ul>
             </nav>
         </header>
-<!-- CONTENIDO-->
-        
-        <div class="container-fluid contenido">
+        <!-- CONTENIDO-->
+
+        <div id="principal">
             <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion izquierda -->
-                <div class="form-style-5">
-                    <center>
-                       <h4>Inventario general</h4>  
-                    </center>
-                   
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
+
+                    <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
+                    </div>
+                    <div class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <input class="text-center form-control" type="text" id="fecha" size="6"  style="width:100%;" disabled>
+                    </div>
+                    <div  class="row">
+                        <table  border="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="2">
+                                        <label class="form-check-label col-lg-6 col-md-6 col-sm-8 col-xs-6">Consulta ID:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                            <form action="../Inventario/inventario_g.jsp" method="GET">
+                                <td>
+                                    <input style="margin-left: 20px; width: 90%;" class="form-control" type="text" name="parametro" id="parametro" placeholder="00000000000" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required>
+                                </td>
+                                <td>
+                                    <input class="btn btn-secondary mx-auto" type="submit" name="ConsultaInvg" class="btn btn-danger" value="Consultar">
+                                </td>
+                            </form>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+                            <form  action="../Inventario/inventari_g1.jsp" method="POST">
+                                <td>
+                                    <label style="margin-left: 20px; width: 90%;" class="form-check-label" >Consulta General:</label>
+                                </td>
+                                <td>  
+                                    <input class="btn btn-secondary form-control"  type="submit" name="ConsultaInG" style="width: 100%;" value="Consulta">
+                                </td>
+                            </form>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label style="margin-left: 20px; width: 90%;" class="form-check-label">Consulta Especifica:</label>
+                                </td>
+                                <td>
+                                    <button  class="btn btn-secondary form-control" type="button" name="ConEsIG" data-toggle="modal" data-target="#ConsultaIG" >Consulta</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+                            <form  method="POST" action="../../reporte_inventario">
+                                <td>
+                                    <label style="margin-left: 20px; width: 90%;"  class="form-check-label">Generar Reporte</label>
+                                </td>
+                                <td> 
+                                    <input class="btn btn-secondary form-control" type="submit" value="PDF" name="GP" style="width: 100%;" >
+                                </td>
+                            </form>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="form-style-5">
-                    <form action="../Inventario/inventario_g.jsp" method="GET">
-                            <span id="titulo"><span class="number">1</span> Consultas</span><br><br>
-                            <span class="idemp"><input type="text" name="parametro" id="parametro" placeholder="Id de producto" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required></span> 
-                            
-                            <input type="submit" name="ConsultaInvg" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
-                           </form>
-                    <form action="../Inventario/inventari_g1.jsp" method="POST">
-                            <span id="titulo"><span class="number">2</span> Consulta General</span><br><br>
-                            <input type="submit" name="ConsultaInG" style="background-color: #9F150D" class="btn btn-danger" value="Consultar">
-                           </form>
-                            <br><br>
-                            <span id="titulo"><span class="number">3</span> Consulta especifica de registro</span><br><br>
-                            <center>
-                            <button type="button" name="ConEsIG" data-toggle="modal" data-target="#ConsultaIG" style="background-color: #9F150D" class="btn btn-danger">Consulta Especifica</button><br>
-                            </center> <br>
-                            
-                            
-                    <form method="POST" action="../../reporte_inventario">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    <div class="row">
+                        <p style="padding: 10px 10px"><span style="margin-right: 10px;"><img border="0" height="50" width="50" src="../../archivos/img/ic_area_producto.png" /></span>Inventario</p>
+                    </div>
+                    <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Inventario general</h2>  
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID Producto</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Proveedor</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Minimo</th>
+                                        <th scope="col">Costo Unitario</th>
+                                        <th scope="col">Costo de venta </th>
 
-                            <span id="titulo"><span class="number">4</span> Reporte</span><br><br>
-                            
-                                
-                             <input type="submit" value="Generar PDF" name="GP" style="background-color: #9F150D; width: 180px;" class="btn btn-danger"><br><br>
-                             
-                            </form>
-                   
-                
+                                    </tr>
+                                </thead>
+                                <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                <%
+                                    String parametro = request.getParameter("parametro");
+                                    String proveedor = request.getParameter("proveedor");
+                                    String tipo = request.getParameter("tipo_pro");
+                                    String nombre = request.getParameter("nombre_pro");
+                                    ResultSet rsTabla = interTabla.consultaGeneral(parametro, proveedor, tipo, nombre);
 
-            </div>
-            </div>
+                                %> 
+                                <tbody>
+                                    <%                                            while (rsTabla.next()) {
+                                    %>
+                                    <tr id="modalInter">
+                                        <td><%=rsTabla.getString(1)%></td>
+                                        <td><%=rsTabla.getString(2)%></td>
+                                        <td><%=rsTabla.getString(3)%></td>
+                                        <td><%=rsTabla.getString(4)%></td>
+                                        <td><%=rsTabla.getString(5)%></td>
+                                        <td>$<%=rsTabla.getString(6)%></td>
+                                        <td>$<%=rsTabla.getString(7)%></td>
+                                        <td>$<%=rsTabla.getString(8)%></td>
 
-
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
-             <div class="table-responsive">
-                       <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                             <th scope="col">ID Producto</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Tipo</th>
-                                            <th scope="col">Proveedor</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Minimo</th>
-                                            <th scope="col">Costo Unitario</th>
-                                            <th scope="col">Costo de venta </th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                    </tr>
                                     <%
-                                        String parametro=request.getParameter("parametro");
-                                        String proveedor=request.getParameter("proveedor");
-                                        String tipo=request.getParameter("tipo_pro");
-                                        String nombre=request.getParameter("nombre_pro");
-                                        ResultSet rsTabla = interTabla.consultaGeneral(parametro,proveedor,tipo,nombre);
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                    %> 
+        <!-- Modal Consulta especifica-->
+        <div class="modal fade" id="ConsultaIG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Consulta Espec&iacute;fica</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="background: #f8f8f8;">
+                            <form style="margin-left: 15px; margin-right: 15px;" method="GET" action="../Inventario/inventario_g.jsp" onsubmit="return EspecificaIG()">
+                                <h2 class="text-center" style="width: 100%;">Ingrese los Datos a consultar</h2> 
+                                <table border="0" cellspacing="0">
                                     <tbody>
-                                        <%
-                                            while (rsTabla.next()) {
-                                        %>
-                                        <tr id="modalInter">
-                                            <td><%=rsTabla.getString(1)%></td>
-                                            <td><%=rsTabla.getString(2)%></td>
-                                            <td><%=rsTabla.getString(3)%></td>
-                                            <td><%=rsTabla.getString(4)%></td>
-                                            <td><%=rsTabla.getString(5)%></td>
-                                            <td>$<%=rsTabla.getString(6)%></td>
-                                            <td>$<%=rsTabla.getString(7)%></td>
-                                            <td>$<%=rsTabla.getString(8)%></td>
-                                      
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
+                                    <tr>
+                                        <td>Proveedor:</td>
+                                        <td><input style="width: 190px; height: 30px;text-align: center;" type="text" name="proveedor" id="proveedor" placeholder="FEMSA" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El proveedor de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></td>
+                                    </tr>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
+                                    <tr>
+                                        <td>Nombre del producto:</td>
+                                        <td><input style="width: 190px; height: 30px;text-align: center;" type="text" name="nombre_pro" id="nombre_pro" placeholder="Coca-cola" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El nombre de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></td>
+                                    </tr>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
+                                    <tr>
+                                        <td>Tipo de Producto:</td>
+                                        <td><input style="width: 190px; height: 30px;text-align: center;" type="text" name="tipo_pro" id="tipo_pro" placeholder="Refresco" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El tipo de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></td>
+                                    </tr>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
+                                    <tr>
+                                        <td><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button></td>
+                                        <td><input style="width: 60%;" type="submit"  class="btn btn-secondary form-control mx-auto" value="Consultar" id="BuscaEs" onsubmit="return EspecificaIG()"></td>
+                                    </tr>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
                                     </tbody>
                                 </table>
-                        </div>    
-            </div>
-            
-            </div>  
-            </div>
-        
-         <!-- Modal Consulta especifica-->
-        <div class="modal fade" id="ConsultaIG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title" id="myModalLabel">Consulta Espec&iacute;fica</h4>
-              </div>
-              <div class="modal-body">
-                <div class="form-style-5">
-                     <form method="GET" action="../Inventario/inventario_g.jsp" onsubmit="return EspecificaIG()">
-                            <span id="titulo"><span class="number">1</span>Ingrese los Datos a consultar</span>
-                            
-                            <br><br><span>Proveedor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="proveedor" id="proveedor" placeholder="FEMSA" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El proveedor de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></span>
-                            <br><br><span>Nombre del producto:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="nombre_pro" id="nombre_pro" placeholder="Coca-cola" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El nombre de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></span>
-                            <br><br><span>Tipo de Producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="tipo_pro" id="tipo_pro" placeholder="Refresco" maxlength="25" pattern="[A-Za-z0-9]{1,25}" title="El tipo de producto debe contener de 1 a 25 car&aacute;cteres (n&uacute;meros y letras)" ></span>
-                            <br><br>
-                            <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaIG()"><br>
-                        
-                     </form>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-       
-                
+
+
 
         <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
-           <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
-           <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
+        <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>

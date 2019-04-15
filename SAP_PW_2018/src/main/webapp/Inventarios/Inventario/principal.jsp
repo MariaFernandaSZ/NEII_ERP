@@ -102,23 +102,52 @@ and open the template in the editor.
 
         <div id="principal">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;"><!-- Seccion central (Visualizar tarea) -->
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
+
                     <div  class="row" style="height: 200px;">    
                         <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
                     </div>
-                    <div class="row">
-                        <table style="width:100%;"><tr><td align="center"><input type="text" id="fecha" size="6" disabled></td></tr></table>
+                    <div class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <input class="text-center form-control" type="text" id="fecha" size="6"  style="width:100%;" disabled>
                     </div>
-                    <div  class="row">
-                        <h4>Estadísticas de inventario</h4>
-                        <div class="list-group" style="width: 100%;">
-                            <label class="form-check-label">
-                                Total de productos: <input type="text" disabled="disable" placeholder="12500" name="TotalPro" id="TotalPro"> 
-                                Porcentaje de Merma: <input type="text" disabled="disable" placeholder="30%" name="PorcenProP" id="PorcenMerm"> 
-                                Porcentaje de Devoluciones: <input type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo"> 
-                                Porcentaje de compra de producto: <input type="text" disabled="disable" placeholder="30%" name="PorcenComP" id="PorcenComP"> 
-                                Porcentaje de venta de producto: <input type="text" disabled="disable" placeholder="20%" name="PorcenVenP" id="PorcenVenP"> 
-                            </label>
+                    <div  class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de productos:</label>
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text"   name="TotalPro" id="TotalPro" placeholder="12500" disabled="disable" style="width: 100%;"> 
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Porcentaje de Merma:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="30%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                             <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8"> Porcentaje de Devoluciones:</label>
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo" style="width: 100%;"> 
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                          <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Porcentaje de compra de producto:</label> 
+                          <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="30%" name="PorcenComP" id="PorcenComP" style="width: 100%;">     
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                           <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Porcentaje de venta de producto:</label>
+                           <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenVenP" id="PorcenVenP" style="width: 100%;">    
+                        </div>
+                        <div class="row"> 
+                            <br>
                         </div>
                     </div>
                     <br>
@@ -128,7 +157,7 @@ and open the template in the editor.
                         <p style="padding: 10px 10px"><span style="margin-right: 10px;"><img border="0" height="50" width="50" src="../../archivos/img/ic_inicio_grande.png" /></span>Inicio</p>
                     </div>
                     <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
-                        <p class="titulos text-center" style="width: 100%;">Estadísticas </p>  
+                        <h2 class="titulos text-center" style="width: 100%;">Estadísticas </h2>  
                         <br>
                         <canvas id="gInventarios" width="100%" height="30px"></canvas>
                         <br>
