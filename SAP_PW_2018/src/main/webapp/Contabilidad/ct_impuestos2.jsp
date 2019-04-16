@@ -1,4 +1,13 @@
-
+<%
+   /* if(request.getSession().getAttribute("usuario") == null){
+        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
+    }else{
+        if(!request.getSession().getAttribute("area").equals("Contabilidad")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+            response.sendRedirect("../archivos/errorSesion.jsp");
+        }
+    }
+*/
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +24,7 @@
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-         <header class="sticky-top">
+          <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,75 +74,64 @@
                 </ul>
             </nav>
         </header>
-        
-        <div id="principal">
-            <div class="container-fluid">
-                <div class="row">
+
+       <div id="principal">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
+
+                    <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../archivos/img/img_logo_2.png" />
+                    </div>                    
                     <br>
                 </div>
-                <div class="row">
-                    <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
-                         
-                        <center> <img class="imagen" border="0" height="auto" width="40%" src="../archivos/img/img_logo_2.png" /> </center>
-                      
-                        <div class="form-style-5">
-                            <span id="titulo"><h4>Libro diario</h4></span> <br>
-                            <form action="ct_libro_diario_1.jsp" method="POST">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        M&oacute;dulo:
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <select name="modulo1" id="modulo1">
-                                            <option value="x">Selecciona...</option>
-                                            <option value="">Todos</option>
-                                            <option value="Compras">Compras</option>
-                                            <option value="Ventas">Ventas</option>
-                                            <option value="Nominas">Nominas</option>
-                                        </select>
-                                    </div>    
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Fecha inicial: 
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaIni" name="fechaIni">  
-                                    </div>    
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Fecha final: 
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaFin" name="fechaFin">
-                                    </div>    
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
-                                    <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
-                                          style="background-color: #818B9F" value="Mostrar">                                  
-                                    </div>      
-                                </div> 
-                            </form>   
-                        </div> 
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    <div class="row">
+                        <br><br>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>M&oacute;dulo</th>
-                                    <th>Cargo</th>
-                                    <th>Abono</th>
-                                </tr>     
-                            </table> 
-                            <br/>
+                     
+                    <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
+                        <br> 
+                          <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
+                              <br> <br>
+                        <div class="row">
+                            <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="15%" name="iva2" id="PorcenMerm" style="width: 100%;">
                         </div>
-                    </div>   
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4"> IEPS:</label>
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="20%" name="ieps2" id="PorcenDevo" style="width: 100%;"> 
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                              <div class="row">
+                            <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">ISR:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="15%" name="isr2" id="PorcenMerm" style="width: 100%;">
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                              
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-4"><br></div>
+                        
+                                                    
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                            <form action="ct_impuestos.jsp" method="POST">
+                                    <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
+                                </form>                            
+                        </div>                        
+                        <div class="row"> 
+                            <br>
+                        </div>
+                    </div>
+                    </div> 
                 </div>
-            </div> 
+            </div>
         </div>
+
     </body>
 </html>
-

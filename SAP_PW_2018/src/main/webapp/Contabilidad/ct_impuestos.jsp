@@ -88,33 +88,48 @@
                     <div class="row">
                         <br><br>
                     </div>
+                     
                     <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
                         <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
-                        <br>
-                          <div  class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <br> 
+                          <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
+                              <br> <br>
                         <div class="row">
-                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">IVA:</label> 
-                            <input class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" type="text" disabled="disable" placeholder="15%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
+                            <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="15%" name="iva" id="PorcenMerm" style="width: 100%;">
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                         <div class="row">
-                             <label class="form-check-label col-lg-10 col-md-10 col-sm-10 col-xs-10"> IEPS:</label>
-                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo" style="width: 100%;"> 
+                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4"> IEPS:</label>
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="ieps" id="PorcenDevo" style="width: 100%;"> 
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
-                        <div class="row">
-                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">ISR:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="15%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
+                              <div class="row">
+                            <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">ISR:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="15%" name="isr" id="PorcenMerm" style="width: 100%;">
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
+                              
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-4"><br></div>
+                        
+                                                    
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                            <form action="ct_impuestos2.jsp" method="POST">
+                                    <input class="btn btn-secondary form-control" id="modi" name="modi_imp" type="submit" value="Modificar">
+                                </form>                            
+                        </div>                        
+                        <div class="row"> 
+                            <br>
+                        </div>
+                         
                     </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
