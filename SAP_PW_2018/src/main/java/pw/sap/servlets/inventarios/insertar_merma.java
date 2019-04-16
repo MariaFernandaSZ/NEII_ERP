@@ -16,6 +16,7 @@ import pw.sap.db.Conexion;
 import pw.sap.pojo.Inventarios.Modificar;
 import pw.sap.pojo.Inventarios.registro;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author migue_f4t6hjx
@@ -23,69 +24,57 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "insertar_merma", urlPatterns = {"/insertar_merma"})
 public class insertar_merma extends HttpServlet {
 
-
-
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+
         String codigo = request.getParameter("id_producto");
         String fecha = request.getParameter("fecha_mer");
         String tipo = request.getParameter("tipo_merma");
         String cantidad = request.getParameter("cant_mer");
         String motivo = request.getParameter("motivo_mer");
-        
 
         registro rg = new registro();
         Modificar mod = new Modificar();
-        ArrayList l= rg.cantidadProducto(codigo);
-        System.out.println(l.get(0)); 
-       
-       int cantidad_prod = Integer.parseInt((String) l.get(0));
-       int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
-       String total= String.valueOf(cantidad_prod - cantidad_merma);
-       if(cantidad_merma<=cantidad_prod){
+        ArrayList l = rg.cantidadProducto(codigo);
+        System.out.println(l.get(0));
 
-       rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
-         PrintWriter out=response.getWriter();
+        int cantidad_prod = Integer.parseInt((String) l.get(0));
+        int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
+        String total = String.valueOf(cantidad_prod - cantidad_merma);
+        if (cantidad_merma <= cantidad_prod) {
 
-            
-            
-             //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        rg.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Insercion de merma");        
-        
-        
+            rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
+            PrintWriter out = response.getWriter();
+            //registro para log
+            HttpSession sesion = request.getSession(true);
+            System.out.println("sesion usuario:" + sesion.getAttribute("usuario"));
+            System.out.println("sesion usuario:" + sesion.getAttribute("area"));
+            rg.insercionRegistro((int) sesion.getAttribute("usuario"), (String) sesion.getAttribute("area"), "Insercion de merma");
+
             out.println("<script>");
             out.println("alert('Merma ingresada correctamente');");
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
             out.println("</script>");
 
-              mod.modificarCantidad(codigo, total);
-            
-       }else{
+            mod.modificarCantidad(codigo, total);
+
+        } else {
             //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        rg.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Intento fallido de insercion de merma");        
-        
-        PrintWriter out=response.getWriter();
+            HttpSession sesion = request.getSession(true);
+            System.out.println("sesion usuario:" + sesion.getAttribute("usuario"));
+            System.out.println("sesion usuario:" + sesion.getAttribute("area"));
+            rg.insercionRegistro((int) sesion.getAttribute("usuario"), (String) sesion.getAttribute("area"), "Intento fallido de insercion de merma");
+
+            PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('No se puede mermar más de lo que existe');");
             out.print("window.location='Inventarios/Inventario/merma.jsp'");
             out.println("</script>");
-       }
-        
-      
-        
+        }
+
     }
 
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
