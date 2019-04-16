@@ -75,66 +75,48 @@
             </nav>
         </header>
 
-        <div id="principal">
-            <div class="container-fluid">
-                <div class="row">
+       <div id="principal">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
+
+                    <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../archivos/img/img_logo_2.png" />
+                    </div>                    
                     <br>
                 </div>
-                <div class="row">
-                    <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
-
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    <div class="row">
+                        <br><br>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->
-                        <div class="table-responsive">
-                            <form action="ct_impuestos.jsp">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Impuesto</th>                            
-                                        <th>Cuenta contable</th>                            
-                                    </tr>                      
-                                    <tr>
-                                        <td>IVA acreditable</td>
-                                        <td>
-                                            <input type="text" value="118.1"/>
-                                            <input type="text" value="Iva Acreditable"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>IEPS trasladado</td>
-                                        <td>
-                                            <input type="text" value="601.26"/>
-                                            <input type="text" value="gastos de viaje"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>IVA retenido</td>
-                                        <td>
-                                            <input type="text" value="216.2"/>
-                                            <input type="text" value="Impuestos retenidos de IVA"/>
-                                        </td>                            
-                                    </tr>
-                                    <tr>
-                                        <td>ISR retenido</td>
-                                        <td>
-                                            <input type="text" value="216.5"/>
-                                            <input type="text" value="Retenci&oacute;n 4% fletes"/>
-                                        </td>                            
-                                    </tr>                        
-                                </table>   
-                                <br>
-                                <input class="btn btn-danger text-white" style="background-color: #9F150D" type="submit" value="APLICAR">
-
-                            </form>   
-                        </div>  
+                    <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
+                        <br>
+                          <div  class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <div class="row">
+                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">IVA:</label> 
+                            <input class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" type="text" disabled="disable" placeholder="15%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                             <label class="form-check-label col-lg-10 col-md-10 col-sm-10 col-xs-10"> IEPS:</label>
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo" style="width: 100%;"> 
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">ISR:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="15%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
                     </div>
-                    <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
-                        <table style="width:100%;height:100%;">                                        
-                            <tr><td colspan="2">Informaci&oacute;n de la empresa</td></tr>
-                            <tr><td colspan="2"><img src="" alt="logo de la empresa"></td></tr>
-                        </table>
-                    </div>    
+                    </div>
                 </div>
-            </div> 
+            </div>
         </div>
 
     </body>
