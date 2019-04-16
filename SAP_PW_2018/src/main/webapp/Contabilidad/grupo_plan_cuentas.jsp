@@ -1,11 +1,11 @@
 <%
-    if(request.getSession().getAttribute("usuario") == null){
+    /*if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
     }else{
         if(!request.getSession().getAttribute("area").equals("Contabilidad")&&!request.getSession().getAttribute("area").equals("Gerencia")){
             response.sendRedirect("../archivos/errorSesion.jsp");
         }
-    }
+    }*/
 %>
 <!DOCTYPE html>
 <html>
@@ -51,7 +51,7 @@
                         </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Abrobaciones
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Aprobaciones
                             </a>
                             <div class="dropdown-menu" id="submenu">
                                 <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
