@@ -1,10 +1,10 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    if(request.getSession().getAttribute("usuario") == null){
+    if (request.getSession().getAttribute("usuario") == null) {
         response.sendRedirect("../../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Inventarios")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+    } else {
+        if (!request.getSession().getAttribute("area").equals("Inventarios") && !request.getSession().getAttribute("area").equals("Gerencia")) {
             response.sendRedirect("../../archivos/errorSesion.jsp");
         }
     }
@@ -21,43 +21,51 @@
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <script src="../js/validaciones.js"></script>
         <script>
-            function fecha(){
-            var valor = document.getElementById('fecha_ingreso');
-            var fecha = new Date();
-            var dia;
-            var mes;
-            if (fecha.getDate() < 10){dia = '0' + fecha.getDate(); } else{dia = fecha.getDate(); }
-            if (fecha.getMonth() + 1 < 10){mes = '0' + (fecha.getMonth() + 1); } else{mes = fecha.getMonth() + 1; }
-            valor.value = (dia + '/' + mes + '/' + fecha.getFullYear());
-            document.getElementById('fecha_ingreso').innerHTML = valor.value;
+            function fecha() {
+                var valor = document.getElementById('fecha');
+                var fecha = new Date();
+                var dia;
+                var mes;
+                if (fecha.getDate() < 10) {
+                    dia = '0' + fecha.getDate();
+                } else {
+                    dia = fecha.getDate();
+                }
+                if (fecha.getMonth() + 1 < 10) {
+                    mes = '0' + (fecha.getMonth() + 1);
+                } else {
+                    mes = fecha.getMonth() + 1;
+                }
+                valor.value = (dia + '/' + mes + '/' + fecha.getFullYear());
+                document.getElementById('fecha').innerHTML = valor.value;
             }
-            function InsertarEnt(){
-            var fechaEnt = document.getElementById('fechaEnt');
-            var fechaCad = document.getElementById('fechaCad');
-            if (fechaEnt<fechaCad){
-             alert("Fecha de caducidad debe ser mayor que la de entrada");   
-            }else{
-            alert("Se han insertado los datos correctamente");
+            function InsertarEnt() {
+                var fechaEnt = document.getElementById('fechaEnt');
+                var fechaCad = document.getElementById('fechaCad');
+                if (fechaEnt < fechaCad) {
+                    alert("Fecha de caducidad debe ser mayor que la de entrada");
+                } else {
+                    alert("Se han insertado los datos correctamente");
+                }
             }
-        }
-           
-            function EspecificaEnt(){
-            var coba = document.getElementById('CoBa');
-            var IDEnt = document.getElementById('IDEnt');
-            var IDOrdenCom = document.getElementById('IDOrdenCom');
-            var TipoPro = document.getElementById('TipoPro');
-            if (coba.length===0 && IDEnt.length===0 && IDOrdenCom.length===0 && TipoPro.length===0){
-            alert("Consulta vacia");
-            }else{
-            alert("Consultando"); 
-        }
+
+            function EspecificaEnt() {
+                var coba = document.getElementById('CoBa');
+                var IDEnt = document.getElementById('IDEnt');
+                var IDOrdenCom = document.getElementById('IDOrdenCom');
+                var TipoPro = document.getElementById('TipoPro');
+                if (coba.length === 0 && IDEnt.length === 0 && IDOrdenCom.length === 0 && TipoPro.length === 0) {
+                    alert("Consulta vacia");
+                } else {
+                    alert("Consultando");
+                }
             }
         </script>
-        
+
 
     </head>
     <body onload="fecha();">
-         <header class="sticky-top">
+        <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,103 +108,118 @@
                 </ul>
             </nav>
         </header>
+
         <!-- CONTENIDO-->
-        <div class="container-fluid contenido">
+
+        <div id="principal">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion izquierda -->
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
 
-                    <div class="form-style-5">
-                        <center>
-                            <h4>Entradas</h4>  
-                        </center>
-
+                    <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
                     </div>
-
-                    <div class="form-style-5">
-                        <form action="../../ingresarEntrada" method="POST">
-
-                            <span id="titulo"><span class="number">1</span> Ingresar lote </span><br><br>
-                            <br><span class="idemp"><input type="text" name="no_lote" id="no_lote" placeholder="N&uacute;mero de compra" required="required" pattern="[0-9]{7}" maxlength="7" title="El n&uacute;mero de lote debe ser de 7 digitos (n&uacute;meros)"/></span> <input type="submit" name="BuscaM" id="BuscaM" style="background-color: #9F150D" class="btn btn-danger" value="Ingresar"/><br><br>
-                            
-                        </form>
+                    <div class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <input class="text-center form-control" type="text" id="fecha" size="6"  style="width:100%;" disabled>
                     </div>
-                  
-
+                    <div  class="row">
+                        <table  border="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="2">
+                                        <label class="form-check-label col-lg-6 col-md-6 col-sm-8 col-xs-6">Ingresar lote:</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                            <form action="../../ingresarEntrada" method="POST">
+                                <td>
+                                    <input type="text" name="no_lote" id="no_lote" placeholder="N&uacute;mero de compra" required="required" pattern="[0-9]{7}" maxlength="7" title="El n&uacute;mero de lote debe ser de 7 digitos (n&uacute;meros)" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="submit" name="BuscaM" id="BuscaM" class="btn btn-secondary form-control" value="Ingresar" style="width: 100%;"/>
+                                </td>
+                            </form>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
-                    <div class="table-responsive">
-                         <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                             <th scope="col">Orden de compra</th>
-                                            <th scope="col">Proveedor</th>
-                                            <th scope="col">Producto</th>
-                                            <th scope="col">Cantidad</th>
-                                           <th scope="col">Fecha</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    <div class="row">
+                        <p style="padding: 10px 10px"><span style="margin-right: 10px;"><img border="0" height="50" width="50" src="../../archivos/img/ic_entrada.png" /></span>Entradas</p>
+                    </div>
+                    <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Entradas</h2>  
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Orden de compra</th>
+                                        <th scope="col">Proveedor</th>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Fecha</th>
+                                    </tr>
+                                </thead>
+                                <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Inventarios.QuerysInventarios"/>
+                                <%
+                                    ResultSet rsTabla = interTabla.consultaEntrada();
+                                %> 
+                                <tbody>
                                     <%
-                                      
-                                        ResultSet rsTabla = interTabla.consultaEntrada();
-
-                                    %> 
-                                    <tbody>
-                                        <%
-                                            while (rsTabla.next()) {
-                                        %>
-                                        <tr id="modalInter">
-                                            <td><%=rsTabla.getString(1)%></td>
-                                            <td><%=rsTabla.getString(2)%></td>
-                                            <td><%=rsTabla.getString(3)%></td>
-                                            <td><%=rsTabla.getString(4)%></td>
-                                          <td><%=rsTabla.getString(5)%></td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table>
-                                     <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                             <th scope="col">Lote</th>
-                                            <th scope="col">id_compra</th>
-                                            <th scope="col">fecha_ingreso</th>
-                                          
-                                            
-                                        </tr>
-                                    </thead>
-                                    
+                                        while (rsTabla.next()) {
+                                    %>
+                                    <tr id="modalInter">
+                                        <td><%=rsTabla.getString(1)%></td>
+                                        <td><%=rsTabla.getString(2)%></td>
+                                        <td><%=rsTabla.getString(3)%></td>
+                                        <td><%=rsTabla.getString(4)%></td>
+                                        <td><%=rsTabla.getString(5)%></td>
+                                    </tr>
                                     <%
-                                      
-                                        ResultSet rs = interTabla.consultaLote();
-
-                                    %> 
-                                    <tbody>
-                                        <%
-                                            while (rs.next()) {
-                                        %>
-                                        <tr id="modalInter">
-                                            <td><%=rs.getString(1)%></td>
-                                            <td><%=rs.getString(2)%></td>
-                                            <td><%=rs.getString(3)%></td>
-                                            
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table>
-                        
-                        
-                        
-                        
-                    </div> 
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Lote</th>
+                                        <th scope="col">id_compra</th>
+                                        <th scope="col">fecha_ingreso</th>      
+                                    </tr>
+                                </thead>
+                                <%
+                                    ResultSet rs = interTabla.consultaLote();
+                                %> 
+                                <tbody>
+                                    <%
+                                        while (rs.next()) {
+                                    %>
+                                    <tr id="modalInter">
+                                        <td><%=rs.getString(1)%></td>
+                                        <td><%=rs.getString(2)%></td>
+                                        <td><%=rs.getString(3)%></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div>
                 </div>
-
             </div>
         </div>
 
@@ -217,10 +240,10 @@
                                 <br>
                             </form>
                             <br>
-                           <form method="POST" action="entradas.jsp" onsubmit="return InsertarEnt()">
-                              
+                            <form method="POST" action="entradas.jsp" onsubmit="return InsertarEnt()">
+
                                 <span id="titulo"><span class="number">2</span>Visualiza lso productos y selecciona los productos a ingresar</span><br>
-                                 <br><div class="table-responsive">
+                                <br><div class="table-responsive">
                                     <table class="table table-bordered">
                                         <tr>
                                             <th>Selecciona</th>
@@ -234,9 +257,9 @@
                                             <th>Costo unitario</th>
                                             <th>Costo total</th>
                                             <th>Unidad de medida</th>
-                                            
-                                         </tr>
-                                         <tr>
+
+                                        </tr>
+                                        <tr>
                                             <td class="seleccion"><input type="radio" id="producto" name="Producto"></td>
                                             <td><%= request.getAttribute("id_producto")%></td>
                                             <td><%= request.getAttribute("proveedor")%></td>
@@ -248,22 +271,22 @@
                                             <td><%= request.getAttribute("costo_uni")%></td>
                                             <td><%= request.getAttribute("costo_ven")%></td>
                                             <td><%= request.getAttribute("uni_med")%></td>
-                                            
-                                         </tr>
-                              
-                                     </table>    
-                        </div>
+
+                                        </tr>
+
+                                    </table>    
+                                </div>
                                 <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 <input type="submit" style="background-color: #9F150D; width: 140px" value="Confirmar compra" class="btn btn-danger" onsubmit="return InsertarEnt()"/>
                                 <button type="button" name="Registrar entrada" data-toggle="modal" data-target="#Registrar" style="background-color: #9F150D; width:185px;" class="btn btn-danger" >Registrar Entrada</button><br><br>
-                  
-                        </form>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-         <!-- Insertar Datos-->
+        <!-- Insertar Datos-->
         <div class="modal fade" id="Registrar"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -279,45 +302,45 @@
                                 <span>Fecha de registro</span><span><input type="text" id="fecha_ingreso" name="fecha_ingreso" disabled="disabled"/></span>
                                 <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 <input type="submit" style="background-color: #9F150D; width: 90px" value="Insertar" class="btn btn-danger" onsubmit="return InsertarEnt() location.href = 'entradas.jsp'"/>
-                          
-                        </form>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Modal Busqueda Especifica-->
-    <div class="modal fade" id="ConsultaEsp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Consulta Espec&iacute;fica</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-style-5">
-                        <form method="POST" action="../../EntradasConsulta_E" onsubmit="return EspecificaEnt()">
-                            <span id="titulo"><span class="number">1</span>Elige e ingresa los datos de los registros que desea consultar</span>
-
-                            <br><br><span>ID de producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_producto" id="id_producto" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_compra" id="id_compra" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required/></span>
-                            <br><br><span>Fecha de ingreso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="date" name="fecha_ingreso" placeholder="dd/mm/aaaa" maxlength="100" title="El El formato de fecha debe ser dd/mm/aaaa" required/></span>
-                            <br><br>
-                            <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaEnt()"><br>
-                        </form>
+        <!-- Modal Busqueda Especifica-->
+        <div class="modal fade" id="ConsultaEsp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Consulta Espec&iacute;fica</h4>
                     </div>
-                </div></div>
-        </div>
-    </div>           
+                    <div class="modal-body">
+                        <div class="form-style-5">
+                            <form method="POST" action="../../EntradasConsulta_E" onsubmit="return EspecificaEnt()">
+                                <span id="titulo"><span class="number">1</span>Elige e ingresa los datos de los registros que desea consultar</span>
+
+                                <br><br><span>ID de producto:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_producto" id="id_producto" placeholder="##########" maxlength="13" pattern="[0-9]{13}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)" required/></span>
+                                <br><br><span>ID de orden de compra:&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="text" name="id_compra" id="id_compra" placeholder="##########" maxlength="7" pattern="[0-9]{7}" title="El id de orden de compra debe ser de 7 digitos (n&uacute;meros)" required/></span>
+                                <br><br><span>Fecha de ingreso:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="idemp"><input style="width: 190px; height: 30px;text-align: center;" type="date" name="fecha_ingreso" placeholder="dd/mm/aaaa" maxlength="100" title="El El formato de fecha debe ser dd/mm/aaaa" required/></span>
+                                <br><br>
+                                <br><br><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="submit" style="background-color: #9F150D" class="btn btn-danger" value="Continuar" id="BuscaEs" onsubmit="return EspecificaEnt()"><br>
+                            </form>
+                        </div>
+                    </div></div>
+            </div>
+        </div>           
 
 
 
 
 
-    <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
-    <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-</body>
+        <script src="../../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="../../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
+        <script src="../../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    </body>
 </html>
