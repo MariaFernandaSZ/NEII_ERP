@@ -44,17 +44,18 @@ public class Clientes extends HttpServlet {
         QuerysVentas c = new QuerysVentas();
 //        
 //        String claveCliente = "cli0001";
+        String nombreCliente = request.getParameter("nomCli");
+        String direccion = request.getParameter("direc");
+        String cp = request.getParameter("cp");
+        String email = request.getParameter("email");
         
-
+        c.insertar("nombre,direccion,cp,email","cliente","'"+nombreCliente+"','"+direccion+"',"+cp+",'"+email+"'");
         
-        String nombreEmpresa = request.getParameter("nomEmp");
-        String rfcEmpresa = request.getParameter("rfcEmp");
-        String estadoDomEmpresa = request.getParameter("estadoDom");
-        String muniDomEmpresa = request.getParameter("municipioDom");
-        String callenumDomEmpresa = request.getParameter("calleDom");
-        String postalDomEmpresa = request.getParameter("postalDom");
+        response.sendRedirect("Ventas/AgregarCliente.jsp"); 
         
-        ClienteBean cliBean = new ClienteBean(nombreEmpresa, rfcEmpresa, estadoDomEmpresa, muniDomEmpresa, callenumDomEmpresa, postalDomEmpresa);
+       /** 
+      
+        ClienteBean cliBean = new ClienteBean(nombreCliente, direccion, cp,email);
         
            boolean sw=c.agregarCliente(cliBean);
 //           ClienteBean cb =c.detalleCli();
@@ -102,7 +103,7 @@ public class Clientes extends HttpServlet {
 //      request.getRequestDispatcher("Ventas/clientes.jsp").forward(request, response);
 //        response.sendRedirect("Ventas/clientes.jsp");
         
-
+*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

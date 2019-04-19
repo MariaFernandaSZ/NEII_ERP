@@ -137,7 +137,7 @@ public class QuerysVentas {
             return agregado;
         }
         
-                public String consultarCli(){
+        public String consultarCli(){
          String id="";
          try{
           openDB();
@@ -289,17 +289,7 @@ public class QuerysVentas {
          return cliBean;
         }      
     
-        public ResultSet consultarIDEMP(){
-         ResultSet rs = null;
-         try{
-          openDB();
-          Statement st=conn.createStatement();
-          rs=st.executeQuery("select id_emprc, nombre_emp from empresa_cliente");
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
-         return rs;
-        }
+        
         
          public ResultSet consultarIDInterm(){
          ResultSet rs = null;
@@ -337,17 +327,6 @@ public class QuerysVentas {
          return rs;
         }
         
-         public ResultSet tablaCliente(){
-         ResultSet rs = null;
-         try{
-          openDB();
-          Statement st=conn.createStatement();
-          rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
-         return rs;
-        } 
          
         public boolean agregarOrdenVenta(OrdenVenta ov) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
@@ -369,7 +348,7 @@ public class QuerysVentas {
             return agregado;
         }
         
-          public boolean agregarFactura(Factura fac) throws SQLException, ClassNotFoundException{
+        public boolean agregarFactura(Factura fac) throws SQLException, ClassNotFoundException{
             boolean agregado=false;
             Genera_IDs fact = new Genera_IDs();
             openDB();
@@ -390,7 +369,7 @@ public class QuerysVentas {
         }
          
          
-          public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
         openDB();
         int valor=1;
         PreparedStatement ps;
@@ -400,7 +379,7 @@ public class QuerysVentas {
         return valor;
     }
           
-             public ResultSet consultaProducto() throws SQLException, ClassNotFoundException{
+        public ResultSet consultaProducto() throws SQLException, ClassNotFoundException{
          
                  openDB();
                   PreparedStatement ps;
@@ -414,4 +393,91 @@ public class QuerysVentas {
                     closeDB();
                   return rs;
         }
+        //....................................KENIA MODULO VENTAS..............................................
+        public Integer insertar(String campos, String tabla, String valores) throws SQLException {
+        openDB();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO "+tabla+" ("+campos+") VALUES ("+valores+")");
+        Integer rs = ps.executeUpdate();
+        closeDB();
+        return rs;
+    }
+     
+        public ResultSet tablaCliente(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          /**rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
+          */
+          rs=st.executeQuery("SELECT * FROM cliente");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        public ResultSet consultarIDEMP(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("select id_emprc, nombre_emp from empresa_cliente");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        public ArrayList consulta(String campos, String tabla, String condicion, int cantidad) throws SQLException {
+        openDB();
+        ArrayList r=new ArrayList();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("SELECT "+campos+" FROM "+tabla+" WHERE "+condicion);
+        ResultSet rs= ps.executeQuery();        
+            while(rs.next()){
+                for(int i = 1 ; i <= cantidad ; i++){
+                    r.add(rs.getObject(i));
+                }
+                
+            }
+            
+        
+        closeDB();        
+        return r;
+    }
+        public Integer borrar(String tabla, String referencia) throws SQLException {
+        openDB();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("DELETE FROM "+tabla+" WHERE "+referencia);
+        Integer rs = ps.executeUpdate();
+        closeDB();
+        return rs;
+    }
+        
+    /**
+     * este metodo permite actualizar datos de cualquier tabla
+     * @param campos
+     * @param tabla
+     * @param referencia
+     * @return
+     * @throws SQLException 
+     */
+    
+    public Integer actualizar(String campos, String tabla, String referencia) throws SQLException {
+        openDB();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("UPDATE "+tabla+" SET "+campos+" WHERE "+referencia);
+        Integer rs = ps.executeUpdate();
+        closeDB();
+        return rs;
+    }
+    
+        
+        
+         
+        //..................................................................................................
+
+    
+       
+
+   
 }

@@ -1,22 +1,20 @@
+<%-- 
+    Document   : ErrorCliente
+    Created on : 18/04/2019, 08:57:54 PM
+    Author     : asus
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if(request.getSession().getAttribute("usuario") == null){
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Ventas")&&!request.getSession().getAttribute("area").equals("Gerencia")){
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
+<% String motivo = (String) request.getSession().getAttribute("motivo"); %>
 <!DOCTYPE html>
 <html>
-    <head>
+     <head>
+        <title>Ventas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/VenEstilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/VenLaterales.css" rel="stylesheet" type="text/CSS">
-        <link rel="stylesheet" type="text/css" href="../css/VenTabla.css">
+        <link rel="stylesheet" type="text/css" href="../css/VenTablacliente.css">
         <link href="../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
@@ -25,15 +23,15 @@
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Ventas/VenGeneral.js"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
+        <script src="../js/Ventas/muestraModales.js"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
         
     </head>
-    <body style="width:100%; height:100%;">
-
-        <!-- BARRA NAV -->
-        <header class="sticky-top"> 
+   
+     <body style="width:100%; height:100%;">
+         <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
-                <a class="navbar-brand" style="color: white;" href="#"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span></button>
 
@@ -53,7 +51,7 @@
                                 <a class="dropdown-item" href="ventaContado.jsp" style="color: white">Venta neta</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                       <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="ReporteFactura.jsp" style="color: white">Factura</a>
@@ -61,16 +59,30 @@
                         </li>
                         <li class="nav-item">
                             <a href="Cobros.jsp" class="nav-link" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cobros.png" /><p>Cobros</p></a>
-                            
                         </li>
                     </ul>
                     <!--
+                    <form class="form-inline my-2 my-lg-0">
+                        <select class="form-control" id="tipoBusqueda">
+                            <optgroup label="Elige tipo">
+                                <option value="select">Selecciona</option>
+                                <option value="id">Por ID</option>
+                                <option value="nombre">Por nombre</option>
+                                <option value="rfc">Por RFC</option>
+                                <option value="estado">Por Estado</option>
+                                <option value="municipio">Por Municipio</option>  
+                            </optgroup>
+                        </select>&nbsp;&nbsp;
+                        <input class="form-control mr-sm-2" type="search" id="busc" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-dark" style="color: white" onclick="buscar()" type="submit">Buscar</button>
+                    </form>
+                    -->
                     <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link text-white" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                        <script src="../js/gerencia.js"></script>
+                        <a href="com_ayuda.jsp" class="nav-link text-white" target="_blank" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_ayuda.png" /><p>Ayuda</p></a>
                     </li>
+                    <!--
                     <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link text-white" href="../Gerencia/IG/ig_inicio.jsp" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png">Gerencia</a>                                
+                        <a id="btn_gerencia" class="nav-link" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
                         <script src="../js/gerencia.js"></script>
                     </li>
                     -->
@@ -80,23 +92,32 @@
                 </div>
             </nav>
         </header>
-
-
-        <!-- CONTENIDO-->
-
+        <!---------------Seccion Central------------->
         <div class="container-fluid contenido">
-            <center>
-                <div class="col-lg-8 col-md-8 col-sm-5 col-xs-5 jumbotron">
-                    <h2 class="display-4">M&oacute;dulo de Ventas</h2>
-                    <hr class="my-2">
-                    <img class="ic" border="dropdown-toggle0" height="200" width="800" src="../archivos/img/ventas.gif"/>
-                    <p>Ventas, Reportes, facturas y administración de clientes.</p>
-                    <a class="btn btn-primary btn-lg" href="ventaContado.jsp" style="background-color:#0174DF" role="button">Realiza una venta</a>
-
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
                 </div>
-            </center>
-
-
-        </div>        
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="form-style-5">
+                        <div class="col-xs-12 col-md-12">
+                            <center><span id="titulo"></span><h1>ERROR</h1></center>
+                            <img class="ic" border="dropdown-toggle0" height="70" width="70" src="../archivos/img/equis.png"/>
+                        </div>
+                        <div class="col-xs-12 col-md-12" id="motivo" name="motivo">
+                            <center><h5><%= motivo.toString() %></h5></center>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-xs-12 col-md-12">
+                            <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="AgregarCliente.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
+                </div>
+            </div>
+        </div>
     </body>
 </html>

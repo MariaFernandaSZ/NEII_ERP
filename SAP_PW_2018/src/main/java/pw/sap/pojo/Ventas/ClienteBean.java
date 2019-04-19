@@ -38,6 +38,10 @@ public class ClienteBean {
         this.postalDomEmpresa = postalDomEmpresa;
     }
 
+    public ClienteBean(String nombreCliente, String direccion, String cp, String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * @return the nombreEmpresa
      */
