@@ -13,6 +13,7 @@
     <head>
         <title>Principal</title>
         <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
@@ -89,7 +90,7 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a href="" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/factura.png" /><p>Inicio</p></a>                        </li>
+                            <a href="" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/factura.png" /><p>Facturas</p></a>                        </li>
                     </ul>
                 </div>
                 
@@ -106,6 +107,102 @@
         </header>
         
         <div id="principal">
+            
+            <div class="row">
+                
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
+
+                    <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
+                    </div>
+                    <div class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <input class="text-center form-control" type="text" id="fecha" size="6"  style="width:100%;" disabled>
+                    </div>
+                    <div  class="row" style="margin-left: 5%; margin-right: 5%;">
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        
+                                               
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de proveedores:</label> 
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="30%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                             <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8"> Total de Ordenes:</label>
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo" style="width: 100%;"> 
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                          <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de devoluciones:</label> 
+                          <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="30%" name="PorcenComP" id="PorcenComP" style="width: 100%;">     
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                        <div class="row">
+                           <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de facturas:</label>
+                           <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenVenP" id="PorcenVenP" style="width: 100%;">    
+                        </div>
+                        <div class="row"> 
+                            <br>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    
+                    <div>
+                                <div><table>
+                                
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">total productos</th>
+                                            </tr>
+                                        </thead>
+                                        <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.PagPrinc"/>
+                                    <%
+                                        ResultSet rsTabla = interTabla.prinProd();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                        
+                                </table>
+                                
+                            </div>
+                        </div>
+                    
+                    <div class="row">
+                        <br>
+                    </div>
+                    <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Estadísticas </h2>  
+                        <br>
+                        <canvas id="gCompras" width="100%" height="30px"></canvas>
+                        <br>
+                        <script type="text/javascript" src="../graficasC/graficaCompras.js"></script>
+                    </div>
+                </div>
+                
+            </div>
             
         </div>
         

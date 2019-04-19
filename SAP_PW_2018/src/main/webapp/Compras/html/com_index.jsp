@@ -118,7 +118,7 @@
                            <br>
                             <input type="number" name="codprod" placeholder="Código" id="codprod" required>
                                                        
-                            <center><input type="submit" value="Eliminar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>
+                            <center><input type="submit" value="Eliminar" style="background-color: #3498DB" name="Buscar" class="btn btn-danger"></center>
                             <br>
                         </form>
 
@@ -127,7 +127,7 @@
                             <br><br>
                             <input type="number" name="codprod" placeholder="Código" id="codprod" required>
                             
-                            <center><input type="submit" value="Consultar" style="background-color: #9F150D" name="Buscar" class="btn btn-danger"></center>                          
+                            <center><input type="submit" value="Consultar" style="background-color: #3498DB" name="Buscar" class="btn btn-danger"></center>                          
                         </form>
                         <br>
                          <!--<form method="POST" action="com_prod.html" onsubmit="return vali_codigo();">
