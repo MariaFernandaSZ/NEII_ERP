@@ -63,7 +63,7 @@
     height:35px;
 }
 .form-style-5 .number {
-    background: #9F150D;
+    background: #4E70B8;
     color: #fff;
     height: 30px;
     width: 30px;
@@ -98,7 +98,18 @@
 
 .idemp{
     height: 35px;
-    width: 100px;
+    width: 120px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    
+}
+.codbar{
+    height: 35px;
+ 
     display: inline-block;
     font-size: 0.8em;
     margin-right: 4px;

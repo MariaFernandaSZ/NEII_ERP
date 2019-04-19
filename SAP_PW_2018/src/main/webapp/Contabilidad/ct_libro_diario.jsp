@@ -43,7 +43,7 @@
                         </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Abrobaciones
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Aprobaciones
                             </a>
                             <div class="dropdown-menu" id="submenu">
                                 <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
@@ -73,9 +73,12 @@
                 </div>
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
+                         
+                        <center> <img class="imagen" border="0" height="auto" width="40%" src="../archivos/img/img_logo_2.png" /> </center>
+                      
                         <div class="form-style-5">
-                            <span id="titulo"><span class="number">1</span>Libro diario</span>
-                            <form action="../LibroDiarioConsulta" onsubmit="return diario();" method="POST">
+                            <span id="titulo"><h4>Libro diario</h4></span> <br>
+                            <form action="ct_libro_diario_1.jsp" method="POST">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                         M&oacute;dulo:
@@ -107,11 +110,12 @@
                                     </div>    
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="submit" value="Consultar"> 
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
+                                    <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
+                                          style="background-color: #818B9F" value="Mostrar">                                  
                                     </div>      
-                                </div>           
-                            </form>    
+                                </div> 
+                            </form>   
                         </div> 
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->
@@ -126,13 +130,7 @@
                             </table> 
                             <br/>
                         </div>
-                    </div>
-                    <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
-                        <table style="width:100%;height:100%;">                                        
-                            <tr><td colspan="2">Informaci&oacute;n de la empresa</td></tr>
-                            <tr><td colspan="2"><img src="" alt="logo de la empresa"></td></tr>
-                        </table>
-                    </div>    
+                    </div>   
                 </div>
             </div> 
         </div>
