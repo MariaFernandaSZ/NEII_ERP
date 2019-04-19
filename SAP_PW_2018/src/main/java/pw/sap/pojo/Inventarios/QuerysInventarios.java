@@ -205,7 +205,7 @@ public class QuerysInventarios {
 //                    if (producto != null) {
                                                     ps = conn.prepareStatement("select ord_folio,  prov_nom_emp, ord_codpro, ord_cantida, ord_fecha \n" +
 "from orden_compra \n" +
-"inner join proveedor on orden_compra.prov_rfc = proveedor.prov_rfc where estatus=0" );
+"inner join proveedor on orden_compra.prov_rfc = proveedor.prov_rfc" );
                                                     ResultSet rs= ps.executeQuery();
                                                       System.out.println(ps);
                     
