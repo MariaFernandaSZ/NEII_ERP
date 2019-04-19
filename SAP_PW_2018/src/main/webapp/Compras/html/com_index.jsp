@@ -199,7 +199,7 @@
                             <input type="text" name="provproducto" placeholder="Proveedor" id="proveedor" required>
                             <input type="number" name="maxproducto" placeholder="Máximo en inventario" id="max_inventario" required>
                             <input type="number" name="minproducto" placeholder="Mínimo en inventario" id="min_inventario" required>
-                            <center><input type="submit" value="Agregar" style="background-color: #9F150D" name="nuevo" class="btn btn-danger"></center>                       
+                            <center><input type="submit" value="Agregar" style="background-color: #3498DB" name="nuevo" class="btn btn-danger"></center>                       
                         </form>
                     </div> 
                         

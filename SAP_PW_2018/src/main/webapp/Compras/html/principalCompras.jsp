@@ -108,7 +108,7 @@
         
         <div id="principal">
             
-            <div class="row">
+            <div class="row justify-content-center">
                 
                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 container-fluid" style="background-color: #f8f8f8;" ><!-- Seccion central (Visualizar tarea) -->
 
@@ -118,55 +118,15 @@
                     <div class="row" style="margin-left: 5%; margin-right: 5%;">
                         <input class="text-center form-control" type="text" id="fecha" size="6"  style="width:100%;" disabled>
                     </div>
-                    <div  class="row" style="margin-left: 5%; margin-right: 5%;">
-                        <div class="row"> 
-                            <br>
-                        </div>
-                        
-                                               
-                        <div class="row"> 
-                            <br>
-                        </div>
-                        <div class="row">
-                            <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de proveedores:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="30%" name="PorcenProP" id="PorcenMerm" style="width: 100%;">
-                        </div>
-                        <div class="row"> 
-                            <br>
-                        </div>
-                        <div class="row">
-                             <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8"> Total de Ordenes:</label>
-                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenProP" id="PorcenDevo" style="width: 100%;"> 
-                        </div>
-                        <div class="row"> 
-                            <br>
-                        </div>
-                        <div class="row">
-                          <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de devoluciones:</label> 
-                          <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="30%" name="PorcenComP" id="PorcenComP" style="width: 100%;">     
-                        </div>
-                        <div class="row"> 
-                            <br>
-                        </div>
-                        <div class="row">
-                           <label class="form-check-label col-lg-8 col-md-8 col-sm-8 col-xs-8">Total de facturas:</label>
-                           <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="PorcenVenP" id="PorcenVenP" style="width: 100%;">    
-                        </div>
-                        <div class="row"> 
-                            <br>
-                        </div>
-                    </div>
+                    
                     <br>
-                </div>
-                
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
                     
                     <div>
-                                <div><table>
+                        <div><table>
                                 
                                         <thead>
                                             <tr>
-                                                <th scope="col">total productos</th>
+                                                <th class="bg-info" scope="col" style="text-align: center">total productos</th>
                                             </tr>
                                         </thead>
                                         <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.PagPrinc"/>
@@ -178,7 +138,7 @@
                                             while (rsTabla.next()) {
                                         %>
                                         <tr id="modalInter">
-                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td class="table-success" style="text-align: center"><%=rsTabla.getString(1)%></td>
                                         </tr>
                                         <%
                                             }
@@ -188,11 +148,97 @@
                                 </table>
                                 
                             </div>
+                                    
+                                    <br>
+                                    <div><table>
+                                
+                                        <thead>
+                                            <tr>
+                                                <th class="bg-info" scope="col" style="text-align: center">total Proveedores</th>
+                                            </tr>
+                                        </thead>
+                                        <jsp:useBean id="interTablaP" scope="page" class="pw.sap.pojo.Compras.PagPrinc"/>
+                                    <%
+                                        ResultSet rsTablaP = interTablaP.prinProv();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaP.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td class="table-success" style="text-align: center"><%=rsTablaP.getString(1)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                        
+                                </table>
+                                
+                            </div>
+                                    <br>
+                                    <div><table>
+                                
+                                        <thead>
+                                            <tr>
+                                                <th class="bg-info" scope="col" style="text-align: center">total Ordenes de Compra</th>
+                                            </tr>
+                                        </thead>
+                                        <jsp:useBean id="interTablaOC" scope="page" class="pw.sap.pojo.Compras.PagPrinc"/>
+                                    <%
+                                        ResultSet rsTablaOC = interTablaP.prinOC();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaOC.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td class="table-success" style="text-align: center"><%=rsTablaOC.getString(1)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                        
+                                </table>
+                                
+                            </div>
+                                    <br> 
+                                    <div><table>
+                                
+                                        <thead>
+                                            <tr>
+                                                <th class="bg-info" scope="col" style="text-align: center">total Facturas</th>
+                                            </tr>
+                                        </thead>
+                                        <jsp:useBean id="interTablaF" scope="page" class="pw.sap.pojo.Compras.PagPrinc"/>
+                                    <%
+                                        ResultSet rsTablaF = interTablaF.prinFac();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaF.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td class="table-success" style="text-align: center"><%=rsTablaF.getString(1)%></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                        
+                                </table>
+                                
+                            </div>
+                                    
                         </div>
                     
-                    <div class="row">
-                        <br>
-                    </div>
+                </div>
+                
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+                    
+                    <br>
+                    
                     <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
                         <h2 class="titulos text-center" style="width: 100%;">Estadísticas </h2>  
                         <br>

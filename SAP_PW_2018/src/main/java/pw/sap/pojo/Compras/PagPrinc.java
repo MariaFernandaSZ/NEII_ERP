@@ -53,5 +53,59 @@ public class PagPrinc {
           
                   
         }
+     
+     public ResultSet prinProv() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                  
+                                                    ps = conn.prepareStatement("select count(*) from proveedor");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         
+                    
+                    
+          
+                  
+        }
+     
+      public ResultSet prinOC() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                  
+                                                    ps = conn.prepareStatement("select count(*) from orden_compra");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         
+                    
+                    
+          
+                  
+        }
+      
+       public ResultSet prinFac() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                  
+                                                    ps = conn.prepareStatement("select count(*) from factura");
+                                                    ResultSet rs= ps.executeQuery();
+                                                      System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+         
+                    
+                    
+          
+                  
+        }
     
 }
