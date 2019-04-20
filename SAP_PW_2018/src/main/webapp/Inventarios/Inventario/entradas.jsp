@@ -192,12 +192,14 @@
                                     %>
                                 </tbody>
                             </table>
+                            <br>
+                            <h2 class="titulos text-center" style="width: 100%;">Lotes</h2>  
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">Lote</th>
-                                        <th scope="col">id_compra</th>
-                                        <th scope="col">fecha_ingreso</th>      
+                                        <th scope="col">Orden de compra</th>
+                                        <th scope="col">Fecha de Ingreso</th>      
                                     </tr>
                                 </thead>
                                 <%
@@ -208,9 +210,9 @@
                                         while (rs.next()) {
                                     %>
                                     <tr id="modalInter">
+                                        <td><%=rs.getString(3)%></td>
                                         <td><%=rs.getString(1)%></td>
                                         <td><%=rs.getString(2)%></td>
-                                        <td><%=rs.getString(3)%></td>
                                     </tr>
                                     <%
                                         }
