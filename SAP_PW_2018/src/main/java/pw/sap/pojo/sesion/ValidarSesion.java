@@ -15,7 +15,7 @@ public class ValidarSesion {
                 path = "Inventarios/Inventario/principal.jsp";
                 break;
             case "Compras":
-                path = "Compras/html/com_index.jsp";
+                path = "Compras/html/principalCompras.jsp";
                 break;
             case "Ventas":
                 path = "Ventas/mainVentas.jsp";

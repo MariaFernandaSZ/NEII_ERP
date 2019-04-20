@@ -40,7 +40,7 @@ public class registro {
         PreparedStatement ps;
 
         ps = conn.prepareStatement("INSERT INTO merma(id_producto,fecha_merma,tipo_merma,cantidad_merma,motivo) "
-                + " VALUES ('" + codigo + "','now()','" + tipo + "'," + cantidad + ",'" + motivo + "')");
+                + " VALUES ('" + codigo + "','"+fecha+"','" + tipo + "'," + cantidad + ",'" + motivo + "')");
         valor = ps.executeUpdate();
 
         System.out.println(ps);

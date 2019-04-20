@@ -40,9 +40,11 @@ public class insertar_merma extends HttpServlet {
         System.out.println(l.get(0));
 
         int cantidad_prod = Integer.parseInt((String) l.get(0));
-        int cantidad_merma = Integer.parseInt(request.getParameter("cant_mer"));
+        int cantidad_merma = Integer.parseInt(cantidad);
         String total = String.valueOf(cantidad_prod - cantidad_merma);
         if (cantidad_merma <= cantidad_prod) {
+            
+            
 
             rg.agregarMerma(codigo, fecha, tipo, cantidad, motivo);
             PrintWriter out = response.getWriter();
