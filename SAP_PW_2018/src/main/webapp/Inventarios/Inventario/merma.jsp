@@ -138,24 +138,11 @@
                                 <tr>
                             <form action="../../eliminarMerma" method="POST" onsubmit="return EliminarMe()">
                                 <td>
-                                    <input class="form-control" style="margin-left: 20px; width: 90%;" type="text" name="id_merma"  id="id_merma" placeholder="ID de Merma" maxlength="7" pattern="[0-9]{7}" title="El id de orden de merma debe ser de 7 digitos (n&uacute;meros)" required="required"></td>
+                                    <input class="form-control" style="margin-left: 20px; width: 90%;" type="text" name="id_merma"  id="id_merma" placeholder="ID de Merma"  title="El id de orden de merma debe ser de 7 digitos (n&uacute;meros)" required="required"></td>
                                 <td>
                                     <input style="width: 100%;" type="submit" name="EliminaM" class="btn btn-secondary mx-auto" value="Eliminar" />
                                 </td>
                             </form>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label style="margin-left: 20px; width: 90%;" class="form-check-label">Consulta Especifica:</label>
-                                </td>
-                                <td>
-                                    <button  style="width: 100%;" class="btn btn-secondary form-control" type="button" name="ConEsIG" data-toggle="modal" data-target="#ConsultaIG" >Consulta</button>
-                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -240,7 +227,7 @@
                                     </td>
                                     <tr>
                                         <td>Id de producto:</td>
-                                        <td><input  class="form-control" type="text" name="id_producto" id="id_producto" placeholder="0000000000" maxlength="7" pattern="[0-9]{7}" title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/></td>
+                                        <td><input  class="form-control" type="text" name="id_producto" id="id_producto"/></td>
                                     </tr>
                                     <td colspan="2">
                                         <h2 class="text-center" style="width: 100%;">Inserte datos</h2> 
@@ -327,7 +314,7 @@
                                     </td>
                                     <tr>
                                         <td>ID de merma:</td>
-                                        <td><input  class="form-control" type="text" name="id_merma" id="id_merma" placeholder="0000000000" maxlength="7" pattern="[0-9]{7}" title="El id de merma debe ser de 7 digitos (n&uacute;meros)"/></td>
+                                        <td><input  class="form-control" type="text" name="id_merma" id="id_merma" title="El id de merma debe ser de 7 digitos (n&uacute;meros)"/></td>
                                     </tr>
                                     <td colspan="2">
                                         <h2 class="text-center" style="width: 100%;">Inserte datos a modificar</h2> 
