@@ -56,7 +56,6 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="com_proveedor.jsp" style="color: white;">Proveedores</a><span class="sr-only"></span>
                                 <a class="dropdown-item" href="com_Contratos.jsp" style="color: white;">Contratos</a><span class="sr-only"></span>
-                                <a class="dropdown-item" href="com_DevolP.jsp" style="color: white;">Devoluci&oacute;n Proveedor</a><span class="sr-only">(current)</span>
                             </div>
                         </li>
                         
@@ -84,6 +83,79 @@
                 
             </nav>
         </header>
+        
+        <div id="principal">
+            
+            <div class="row justify-content-center">
+                
+                <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="30%" src="../../archivos/img/img_logo_2.png" />
+                    </div>
+        
+        <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
+                        
+                        
+                                   
+                            
+                            <span id="titulo"><span class="number">1</span>Requisición</span><br>
+                            <div class="row">
+                                <div class="table-responsive"><table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID&nbsp;Requisici&oacute;n</th>
+                                                <th scope="col">Código&nbsp;del&nbsp;producto</th>
+                                                <th scope="col">Cantidad</th>
+
+                                            </tr>
+                                        </thead>
+                                        
+                                        <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Compras.QuerysCompras"/>
+                                        <%
+                                        ResultSet rsTabla = interTabla.tablaReq();
+                                        
+                                        %>
+                                        
+                                        <tbody>
+                                            <%
+                                                while(rsTabla.next()){
+                                            %>
+                                            <tr id="modalInter">
+                                                <td><%=rsTabla.getString(1)%></td>
+                                                <td><%=rsTabla.getString(2)%></td>
+                                                <td><%=rsTabla.getString(3)%></td>
+                                                
+                                                
+                                            </tr>
+                                            
+                                            <%
+                                            }
+                                            %>
+                                            
+                                            
+                                        </tbody>
+
+                                    </table></div> </div>   
+                        <hr>
+                        
+                        
+                        
+                        
+                        <form method="POST" onsubmit="return vali_nuevoproducto();" name="eliminarReq" action="../../eliminarReq">
+                        <div>
+                                                
+                        <input type="text" name="req_folio" placeholder="Folio de requisición a eliminar" id="req_folio" required/>
+                        <center><input type="submit" value="Aceptada" style="background-color: #3498DB" name="acep" class="btn btn-danger"/></center>
+                                                
+                    </div>
+                        </form>
+                        
+                        
+                        
+                        
+                    </div> 
+            </div>
+        </div>
+                                            
         
         
         

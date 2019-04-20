@@ -52,7 +52,6 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="com_proveedor.jsp" style="color: white;">Proveedores</a><span class="sr-only"></span>
                                 <a class="dropdown-item" href="com_Contratos.jsp" style="color: white;">Contratos</a><span class="sr-only"></span>
-                                <a class="dropdown-item" href="com_DevolP.jsp" style="color: white;">Devoluci&oacute;n Proveedor</a><span class="sr-only">(current)</span>
                             </div>
                         </li>
                         
