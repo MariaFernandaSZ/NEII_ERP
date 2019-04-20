@@ -1,7 +1,10 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pw.sap.servlets.Ventas;
 
-import pw.sap.servlets.Ventas.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -12,15 +15,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.pojo.Ventas.ExcelReportes;
+import javax.servlet.http.HttpSession;
+import pw.sap.pojo.Ventas.QuerysVentas;
 
-
-@WebServlet(name = "reporte", urlPatterns =
-{
-    "/reporte"
-})
-public class reporte extends HttpServlet
-{
+/**
+ *
+ * @author asus
+ */
+@WebServlet(name = "ActualizarCliente", urlPatterns = {"/ActualizarCliente"})
+public class ActualizarCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,20 +35,28 @@ public class reporte extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException
-    {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
-        {
-            ExcelReportes excr = new ExcelReportes();
-            excr.crearExcelNuevo();
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<script>");
-            out.println("alert('Reporte Generado Corectamente!!');");
-            out.print("window.location='Ventas/RVentasF.jsp'");
-            out.println("</script>");
-        }
+         HttpSession sesion = request.getSession(true);
+         
+         QuerysVentas c = new QuerysVentas();
+
+        String cliente = request.getParameter("idcli");
+        String nombreCliente = request.getParameter("nomCli");
+        String direccion = request.getParameter("direc");
+        String cp = request.getParameter("cp");
+        String email = request.getParameter("email");
+        String estatus = request.getParameter("estatus");
+         
+        
+        
+    c.actualizar("nombre = '"+nombreCliente+"', direccion = '"+direccion+"',cp = '"+cp+"',email = '"+email+"',estatus = '"+estatus+"'"
+                ,"cliente", "id_cliente = "+cliente);
+        
+         response.sendRedirect("Ventas/AgregarCliente.jsp");
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,17 +70,13 @@ public class reporte extends HttpServlet
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        try
-        {
+            throws ServletException, IOException {
+        try {
             processRequest(request, response);
-        } catch (ClassNotFoundException ex)
-        {
-            Logger.getLogger(reporte.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(reporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ActualizarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ActualizarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -83,17 +90,13 @@ public class reporte extends HttpServlet
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        try
-        {
+            throws ServletException, IOException {
+        try {
             processRequest(request, response);
-        } catch (ClassNotFoundException ex)
-        {
-            Logger.getLogger(reporte.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(reporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ActualizarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ActualizarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -103,8 +106,7 @@ public class reporte extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

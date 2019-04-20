@@ -1,22 +1,14 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if(request.getSession().getAttribute("usuario") == null){
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Ventas")&&!request.getSession().getAttribute("area").equals("Gerencia")){
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Ventas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/VenEstilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/VenLaterales.css" rel="stylesheet" type="text/CSS">
-        <link rel="stylesheet" type="text/css" href="../css/VenTabla.css">
+        <link rel="stylesheet" type="text/css" href="../css/VenTablacliente.css">
         <link href="../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
@@ -25,13 +17,12 @@
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Ventas/VenGeneral.js"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
+        <script src="../js/Ventas/muestraModales.js"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
         
     </head>
     <body style="width:100%; height:100%;">
-
-        <!-- BARRA NAV -->
-        <header class="sticky-top"> 
+       <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,21 +80,5 @@
                 </div>
             </nav>
         </header>
-        <!-- CONTENIDO-->
-
-        <div class="container-fluid contenido">
-            <center>
-                <div class="col-lg-8 col-md-8 col-sm-5 col-xs-5 jumbotron">
-                    <h2 class="display-4">M&oacute;dulo de Ventas</h2>
-                    <hr class="my-2">
-                    <img class="ic" border="dropdown-toggle0" height="200" width="800" src="../archivos/img/ventas.gif"/>
-                    <p>Ventas, Reportes, facturas y administración de clientes.</p>
-                    <a class="btn btn-primary btn-lg" href="Ordenventa.jsp" style="background-color:#0174DF" role="button">Realiza una venta</a>
-
-                </div>
-            </center>
-
-
-        </div>        
     </body>
 </html>
