@@ -109,13 +109,18 @@
                             <input type="text" id="direc" name="direc" placeholder="Dirección">
                             <input type="text" onkeypress="return SoloNumeros(event)" id="cp" name="cp" placeholder="C&oacute;digo postal">
                             <input type="text" id="email" name="email" placeholder="Email">
+                            <select type="text" id="estatus" name="estatus" placeholder="Estatus">
+                                <option value="">Selecionar Estatus...</option>
+                                <option value="Activo">Activo</option> 
+                                <option value="No activo">No activo</option>
+                            </select>
                             <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
                         </form>
                     </div>
                 </div>
 
                 <!-- Seccion central TABLA -->
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                     <div class="table-responsive">
                          <center><h2>Clientes Registrados</h2></center>
                         <br>
@@ -127,6 +132,7 @@
                                     <th scope="col">Dirección</th>
                                     <th scope="col">C.P</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Estatus</th>
                                 </tr>
                             </thead>
                             <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
@@ -144,6 +150,7 @@
                                     <td><%=rsTabla.getString(3)%></td>
                                     <td><%=rsTabla.getString(4)%></td>
                                     <td><%=rsTabla.getString(5)%></td>
+                                    <td><%=rsTabla.getString(6)%></td>
                                 </tr>
                                     <%
                                         }
@@ -155,7 +162,7 @@
                 </div>
                             
                 <!-- Seccion derecha -->
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <div class="form-style-5">
                         <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Cliente</span>
                         <br>

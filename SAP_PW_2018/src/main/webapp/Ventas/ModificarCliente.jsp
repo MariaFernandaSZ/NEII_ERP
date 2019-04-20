@@ -109,6 +109,11 @@
                             <input type="text" id="direc" name="direc" value="<%= lista.get(2) %>"placeholder="Dirección">
                             <input type="text" onkeypress="return SoloNumeros(event)" id="cp" name="cp" value="<%= lista.get(3) %>"placeholder="C&oacute;digo postal">
                             <input type="text" id="email" name="email" value="<%= lista.get(4) %>" placeholder="Email">
+                            <select type="text" id="estatus" name="estatus" value="<%= lista.get(5) %>" placeholder="Estatus">
+                                <option value="">Selecionar Estatus...</option>
+                                <option value="Activo">Activo</option> 
+                                <option value="No activo">No activo</option>
+                            </select>
                             <center><button type="submit" style="background-color:#045FB4" name="modificar" class="btn btn-primary">Modificar</button></center>
                         </form>
                     </div>

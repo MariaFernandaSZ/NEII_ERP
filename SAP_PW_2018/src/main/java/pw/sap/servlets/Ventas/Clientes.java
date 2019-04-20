@@ -48,8 +48,9 @@ public class Clientes extends HttpServlet {
         String direccion = request.getParameter("direc");
         String cp = request.getParameter("cp");
         String email = request.getParameter("email");
+        String estatus = request.getParameter("estatus");
         
-        c.insertar("nombre,direccion,cp,email","cliente","'"+nombreCliente+"','"+direccion+"',"+cp+",'"+email+"'");
+        c.insertar("nombre,direccion,cp,email,estatus","cliente","'"+nombreCliente+"','"+direccion+"',"+cp+",'"+email+"','"+estatus+"'");
         
         response.sendRedirect("Ventas/AgregarCliente.jsp"); 
         

@@ -43,7 +43,7 @@ public class BuscarIDcliente extends HttpServlet {
         QuerysVentas c = new QuerysVentas();
         String cliente = request.getParameter("IDcli");
         
-        ArrayList lista = c.consulta("id_cliente,nombre,direccion,cp,email","cliente", "id_cliente = "+cliente, 5);
+        ArrayList lista = c.consulta("id_cliente,nombre,direccion,cp,email,estatus","cliente", "id_cliente = "+cliente, 6);
         if(!lista.isEmpty()){
             request.getSession().setAttribute("cliente",lista);
        

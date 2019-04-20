@@ -46,10 +46,11 @@ public class ActualizarCliente extends HttpServlet {
         String direccion = request.getParameter("direc");
         String cp = request.getParameter("cp");
         String email = request.getParameter("email");
+        String estatus = request.getParameter("estatus");
          
         
         
-    c.actualizar("nombre = '"+nombreCliente+"', direccion = '"+direccion+"',cp = '"+cp+"',email = '"+email+"'"
+    c.actualizar("nombre = '"+nombreCliente+"', direccion = '"+direccion+"',cp = '"+cp+"',email = '"+email+"',estatus = '"+estatus+"'"
                 ,"cliente", "id_cliente = "+cliente);
         
          response.sendRedirect("Ventas/AgregarCliente.jsp");

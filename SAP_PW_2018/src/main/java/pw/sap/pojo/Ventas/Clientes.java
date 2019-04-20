@@ -15,6 +15,17 @@ public class Clientes {
     String direccion;
     String cp;
     String email;
+    String estatus;
+
+    public String getEstatus() {
+        return estatus;
+    }
+    
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
+    
 
     public void setId(int id) {
         this.id = id;
