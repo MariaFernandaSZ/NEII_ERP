@@ -11,8 +11,9 @@
 %>
 <html>
     <head>
-        <title>Compras</title>
+        <title>Principal</title>
         <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
@@ -21,49 +22,66 @@
         <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>       
+        <link href="../../css/estilosMax.css" rel="stylesheet" type="text/CSS">
+
         <script src="../js/validaciones.js"></script>
     </head>
-    <body>
-        <!-- BARRA NAVEGACIÓN-->
+    <body onload="fecha();">
         <!-- BARRA NAVEGACIÓN-->
         <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
-            <nav class="navbar navbar-expand-lg navbar-light barra">
-                <a class="navbar-brand text-white" ><h3>Compras</h3></a>
+            <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal">
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="com_index.jsp" style="color: white">Productos</a>
+                            <a href="principalCompras.jsp" class="nav-link text-white"  aria-haspopup="true" aria-expanded="false"><h4>Modulo<br>Compras</h4></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="com_proveedor.jsp" style="color: white">Proveedores</a>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"><img class="ic"  border="0" height="25" width="25" src="../../archivos/img/producto.png" /><p class="dropdown-toggle">Productos</p></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="com_index.jsp" style="color: white;">Productos</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="com_Cotizaciones.jsp" style="color: white;">Cotizaciones</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="com_Cat.jsp" style="color: white;">Categorias</a><span class="sr-only">(current)</span>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="CompraOrden.jsp" style="color: white">Orden&nbsp;de&nbsp;compra</a>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"><img class="ic"  border="0" height="25" width="25" src="../../archivos/img/proveedor.png" /><p class="dropdown-toggle">Proveedores</p></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="com_proveedor.jsp" style="color: white;">Proveedores</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="com_Contratos.jsp" style="color: white;">Contratos</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="com_DevolP" style="color: white;">Devoluci&oacute;n Proveedor</a><span class="sr-only">(current)</span>
+                            </div>
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="enviarOrden.jsp" style="color: white">Enviar Orden&nbsp;de&nbsp;compra</a>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white"  data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false"><img class="ic"  border="0" height="25" width="25" src="../../archivos/img/ordenCompra.png" /><p class="dropdown-toggle">Orden de Compra</p></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="CompraOrden.jsp" style="color: white;">Orden de compra</a><span class="sr-only"></span>
+                                <a class="dropdown-item" href="" style="color: white;">Cancelación Orden</a><span class="sr-only">(current)</span>
+                            </div>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="com_listadecom.jsp" style="color: white">Lista&nbsp;de&nbsp;compras</a>
-                        </li> 
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="com_ayuda.jsp" target="_blank" style="color: white">Ayuda(?)</a>
-                        </li>     
-                        <li class="nav-item">
-                            <a id="btn_gerencia" class="nav-link" href="../../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                            <script src="../../js/gerencia.js"></script>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../CerrarSesion"  style="color: white">Salir</a>
-                        </li>
+                            <a href="com_facturas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/factura.png" /><p>Facturas</p></a>                        </li>
                     </ul>
                 </div>
+                
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="ayuda.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_ayuda.png" /><p>Ayuda(?)</p></a>                       
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../CerrarSesion" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_salir.png" /><p>Salir</p></a>                       
+                    </li>
+                </ul>
+                
             </nav>
         </header>
 
@@ -125,7 +143,7 @@
                         <div>
                                                 
                         <input type="text" name="req_folio" placeholder="Folio de requisición a eliminar" id="req_folio" required/>
-                        <center><input type="submit" value="Aceptada" style="background-color: #9F150D" name="acep" class="btn btn-danger"/></center>
+                        <center><input type="submit" value="Aceptada" style="background-color: #3498DB" name="acep" class="btn btn-danger"/></center>
                                                 
                     </div>
                         </form>
@@ -185,7 +203,7 @@
                         </tr> 
                        
                     </table>
-                        <button type="submit" style="background-color: #9F150D" name="requisitos" class="btn btn-danger">Ingresar</button>
+                        <button type="submit" style="background-color: #3498DB" name="requisitos" class="btn ">Ingresar</button>
                     </div>
                 </div>
                             </div>      
@@ -238,7 +256,7 @@
                                     <input type="number" name="codproducto" placeholder="Código" id="codproducto" required>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="submit" value="Hecho" style="background-color: #9F150D" name="hecho" class="btn btn-danger"/>
+                                    <input type="submit" value="Hecho" style="background-color: #3498DB" name="hecho" class="btn btn-danger"/>
                                 </div> 
 
                             </div>
