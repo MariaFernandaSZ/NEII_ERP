@@ -33,7 +33,7 @@
         <!-- BARRA NAV -->
         <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
-                <a class="navbar-brand" style="color: white;" href="#"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span></button>
 
@@ -42,35 +42,44 @@
                         <li class="nav-item active">
                             <a href="AgregarCliente.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cliente.png" /><p>Clientes</p></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="cotizacion.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cotizacion.png" /><p>Cotizaci&oacute;n</p></a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"><img class="ic" border="dropdown-toggle0" height="25" width="25" src="../archivos/img/ic_ordenventa.png"/>Orden de venta</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="apartadoProducto.jsp" style="color: white">Apartar pedido</a>
-                                <a class="dropdown-item" href="ventaParcialidades.jsp" style="color: white">Venta en parcialidades</a>
-                                <a class="dropdown-item" href="ventaContado.jsp" style="color: white">Venta neta</a>
+                                <a class="dropdown-item" href="Ordenventa.jsp" style="color: white">Agregar Orden</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="ReporteFactura.jsp" style="color: white">Factura</a>
+                                <a class="dropdown-item" href="AgregarFactura.jsp" style="color: white">Factura</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a href="Cobros.jsp" class="nav-link" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cobros.png" /><p>Cobros</p></a>
-                            
                         </li>
                     </ul>
                     <!--
+                    <form class="form-inline my-2 my-lg-0">
+                        <select class="form-control" id="tipoBusqueda">
+                            <optgroup label="Elige tipo">
+                                <option value="select">Selecciona</option>
+                                <option value="id">Por ID</option>
+                                <option value="nombre">Por nombre</option>
+                                <option value="rfc">Por RFC</option>
+                                <option value="estado">Por Estado</option>
+                                <option value="municipio">Por Municipio</option>  
+                            </optgroup>
+                        </select>&nbsp;&nbsp;
+                        <input class="form-control mr-sm-2" type="search" id="busc" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-dark" style="color: white" onclick="buscar()" type="submit">Buscar</button>
+                    </form>
+                    -->
                     <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link text-white" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
-                        <script src="../js/gerencia.js"></script>
+                        <a href="com_ayuda.jsp" class="nav-link text-white" target="_blank" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_ayuda.png" /><p>Ayuda</p></a>
                     </li>
+                    <!--
                     <li class="nav-item">
-                        <a id="btn_gerencia" class="nav-link text-white" href="../Gerencia/IG/ig_inicio.jsp" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png">Gerencia</a>                                
+                        <a id="btn_gerencia" class="nav-link" href="../Gerencia/IG/ig_inicio.jsp" style="color: white">Gerencia</a>                                
                         <script src="../js/gerencia.js"></script>
                     </li>
                     -->
@@ -80,8 +89,6 @@
                 </div>
             </nav>
         </header>
-
-
         <!-- CONTENIDO-->
 
         <div class="container-fluid contenido">
@@ -91,7 +98,7 @@
                     <hr class="my-2">
                     <img class="ic" border="dropdown-toggle0" height="200" width="800" src="../archivos/img/ventas.gif"/>
                     <p>Ventas, Reportes, facturas y administración de clientes.</p>
-                    <a class="btn btn-primary btn-lg" href="ventaContado.jsp" style="background-color:#0174DF" role="button">Realiza una venta</a>
+                    <a class="btn btn-primary btn-lg" href="Ordenventa.jsp" style="background-color:#0174DF" role="button">Realiza una venta</a>
 
                 </div>
             </center>

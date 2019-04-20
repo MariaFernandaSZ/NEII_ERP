@@ -1,14 +1,5 @@
-<%-- 
-    Document   : ModificarCliente
-    Created on : 18/04/2019, 09:37:50 PM
-    Author     : asus
---%>
 
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    ArrayList lista = (ArrayList) request.getSession().getAttribute("cliente");
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,8 +22,7 @@
         
     </head>
     <body style="width:100%; height:100%;">
-        <!-- BARRA NAV -->
-        <header class="sticky-top"> 
+       <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,33 +80,5 @@
                 </div>
             </nav>
         </header>
-         <!-- CONTENIDO-->
-         
-        <div class="container-fluid contenido">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="AgregarCliente.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
-                    <img class="ic" border="dropdown-toggle0" height="200" width="200" src="../archivos/img/foco.gif"/>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="form-style-5">
-                        <form onsubmit="return validaRegistraCliente();" action="../ActualizarCliente" method="POST">
-
-                            <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registra cliente</span><br>
-                            <br>
-                            <input type="text" name="idcli" id="idcli" value="<%= lista.get(0) %>" required="required" readonly="readonly">
-                            <input type="text" onkeypress="return soloLetras(event)" id="nomCli" name="nomCli" value="<%= lista.get(1) %>" placeholder="Nombre del cliente">
-                            <input type="text" id="direc" name="direc" value="<%= lista.get(2) %>"placeholder="Dirección">
-                            <input type="text" onkeypress="return SoloNumeros(event)" id="cp" name="cp" value="<%= lista.get(3) %>"placeholder="C&oacute;digo postal">
-                            <input type="text" id="email" name="email" value="<%= lista.get(4) %>" placeholder="Email">
-                            <center><button type="submit" style="background-color:#045FB4" name="modificar" class="btn btn-primary">Modificar</button></center>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <img class="ic" border="dropdown-toggle0" height="400" width="500" src="../archivos/img/idea.gif"/>
-                </div>           
-            </div>
-        </div>
     </body>
 </html>

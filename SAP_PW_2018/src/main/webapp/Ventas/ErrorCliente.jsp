@@ -40,21 +40,16 @@
                         <li class="nav-item active">
                             <a href="AgregarCliente.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cliente.png" /><p>Clientes</p></a>
                         </li>
-                        <li class="nav-item">
-                            <a href="cotizacion.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cotizacion.png" /><p>Cotizaci&oacute;n</p></a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"><img class="ic" border="dropdown-toggle0" height="25" width="25" src="../archivos/img/ic_ordenventa.png"/>Orden de venta</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="apartadoProducto.jsp" style="color: white">Apartar pedido</a>
-                                <a class="dropdown-item" href="ventaParcialidades.jsp" style="color: white">Venta en parcialidades</a>
-                                <a class="dropdown-item" href="ventaContado.jsp" style="color: white">Venta neta</a>
+                                <a class="dropdown-item" href="Ordenventa.jsp" style="color: white">Agregar Orden</a>
                             </div>
                         </li>
-                       <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="ReporteFactura.jsp" style="color: white">Factura</a>
+                                <a class="dropdown-item" href="AgregarFactura.jsp" style="color: white">Factura</a>
                             </div>
                         </li>
                         <li class="nav-item">

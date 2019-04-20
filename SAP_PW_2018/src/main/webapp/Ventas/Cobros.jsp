@@ -32,29 +32,40 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a href="AgregarCiente.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cliente.png" /><p>Clientes</p></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="cotizacion.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cotizacion.png" /><p>Cotizaci&oacute;n</p></a>
+                            <a href="AgregarCliente.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cliente.png" /><p>Clientes</p></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"><img class="ic" border="dropdown-toggle0" height="25" width="25" src="../archivos/img/ic_ordenventa.png"/>Orden de venta</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="apartadoProducto.jsp" style="color: white">Apartar pedido</a>
-                                <a class="dropdown-item" href="ventaParcialidades.jsp" style="color: white">Venta en parcialidades</a>
-                                <a class="dropdown-item" href="ventaContado.jsp" style="color: white">Venta neta</a>
+                                <a class="dropdown-item" href="Ordenventa.jsp" style="color: white">Agregar Orden</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="ReporteFactura.jsp" style="color: white">Factura</a>
+                                <a class="dropdown-item" href="AgregarFactura.jsp" style="color: white">Factura</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a href="Cobros.jsp" class="nav-link" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_cobros.png" /><p>Cobros</p></a>
                         </li>
                     </ul>
+                    <!--
+                    <form class="form-inline my-2 my-lg-0">
+                        <select class="form-control" id="tipoBusqueda">
+                            <optgroup label="Elige tipo">
+                                <option value="select">Selecciona</option>
+                                <option value="id">Por ID</option>
+                                <option value="nombre">Por nombre</option>
+                                <option value="rfc">Por RFC</option>
+                                <option value="estado">Por Estado</option>
+                                <option value="municipio">Por Municipio</option>  
+                            </optgroup>
+                        </select>&nbsp;&nbsp;
+                        <input class="form-control mr-sm-2" type="search" id="busc" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-dark" style="color: white" onclick="buscar()" type="submit">Buscar</button>
+                    </form>
+                    -->
                     <li class="nav-item">
                         <a href="com_ayuda.jsp" class="nav-link text-white" target="_blank" style="color: white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_ayuda.png" /><p>Ayuda</p></a>
                     </li>
@@ -70,7 +81,6 @@
                 </div>
             </nav>
         </header>
-
         <!-- CONTENIDO -->   
         <div class="container-fluid contenido">
             <div class="row">
