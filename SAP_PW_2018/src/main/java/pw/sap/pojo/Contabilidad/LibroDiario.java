@@ -119,5 +119,23 @@ public class LibroDiario {
         closeDB();
         return r;
     }
+    
+      public ResultSet ConsultaMayor(String mod) throws SQLException, ClassNotFoundException {
+        openDB();
+        PreparedStatement ps;
+        ResultSet rs =null;
+           
+        
+        
+        ps = conn.prepareStatement("select id_operacion, fecha, tipo, monto \n"
+                + "from libro_mayor \n"
+                + "where fecha='" + mod + "';");
+        rs = ps.executeQuery();      
+             
+        
+        
+        closeDB();        
+        return rs;
+    }
 
 }

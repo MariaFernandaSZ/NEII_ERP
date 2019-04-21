@@ -29,15 +29,7 @@ import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
  */
 public class Impuestos {
      Connection conn;
-     String valor_id;
-
-    public void setValor_id(String valor_id) {
-        this.valor_id = valor_id;
-    }
-
-    public String getValor_id() {
-        return valor_id;
-    }
+  
 
     public Impuestos() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
@@ -82,16 +74,14 @@ public class Impuestos {
  public int agregar(String iva,String ieps, String isr) throws SQLException, ClassNotFoundException {
         openDB();
         PreparedStatement ps;
-        int resultado=1;
-        
-        int v1=Integer.valueOf(valor_id);        
+        int resultado=1;        
         double nuevo_iva, nuevo_ieps, nuevo_isr;
         
         nuevo_iva= Double.parseDouble(iva);
         nuevo_ieps= Double.parseDouble(ieps);
         nuevo_isr= Double.parseDouble(isr);
                    
-           ps=conn.prepareStatement("insert into impuesto values ("+nuevo_iva+","+(v1+1)+","+nuevo_ieps+","+nuevo_isr+");");
+           ps=conn.prepareStatement("insert into impuesto (iva, ieps, isr) values ("+nuevo_iva+","+nuevo_ieps+","+nuevo_isr+");");
            
         resultado= ps.executeUpdate();        
                  

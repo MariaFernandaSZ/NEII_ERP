@@ -40,9 +40,7 @@ public class insertar_impuesto extends HttpServlet {
         String IVA = request.getParameter("iva3");
         String IEPS = request.getParameter("ieps3");
         String ISR = request.getParameter("isr3");
-        
-        System.out.println("Resultado"+IVA+IEPS+ISR);
-        
+                
         Impuestos obj = new Impuestos ();
         
         obj.agregar(IVA, IEPS, ISR);
