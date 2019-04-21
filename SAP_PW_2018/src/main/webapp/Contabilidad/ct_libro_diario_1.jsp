@@ -110,7 +110,10 @@
                         </div> 
                     </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 container-fluid"><!-- Seccion central -->
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10 container-fluid"><!-- Seccion central -->
+                        <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Registros</h2>  
+                        <br>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
@@ -155,7 +158,7 @@
                                 </center>
                             </form>
                         </div>
-                    </div>    
+                        </div> </div>   
                 </div>
             </div> 
         </div>
