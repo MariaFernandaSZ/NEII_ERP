@@ -91,8 +91,9 @@
                     </div>
                      
                     <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
-                        <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
+                        <h2 class="titulos text-center" style="width: 100%;">Modificar impuestos</h2>  
                         <br> 
+                        
                           <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
                               <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.Impuestos"/>
                                 <%
@@ -103,41 +104,45 @@
                               <br> <br>
                               <%                                           
                                   while (rsTabla.next()) {
+                                      
+                                  String id=rsTabla.getString(1);
+                                  tabla.setValor_id(id);
                               %>                        
                                                     
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
-                            <form action="ct_impuestos.jsp" method="POST">
+                        <form action="../insertar_impuesto" method="POST">
                             
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
                                 <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text"  placeholder="<%=rsTabla.getString(2)%>" name="iva3" id="iva3" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" values="<%=rsTabla.getString(2)%>" name="iva3" id="iva3" style="width: 100%;">
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                         <div class="row">
                              <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4"> IEPS:</label>
-                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="<%=rsTabla.getString(3)%>" name="ieps3" id="ieps3" style="width: 100%;"> 
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" values="<%=rsTabla.getString(3)%>" name="ieps3" id="ieps3" style="width: 100%;"> 
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                               <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">ISR:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="<%=rsTabla.getString(4)%>" name="isr3" id="isr3" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" values="<%=rsTabla.getString(4)%>" name="isr3" id="isr3" style="width: 100%;">
                         </div>
                         <br>
-                        
-                                    <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
-                                </form>                            
-                        </div> 
+                                                
+                  <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
+                                                
+                        </div> </form>
                         <%
                                         }
                         %>
+                        
                         <div class="row"> 
                             <br>
                         </div>
-                    </div>
+                    </div>  
                     </div> 
                 </div>
             </div>

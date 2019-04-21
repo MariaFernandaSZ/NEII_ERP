@@ -29,6 +29,15 @@ import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
  */
 public class Impuestos {
      Connection conn;
+     String valor_id;
+
+    public void setValor_id(String valor_id) {
+        this.valor_id = valor_id;
+    }
+
+    public String getValor_id() {
+        return valor_id;
+    }
 
     public Impuestos() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
@@ -61,26 +70,34 @@ public class Impuestos {
                    
            ps=conn.prepareStatement("SELECT * FROM impuesto ORDER BY id_impuesto DESC LIMIT 1");
            
-        ResultSet rs = ps.executeQuery(); 
+        ResultSet rs = ps.executeQuery();
+        
         
           System.out.println(ps);
         
         closeDB();        
         return rs;
-    }
-      
-         public ResultSet Modificar() throws SQLException, ClassNotFoundException {
+    }      
+        
+ public int agregar(String iva,String ieps, String isr) throws SQLException, ClassNotFoundException {
         openDB();
         PreparedStatement ps;
+        int resultado=1;
+        
+        int v1=Integer.valueOf(valor_id);        
+        double nuevo_iva, nuevo_ieps, nuevo_isr;
+        
+        nuevo_iva= Double.parseDouble(iva);
+        nuevo_ieps= Double.parseDouble(ieps);
+        nuevo_isr= Double.parseDouble(isr);
                    
-           ps=conn.prepareStatement("SELECT * FROM impuesto ORDER BY id_impuesto DESC LIMIT 1");
+           ps=conn.prepareStatement("insert into impuesto values ("+nuevo_iva+","+(v1+1)+","+nuevo_ieps+","+nuevo_isr+");");
            
-        ResultSet rs = ps.executeQuery(); 
-        
-          System.out.println(ps);
-        
+        resultado= ps.executeUpdate();        
+                 
         closeDB();        
-        return rs;
+        return resultado;
+
     }
     
 }

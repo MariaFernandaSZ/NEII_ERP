@@ -93,6 +93,7 @@
                     <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
                         <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
                         <br> 
+                        <form action="ct_impuestos2.jsp" method="POST">
                           <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
                               <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.Impuestos"/>
                                 <%
@@ -102,7 +103,8 @@
                                 %> 
                               <br> <br>
                               <%                                           
-                                  while (rsTabla.next()) {
+                                  while (rsTabla.next()) {                                      
+                                      
                               %>
                         <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
@@ -133,14 +135,14 @@
                         
                                                     
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                            <form action="ct_impuestos2.jsp" method="POST">
+                            
                                     <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
-                                </form>                            
+                                                            
                         </div>                        
                         <div class="row"> 
                             <br>
                         </div>
-                    </div>
+                    </div> </form>
                     </div> 
                 </div>
             </div>
