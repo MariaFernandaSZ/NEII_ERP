@@ -49,17 +49,17 @@
                                 <a class="nav-link text-white color" href="ct_libro_mayor.jsp">Mayor<span class="sr-only">(current)</span></a>
                             </div>
                         </li>
+                         <li class="nav-item">
+                            <a href="ct_calendario.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /><p>Calendario Contable</p></a>
+                        </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Aprobaciones
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /> Cuentas
                             </a>
                             <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white color" href="ct_prov.jsp">Compras<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_ventas.jsp">Clientes<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_prov.jsp">Proveedores<span class="sr-only">(current)</span></a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="plan_cuentas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /><p>Cuentas</p></a>
                         </li>
                     </ul> 
                 </div>
