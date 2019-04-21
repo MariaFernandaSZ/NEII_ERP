@@ -87,13 +87,13 @@
                       
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
                             <br>
-                            <form action="ct_prov2.jsp" method="POST">
-                            <span id="titulo"><h4>Cuentas Proveedores</h4></span> <br>                            
+                            <form action="ct_ventas2.jsp" method="POST">
+                            <span id="titulo"><h4>Cuentas Clientes</h4></span> <br>                            
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         N° de Cuenta:
                                     </div>
-                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="id_cuentapv" id="id_cuentapv" style="width: 100%;" required >   
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="id_cuenta" id="id_cuenta" style="width: 100%;" required >   
                                 </div>
                                 <br>
                                 <div class="row">                                
@@ -116,15 +116,15 @@
                             <table class="table table-bordered">                                
                                 <tr>
                                    <th>Cuenta</th>
-                                    <th>Clave proveedor</th>
+                                    <th>Clave cliente</th>
                                     <th>Banco</th>
                                     <th>CVC</th>
                                     <th>Fecha expiración</th>
                                 </tr>  
                                 <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.C_cuentas"/>
                                 <%
-                                                                       
-                                    ResultSet rsTabla = tabla.Consultacuenta2();
+                                   String mod= request.getParameter("id_cuenta");                              
+                                    ResultSet rsTabla = tabla.Consultacuentaesp(mod);
 
                                 %> 
                                 <tbody>
@@ -152,27 +152,27 @@
                   <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
                          <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
                             <br>
-                            <form action="../insertar_cuenprov" method="POST">
+                            <form action="../insertar_cuencli" method="POST">
                             <span id="titulo"><h4>Agregar Cuenta</h4></span> <br>                            
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         N° de Cuenta:
                                     </div>
-                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="newcuenprv" id="newcuencliprv" style="width: 100%;" required >   
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="newcuencli" id="newcuencli" style="width: 100%;" required >   
                                 </div>
                                 <br>
                                  <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         Clave Cliente:
                                     </div>
-                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="prvclave" id="prvclave" style="width: 100%;" required >   
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="cliclave" id="cliclave" style="width: 100%;" required >   
                                 </div>
                                 <br>
                                  <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         Banco:
                                     </div>
-                                 <select class="form-control" name="bancoprv" id="bancoprv">
+                                 <select class="form-control" name="bancocli" id="bancocli">
                             <optgroup label="Seleccionar">
                                 <option value="x">Seleccionar</option>
                                 <option value="HSBC">HSBC</option>
@@ -187,14 +187,14 @@
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         Fecha Vencimiento:
                                     </div>
-                                   <input type="date" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="fechvenprv" id="fechvenprv" style="width: 100%;" required >   
+                                   <input type="date" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="fechvencli" id="fechvencli" style="width: 100%;" required >   
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         CVC:
                                     </div>
-                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="cvcprv" id="cvcprv" style="width: 100%;" required >   
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="cvccli" id="cvccli" style="width: 100%;" required >   
                                 </div>
                                 <br>
                                 <div class="row">                                

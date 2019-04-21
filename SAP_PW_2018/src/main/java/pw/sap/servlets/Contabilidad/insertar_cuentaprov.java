@@ -8,23 +8,21 @@ package pw.sap.servlets.Contabilidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.pojo.Contabilidad.PlanCuentas;
+import pw.sap.pojo.Contabilidad.C_cuentas;
 
 /**
  *
- * @author maxim
+ * @author Marii
  */
-@WebServlet(name = "PlanDeCuentasAdd", urlPatterns = {"/PlanDeCuentasAdd"})
-public class PlanDeCuentasAdd extends HttpServlet {
+@WebServlet(name = "insertar_cuentaprov", urlPatterns = {"/insertar_cuentaprov"})
+public class insertar_cuentaprov extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,23 +37,21 @@ public class PlanDeCuentasAdd extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        PlanCuentas c =new PlanCuentas();
-        String descripcion="";
+         String id = request.getParameter("newcuenprv");
+        String cliente = request.getParameter("prvclave");
+        String banco = request.getParameter("bancoprv");
+        String cvc = request.getParameter("cvcprv");
+        String fecha = request.getParameter("fechvenprv");
+                
+        C_cuentas obj = new C_cuentas ();
         
-        descripcion = c.descSat(Integer.parseInt(request.getParameter("idsat")));
+        obj.agregarcli (id, cliente, banco, cvc, fecha);
+        PrintWriter out = response.getWriter();
         
-        
-        
-        c.agregaPlan(Integer.parseInt(request.getParameter("idsat")), descripcion, request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
-        
-       //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Inserccion del Plan de Cuentas");        
-        
-         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
-        
+            out.println("<script>");
+            out.println("alert('Cuenta del provedor agregada');");
+            out.print("window.location='Contabilidad/ct_ventas.jsp'");
+            out.println("</script>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,9 +69,9 @@ public class PlanDeCuentasAdd extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanDeCuentasAdd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_cuentaprov.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(PlanDeCuentasAdd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_cuentaprov.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -93,9 +89,9 @@ public class PlanDeCuentasAdd extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanDeCuentasAdd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_cuentaprov.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(PlanDeCuentasAdd.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_cuentaprov.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

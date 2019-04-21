@@ -21,7 +21,6 @@ import java.util.Properties;
 import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 import pw.sap.obj.Contabilidad.ObjLibroDiario;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
-import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
 
 /**
  *

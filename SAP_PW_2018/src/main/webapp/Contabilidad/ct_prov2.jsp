@@ -123,8 +123,8 @@
                                 </tr>  
                                 <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.C_cuentas"/>
                                 <%
-                                                                       
-                                    ResultSet rsTabla = tabla.Consultacuenta2();
+                                    String mod= request.getParameter("id_cuentapv");                                   
+                                    ResultSet rsTabla = tabla.Consultacuentaesp2(mod);
 
                                 %> 
                                 <tbody>
@@ -213,3 +213,4 @@
         </div>
     </body>
 </html>
+
