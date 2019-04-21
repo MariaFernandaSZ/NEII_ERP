@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%
    /* if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -93,37 +94,46 @@
                         <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
                         <br> 
                           <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
+                              <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.Impuestos"/>
+                                <%
+                                                                       
+                                    ResultSet rsTabla = tabla.Consulta();
+
+                                %> 
                               <br> <br>
-                        <div class="row">
+                              <%                                           
+                                  while (rsTabla.next()) {
+                              %>                        
+                                                    
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
+                            <form action="ct_impuestos.jsp" method="POST">
+                            
+                                <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="15%" name="iva2" id="PorcenMerm" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text"  placeholder="<%=rsTabla.getString(2)%>" name="iva3" id="iva3" style="width: 100%;">
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                         <div class="row">
                              <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4"> IEPS:</label>
-                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="20%" name="ieps2" id="PorcenDevo" style="width: 100%;"> 
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="<%=rsTabla.getString(3)%>" name="ieps3" id="ieps3" style="width: 100%;"> 
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                               <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">ISR:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="15%" name="isr2" id="PorcenMerm" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="<%=rsTabla.getString(4)%>" name="isr3" id="isr3" style="width: 100%;">
                         </div>
-                        <div class="row"> 
-                            <br>
-                        </div>
-                              
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-4"><br></div>
+                        <br>
                         
-                                                    
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                            <form action="ct_impuestos.jsp" method="POST">
                                     <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
                                 </form>                            
-                        </div>                        
+                        </div> 
+                        <%
+                                        }
+                        %>
                         <div class="row"> 
                             <br>
                         </div>

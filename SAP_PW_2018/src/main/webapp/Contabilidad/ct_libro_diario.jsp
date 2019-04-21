@@ -74,9 +74,10 @@
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
                          
-                        <center> <img class="imagen" border="0" height="auto" width="40%" src="../archivos/img/img_logo_2.png" /> </center>
+                        <center> <img class="imagen" border="0" height="auto" width="50%" src="../archivos/img/img_logo_2.png" /> </center>
                       
-                        <div class="form-style-5">
+                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
+                            <br>
                             <span id="titulo"><h4>Libro diario</h4></span> <br>
                             <form action="ct_libro_diario_1.jsp" method="POST">
                                 <div class="row">
@@ -86,29 +87,15 @@
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                         <select name="modulo1" id="modulo1">
                                             <option value="x">Selecciona...</option>
-                                            <option value="">Todos</option>
-                                            <option value="Compras">Compras</option>
-                                            <option value="Ventas">Ventas</option>
-                                            <option value="Nominas">Nominas</option>
+                                            <option value="0">Todos</option>
+                                            <option value="1">Compras</option>
+                                            <option value="2">Ventas</option>
+                                            <option value="3">Nóminas</option>
                                         </select>
                                     </div>    
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Fecha inicial: 
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaIni" name="fechaIni">  
-                                    </div>    
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Fecha final: 
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaFin" name="fechaFin">
-                                    </div>    
-                                </div>
+                                <br>
+                                <div class="row">                                
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
                                     <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
@@ -118,14 +105,19 @@
                             </form>   
                         </div> 
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 container-fluid"><!-- Seccion central -->
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
+                                   <th>Cuenta</th>
+                                    <th>Folio</th>
                                     <th>Fecha</th>
-                                    <th>M&oacute;dulo</th>
-                                    <th>Cargo</th>
-                                    <th>Abono</th>
+                                    <th>Tipo</th>
+                                    <th>Módulo</th>
+                                    <th>Monto</th>
+                                    <th>Descripción</th>
                                 </tr>     
                             </table> 
                             <br/>

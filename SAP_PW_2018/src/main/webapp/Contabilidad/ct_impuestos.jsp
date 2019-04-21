@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%
    /* if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -84,7 +85,7 @@
                     </div>                    
                     <br>
                 </div>
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
+               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid"><!-- Seccion derecha (Visualizar tarea) -->
                     <div class="row">
                         <br><br>
                     </div>
@@ -93,25 +94,37 @@
                         <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
                         <br> 
                           <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
+                              <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.Impuestos"/>
+                                <%
+                                                                       
+                                    ResultSet rsTabla = tabla.Consulta();
+
+                                %> 
                               <br> <br>
+                              <%                                           
+                                  while (rsTabla.next()) {
+                              %>
                         <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="15%" name="iva" id="PorcenMerm" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="<%=rsTabla.getString(2)%>" name="iva2" id="PorcenMerm" style="width: 100%;">
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                         <div class="row">
                              <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4"> IEPS:</label>
-                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="20%" name="ieps" id="PorcenDevo" style="width: 100%;"> 
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="<%=rsTabla.getString(3)%>" name="ieps2" id="PorcenDevo" style="width: 100%;"> 
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                               <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">ISR:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="15%" name="isr" id="PorcenMerm" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" disabled="disable" placeholder="<%=rsTabla.getString(4)%>" name="isr2" id="PorcenMerm" style="width: 100%;">
                         </div>
+                        <%
+                                        }
+                        %>
                         <div class="row"> 
                             <br>
                         </div>
@@ -121,13 +134,12 @@
                                                     
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
                             <form action="ct_impuestos2.jsp" method="POST">
-                                    <input class="btn btn-secondary form-control" id="modi" name="modi_imp" type="submit" value="Modificar">
+                                    <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
                                 </form>                            
                         </div>                        
                         <div class="row"> 
                             <br>
                         </div>
-                         
                     </div>
                     </div> 
                 </div>
