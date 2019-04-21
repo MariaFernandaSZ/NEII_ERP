@@ -1,4 +1,5 @@
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -80,5 +81,98 @@
                 </div>
             </nav>
         </header>
+        <!-- CONTENIDO-->
+       
+            <div class="row">
+            <!-- Seccion izquierda -->	    
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <center><h1>Datos Generales Orden de Venta</h1></center>
+                    <div class="form-style-5">
+                        <form action="../Clientes" method="POST">
+                            <div class="row">
+                            <div class="col-xs-4 col-md-4">
+                                <font face="Comic Sans MS"><label for="fecha">Fecha:</label></font>
+                                <input type="date" class="form-control col-12" name="fechaOrdendeVenta" id="fechaOrdendeVenta" placeholder="Fecha" required="required">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Datos del cliente</span>
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            <font face="Comic Sans MS"><label>ID:</label></font>
+                            <input type="text" name="idcli" id="idcli"  required="required" placeholder="ID" readonly="readonly">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                 <font face="Comic Sans MS"><label>Nombre:</label></font>
+                            <input type="text" onkeypress="return soloLetras(event)" id="nomCli" name="nomCli" placeholder="Nombre del cliente"placeholder="ID">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <font face="Comic Sans MS"><label>Dirección:</label></font>
+                            <input type="text" id="direc" name="direc" placeholder="Dirección">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <font face="Comic Sans MS"><label>Código postal:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="cp" name="cp" placeholder="C&oacute;digo postal">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                  <font face="Comic Sans MS"><label>Email:</label></font>
+                            <input type="text" id="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <font face="Comic Sans MS"><label>Estatus:</label></font>
+                            <select type="text" id="estatus" name="estatus" placeholder="Estatus">
+                                <option value="">Selecionar Estatus...</option>
+                                <option value="Activo">Activo</option> 
+                                <option value="No activo">No activo</option>
+                            </select>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Datos del producto</span>
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                             </div>
+                            <div class="col-xs-4 col-md-4">
+                                <font face="Comic Sans MS"><label>ID:</label></font>
+                                <input type="text" name="idpro" id="idpro"  required="required" placeholder="ID" readonly="readonly">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <font face="Comic Sans MS"><label>Nombre:</label></font>
+                            <input type="text" id="nomPro" name="nomPro" placeholder="Nombre del producto">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <font face="Comic Sans MS"><label>Tipo de producto:</label></font>
+                            <input type="text" id="tipopro" name="tipopro" placeholder="Tipo de producto">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <font face="Comic Sans MS"><label>Costo:</label></font>
+                            <input type="number" id="costo" name="costo" placeholder="Costo"></div>
+                             <div class="col-xs-6 col-md-6">
+                                 <font face="Comic Sans MS"><label>Cantidad:</label></font>
+                             <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Seccion central TABLA -->
+               
+                            
+                <!-- Seccion derecha -->
+                
+            </div>
+        
     </body>
 </html>

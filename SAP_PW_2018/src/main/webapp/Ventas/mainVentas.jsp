@@ -97,7 +97,7 @@
                     <h2 class="display-4">M&oacute;dulo de Ventas</h2>
                     <hr class="my-2">
                     <img class="ic" border="dropdown-toggle0" height="200" width="800" src="../archivos/img/ventas.gif"/>
-                    <p>Ventas, Reportes, facturas y administración de clientes.</p>
+                    
                     <a class="btn btn-primary btn-lg" href="Ordenventa.jsp" style="background-color:#0174DF" role="button">Realiza una venta</a>
 
                 </div>

@@ -128,11 +128,14 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID_Cliente</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Dirección</th>
-                                    <th scope="col">C.P</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio Unitario</th>
+                                    <th scope="col">Precio Total</th>
                                 </tr>
                             </thead>
                             <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
