@@ -1,4 +1,6 @@
 
+<%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
@@ -10,13 +12,15 @@
     }
 %>
 <!DOCTYPE html>
+
 <html>
     <head>
+        <title>Ventas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../css/VenEstilos.css" rel="stylesheet" type="text/CSS">
         <link href="../css/VenLaterales.css" rel="stylesheet" type="text/CSS">
-        <link rel="stylesheet" type="text/css" href="../css/VenTabla.css">
+        <link rel="stylesheet" type="text/css" href="../css/VenTablacliente.css">
         <link href="../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
@@ -25,9 +29,11 @@
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Ventas/VenGeneral.js"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
+        <script src="../js/Ventas/muestraModales.js"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
         
     </head>
+    
     <body style="width:100%; height:100%;">
 
         <!-- BARRA NAV -->
@@ -89,21 +95,74 @@
                 </div>
             </nav>
         </header>
-        <!-- CONTENIDO-->
 
+        <!-- CONTENIDO-->
         <div class="container-fluid contenido">
-            <center>
-                <div class="col-lg-8 col-md-8 col-sm-5 col-xs-5 jumbotron">
-                    <h2 class="display-4">M&oacute;dulo de Ventas</h2>
-                    <hr class="my-2">
-                    <img class="ic" border="dropdown-toggle0" height="200" width="800" src="../archivos/img/ventas.gif"/>
-                    
-                    <a class="btn btn-primary btn-lg" href="Ordenventa.jsp" style="background-color:#0174DF" role="button">Realiza una venta</a>
+            <div class="row">
+            <!-- Seccion izquierda -->	    
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="form-style-5">
+                            <center>
+                                <form method="POST" action="../BuscarIDCP" autocomplete="off">
+                                    <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Consultar Cliente</span>
+                                    <br>
+                                    <br>
+                                     <font face="Comic Sans MS"><p>Seleccion del cliente que será mandado a un orden de venta.</p></font>
+                                    <input type="number" id="IDcli" name="IDcli" class="form-control form-control-sm" placeholder="ID del cliente" required="required"/>
+                                    
+                                  
+                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDCP" class="btn btn-primary">Mandar a Orden Venta</button></center>
+                                </form>
+                            </center>
+                    </div>
+                    <img class="ic" border="dropdown-toggle0" height="150" width="150" src="../archivos/img/foco.gif"/>
+                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="Ordenventa.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                </div>
+                
+                <!-- Seccion derecha -->
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                         <center><h2>Lista de Clientes</h2></center>
+                        <br>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID_Cliente</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">C.P</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Estatus</th>
+                                </tr>
+                            </thead>
+                            <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                            <%
+                                ResultSet rsTabla = interTabla.tablaCliente(); 
+
+                            %> 
+                            <tbody>
+                                    <%
+                                        while(rsTabla.next()){
+                                    %>
+                                <tr id="modalInter">
+                                    <td><%=rsTabla.getString(1)%></td>
+                                    <td><%=rsTabla.getString(2)%></td>
+                                    <td><%=rsTabla.getString(3)%></td>
+                                    <td><%=rsTabla.getString(4)%></td>
+                                    <td><%=rsTabla.getString(5)%></td>
+                                    <td><%=rsTabla.getString(6)%></td>
+                                </tr>
+                                    <%
+                                        }
+                                    %>
+                            </tbody>
+                        </table>
+                    </div> 
 
                 </div>
-            </center>
-
-
-        </div>        
-    </body>
+                   
+            </div>
+         </div>
+        </div>
+</body>
 </html>

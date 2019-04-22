@@ -1,8 +1,4 @@
-<%-- 
-    Document   : ErrorCliente
-    Created on : 18/04/2019, 08:57:54 PM
-    Author     : asus
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String motivo = (String) request.getSession().getAttribute("motivo"); %>
@@ -49,7 +45,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="AgregarFactura.jsp" style="color: white">Factura</a>
+                                <a class="dropdown-item" href="Factura.jsp" style="color: white">Factura</a>
                             </div>
                         </li>
                         <li class="nav-item">

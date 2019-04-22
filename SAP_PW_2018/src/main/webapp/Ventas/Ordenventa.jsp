@@ -59,7 +59,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="AgregarFactura.jsp" style="color: white">Factura</a>
+                                <a class="dropdown-item" href="Factura.jsp" style="color: white">Factura</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -106,7 +106,7 @@
                     <div class="form-style-5">
                         <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registrar Orden</span><br>
                         <br>
-                        <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="AgregarOrdenventa.jsp"><h5><font color=white>Registrar</font></h5></a></button></center>
+                        <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarOrdenVenta.jsp"><h5><font color=white>Registrar</font></h5></a></button></center>
                     </div>
                      <div class="form-style-5">
                         <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Orden</span>
@@ -130,8 +130,6 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Producto</th>
                                     <th scope="col">Descripción</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Precio Unitario</th>
@@ -140,7 +138,7 @@
                             </thead>
                             <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
                             <%
-                                ResultSet rsTabla = interTabla.tablaCliente(); 
+                                ResultSet rsTabla = interTabla.tablaOrdenVenta(); 
 
                             %> 
                             <tbody>
@@ -153,6 +151,8 @@
                                     <td><%=rsTabla.getString(3)%></td>
                                     <td><%=rsTabla.getString(4)%></td>
                                     <td><%=rsTabla.getString(5)%></td>
+                                    <td><%=rsTabla.getString(6)%></td
+                                   
                                 </tr>
                                     <%
                                         }

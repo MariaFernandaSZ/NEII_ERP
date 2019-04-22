@@ -3,22 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pw.sap.pojo.Ventas;
+package pw.sap.servlets.Ventas;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pw.sap.pojo.Ventas.QuerysVentas;
 
 /**
  *
- * @author ricar
+ * @author asus
  */
-@WebServlet(name = "anticipoAparta", urlPatterns = {"/anticipoAparta"})
-public class anticipoAparta extends HttpServlet {
+@WebServlet(name = "BuscarIDCP", urlPatterns = {"/BuscarIDCP"})
+public class BuscarIDCP extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,8 +36,27 @@ public class anticipoAparta extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession sesion = request.getSession(true);
+        QuerysVentas c = new QuerysVentas();
+        String cliente = request.getParameter("IDcli");
+        
+        ArrayList lista = c.consulta("id_cliente,nombre,direccion,cp,email,estatus","cliente", "id_cliente = "+cliente, 6);
+        if(!lista.isEmpty()){
+            request.getSession().setAttribute("cliente",lista);
+       
+            response.sendRedirect("Ventas/AgregarOrdenventa.jsp");
+        }else{
+            request.getSession().setAttribute("motivo", "El cliente NO existe");
+            response.sendRedirect("Ventas/ErrorClienteOrdenVenta.jsp");
+        }
+        
+
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,7 +71,13 @@ public class anticipoAparta extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BuscarIDCP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarIDCP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -60,16 +91,13 @@ public class anticipoAparta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
-        double abono_apart = Double.parseDouble(request.getParameter("abono_apart"));
-        double total_OV = Double.parseDouble(request.getParameter("total_OV"));
-        
-        double restante = total_OV - abono_apart;
-        
-        PrintWriter out = response.getWriter();
-        
-        out.print(String.valueOf(restante));
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BuscarIDCP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarIDCP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

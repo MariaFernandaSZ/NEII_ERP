@@ -1,3 +1,9 @@
+<%@page import="pw.sap.pojo.Ventas.OrdenVenta"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -7,6 +13,8 @@
         }
     }
 %>
+<!DOCTYPE html>
+
 <html>
     <head>
         <title>Ventas</title>
@@ -18,20 +26,22 @@
         <link href="../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
+        <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Ventas/VenGeneral.js"></script>
         <script src="../js/Ventas/VenValidaciones.js"></script>
         <script src="../js/Ventas/muestraModales.js"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
+        
     </head>
-
+    
     <body style="width:100%; height:100%;">
 
         <!-- BARRA NAV -->
-       <header class="sticky-top"> 
+        <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
-                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>MÃ³dulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span></button>
 
@@ -49,7 +59,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_reportes.png" />Reporte</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="AgregarFactura.jsp" style="color: white">Factura</a>
+                                <a class="dropdown-item" href="Factura.jsp" style="color: white">Factura</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -87,88 +97,100 @@
                 </div>
             </nav>
         </header>
-        <!-- CONTENIDO-->   
+
+        <!-- CONTENIDO-->
         <div class="container-fluid contenido">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"><!-- Seccion izquierda -->
-
-
+            <!-- Seccion izquierda -->	    
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="form-style-5">
-                        <form>
-                            <span id="titulo"><span class="number">1</span>Facturas</span><br><br>
+                        <form onsubmit="return validaRegistraCliente();" action="../Clientes" method="POST">
 
-                            <span style="font-size: 18px">Fecha de inicio</span><br><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" min="2017-01-01" type="date" id="fecha1" name="fechaIn" /></span><br>
-
-                            <span style="font-size: 18px">Fecha de termino</span><br><span class="idemp"><input style="width: 180px; height: 30px;text-align: center;" type="date" id="fecha2" name="fechaTerm" /></span><br><br>
-
-                            <script>
-                            document.getElementById('fecha2').value = new Date().toISOString().substring(0, 10);
-                            </script>                               
-
-                            <center>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="reportFacturas" id="report1" value="todasFactura" checked >
-                                    <label style="font-size: 18px" class="form-check-label" for="report1">
-                                        Todas las facturas
-                                    </label>
-                                </div>     
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="reportFacturas" id="report2" value="clientesFac">
-                                    <label style="font-size: 18px" class="form-check-label" for="report2">
-                                        Facturas por clientes
-                                    </label>
-                                </div> <br>
-
-                                <button type="button" name="cargaFacturas" style="background-color: #9F150D" onclick="validaFechasReportes()" class="btn btn-danger">Cargar reporte</button>
-                            </center>
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registra factura</span><br>
+                            <font face="Comic Sans MS"><label>Fecha:</label></font>
+                            <br><input type="date" id="fecha" name="fecha" placeholder="Fecha">
+                            <input type="text" id="cliF" name="cliF" placeholder="Cliente">
+                            <input type="text" id="descF" name="descF" placeholder="Descripcion">
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="st" name="st" placeholder="Subtotal">
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="total" name="t" placeholder="Total">
+                            <font face="Comic Sans MS"><label>Id Orden Venta:</label></font>
+                            <Select  class="form-control" id="idov" name="idov" placeholder="ID" placeholder="ID orden venta" required="required">
+                                <option value="x">Seleccione...</option>
+                                <%
+                                    LinkedList<OrdenVenta> h =QuerysVentas.opcionesOrdenVenta();
+                                    for (int i=0;i<h.size();i++)
+                                    {                                   
+                                       out.println("<option value='"+h.get(i).getId_ordenventa()+"'>"+h.get(i).getId_ordenventa()+"</option>");                                   
+                                    }
+                                %> 
+                                 </select>
+                            <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
                         </form>
                     </div>
-
                 </div>
 
-
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"><!-- Seccion central TABLA -->
+                <!-- Seccion central TABLA -->
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                     <div class="table-responsive">
+                         <center><h2>Factura Registradas</h2></center>
+                        <br>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Folio de factura</th>
-                                    <th scope="col">Fecha de expedici&oacute;n</th>
+                                    <th scope="col">ID_Factura</th>
+                                    <th scope="col">Fecha</th>
                                     <th scope="col">Cliente</th>
-                                    <th scope="col">RFC de cliente</th>
-                                    <th scope="col">Domicilio</th>
-                                    <th scope="col">Forma de pago</th>
+                                    <th scope="col">Descripcion </th>
                                     <th scope="col">Subtotal</th>
-                                    <th scope="col">IVA</th>
                                     <th scope="col">Total</th>
                                 </tr>
                             </thead>
+                            <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
+                            <%
+                                ResultSet rsTabla = interTabla.tablaFactura(); 
+
+                            %> 
                             <tbody>
-                                <tr onclick="window.location = 'EjemploFactura.pdf'">
-                                    <td>fac42576</td>
-                                    <td>22/Marzo/2018</td>
-                                    <td>ITTOL</td>
-                                    <td>ITTOL7507241H0</td>
-                                    <td>Av. Tecnol&oacute;gico, S/N</td>
-                                    <td>Pago en una sola exhibici&oacute;n</td>
-                                    <td>$290,500.00</td>
-                                    <td>$8,360.00</td>
-                                    <td>$298,860.00</td>
+                                    <%
+                                        while(rsTabla.next()){
+                                    %>
+                                <tr id="modalInter">
+                                    <td><%=rsTabla.getString(1)%></td>
+                                    <td><%=rsTabla.getString(2)%></td>
+                                    <td><%=rsTabla.getString(3)%></td>
+                                    <td><%=rsTabla.getString(4)%></td>
+                                    <td><%=rsTabla.getString(5)%></td>
+                                    <td><%=rsTabla.getString(6)%></td>
                                 </tr>
+                                    <%
+                                        }
+                                    %>
                             </tbody>
                         </table>
                     </div> 
 
                 </div>
+                            
+                <!-- Seccion derecha -->
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <div class="form-style-5">
+                        <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Factura</span>
+                        <br>
+                            <center>
+                                <form method="POST" action="../BuscarIDcliente" autocomplete="off">
+                                    <br>
+                                    <input type="number" id="IDcli" name="IDcli" class="form-control form-control-sm" placeholder="ID del factura" required="required"/>
+                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDcliente" class="btn btn-primary">Buscar</button></center>
+                                </form>
+                            </center>
+                    </div>
+                   
 
+                </div>
+                
+                
             </div>
 
-        </div>                
-
-        <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
-        <script src="../js/Ventas/VenValidaciones.js"></script>
-
-    </body>
+        </div>
+</body>
 </html>

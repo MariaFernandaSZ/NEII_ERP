@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pw.sap.db.Conexion;
-import pw.sap.pojo.Ventas.ClienteBean;
+
 import pw.sap.pojo.Ventas.QuerysVentas;
 
 /**

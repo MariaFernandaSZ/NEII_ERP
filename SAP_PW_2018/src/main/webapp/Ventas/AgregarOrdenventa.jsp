@@ -1,6 +1,17 @@
 
+<%@page import="pw.sap.pojo.Ventas.Producto"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    ArrayList lista = (ArrayList) request.getSession().getAttribute("cliente");
+%>
+<%
+    ArrayList listaa = (ArrayList) request.getSession().getAttribute("producto");
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -84,83 +95,128 @@
         <!-- CONTENIDO-->
        
             <div class="row">
-            <!-- Seccion izquierda -->	    
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- Seccion-->
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <img class="ic" border="dropdown-toggle0" height="200" width="200" src="../archivos/img/foco.gif"/>
+                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarOrdenVenta.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+            </div>
+                     
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                     <center><h1>Datos Generales Orden de Venta</h1></center>
                     <div class="form-style-5">
-                        <form action="../Clientes" method="POST">
+                        <form action="../OrdenVenta" method="POST">
                             <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Datos de la Venta</span>
+                            </div>
                             <div class="col-xs-4 col-md-4">
                                 <font face="Comic Sans MS"><label for="fecha">Fecha:</label></font>
-                                <input type="date" class="form-control col-12" name="fechaOrdendeVenta" id="fechaOrdendeVenta" placeholder="Fecha" required="required">
-                            </div>
-                            <div class="col-xs-4 col-md-4">
-                            </div>
-                            <div class="col-xs-4 col-md-4">
+                                <input type="date" class="form-control col-12" name="fechaOV" id="fechaOV" placeholder="Fecha" required="required">
                             </div>
                             <div class="col-xs-12 col-md-12">
-                            <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Datos del cliente</span>
+                            <font face="Comic Sans MS"><label for="fecha">Descripción:</label></font>
+                            <input type="text" class="form-control col-12" name="desOV" id="desOV" placeholder="" required="required">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Datos del cliente</span>
                             </div>
                             <div class="col-xs-4 col-md-4">
                             </div>
                             <div class="col-xs-4 col-md-4">
                             <font face="Comic Sans MS"><label>ID:</label></font>
-                            <input type="text" name="idcli" id="idcli"  required="required" placeholder="ID" readonly="readonly">
+                            <input type="text" name="idcli" id="idcli"  required="required" placeholder="ID" value="<%= lista.get(0) %>" readonly="readonly">
                             </div>
                             <div class="col-xs-4 col-md-4">
                             </div>
                             <div class="col-xs-6 col-md-6">
                                  <font face="Comic Sans MS"><label>Nombre:</label></font>
-                            <input type="text" onkeypress="return soloLetras(event)" id="nomCli" name="nomCli" placeholder="Nombre del cliente"placeholder="ID">
+                            <input type="text" onkeypress="return soloLetras(event)" id="nomCli" name="nomCli" value="<%= lista.get(1) %>" placeholder="Nombre del cliente" required="required">
                             </div>
                             <div class="col-xs-6 col-md-6">
                                 <font face="Comic Sans MS"><label>Dirección:</label></font>
-                            <input type="text" id="direc" name="direc" placeholder="Dirección">
+                            <input type="text" id="direc" name="direc" placeholder="Dirección" value="<%= lista.get(2) %> "required="required">
                             </div>
                             <div class="col-xs-6 col-md-6">
                                 <font face="Comic Sans MS"><label>Código postal:</label></font>
-                            <input type="text" onkeypress="return SoloNumeros(event)" id="cp" name="cp" placeholder="C&oacute;digo postal">
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="cp" name="cp" placeholder="C&oacute;digo postal" value="<%= lista.get(3) %>" required="required">
                             </div>
                             <div class="col-xs-6 col-md-6">
                                   <font face="Comic Sans MS"><label>Email:</label></font>
-                            <input type="text" id="email" name="email" placeholder="Email">
+                            <input type="text" id="email" name="email" placeholder="Email" value="<%= lista.get(4) %>"required="required">
                             </div>
                             <div class="col-xs-6 col-md-6">
                                 <font face="Comic Sans MS"><label>Estatus:</label></font>
-                            <select type="text" id="estatus" name="estatus" placeholder="Estatus">
+                            <select type="text" id="estatus" name="estatus" placeholder="Estatus" value="<%= lista.get(5) %>" required="required">
                                 <option value="">Selecionar Estatus...</option>
                                 <option value="Activo">Activo</option> 
                                 <option value="No activo">No activo</option>
                             </select>
                             </div>
                             <div class="col-xs-12 col-md-12">
-                            <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Datos del producto</span>
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">3</span>Datos del producto</span>
                             </div>
                             <div class="col-xs-4 col-md-4">
                              </div>
                             <div class="col-xs-4 col-md-4">
                                 <font face="Comic Sans MS"><label>ID:</label></font>
-                                <input type="text" name="idpro" id="idpro"  required="required" placeholder="ID" readonly="readonly">
+                                <Select  class="form-control" id="idpro" name="idpro" placeholder="ID" required="required">
+                                <option value="x">Seleccione...</option>
+                                <%
+                                    LinkedList<Producto> h =QuerysVentas.opcionesProducto();
+                                    for (int i=0;i<h.size();i++)
+                                    {                                   
+                                       out.println("<option value='"+h.get(i).getId_producto()+"'>"+h.get(i).getId_producto()+"</option>");                                   
+                                    }
+                                %> 
+                                 </select>
                             </div>
                             <div class="col-xs-4 col-md-4">
                             </div>
                             <div class="col-xs-6 col-md-6">
                                 <font face="Comic Sans MS"><label>Nombre:</label></font>
-                            <input type="text" id="nomPro" name="nomPro" placeholder="Nombre del producto">
+                                <Select  class="form-control" id="nompro" name="nompro" placeholder="Nombre del producto" required="required">
+                                <option value="x">Seleccione...</option>
+                                <%
+                                    LinkedList<Producto> k =QuerysVentas.opcionesProducto();
+                                    for (int i=0;i<h.size();i++)
+                                    {                                   
+                                       out.println("<option value='"+k.get(i).getNombre()+"'>"+k.get(i).getNombre()+"</option>");                                   
+                                    }
+                                %> 
+                                </select>
                             </div>
                             <div class="col-xs-6 col-md-6">
                                 <font face="Comic Sans MS"><label>Tipo de producto:</label></font>
-                            <input type="text" id="tipopro" name="tipopro" placeholder="Tipo de producto">
+                            <Select  class="form-control" id="tipopro" name="tipopro" placeholder="Tipo de producto" required="required">
+                                <option value="x">Seleccione...</option>
+                                <%
+                                    LinkedList<Producto> e =QuerysVentas.opcionesProducto();
+                                    for (int i=0;i<h.size();i++)
+                                    {                                   
+                                       out.println("<option value='"+e.get(i).getTipo_producto()+"'>"+e.get(i).getTipo_producto()+"</option>");                                   
+                                    }
+                                %> 
+                                </select>
                             </div>
                             <div class="col-xs-6 col-md-6">
                                 <font face="Comic Sans MS"><label>Costo:</label></font>
-                            <input type="number" id="costo" name="costo" placeholder="Costo"></div>
+                            <Select  class="form-control" id="costo" name="costo" placeholder="Costo" required="required">
+                                <option value="x">Seleccione...</option>
+                                <%
+                                    LinkedList<Producto> n =QuerysVentas.opcionesProducto();
+                                    for (int i=0;i<h.size();i++)
+                                    {                                   
+                                       out.println("<option value='"+n.get(i).getCosto_venta()+"'>"+n.get(i).getCosto_venta()+"</option>");                                   
+                                    }
+                                %> 
+                                </select>
+                            </div>
                              <div class="col-xs-6 col-md-6">
                                  <font face="Comic Sans MS"><label>Cantidad:</label></font>
-                             <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad">
+                             <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required="required">
                             </div>
                             <div class="col-xs-12 col-md-12">
-                            <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
+                            <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar Orden de Venta</button></center>
                             </div>
                             </div>
                         </form>
