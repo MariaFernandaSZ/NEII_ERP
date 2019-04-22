@@ -1,3 +1,4 @@
+<%@page import="pw.sap.pojo.Ventas.Clientes"%>
 <%@page import="pw.sap.pojo.Ventas.OrdenVenta"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
@@ -14,7 +15,9 @@
     }
 %>
 <!DOCTYPE html>
-
+<%
+    ArrayList lista = (ArrayList) request.getSession().getAttribute("ordenventa");
+%>
 <html>
     <head>
         <title>Ventas</title>
@@ -99,98 +102,68 @@
         </header>
 
         <!-- CONTENIDO-->
-        <div class="container-fluid contenido">
+       <div class="container-fluid contenido">
             <div class="row">
-            <!-- Seccion izquierda -->	    
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                    <img class="ic" border="dropdown-toggle0" height="200" width="200" src="../archivos/img/foco.gif"/>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="form-style-5">
-                        <form onsubmit="return validaRegistraCliente();" action="../Clientes" method="POST">
-
+                        <form action="../Factura" method="POST">
+                             <div class="row">
+                            <div class="col-xs-12 col-md-12">
                             <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registra factura</span><br>
-                            <font face="Comic Sans MS"><label>Fecha:</label></font>
-                            <br><input type="date" id="fecha" name="fecha" placeholder="Fecha">
-                            <input type="text" id="cliF" name="cliF" placeholder="Cliente">
-                            <input type="text" id="descF" name="descF" placeholder="Descripcion">
-                            <input type="text" onkeypress="return SoloNumeros(event)" id="st" name="st" placeholder="Subtotal">
-                            <input type="text" onkeypress="return SoloNumeros(event)" id="total" name="t" placeholder="Total">
-                            <font face="Comic Sans MS"><label>Id Orden Venta:</label></font>
-                            <Select  class="form-control" id="idov" name="idov" placeholder="ID" placeholder="ID orden venta" required="required">
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Fecha de facturación:</label></font>
+                            <input type="date" id="fecha" name="fecha"  placeholder="Fecha">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Nombre del Cliente:</label></font>
+                            <Select  class="form-control" id="cliF" name="cliF" placeholder="Cliente" required="required">
                                 <option value="x">Seleccione...</option>
                                 <%
-                                    LinkedList<OrdenVenta> h =QuerysVentas.opcionesOrdenVenta();
-                                    for (int i=0;i<h.size();i++)
+                                    LinkedList<Clientes> c =QuerysVentas.opcionesCliente();
+                                    for (int i=0;i<c.size();i++)
                                     {                                   
-                                       out.println("<option value='"+h.get(i).getId_ordenventa()+"'>"+h.get(i).getId_ordenventa()+"</option>");                                   
+                                       out.println("<option value='"+c.get(i).getNombre()+"'>"+c.get(i).getNombre()+"</option>");                                   
                                     }
-                                %> 
+                                %>  
                                  </select>
-                            <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <font face="Comic Sans MS"><label>Descripción:</label></font>
+                            <input type="text" id="descF" name="descF"  value="<%= lista.get(2) %>" placeholder="Descripcion">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Subtotal:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="st" name="st" value="<%= lista.get(4) %>" placeholder="Subtotal">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Total:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="total" name="t" value="<%= lista.get(5) %>" placeholder="Total">
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Id Orden Venta:</label></font>
+                            <input type="number" id="idov" name="idov" placeholder="ID" placeholder="ID orden venta" value="<%= lista.get(0) %>" required="required">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
+                            </div>
+                            </div>
                         </form>
                     </div>
                 </div>
-
-                <!-- Seccion central TABLA -->
-                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                    <div class="table-responsive">
-                         <center><h2>Factura Registradas</h2></center>
-                        <br>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID_Factura</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Descripcion </th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
-                            <%
-                                ResultSet rsTabla = interTabla.tablaFactura(); 
-
-                            %> 
-                            <tbody>
-                                    <%
-                                        while(rsTabla.next()){
-                                    %>
-                                <tr id="modalInter">
-                                    <td><%=rsTabla.getString(1)%></td>
-                                    <td><%=rsTabla.getString(2)%></td>
-                                    <td><%=rsTabla.getString(3)%></td>
-                                    <td><%=rsTabla.getString(4)%></td>
-                                    <td><%=rsTabla.getString(5)%></td>
-                                    <td><%=rsTabla.getString(6)%></td>
-                                </tr>
-                                    <%
-                                        }
-                                    %>
-                            </tbody>
-                        </table>
-                    </div> 
-
-                </div>
-                            
-                <!-- Seccion derecha -->
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Factura</span>
-                        <br>
-                            <center>
-                                <form method="POST" action="../BuscarIDcliente" autocomplete="off">
-                                    <br>
-                                    <input type="number" id="IDcli" name="IDcli" class="form-control form-control-sm" placeholder="ID del factura" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDcliente" class="btn btn-primary">Buscar</button></center>
-                                </form>
-                            </center>
-                    </div>
-                   
-
-                </div>
-                
-                
-            </div>
-
-        </div>
+             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <img class="ic" border="dropdown-toggle0" height="300" width="300" src="../archivos/img/fac.gif"/>
+              </div>                      
+             </div>      
 </body>
 </html>

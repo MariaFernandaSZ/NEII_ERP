@@ -102,18 +102,18 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="form-style-5">
                             <center>
-                                <form method="POST" action="../BuscarIDOrdenVenta" autocomplete="off">
+                                <form method="POST"  action="../BuscarIDOrdenVenta" autocomplete="off">
                                     <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Consultar Orden de Venta</span>
                                     <br>
                                     <br>
                                      <font face="Comic Sans MS"><p>Selecciona la Orden de Venta que desea Facturar.</p></font>
-                                    <input type="number" id="IDorden" name="IDorden" class="form-control form-control-sm" placeholder="ID Orden Venta" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDOrdenVenta" class="btn btn-primary">Mandar a Orden Venta</button></center>
+                                    <input type="number" id="IDO" name="IDO" class="form-control form-control-sm" placeholder="ID Orden Venta" required="required"/>
+                                    <center><button type="submit" style="background-color:#045FB4" name="buscar"  class="btn btn-primary">Generar Factura</button></center>
                                 </form>
                             </center>
                     </div>
                     <img class="ic" border="dropdown-toggle0" height="150" width="150" src="../archivos/img/foco.gif"/>
-                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="Ordenventa.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="Factura.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
                 </div>
                
                             <!-- Seccion central TABLA -->

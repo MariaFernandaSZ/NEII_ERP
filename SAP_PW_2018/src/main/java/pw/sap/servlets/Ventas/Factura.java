@@ -40,15 +40,16 @@ public class Factura extends HttpServlet {
           QuerysVentas c = new QuerysVentas();
 
           
-        String nombreCliente = request.getParameter("nomCli");
-        String direccion = request.getParameter("direc");
-        String cp = request.getParameter("cp");
-        String email = request.getParameter("email");
-        String estatus = request.getParameter("estatus");
+        String fechaf = request.getParameter("fecha");
+        String nombre = request.getParameter("cliF");
+        String desc = request.getParameter("descF");
+        String subt = request.getParameter("st");
+        String total= request.getParameter("t");
+        String IDOR= request.getParameter("idov");
         
-        c.insertar("nombre,direccion,cp,email,estatus","cliente","'"+nombreCliente+"','"+direccion+"',"+cp+",'"+email+"','"+estatus+"'");
+        c.insertar("fecha,cliente,descripcion_venta,subtotal,total,id_ordenventa","factura","'"+fechaf+"','"+nombre+"','"+desc+"',"+subt+","+total+","+IDOR+"");
         
-        response.sendRedirect("Ventas/AgregarCliente.jsp"); 
+        response.sendRedirect("Ventas/Factura.jsp"); 
         
     }
 

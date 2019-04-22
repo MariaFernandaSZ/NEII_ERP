@@ -17,6 +17,7 @@ import java.util.Properties;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.Ventas.Producto;
 import pw.sap.pojo.Ventas.OrdenVenta;
+import pw.sap.pojo.Ventas.Clientes;
 
 /**
  *
@@ -386,6 +387,26 @@ public class QuerysVentas {
                 OrdenVenta o=new OrdenVenta();
                 o.setId_ordenventa(rs.getInt("id_ordenventa"));              
                 l.add(o);
+            }                    
+        conn.close();
+        return l;
+        }
+      
+      public static LinkedList opcionesCliente() throws SQLException, ClassNotFoundException {        
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+       LinkedList <Clientes> l=new LinkedList<>();
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        Statement stmt;        
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT nombre FROM cliente");
+            while (rs.next()) {
+                Clientes c=new Clientes();
+                c.setNombre(rs.getString("Nombre"));              
+                l.add(c);
             }                    
         conn.close();
         return l;

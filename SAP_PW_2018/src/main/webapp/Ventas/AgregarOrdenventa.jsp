@@ -93,7 +93,7 @@
             </nav>
         </header>
         <!-- CONTENIDO-->
-       
+       <div class="container-fluid contenido">
             <div class="row">
             <!-- Seccion-->
             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
@@ -229,6 +229,6 @@
                 <!-- Seccion derecha -->
                 
             </div>
-        
+        </div>
     </body>
 </html>

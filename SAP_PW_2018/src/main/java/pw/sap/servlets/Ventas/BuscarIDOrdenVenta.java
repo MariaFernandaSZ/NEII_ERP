@@ -23,7 +23,7 @@ import pw.sap.pojo.Ventas.QuerysVentas;
  *
  * @author asus
  */
-@WebServlet(name = "BuscarIDOrdenVent", urlPatterns = {"/BuscarIDOrdenVent"})
+@WebServlet(name = "BuscarIDOrdenVenta", urlPatterns = {"/BuscarIDOrdenVenta"})
 public class BuscarIDOrdenVenta extends HttpServlet {
 
     /**
@@ -39,13 +39,13 @@ public class BuscarIDOrdenVenta extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesion = request.getSession(true);
-        QuerysVentas c = new QuerysVentas();
-        String ordenventa = request.getParameter("IDorden");
         
-        ArrayList lista = c.consulta("id_ordenventa,fecha,descripcion_venta,cantidad,precio_unitario,precio_total"
-                + "id_producto,id_cliente","orden_venta", "id_ordenventa = "+ordenventa, 8);
+        QuerysVentas c = new QuerysVentas();
+        String ordenventa = request.getParameter("IDO");
+        
+        ArrayList lista = c.consulta("id_ordenventa,fecha,descripcion_venta,cantidad,precio_unitario,precio_total,id_producto,id_cliente","orden_venta", "id_ordenventa = "+ordenventa, 8);
         if(!lista.isEmpty()){
-            request.getSession().setAttribute("orden_venta",lista);
+            request.getSession().setAttribute("ordenventa",lista);
        
             response.sendRedirect("Ventas/AgregarFactura.jsp");
         }else{

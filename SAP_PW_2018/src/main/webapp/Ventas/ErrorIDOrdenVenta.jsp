@@ -100,7 +100,7 @@
                         <br>
                         <br>
                         <div class="col-xs-12 col-md-12">
-                            <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarOrdenVenta.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                            <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
                         </div>
                     </div>
                 </div>
