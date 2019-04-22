@@ -21,7 +21,6 @@ import java.util.Properties;
 import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 import pw.sap.obj.Contabilidad.ObjLibroDiario;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
-import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
 
 /**
  *
@@ -29,6 +28,7 @@ import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
  */
 public class Impuestos {
      Connection conn;
+  
 
     public Impuestos() throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
@@ -61,26 +61,32 @@ public class Impuestos {
                    
            ps=conn.prepareStatement("SELECT * FROM impuesto ORDER BY id_impuesto DESC LIMIT 1");
            
-        ResultSet rs = ps.executeQuery(); 
+        ResultSet rs = ps.executeQuery();
+        
         
           System.out.println(ps);
         
         closeDB();        
         return rs;
-    }
-      
-         public ResultSet Modificar() throws SQLException, ClassNotFoundException {
+    }      
+        
+ public int agregar(String iva,String ieps, String isr) throws SQLException, ClassNotFoundException {
         openDB();
         PreparedStatement ps;
+        int resultado=1;        
+        double nuevo_iva, nuevo_ieps, nuevo_isr;
+        
+        nuevo_iva= Double.parseDouble(iva);
+        nuevo_ieps= Double.parseDouble(ieps);
+        nuevo_isr= Double.parseDouble(isr);
                    
-           ps=conn.prepareStatement("SELECT * FROM impuesto ORDER BY id_impuesto DESC LIMIT 1");
+           ps=conn.prepareStatement("insert into impuesto (iva, ieps, isr) values ("+nuevo_iva+","+nuevo_ieps+","+nuevo_isr+");");
            
-        ResultSet rs = ps.executeQuery(); 
-        
-          System.out.println(ps);
-        
+        resultado= ps.executeUpdate();        
+                 
         closeDB();        
-        return rs;
+        return resultado;
+
     }
     
 }

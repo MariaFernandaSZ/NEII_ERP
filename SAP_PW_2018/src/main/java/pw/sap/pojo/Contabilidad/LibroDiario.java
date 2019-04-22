@@ -21,7 +21,6 @@ import java.util.Properties;
 import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 import pw.sap.obj.Contabilidad.ObjLibroDiario;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
-import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
 
 /**
  *
@@ -118,6 +117,24 @@ public class LibroDiario {
         r = rs.getDouble(1);
         closeDB();
         return r;
+    }
+    
+      public ResultSet ConsultaMayor(String mod) throws SQLException, ClassNotFoundException {
+        openDB();
+        PreparedStatement ps;
+        ResultSet rs =null;
+           
+        
+        
+        ps = conn.prepareStatement("select id_operacion, fecha, tipo, monto \n"
+                + "from libro_mayor \n"
+                + "where fecha='" + mod + "';");
+        rs = ps.executeQuery();      
+             
+        
+        
+        closeDB();        
+        return rs;
     }
 
 }

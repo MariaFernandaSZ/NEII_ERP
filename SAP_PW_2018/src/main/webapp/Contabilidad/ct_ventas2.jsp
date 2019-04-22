@@ -1,4 +1,13 @@
-
+<%@page import="java.sql.ResultSet"%>
+<%
+    /*if(request.getSession().getAttribute("usuario") == null){
+        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
+    }else{
+        if(!request.getSession().getAttribute("area").equals("Contabilidad")&&!request.getSession().getAttribute("area").equals("Gerencia")){
+            response.sendRedirect("../archivos/errorSesion.jsp");
+        }
+    }*/
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +24,7 @@
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-           <header class="sticky-top">
+          <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,21 +87,13 @@
                       
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
                             <br>
-                            <span id="titulo"><h4>Libro diario</h4></span> <br>
-                            <form action="ct_libro_diario_1.jsp" method="POST">
+                            <form action="ct_ventas2.jsp" method="POST">
+                            <span id="titulo"><h4>Cuentas Clientes</h4></span> <br>                            
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        M&oacute;dulo:
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        N° de Cuenta:
                                     </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <select name="modulo1" id="modulo1">
-                                            <option value="x">Selecciona...</option>
-                                            <option value="0">Todos</option>
-                                            <option value="1">Compras</option>
-                                            <option value="2">Ventas</option>
-                                            <option value="3">Nóminas</option>
-                                        </select>
-                                    </div>    
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="id_cuenta" id="id_cuenta" style="width: 100%;" required >   
                                 </div>
                                 <br>
                                 <div class="row">                                
@@ -101,35 +102,114 @@
                                     <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
                                           style="background-color: #818B9F" value="Mostrar">                                  
                                     </div>      
-                                </div> 
-                            </form>   
+                                </div>                                
                         </div> 
+                            </form>
                     </div>
                     </div>
                     
-                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10 container-fluid"><!-- Seccion central -->
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 container-fluid"><!-- Seccion central -->
                         <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
-                        <h2 class="titulos text-center" style="width: 100%;">Registros</h2>  
+                        <h2 class="titulos text-center" style="width: 100%;">Calendario</h2>  
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered">                                
                                 <tr>
                                    <th>Cuenta</th>
-                                    <th>Folio</th>
-                                    <th>Fecha</th>
-                                    <th>Tipo</th>
-                                    <th>Módulo</th>
-                                    <th>Monto</th>
-                                    <th>Descripción</th>
-                                </tr>     
+                                    <th>Clave cliente</th>
+                                    <th>Banco</th>
+                                    <th>CVC</th>
+                                    <th>Fecha expiración</th>
+                                </tr>  
+                                <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.C_cuentas"/>
+                                <%
+                                   String mod= request.getParameter("id_cuenta");                              
+                                    ResultSet rsTabla = tabla.Consultacuentaesp(mod);
+
+                                %> 
+                                <tbody>
+                                    <%                                            while (rsTabla.next()) {
+                                    %>
+                                    <tr id="modalInter">
+                                        <td><%=rsTabla.getString(1)%></td>
+                                        <td><%=rsTabla.getString(2)%></td>
+                                        <td><%=rsTabla.getString(3)%></td>
+                                        <td><%=rsTabla.getString(4)%></td>
+                                        <td><%=rsTabla.getString(5)%></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </tbody>  
+                                
                             </table> 
                             <br/>
                         </div>
-                        </div> 
+                        </div>
                     </div>   
+                 
+                               
+                  <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
+                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
+                            <br>
+                            <form action="../insertar_cuencli" method="POST">
+                            <span id="titulo"><h4>Agregar Cuenta</h4></span> <br>                            
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        N° de Cuenta:
+                                    </div>
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="newcuencli" id="newcuencli" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        Clave Cliente:
+                                    </div>
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="cliclave" id="cliclave" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        Banco:
+                                    </div>
+                                 <select class="form-control" name="bancocli" id="bancocli">
+                            <optgroup label="Seleccionar">
+                                <option value="x">Seleccionar</option>
+                                <option value="HSBC">HSBC</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Banorte">Banorte</option>
+                                <option value="Bancomer">Bancomer</option>  
+                            </optgroup>
+                        </select>
+                                </div>
+                                <br>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        Fecha Vencimiento:
+                                    </div>
+                                   <input type="date" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="fechvencli" id="fechvencli" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        CVC:
+                                    </div>
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="cvccli" id="cvccli" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                <div class="row">                                
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
+                                    <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
+                                          style="background-color: #818B9F" value="Agregar">                                  
+                                    </div>      
+                                </div>                                
+                        </div> 
+                            </form>
+                    </div>
+                    </div>                  
                 </div>
             </div> 
         </div>
     </body>
 </html>
-

@@ -25,7 +25,7 @@
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-          <header class="sticky-top">
+            <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,17 +51,17 @@
                                 <a class="nav-link text-white color" href="ct_libro_mayor.jsp">Mayor<span class="sr-only">(current)</span></a>
                             </div>
                         </li>
+                         <li class="nav-item">
+                            <a href="ct_calendario.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /><p>Calendario Contable</p></a>
+                        </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Aprobaciones
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /> Cuentas
                             </a>
                             <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white color" href="ct_prov.jsp">Compras<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_ventas.jsp">Clientes<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_prov.jsp">Proveedores<span class="sr-only">(current)</span></a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="plan_cuentas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /><p>Cuentas</p></a>
                         </li>
                     </ul> 
                 </div>
@@ -91,53 +91,45 @@
                     </div>
                      
                     <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
-                        <h2 class="titulos text-center" style="width: 100%;">Impuestos a aplicar</h2>  
+                        <h2 class="titulos text-center" style="width: 100%;">Modificar impuestos</h2>  
                         <br> 
+                        
                           <div  class="row" style="margin-left: 5%; margin-right: 5%;"> 
-                              <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.Impuestos"/>
-                                <%
-                                                                       
-                                    ResultSet rsTabla = tabla.Consulta();
-
-                                %> 
+                              
                               <br> <br>
-                              <%                                           
-                                  while (rsTabla.next()) {
-                              %>                        
-                                                    
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
-                            <form action="ct_impuestos.jsp" method="POST">
+                                             
+                        <form action="../insertar_impuesto" method="POST">
                             
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9">
                                 <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">IVA:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text"  placeholder="<%=rsTabla.getString(2)%>" name="iva3" id="iva3" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text"  name="iva3" id="iva3" style="width: 100%;">
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                         <div class="row">
                              <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4"> IEPS:</label>
-                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="<%=rsTabla.getString(3)%>" name="ieps3" id="ieps3" style="width: 100%;"> 
+                             <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text"  name="ieps3" id="ieps3" style="width: 100%;"> 
                         </div>
                         <div class="row"> 
                             <br>
                         </div>
                               <div class="row">
                             <label class="form-check-label col-lg-4 col-md-4 col-sm-4 col-xs-4">ISR:</label> 
-                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" placeholder="<%=rsTabla.getString(4)%>" name="isr3" id="isr3" style="width: 100%;">
+                            <input class="form-control col-lg-4 col-md-4 col-sm-4 col-xs-4" type="text" name="isr3" id="isr3" style="width: 100%;">
                         </div>
                         <br>
+                                                
+                  <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
+                                                
+                        </div> </form>
+                       
                         
-                                    <input class="btn btn-secondary form-control" id="buscar" name="modi_imp" type="submit" value="Modificar">
-                                </form>                            
-                        </div> 
-                        <%
-                                        }
-                        %>
                         <div class="row"> 
                             <br>
                         </div>
-                    </div>
+                    </div>  
                     </div> 
                 </div>
             </div>

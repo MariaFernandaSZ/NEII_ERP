@@ -8,23 +8,21 @@ package pw.sap.servlets.Contabilidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pw.sap.pojo.Contabilidad.PlanCuentas;
+import pw.sap.pojo.Contabilidad.Impuestos;
 
 /**
  *
- * @author maxim
+ * @author Marii
  */
-@WebServlet(name = "PlanDeCuentasEditar", urlPatterns = {"/PlanDeCuentasEditar"})
-public class PlanDeCuentasEditar extends HttpServlet {
+@WebServlet(name = "insertar_impuesto", urlPatterns = {"/insertar_impuesto"})
+public class insertar_impuesto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,17 +37,19 @@ public class PlanDeCuentasEditar extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        PlanCuentas c =new PlanCuentas();
+        String IVA = request.getParameter("iva3");
+        String IEPS = request.getParameter("ieps3");
+        String ISR = request.getParameter("isr3");
+                
+        Impuestos obj = new Impuestos ();
         
-        c.editaPlan(Integer.parseInt(request.getParameter("neliminapcclave")), request.getParameter("tipocuenta"), request.getParameter("clasecuenta"), request.getParameter("naturaleza"));
-       
-       //registro para log
-        HttpSession sesion=request.getSession(true);
-        System.out.println("sesion usuario:"+sesion.getAttribute("usuario"));
-        System.out.println("sesion usuario:"+sesion.getAttribute("area"));
-        c.insercionRegistro((int)sesion.getAttribute("usuario"), (String)sesion.getAttribute("area"), "Edicion de plan de cuentas");        
+        obj.agregar(IVA, IEPS, ISR);
+        PrintWriter out = response.getWriter();
         
-         response.sendRedirect("Contabilidad/plan_cuentas.jsp");
+            out.println("<script>");
+            out.println("alert('Impuestos modificados');");
+            out.print("window.location='Contabilidad/ct_impuestos.jsp'");
+            out.println("</script>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,9 +67,9 @@ public class PlanDeCuentasEditar extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanDeCuentasEditar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_impuesto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(PlanDeCuentasEditar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_impuesto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -87,9 +87,9 @@ public class PlanDeCuentasEditar extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PlanDeCuentasEditar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_impuesto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(PlanDeCuentasEditar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(insertar_impuesto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

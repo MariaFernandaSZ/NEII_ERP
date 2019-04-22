@@ -1,4 +1,5 @@
 
+<%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +12,6 @@
         <script src="../Recursos/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../Recursos/bootstrap/librerias/popper.min.js" type="text/javascript"></script>
         <script src="../js/Contabilidad/validacion.js" type="text/javascript"></script>
-        <script src="../js/Contabilidad/modales.js"    type="text/javascript"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -66,7 +66,7 @@
             </nav>
         </header>
         
-        <div id="principal">
+       <div id="principal">
             <div class="container-fluid">
                 <div class="row">
                     <br>
@@ -78,20 +78,14 @@
                       
                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
                             <br>
-                            <span id="titulo"><h4>Libro diario</h4></span> <br>
-                            <form action="ct_libro_diario_1.jsp" method="POST">
+                            <span id="titulo"><h4>Libro mayor</h4></span> <br>
+                            <form action="ct_libro_mayor2.jsp" method="POST">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        M&oacute;dulo:
+                                       Fecha:
                                     </div>
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <select name="modulo1" id="modulo1">
-                                            <option value="x">Selecciona...</option>
-                                            <option value="0">Todos</option>
-                                            <option value="1">Compras</option>
-                                            <option value="2">Ventas</option>
-                                            <option value="3">Nóminas</option>
-                                        </select>
+                                     <input class="form-control" type="date" id="fecha_bus" name="fecha_bus" style="width: 100%;">
                                     </div>    
                                 </div>
                                 <br>
@@ -107,29 +101,52 @@
                     </div>
                     </div>
                     
-                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10 container-fluid"><!-- Seccion central -->
+                   <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10 container-fluid"><!-- Seccion central -->
                         <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
                         <h2 class="titulos text-center" style="width: 100%;">Registros</h2>  
                         <br>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
-                                   <th>Cuenta</th>
                                     <th>Folio</th>
                                     <th>Fecha</th>
                                     <th>Tipo</th>
-                                    <th>Módulo</th>
                                     <th>Monto</th>
-                                    <th>Descripción</th>
-                                </tr>     
+                                </tr>                     
+                            <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.LibroDiario"/>
+                                <%
+                                    String mod= request.getParameter("fecha_bus");
+                                    
+                                    ResultSet rsTabla = tabla.ConsultaMayor(mod);
+
+                                %> 
+                                <tbody>
+                                    <%                                            while (rsTabla.next()) {
+                                    %>
+                                    <tr id="modalInter">
+                                        <td><%=rsTabla.getString(1)%></td>
+                                        <td><%=rsTabla.getString(2)%></td>
+                                        <td><%=rsTabla.getString(3)%></td>
+                                        <td><%=rsTabla.getString(4)%></td>
+
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </tbody>                  
+
                             </table> 
                             <br/>
+                            <form action="../LibroDiarioPdf" method="post" onsubmit="return libroPDF();">
+                                <center>
+                                    <input class="btn btn-secondary " style="background-color: #818B9F" type="submit" value="Exportar pdf" />
+                                </center>
+                            </form>
                         </div>
-                        </div> 
-                    </div>   
+                    </div> 
+                   </div>
                 </div>
             </div> 
         </div>
     </body>
 </html>
-
