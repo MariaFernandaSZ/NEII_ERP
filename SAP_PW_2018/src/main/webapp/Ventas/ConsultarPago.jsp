@@ -1,20 +1,5 @@
-<%@page import="pw.sap.pojo.Ventas.OrdenVenta"%>
-<%@page import="java.util.LinkedList"%>
-<%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if(request.getSession().getAttribute("usuario") == null){
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Ventas")&&!request.getSession().getAttribute("area").equals("Gerencia")){
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
-<!DOCTYPE html>
 
+<%@page import="java.sql.ResultSet"%>
 <html>
     <head>
         <title>Ventas</title>
@@ -33,15 +18,13 @@
         <script src="../js/Ventas/VenValidaciones.js"></script>
         <script src="../js/Ventas/muestraModales.js"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
-        
-    </head>
-    
-    <body style="width:100%; height:100%;">
+ </head>
 
-        <!-- BARRA NAV -->
+    <body>
+      <!-- BARRA NAV -->
         <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
-                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>MÃ³dulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span></button>
 
@@ -98,48 +81,49 @@
             </nav>
         </header>
 
-        <!-- CONTENIDO-->
+        <!-- CONTENIDO -->
         <div class="container-fluid contenido">
             <div class="row">
             <!-- Seccion izquierda -->	    
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registrar Factura</span><br>
-                        <br>
-                        <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Generar Factura</font></h5></a></button></center>
-                    </div>
-                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Factura</span>
-                        <br>
                             <center>
-                                <form method="POST" action="../BuscarFactura" autocomplete="off">
+                                <form method="POST" action="../BuscarIDOVpago" autocomplete="off">
+                                    <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Pagos</span>
                                     <br>
-                                    <input type="number" id="IDF" name="IDF" class="form-control form-control-sm" placeholder="ID" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarFactura" class="btn btn-primary">Buscar</button></center>
+                                    <br>
+                                     <font face="Comic Sans MS"><p>Selecciona la orden de venta, que procede a pago.</p></font>
+                                    <input type="number" id="IDpago" name="IDpago" class="form-control form-control-sm" placeholder="ID orden de venta" required="required"/>
+                                    
+                                  
+                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDOVpago" class="btn btn-primary">Mandar a pago</button></center>
                                 </form>
                             </center>
                     </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    
+                    <img class="ic" border="dropdown-toggle0" height="150" width="300" src="../archivos/img/pago.gif"/>
                 </div>
-
+                </div>
                 <!-- Seccion central TABLA -->
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="table-responsive">
-                         <center><h2>Factura Registradas</h2></center>
+                         <center><h2>Orden de venta Registradas</h2></center>
                         <br>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID_Factura</th>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Descripcion </th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio Unitario</th>
+                                    <th scope="col">Precio Total</th>
                                 </tr>
                             </thead>
                             <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
                             <%
-                                ResultSet rsTabla = interTabla.tablaFactura(); 
+                                ResultSet rsTabla = interTabla.tablaOrdenVenta(); 
 
                             %> 
                             <tbody>
@@ -152,7 +136,8 @@
                                     <td><%=rsTabla.getString(3)%></td>
                                     <td><%=rsTabla.getString(4)%></td>
                                     <td><%=rsTabla.getString(5)%></td>
-                                    <td><%=rsTabla.getString(6)%></td>
+                                    <td><%=rsTabla.getString(6)%></td
+                                   
                                 </tr>
                                     <%
                                         }
@@ -162,11 +147,11 @@
                     </div> 
 
                 </div>
-                            
-                <!-- Seccion derecha -->
-  
             </div>
 
         </div>
-</body>
+
+       
+
+    </body>
 </html>

@@ -112,10 +112,10 @@
                         <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Orden</span>
                         <br>
                             <center>
-                                <form method="POST" action="../BuscarIDcliente" autocomplete="off">
+                                <form method="POST" action="../BuscarIDOV" autocomplete="off">
                                     <br>
-                                    <input type="number" id="IDcli" name="IDcli" class="form-control form-control-sm" placeholder="ID orden de venta" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDcliente" class="btn btn-primary">Buscar</button></center>
+                                    <input type="number" id="IDOV" name="IDOV" class="form-control form-control-sm" placeholder="ID orden de venta" required="required"/>
+                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarIDOV" class="btn btn-primary">Buscar</button></center>
                                 </form>
                             </center>
                     </div>

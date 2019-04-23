@@ -288,6 +288,20 @@ public class QuerysVentas {
          return rs;
         }
         
+        public ResultSet tablaPago(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          /**rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
+          */
+          rs=st.executeQuery("SELECT * FROM pago_venta");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        
         
         public ResultSet consultarIDEMP(){
          ResultSet rs = null;

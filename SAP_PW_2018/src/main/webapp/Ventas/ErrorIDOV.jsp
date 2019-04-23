@@ -1,22 +1,9 @@
-<%@page import="pw.sap.pojo.Ventas.OrdenVenta"%>
-<%@page import="java.util.LinkedList"%>
-<%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if(request.getSession().getAttribute("usuario") == null){
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Ventas")&&!request.getSession().getAttribute("area").equals("Gerencia")){
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
-<!DOCTYPE html>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% String motivo = (String) request.getSession().getAttribute("motivo"); %>
+<!DOCTYPE html>
 <html>
-    <head>
+     <head>
         <title>Ventas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,11 +22,9 @@
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
         
     </head>
-    
-    <body style="width:100%; height:100%;">
-
-        <!-- BARRA NAV -->
-        <header class="sticky-top"> 
+   
+     <body style="width:100%; height:100%;">
+         <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,76 +82,32 @@
                 </div>
             </nav>
         </header>
-
-        <!-- CONTENIDO-->
+        <!---------------Seccion Central------------->
         <div class="container-fluid contenido">
             <div class="row">
-            <!-- Seccion izquierda -->	    
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registrar Factura</span><br>
+                        <div class="col-xs-12 col-md-12">
+                            <center><span id="titulo"></span><h1>ERROR</h1></center>
+                            <img class="ic" border="dropdown-toggle0" height="70" width="70" src="../archivos/img/equis.png"/>
+                        </div>
+                        <div class="col-xs-12 col-md-12" id="motivo" name="motivo">
+                            <center><h5><%= motivo.toString() %></h5></center>
+                        </div>
                         <br>
-                        <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Generar Factura</font></h5></a></button></center>
-                    </div>
-                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Factura</span>
                         <br>
-                            <center>
-                                <form method="POST" action="../BuscarFactura" autocomplete="off">
-                                    <br>
-                                    <input type="number" id="IDF" name="IDF" class="form-control form-control-sm" placeholder="ID" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarFactura" class="btn btn-primary">Buscar</button></center>
-                                </form>
-                            </center>
+                        <div class="col-xs-12 col-md-12">
+                            <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="Ordenventa.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Seccion central TABLA -->
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="table-responsive">
-                         <center><h2>Factura Registradas</h2></center>
-                        <br>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID_Factura</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Descripcion </th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
-                            <%
-                                ResultSet rsTabla = interTabla.tablaFactura(); 
-
-                            %> 
-                            <tbody>
-                                    <%
-                                        while(rsTabla.next()){
-                                    %>
-                                <tr id="modalInter">
-                                    <td><%=rsTabla.getString(1)%></td>
-                                    <td><%=rsTabla.getString(2)%></td>
-                                    <td><%=rsTabla.getString(3)%></td>
-                                    <td><%=rsTabla.getString(4)%></td>
-                                    <td><%=rsTabla.getString(5)%></td>
-                                    <td><%=rsTabla.getString(6)%></td>
-                                </tr>
-                                    <%
-                                        }
-                                    %>
-                            </tbody>
-                        </table>
-                    </div> 
-
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            
                 </div>
-                            
-                <!-- Seccion derecha -->
-  
             </div>
-
         </div>
-</body>
+    </body>
 </html>

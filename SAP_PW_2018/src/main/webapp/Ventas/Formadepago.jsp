@@ -1,20 +1,12 @@
-<%@page import="pw.sap.pojo.Ventas.OrdenVenta"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="pw.sap.pojo.Ventas.Clientes"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if(request.getSession().getAttribute("usuario") == null){
-        response.sendRedirect("../archivos/sesion/errorSesion.jsp");
-    }else{
-        if(!request.getSession().getAttribute("area").equals("Ventas")&&!request.getSession().getAttribute("area").equals("Gerencia")){
-            response.sendRedirect("../archivos/errorSesion.jsp");
-        }
-    }
-%>
-<!DOCTYPE html>
 
+<%
+    ArrayList lista = (ArrayList) request.getSession().getAttribute("ordenventa");
+%>
 <html>
     <head>
         <title>Ventas</title>
@@ -33,15 +25,13 @@
         <script src="../js/Ventas/VenValidaciones.js"></script>
         <script src="../js/Ventas/muestraModales.js"></script>
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
-        
-    </head>
-    
-    <body style="width:100%; height:100%;">
+ </head>
 
-        <!-- BARRA NAV -->
+    <body>
+      <!-- BARRA NAV -->
         <header class="sticky-top"> 
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
-                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>MÃ³dulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
+                <a class="navbar-brand" style="color: white;" href="mainVentas.jsp"><h4>Módulo<br>Ventas</h4><span class="sr-only">(current)</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span></button>
 
@@ -98,75 +88,79 @@
             </nav>
         </header>
 
-        <!-- CONTENIDO-->
+        <!-- CONTENIDO -->
         <div class="container-fluid contenido">
             <div class="row">
-            <!-- Seccion izquierda -->	    
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                    <center>
+                        <button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="Cobros.jsp"><h5><font color=white>Regresar</font></h5></a></button>
+                        <br>
+                        <br>
+                        <br>
+                        <img class="ic" border="dropdown-toggle0" height="200" width="200" src="../archivos/img/producto.gif"/>
+                    </center>
+                </div>
+                <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registrar Factura</span><br>
-                        <br>
-                        <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Generar Factura</font></h5></a></button></center>
+                        <form action="../Cobros" method="POST">
+                             <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Informacion del producto</span><br>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-xs-3 col-md-3">
+                            <font face="Comic Sans MS"><label>Id Orden Venta:</label></font>
+                            <input type="number" id="idov" name="idov" placeholder="ID" placeholder="ID orden venta" value="<%= lista.get(0) %>" required="required">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            <font face="Comic Sans MS"><label>Subtotal:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="st" name="st" value="<%= lista.get(4) %>" placeholder="Subtotal">
+                            </div>
+                            <div class="col-xs-5 col-md-5">
+                            <font face="Comic Sans MS"><label>Total:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="total" name="t" value="<%= lista.get(5) %>" placeholder="Total">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <font face="Comic Sans MS"><label>Descripción:</label></font>
+                            <input type="text" id="descF" name="descF"  value="<%= lista.get(2) %>" placeholder="Descripcion">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Forma de Pago</span><br>
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Tipo de pago:</label></font>
+                            <select type="text" id="tipo" name="tipo"  required="required">
+                                <option value="">Selecionar ...</option>
+                                <option value="Tarjeta Credito">Tarjeta Credito</option> 
+                                <option value="Tarjeta Debito">Tarjeta Débito</option>
+                            </select>
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Número del Títular:</label></font>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                            </div>
+                             <div class="col-xs-4 col-md-4">
+                            <font face="Comic Sans MS"><label>Número de tarjeta:</label></font>
+                            <input type="number" id="tarjeta" name="tarjeta" onkeypress="return SoloNumeros(event)" placeholder="0000 0000 0000 0000">
+                            </div>
+                             <div class="col-xs-4 col-md-4">
+                            <font face="Comic Sans MS"><label>Fecha de expiración</label></font>
+                            <input type="date" id="fecha" name="fecha" placeholder="Descripcion">
+                            </div>
+                             <div class="col-xs-4 col-md-4">
+                            <font face="Comic Sans MS"><label>CVC:</label></font>
+                            <input type="number" id="numero" name="cvc"  name="cvc" onkeypress="return SoloNumeros(event)" placeholder="CVC">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Registrar</button></center>
+                            </div>
+                            </div>
+                        </form>
                     </div>
-                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Factura</span>
-                        <br>
-                            <center>
-                                <form method="POST" action="../BuscarFactura" autocomplete="off">
-                                    <br>
-                                    <input type="number" id="IDF" name="IDF" class="form-control form-control-sm" placeholder="ID" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarFactura" class="btn btn-primary">Buscar</button></center>
-                                </form>
-                            </center>
-                    </div>
-                </div>
-
-                <!-- Seccion central TABLA -->
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="table-responsive">
-                         <center><h2>Factura Registradas</h2></center>
-                        <br>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID_Factura</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Descripcion </th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
-                            <%
-                                ResultSet rsTabla = interTabla.tablaFactura(); 
-
-                            %> 
-                            <tbody>
-                                    <%
-                                        while(rsTabla.next()){
-                                    %>
-                                <tr id="modalInter">
-                                    <td><%=rsTabla.getString(1)%></td>
-                                    <td><%=rsTabla.getString(2)%></td>
-                                    <td><%=rsTabla.getString(3)%></td>
-                                    <td><%=rsTabla.getString(4)%></td>
-                                    <td><%=rsTabla.getString(5)%></td>
-                                    <td><%=rsTabla.getString(6)%></td>
-                                </tr>
-                                    <%
-                                        }
-                                    %>
-                            </tbody>
-                        </table>
-                    </div> 
-
-                </div>
-                            
-                <!-- Seccion derecha -->
-  
-            </div>
-
-        </div>
-</body>
+                </div>                    
+             </div>  
+       </div>
+        
+    </body>
 </html>

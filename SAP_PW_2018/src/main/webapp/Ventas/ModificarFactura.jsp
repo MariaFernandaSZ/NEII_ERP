@@ -1,3 +1,4 @@
+<%@page import="pw.sap.pojo.Ventas.Clientes"%>
 <%@page import="pw.sap.pojo.Ventas.OrdenVenta"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="pw.sap.pojo.Ventas.QuerysVentas"%>
@@ -14,7 +15,9 @@
     }
 %>
 <!DOCTYPE html>
-
+<%
+    ArrayList lista = (ArrayList) request.getSession().getAttribute("factura");
+%>
 <html>
     <head>
         <title>Ventas</title>
@@ -99,74 +102,74 @@
         </header>
 
         <!-- CONTENIDO-->
-        <div class="container-fluid contenido">
+       <div class="container-fluid contenido">
             <div class="row">
-            <!-- Seccion izquierda -->	    
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Regresar</font></h5></a></button></center>
+                    <img class="ic" border="dropdown-toggle0" height="200" width="200" src="../archivos/img/foco.gif"/>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <font face="Comic Sans MS"><h1>Modificar Factura</h1></font>
                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registrar Factura</span><br>
-                        <br>
-                        <center><button type="submit" style="background-color:#045FB4" name="buscar" class="btn btn-primary"><a href="ConsultarFactura.jsp"><h5><font color=white>Generar Factura</font></h5></a></button></center>
-                    </div>
-                     <div class="form-style-5">
-                        <span id="titulo"><span class="number" style="background-color:#045FB4">2</span>Modificar Factura</span>
-                        <br>
-                            <center>
-                                <form method="POST" action="../BuscarFactura" autocomplete="off">
-                                    <br>
-                                    <input type="number" id="IDF" name="IDF" class="form-control form-control-sm" placeholder="ID" required="required"/>
-                                    <center><button type="submit" style="background-color:#045FB4" name="buscar" action="../BuscarFactura" class="btn btn-primary">Buscar</button></center>
-                                </form>
-                            </center>
+                        <form action="../ActualizarFactura" method="POST"><div class="row">
+                            <div class="col-xs-12 col-md-12"><span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registra factura</span><br>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Id Factura:</label></font>
+                            <input type="number" id="idf" name="idf" placeholder="ID" placeholder="ID orden venta" value="<%= lista.get(0) %>" readonly="readonly" required="required">
+                            </div>
+                             <div class="col-xs-6 col-md-6">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Fecha de facturación:</label></font>
+                            <input type="date" id="fecha" name="fecha" value="<%= lista.get(1) %>" placeholder="Fecha">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Nombre del Cliente:</label></font>
+                            <Select  class="form-control" id="cliF" name="cliF"  placeholder="Cliente" required="required">
+                                <option value="x">Seleccione...</option>
+                                <%
+                                    LinkedList<Clientes> c =QuerysVentas.opcionesCliente();
+                                    for (int i=0;i<c.size();i++)
+                                    {                                   
+                                       out.println("<option value='"+c.get(i).getNombre()+"'>"+c.get(i).getNombre()+"</option>");                                   
+                                    }
+                                %>  
+                                 </select>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                            <font face="Comic Sans MS"><label>Descripción:</label></font>
+                            <input type="text" id="descF" name="descF"  value="<%= lista.get(3) %>"  readonly="readonly" placeholder="Descripcion">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Subtotal:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="st" name="st" value="<%= lista.get(4) %>" readonly="readonly" placeholder="Subtotal">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Total:</label></font>
+                            <input type="text" onkeypress="return SoloNumeros(event)" id="total" name="t" value="<%= lista.get(5) %>" readonly="readonly" placeholder="Total">
+                            </div>
+                            <div class="col-xs-2 col-md-2">
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                            <font face="Comic Sans MS"><label>Id Orden Venta:</label></font>
+                            <input type="number" id="idov" name="idov" placeholder="ID" placeholder="ID orden venta" value="<%= lista.get(6) %>" readonly="readonly" required="required">
+                            </div>
+                            <div class="col-xs-4 col-md-4">
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <center><button type="submit" style="background-color:#045FB4" name="registrar" class="btn btn-primary">Modificar </button></center>
+                            </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <!-- Seccion central TABLA -->
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="table-responsive">
-                         <center><h2>Factura Registradas</h2></center>
-                        <br>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID_Factura</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Descripcion </th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <jsp:useBean id="interTabla" scope="page" class="pw.sap.pojo.Ventas.QuerysVentas"/>
-                            <%
-                                ResultSet rsTabla = interTabla.tablaFactura(); 
-
-                            %> 
-                            <tbody>
-                                    <%
-                                        while(rsTabla.next()){
-                                    %>
-                                <tr id="modalInter">
-                                    <td><%=rsTabla.getString(1)%></td>
-                                    <td><%=rsTabla.getString(2)%></td>
-                                    <td><%=rsTabla.getString(3)%></td>
-                                    <td><%=rsTabla.getString(4)%></td>
-                                    <td><%=rsTabla.getString(5)%></td>
-                                    <td><%=rsTabla.getString(6)%></td>
-                                </tr>
-                                    <%
-                                        }
-                                    %>
-                            </tbody>
-                        </table>
-                    </div> 
-
-                </div>
-                            
-                <!-- Seccion derecha -->
-  
-            </div>
-
-        </div>
+             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <img class="ic" border="dropdown-toggle0" height="300" width="300" src="../archivos/img/fac.gif"/>
+              </div>                      
+             </div>  
+             </div>                
 </body>
 </html>

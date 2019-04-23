@@ -164,6 +164,8 @@
              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <img class="ic" border="dropdown-toggle0" height="300" width="300" src="../archivos/img/fac.gif"/>
               </div>                      
-             </div>      
+             </div>  
+       </div>  
+                            
 </body>
 </html>
