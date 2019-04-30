@@ -21,7 +21,6 @@ import java.util.Properties;
 import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 import pw.sap.obj.Contabilidad.ObjLibroDiario;
 import pw.sap.obj.Contabilidad.ObjPlanDeCuentas;
-import static pw.sap.pojo.Contabilidad.PlanCuentas.isNumeric;
 
 /**
  *
@@ -56,45 +55,32 @@ public class LibroDiario {
         conn.close();
     }
 
-    public static LinkedList consultaLibroDiariop(String modulo, String fechainicio, String fechafin, String cargo, String abono) throws SQLException, ClassNotFoundException {
-        Connection conn;
-        Class.forName("org.postgresql.Driver");
-        Properties connProp = new Properties();
-        connProp.put("user", "postgres");
-        connProp.put("password", "root");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
-
-        LinkedList<ObjLibroDiario> l = new LinkedList<ObjLibroDiario>();
+   public ResultSet ConsultaDev(String mod) throws SQLException, ClassNotFoundException {
+        openDB();
         PreparedStatement ps;
-//        ps = conn.prepareStatement("select ad.fecha_fac,a.nombre_area from asientogeneral as ag, asientodetalle as ad, areas as a where ag.id=ad.id_general and (a.nombre_area=? or (ag.fecha_apli >= ?  and ag.fecha_apli < ?) );");
-//        ps.setString(1, modulo);
-//        if (fechainicio == "" && fechafin == "") {
-//            ps.setNull(2, 0);
-//            ps.setNull(3, 0);
-//        } else {
-//            ps.setString(2, fechainicio);
-//            ps.setString(3, fechafin);
-//        }
-//
-//        ResultSet rs = ps.executeQuery();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select ad.fecha_fac,a.nombre_area from asientogeneral as ag, asientodetalle as ad, areas as a where (ag.id=ad.id_general and a.id_area = ad.id_general) and (a.nombre_area='"+modulo+"' or (ag.fecha_apli >= '"+fechainicio+"'  and ag.fecha_apli < '"+fechafin+"') );");
-
-        double ca = Double.parseDouble(cargo);
-        double ab = Double.parseDouble(abono);
+        int resultado= Integer.parseInt(mod);
+        ResultSet rs =null;
+       
+        if(resultado == 0){ 
+            
+           ps=conn.prepareStatement("select cuenta, folio, fecha, tipo, modulo, monto, descripcion \n"
+                + "from libro_diario;");
+        rs = ps.executeQuery();
         
-        
-        while (rs.next()) {
-            ObjLibroDiario ld = new ObjLibroDiario();
-            ld.setModulo(rs.getString("nombre_area"));
-            ld.setFecha(rs.getString("fecha_fac"));
-            ld.setCargo(ca);
-            ld.setAbono(ab);
-            l.add(ld);
         }
-
-        conn.close();
-        return l;
+        
+        if(resultado!= 0){
+        
+        ps = conn.prepareStatement("select cuenta, folio, fecha, tipo, modulo, monto, descripcion \n"
+                + "from libro_diario \n"
+                + "where modulo=" + mod + ";");
+        rs = ps.executeQuery();
+        
+        }      
+        
+        
+        closeDB();        
+        return rs;
     }
 
     public double consultaLibroDiarioCargo(String fechaini, String fechafin) throws SQLException {
@@ -131,6 +117,24 @@ public class LibroDiario {
         r = rs.getDouble(1);
         closeDB();
         return r;
+    }
+    
+      public ResultSet ConsultaMayor(String mod) throws SQLException, ClassNotFoundException {
+        openDB();
+        PreparedStatement ps;
+        ResultSet rs =null;
+           
+        
+        
+        ps = conn.prepareStatement("select id_operacion, fecha, tipo, monto \n"
+                + "from libro_mayor \n"
+                + "where fecha='" + mod + "';");
+        rs = ps.executeQuery();      
+             
+        
+        
+        closeDB();        
+        return rs;
     }
 
 }

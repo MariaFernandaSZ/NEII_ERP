@@ -121,7 +121,7 @@
                                 <tr>
                             <form action="../Inventario/SalidasporOrd.jsp" method="GET">
                                 <td>
-                                    <input class="form-control" type="text" name="id_producto" id="id_producto" placeholder="ID de Producto" required="required" pattern="[0-9]{13}" maxlength="13" title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/>
+                                    <input class="form-control" type="text" name="id_producto" id="id_producto" placeholder="ID de Producto" required="required"  title="El id de producto debe ser de 13 digitos (n&uacute;meros)"/>
                                 </td>
                                 <td>
                                     <input type="submit" name="BuscaM" id="BuscaM"  class="btn btn-secondary form-control" value="Consultar" style="width: 100%;"/>

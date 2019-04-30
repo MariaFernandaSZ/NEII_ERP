@@ -12,8 +12,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Properties;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.Ventas.Producto;
+import pw.sap.pojo.Ventas.OrdenVenta;
+import pw.sap.pojo.Ventas.Clientes;
 
 /**
  *
@@ -47,97 +51,7 @@ public class QuerysVentas {
     }
     
     
-        public boolean agregarCliente(ClienteBean cliBean) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            Genera_IDs idcli = new Genera_IDs();
-            openDB();
-            try {
-                
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO empresa_cliente VALUES ('"+idcli.idClientes()+"','"+cliBean.getNombreEmpresa()+"','"+cliBean.getRfcEmpresa()+"','"+cliBean.getEstadoDomEmpresa()+"','"+cliBean.getMuniDomEmpresa()+"','"+cliBean.getCallenumDomEmpresa()+"','"+cliBean.getPostalDomEmpresa()+"')");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
-        
-        
-
-        
-        
-        
-        
-        public boolean agregarInterm(IntermBean interBean) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            Genera_IDs idcli = new Genera_IDs();
-            openDB();
-            try {
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO interm_cliente VALUES ('"+idcli.idIntermediario()+"','"+interBean.getIntermNom()+"','"+interBean.getIntermApellidos()+"','"+interBean.getIntermTel()+"','"+interBean.getIntermMail()+"','"+interBean.getIdEmpresa()+"')");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
-        
-        public boolean insertApartado(ApartaProducto ap) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            Genera_IDs idcli = new Genera_IDs();
-            openDB();
-            try {
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO apartaprod VALUES ('"+idcli.idApartado()+"','"+consultarOrdenVenta()+"','Deuda',"+ap.getAbono_apart()+","+ap.getCargo_apart()+")");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
-        
-        public boolean insertVPP(ArrayList<VentaPorProducto> vpp) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            Genera_IDs idcli = new Genera_IDs();
-            openDB();
-            try {
-                    if(conn!=null){
-                        for (int i = 0; i < vpp.size(); i++) {
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO venta_por_prod VALUES ('"+vpp.get(i).getId_producto()+"','"+consultarOrdenVenta()+"',"+vpp.get(i).getMonto()+","+vpp.get(i).getCantidad()+","+vpp.get(i).getIva()+")");
-                        agregado=true;
-                        st.close();
-                        }
-
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
-        
-                public String consultarCli(){
+        public String consultarCli(){
          String id="";
          try{
           openDB();
@@ -256,50 +170,9 @@ public class QuerysVentas {
          return rfc;
         }
         
-        public ClienteBean detalleCli(){
-         ClienteBean cliBean = null;
-        String idCliente; 
-        String nombreEmpresa = null;
-        String rfcEmpresa = null;
-        String estadoDomEmpresa = null;
-        String muniDomEmpresa = null;
-        String callenumDomEmpresa = null;
-        String postalDomEmpresa = null;
-        
-         try{
-          openDB();
-          Statement st=conn.createStatement();
-          ResultSet rs=st.executeQuery("select id_emprc from empresa_cliente order by id_emprc desc limit 1");
-          while(rs.next()){
-           idCliente = rs.getString(1);
-           nombreEmpresa = rs.getString(2);
-           postalDomEmpresa = rs.getString(3);
-           estadoDomEmpresa = rs.getString(4);
-           muniDomEmpresa = rs.getString(5);
-           callenumDomEmpresa = rs.getString(6);
-           rfcEmpresa = rs.getString(7);
-          }
-          cliBean = new ClienteBean(nombreEmpresa, rfcEmpresa, estadoDomEmpresa, muniDomEmpresa, callenumDomEmpresa, postalDomEmpresa);
-          rs.close();
-          st.close();
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
-         
-         return cliBean;
-        }      
+       
     
-        public ResultSet consultarIDEMP(){
-         ResultSet rs = null;
-         try{
-          openDB();
-          Statement st=conn.createStatement();
-          rs=st.executeQuery("select id_emprc, nombre_emp from empresa_cliente");
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
-         return rs;
-        }
+        
         
          public ResultSet consultarIDInterm(){
          ResultSet rs = null;
@@ -337,60 +210,9 @@ public class QuerysVentas {
          return rs;
         }
         
-         public ResultSet tablaCliente(){
-         ResultSet rs = null;
-         try{
-          openDB();
-          Statement st=conn.createStatement();
-          rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
-         }catch(SQLException se){
-          se.printStackTrace();
-         }
-         return rs;
-        } 
+       
          
-        public boolean agregarOrdenVenta(OrdenVenta ov) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            Genera_IDs idcli = new Genera_IDs();
-            openDB();
-            try {
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO OrdenVenta VALUES ('"+idcli.idOrdenVenta()+"','"+ov.getId_intermC()+"','"+ov.getFecha_ordv()+"',current_timestamp,"+ov.getTotal_iva()+","+ov.getSubtotal_pago()+","+ov.getTotal_pago()+",'"+ov.getFecha_entrega()+"',null,'"+ov.getMoneda()+"',"+ov.getId_emp()+")");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
-        
-          public boolean agregarFactura(Factura fac) throws SQLException, ClassNotFoundException{
-            boolean agregado=false;
-            Genera_IDs fact = new Genera_IDs();
-            openDB();
-            try {
-                    if(conn!=null){
-                        Statement st;
-                        st = conn.createStatement();
-                        st.executeUpdate("INSERT INTO Factura VALUES ("+consultarIDFactura()+",'"+fact.uuid()+"','"+fact.idFactura()+"',null,'"+fac.getRfc_receptor()+"','"+fac.getRfc_emisor()+"',"+fac.getSubtotal()+","+fac.getTotal_iva()+",null,null,null,"+fac.getTotal()+",current_date,null,'"+fac.getLugar_exp()+"','"+fac.getForma_pago()+"','"+fac.getTipo_venta()+"','"+consultarOrdenVenta()+"')");
-                        agregado=true;
-                        st.close();
-                    }
-                closeDB();
-                    } catch (SQLException e) {
-                        agregado=false;
-                        e.printStackTrace();
-                    }
-            return agregado;
-        }
-         
-         
-          public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
+        public int insercionRegistro(int id_emp, String area, String des) throws SQLException{
         openDB();
         int valor=1;
         PreparedStatement ps;
@@ -400,7 +222,7 @@ public class QuerysVentas {
         return valor;
     }
           
-             public ResultSet consultaProducto() throws SQLException, ClassNotFoundException{
+        public ResultSet consultaProducto() throws SQLException, ClassNotFoundException{
          
                  openDB();
                   PreparedStatement ps;
@@ -414,4 +236,203 @@ public class QuerysVentas {
                     closeDB();
                   return rs;
         }
+        //....................................KENIA MODULO VENTAS..............................................
+        public Integer insertar(String campos, String tabla, String valores) throws SQLException {
+        openDB();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("INSERT INTO "+tabla+" ("+campos+") VALUES ("+valores+")");
+        Integer rs = ps.executeUpdate();
+        closeDB();
+        return rs;
+    }
+     
+        public ResultSet tablaCliente(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          /**rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
+          */
+          rs=st.executeQuery("SELECT * FROM cliente");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        
+        public ResultSet tablaFactura(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          /**rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
+          */
+          rs=st.executeQuery("SELECT * FROM factura");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        
+        public ResultSet tablaOrdenVenta(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          /**rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
+          */
+          rs=st.executeQuery("SELECT * FROM orden_venta");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        
+        public ResultSet tablaPago(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          /**rs=st.executeQuery("SELECT empresa_cliente.id_emprc, nombre_emp, rfc_emp, nombre_inter, apellidos_inter, tel_inter, correo_inter FROM empresa_cliente INNER JOIN interm_cliente ON interm_cliente.id_emprc = empresa_cliente.id_emprc;");
+          */
+          rs=st.executeQuery("SELECT * FROM pago_venta");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        
+        
+        public ResultSet consultarIDEMP(){
+         ResultSet rs = null;
+         try{
+          openDB();
+          Statement st=conn.createStatement();
+          rs=st.executeQuery("select id_emprc, nombre_emp from empresa_cliente");
+         }catch(SQLException se){
+          se.printStackTrace();
+         }
+         return rs;
+        }
+        public ArrayList consulta(String campos, String tabla, String condicion, int cantidad) throws SQLException {
+        openDB();
+        ArrayList r=new ArrayList();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("SELECT "+campos+" FROM "+tabla+" WHERE "+condicion);
+        ResultSet rs= ps.executeQuery();        
+            while(rs.next()){
+                for(int i = 1 ; i <= cantidad ; i++){
+                    r.add(rs.getObject(i));
+                }
+                
+            }
+            
+        
+        closeDB();        
+        return r;
+    }
+        
+        
+        
+        public Integer borrar(String tabla, String referencia) throws SQLException {
+        openDB();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("DELETE FROM "+tabla+" WHERE "+referencia);
+        Integer rs = ps.executeUpdate();
+        closeDB();
+        return rs;
+    }
+        
+    /**
+     * este metodo permite actualizar datos de cualquier tabla
+     * @param campos
+     * @param tabla
+     * @param referencia
+     * @return
+     * @throws SQLException 
+     */
+    
+    public Integer actualizar(String campos, String tabla, String referencia) throws SQLException {
+        openDB();
+        PreparedStatement ps;
+        ps=conn.prepareStatement("UPDATE "+tabla+" SET "+campos+" WHERE "+referencia);
+        Integer rs = ps.executeUpdate();
+        closeDB();
+        return rs;
+    }
+    
+    
+     public static LinkedList opcionesProducto() throws SQLException, ClassNotFoundException {        
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+       LinkedList <Producto> l=new LinkedList<>();
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        Statement stmt;        
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT id_producto,nombre,tipo_producto,costo_venta FROM producto");
+            while (rs.next()) {
+                Producto p=new Producto();
+                p.setId_producto(rs.getString("id_producto"));             
+                p.setNombre(rs.getString("nombre")); 
+                p.setTipo_producto(rs.getString("tipo_producto"));
+                p.setCosto_venta(rs.getString("costo_venta")); 
+                l.add(p);
+            }                    
+        conn.close();
+        return l;
+        }
+    
+     
+      public static LinkedList opcionesOrdenVenta() throws SQLException, ClassNotFoundException {        
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+       LinkedList <OrdenVenta> l=new LinkedList<>();
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        Statement stmt;        
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT id_ordenventa FROM orden_venta");
+            while (rs.next()) {
+                OrdenVenta o=new OrdenVenta();
+                o.setId_ordenventa(rs.getInt("id_ordenventa"));              
+                l.add(o);
+            }                    
+        conn.close();
+        return l;
+        }
+      
+      public static LinkedList opcionesCliente() throws SQLException, ClassNotFoundException {        
+        Connection conn;
+        Class.forName("org.postgresql.Driver");
+       LinkedList <Clientes> l=new LinkedList<>();
+        Properties connProp = new Properties();
+        connProp.put("user", "postgres");
+        connProp.put("password", "root");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDSAPPW", connProp);
+        Statement stmt;        
+        stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT nombre FROM cliente");
+            while (rs.next()) {
+                Clientes c=new Clientes();
+                c.setNombre(rs.getString("Nombre"));              
+                l.add(c);
+            }                    
+        conn.close();
+        return l;
+        }
+    
+        
+        
+         
+        //..................................................................................................
+
+    
+       
+
+   
 }

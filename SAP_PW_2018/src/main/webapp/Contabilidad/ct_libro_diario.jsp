@@ -15,7 +15,7 @@
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-         <header class="sticky-top">
+           <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,17 +41,17 @@
                                 <a class="nav-link text-white color" href="ct_libro_mayor.jsp">Mayor<span class="sr-only">(current)</span></a>
                             </div>
                         </li>
+                         <li class="nav-item">
+                            <a href="ct_calendario.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /><p>Calendario Contable</p></a>
+                        </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Aprobaciones
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /> Cuentas
                             </a>
                             <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white color" href="ct_prov.jsp">Compras<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_ventas.jsp">Clientes<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_prov.jsp">Proveedores<span class="sr-only">(current)</span></a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="plan_cuentas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /><p>Cuentas</p></a>
                         </li>
                     </ul> 
                 </div>
@@ -74,9 +74,10 @@
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
                          
-                        <center> <img class="imagen" border="0" height="auto" width="40%" src="../archivos/img/img_logo_2.png" /> </center>
+                        <center> <img class="imagen" border="0" height="auto" width="50%" src="../archivos/img/img_logo_2.png" /> </center>
                       
-                        <div class="form-style-5">
+                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
+                            <br>
                             <span id="titulo"><h4>Libro diario</h4></span> <br>
                             <form action="ct_libro_diario_1.jsp" method="POST">
                                 <div class="row">
@@ -86,29 +87,15 @@
                                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                                         <select name="modulo1" id="modulo1">
                                             <option value="x">Selecciona...</option>
-                                            <option value="">Todos</option>
-                                            <option value="Compras">Compras</option>
-                                            <option value="Ventas">Ventas</option>
-                                            <option value="Nominas">Nominas</option>
+                                            <option value="0">Todos</option>
+                                            <option value="1">Compras</option>
+                                            <option value="2">Ventas</option>
+                                            <option value="3">Nóminas</option>
                                         </select>
                                     </div>    
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Fecha inicial: 
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaIni" name="fechaIni">  
-                                    </div>    
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        Fecha final: 
-                                    </div>
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="date"  id="fechaFin" name="fechaFin">
-                                    </div>    
-                                </div>
+                                <br>
+                                <div class="row">                                
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
                                     <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
@@ -118,18 +105,27 @@
                             </form>   
                         </div> 
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->
+                    </div>
+                    
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10 container-fluid"><!-- Seccion central -->
+                        <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Registros</h2>  
+                        <br>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
+                                   <th>Cuenta</th>
+                                    <th>Folio</th>
                                     <th>Fecha</th>
-                                    <th>M&oacute;dulo</th>
-                                    <th>Cargo</th>
-                                    <th>Abono</th>
+                                    <th>Tipo</th>
+                                    <th>Módulo</th>
+                                    <th>Monto</th>
+                                    <th>Descripción</th>
                                 </tr>     
                             </table> 
                             <br/>
                         </div>
+                        </div> 
                     </div>   
                 </div>
             </div> 

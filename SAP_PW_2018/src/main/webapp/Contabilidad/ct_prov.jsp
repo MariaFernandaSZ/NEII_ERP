@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%
     /*if(request.getSession().getAttribute("usuario") == null){
         response.sendRedirect("../archivos/sesion/errorSesion.jsp");
@@ -23,7 +24,7 @@
         <link href="../css/estilosMax.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-         <header class="sticky-top">
+          <header class="sticky-top">
             <!--barra de navegacion creada con bootstrap-->
             <nav id="barraNavegadora" class="navbar navbar-expand-lg colorPrincipal" >
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,17 +50,17 @@
                                 <a class="nav-link text-white color" href="ct_libro_mayor.jsp">Mayor<span class="sr-only">(current)</span></a>
                             </div>
                         </li>
+                         <li class="nav-item">
+                            <a href="ct_calendario.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /><p>Calendario Contable</p></a>
+                        </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color" href="#" style="color: white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_terceros.png" /> Aprobaciones
+                               <img class="ic"  border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /> Cuentas
                             </a>
                             <div class="dropdown-menu" id="submenu">
-                                <a class="nav-link text-white color" href="ct_ventas.jsp">Nóminas<span class="sr-only">(current)</span></a>
-                                <a class="nav-link text-white color" href="ct_prov.jsp">Compras<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_ventas.jsp">Clientes<span class="sr-only">(current)</span></a>
+                                <a class="nav-link text-white color" href="ct_prov.jsp">Proveedores<span class="sr-only">(current)</span></a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="plan_cuentas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../archivos/img/ic_miembros.png" /><p>Cuentas</p></a>
                         </li>
                     </ul> 
                 </div>
@@ -81,299 +82,134 @@
                 </div>
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"> <!-- Seccion izquierda -->
-                        <div class="form-style-5">
-                            <form onsubmit="return validavacio('clave');" action="ct_prov.html">
-                                <span id="titulo"><span class="number">1</span>Ingresa la clave a buscar</span>
+                         
+                        <center> <img class="imagen" border="0" height="auto" width="50%" src="../archivos/img/img_logo_2.png" /> </center>
+                      
+                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
+                            <br>
+                            <form action="ct_prov2.jsp" method="POST">
+                            <span id="titulo"><h4>Cuentas Proveedores</h4></span> <br>                            
                                 <div class="row">
-                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" id="clave" placeholder="ingresa clave a buscar"/>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        N° de Cuenta:
                                     </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="submit" value="buscar">
-                                    </div> 
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="id_cuentapv" id="id_cuentapv" style="width: 100%;" required >   
                                 </div>
+                                <br>
+                                <div class="row">                                
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <button id="btn-comp-conf" type="button" class="btn btn-light" onclick="configuraCOMPmodal()">Configurar</button>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-4">
-                                        <button id="btn-comp-confimp" type="button" class="btn btn-light" onclick="configuraImpuestoCOMPmodal()">Configuraci&oacute;n de Impuestos</button>
-                                    </div>
-                                </div>
-                            </form> 
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
+                                    <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
+                                          style="background-color: #818B9F" value="Mostrar">                                  
+                                    </div>      
+                                </div>                                
                         </div> 
+                            </form>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central -->
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 container-fluid"><!-- Seccion central -->
+                        <div class="row justify-content-center" style="background-color: #f8f8f8; margin-left: 10%; margin-right: 10%;" >
+                        <h2 class="titulos text-center" style="width: 100%;">Calendario</h2>  
+                        <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered">                                
                                 <tr>
-                                    <th>Selecciona</th>
-                                    <th>Clave</th>
-                                    <th>RFC</th>
-                                    <th>Nombre</th>
-                                    <th>Direcci&oacute;n</th>
-                                    <th>Contacto</th>
-                                    <th>Tel&eacute;fono</th>
-                                    <th>Correo</th>
-                                </tr>
-                                <tr>
-                                    <td class="seleccion"><input type="checkbox"/></td>
-                                    <td>A1087</td>
-                                    <td>ARA9405033K0</td>
-                                    <td>Abarrotes garras</td>
-                                    <td>Calle ejemplo no. 3</td>
-                                    <td>Socorro Melchor Ocampo</td>
-                                    <td>7131318678</td>
-                                    <td>Socorro@gmail.com</td>                            
-                                </tr>
-                                <tr>
-                                    <td class="seleccion"><input type="checkbox"/></td>
-                                    <td>A1287</td>
-                                    <td>ARA9785033J0</td>
-                                    <td>Abarrotes ejemplo2</td>
-                                    <td>Calle ejemplo no. 4</td>
-                                    <td>Carla Melchor Ocampo</td>
-                                    <td>7131318679</td>
-                                    <td>Carla@gmail.com</td>                            
-                                </tr>
-                                <tr>
-                                    <td class="seleccion"><input type="checkbox"/></td>
-                                    <td>A1087</td>
-                                    <td>ARA9405033K0</td>
-                                    <td>Abarrotes garras</td>
-                                    <td>Calle ejemplo no. 3</td>
-                                    <td>Socorro Melchor Ocampo</td>
-                                    <td>7131318678</td>
-                                    <td>Socorro@gmail.com</td>                            
-                                </tr>
-                            </table>    
+                                   <th>Cuenta</th>
+                                    <th>Clave proveedor</th>
+                                    <th>Banco</th>
+                                    <th>CVC</th>
+                                    <th>Fecha expiración</th>
+                                </tr>  
+                                <jsp:useBean id="tabla" scope="page" class="pw.sap.pojo.Contabilidad.C_cuentas"/>
+                                <%
+                                                                       
+                                    ResultSet rsTabla = tabla.Consultacuenta2();
+
+                                %> 
+                                <tbody>
+                                    <%                                            while (rsTabla.next()) {
+                                    %>
+                                    <tr id="modalInter">
+                                        <td><%=rsTabla.getString(1)%></td>
+                                        <td><%=rsTabla.getString(2)%></td>
+                                        <td><%=rsTabla.getString(3)%></td>
+                                        <td><%=rsTabla.getString(4)%></td>
+                                        <td><%=rsTabla.getString(5)%></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </tbody>  
+                                
+                            </table> 
+                            <br/>
+                        </div>
+                        </div>
+                    </div>   
+                 
+                               
+                  <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
+                         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container-fluid">
+                            <br>
+                            <form action="../insertar_cuenprov" method="POST">
+                            <span id="titulo"><h4>Agregar Cuenta</h4></span> <br>                            
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        N° de Cuenta:
+                                    </div>
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="newcuenprv" id="newcuencliprv" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        Clave Cliente:
+                                    </div>
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="prvclave" id="prvclave" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        Banco:
+                                    </div>
+                                 <select class="form-control" name="bancoprv" id="bancoprv">
+                            <optgroup label="Seleccionar">
+                                <option value="x">Seleccionar</option>
+                                <option value="HSBC">HSBC</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Banorte">Banorte</option>
+                                <option value="Bancomer">Bancomer</option>  
+                            </optgroup>
+                        </select>
+                                </div>
+                                <br>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        Fecha Vencimiento:
+                                    </div>
+                                   <input type="date" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="fechvenprv" id="fechvenprv" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        CVC:
+                                    </div>
+                                   <input type="number" class="form-control col-lg-6 col-md-6 col-sm-6 col-xs-6" name="cvcprv" id="cvcprv" style="width: 100%;" required >   
+                                </div>
+                                <br>
+                                <div class="row">                                
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                    
+                                    <input class="btn btn-secondary form-control" id="filtro" name="filtro" type="submit" 
+                                          style="background-color: #818B9F" value="Agregar">                                  
+                                    </div>      
+                                </div>                                
                         </div> 
+                            </form>
                     </div>
-                    <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"><!-- Seccion derecha -->
-                        <table style="width:100%;height:100%;">                                        
-                            <tr><td colspan="2">Informaci&oacute;n de la empresa</td></tr>
-                            <tr><td colspan="2"><img src="" alt="logo de la empresa"></td></tr>
-                        </table>
-                    </div>    
-                </div>
-
-
-                <!-- Modal CONFIGURAR-->
-                <div class="modal fade" id="confcomp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Configurar</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-style-5">
-                                    <form action="ct_prov.jsp" method="post" onsubmit="return comprasconfig();">
-                                        <table>
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>Proveedor</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input id="procuenta" type="text" placeholder="201.68" />
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Nombre:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="pronombre" placeholder="abarrotes garras" />
-                                                </td>                               
-                                            </tr>  
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>Pago Anticipado</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="pacuenta" placeholder="201.02" />
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Nombre:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="panombre" placeholder="abarrotes" />
-                                                </td>                               
-                                            </tr>  
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>Datos Bancarios</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Nombre de la cuenta:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="bancocuentanombre" placeholder="Empresarial"/>
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    N&uacute;mero de laCuenta:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="banconumerocuenta" placeholder="1234567" />
-                                                </td>                               
-                                            </tr>  
-                                            <tr>
-                                                <td>
-                                                    Banco:
-                                                </td>
-                                                <td>
-                                                    <select id="banco" name="banco">
-                                                        <option value="x">Seleccione...</option>
-                                                        <option value="12">12-BBVA Bancomer</option>
-                                                        <option value="137">137-BanCoppel</option>                                        
-                                                    </select>
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Correo electronico:
-                                                </td>
-                                                <td>
-                                                    <input type="email" placeholder="correo@correo.com" />
-                                                </td>                               
-                                            </tr>  
-
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>IEPS</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="iepscuenta" placeholder="201.68" />
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Nombre:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="iepsnombre" placeholder="abarrotes garras" />
-                                                </td>                               
-                                            </tr>  
-
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>Retenci&oacute;n ISR</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="isrcuenta" placeholder="201.68" />
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Nombre:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="isrnombre" placeholder="abarrotes garras" />
-                                                </td>                               
-                                            </tr>  
-
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>Retenci&oacute;n de IVA</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="ivacuenta" placeholder="201.68" />
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Nombre:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="ivanombre" placeholder="abarrotes garras" />
-                                                </td>                               
-                                            </tr>                                                                                                                                                         
-                                        </table>
-                                        <input type="submit" value="AGREGAR"/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal CONFIGURAR IMPUESTOS-->
-
-                <div class="modal fade" id="confimpcomp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Configurar Impuestos</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-style-5">
-                                    <form action="ct_prov.jsp" method="post" onsubmit="return comprasconfimpuesto();">
-                                        <table>
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>IVA por Acreditar</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="ivaacreditarcuenta" placeholder="201.68" />
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Tipo cuenta:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="ivaacreditartipocuenta" placeholder="IVA POR ACREDITAR" />
-                                                </td>                               
-                                            </tr>  
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="4"><h1>IVA acreditable</h1></td>
-                                            </tr>                            
-                                            <tr>
-                                                <td>
-                                                    Cuenta contable:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="ivaacreditablecuenta" placeholder="201.02"/>
-                                                </td>                               
-                                                <td>&nbsp;&nbsp;</td>
-                                                <td>
-                                                    Tipo cuenta:
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="ivaacreditabletipocuenta" placeholder="IVA ACREDITABLE" />
-                                                </td>                               
-                                            </tr>                                                                                                                         
-                                        </table>    
-                                        <input type="submit" value="AGREGAR"/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                  
                 </div>
             </div> 
         </div>
-
     </body>
 </html>
