@@ -5,6 +5,9 @@ public class ValidarSesion {
     public String redireccionar(String area){
         String path = area;
         switch(path){
+            case "SCM":
+                path = "SCM/JSP/home_scm.jsp";
+                break;
             case "Recursos Humanos":
                 path = "RH/RH/rh_index.jsp";
                 break;
