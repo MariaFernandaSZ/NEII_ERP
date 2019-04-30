@@ -83,7 +83,7 @@
                             <br>
                         </form>
 
-                        <form method="POST" action="com_prod.html">
+                        <form method="POST" action="com_prod.jsp">
                             <span id="titulo"><span class="number">2</span>B&uacute;squeda por<br>c&oacute;digo de producto</span>
                             <br><br>
                             <input type="number" name="codprod" placeholder="Código" id="codigo" required>
