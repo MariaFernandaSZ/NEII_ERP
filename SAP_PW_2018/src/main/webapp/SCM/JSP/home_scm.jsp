@@ -15,8 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
-        <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
+        <link href="../../css/estilos.css" rel="stylesheet" type="text/CSS">
+        <link href="../../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>        
         <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -96,17 +96,168 @@
                     <br>
                 </div>
                 <div class="row">
+                    
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
+                        
+                        <div id="titulo" class="col-12">
+                                <span class="number">1</span>Recibiendo pedidos</div>
+                            <br>
+                            
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id requisición</th>
+                                            <th scope="col">cantidad</th>
+                                            <th scope="col">fecha</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTabla = interTabla.consultaRequisicion();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div> 
+                                    <br>
+                                    
+                                    
+                                    <div id="titulo" class="col-12">
+                                <span class="number">2</span>Ventas</div>
+                            <br>
+                            
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id venta</th>
+                                            <th scope="col">total pago</th>
+                                            <th scope="col">descripcion</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaV" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTablaV = interTablaV.consultaVenta();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaV.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaV.getString(1)%></td>
+                                            <td><%=rsTablaV.getString(2)%></td>
+                                            <td><%=rsTablaV.getString(3)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div> 
+                                    <br>
                         
                     </div>                       
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
+                    <div style="background-color: #f4f7f8;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-style-5"><!-- Seccion central --> 
+                        
+                        <div id="titulo" class="col-12">
+                                <span class="number">3</span>Inventario</div>
+                            <br>
+                            
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id producto</th>
+                                            <th scope="col">nombre</th>
+                                            <th scope="col">tipo de producto</th>
+                                            <th scope="col">cantidad</th>
+                                            <th scope="col">mínimo</th>
+                                            <th scope="col">máximo</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaProd" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTablaProd = interTablaProd.consultaInventario();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaProd.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaProd.getString(1)%></td>
+                                            <td><%=rsTablaProd.getString(2)%></td>
+                                            <td><%=rsTablaProd.getString(3)%></td>
+                                            <td><%=rsTablaProd.getString(4)%></td>
+                                            <td><%=rsTablaProd.getString(5)%></td>
+                                            <td><%=rsTablaProd.getString(6)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>
                         
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         
+                        
+                        <div id="titulo" class="col-12">
+                                <span class="number">4</span>Merma</div>
+                            <br>
+                            
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id merma</th>
+                                            <th scope="col">cantidad</th>
+                                            <th scope="col">motivo</th>
+                                            
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaProdM" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTablaProdM = interTablaProdM.consultaMerma();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaProdM.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaProdM.getString(1)%></td>
+                                            <td><%=rsTablaProdM.getString(2)%></td>
+                                            <td><%=rsTablaProdM.getString(3)%></td>
+                                                                                        
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>
                     </div> 
                         
                 </div>
