@@ -112,8 +112,10 @@
                     </div>                       
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
+                    <div style="background-color: #f4f7f8;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-style-5"><!-- Seccion central --> 
                         <form method="POST" action="../../ReportesExcel" target="">
+                            <div id="titulo" class="col-12">
+                                <span class="number">2</span>Tabla Pedidos</div>
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>

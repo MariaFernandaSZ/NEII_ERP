@@ -11,7 +11,7 @@
 %>
 <html>
     <head>
-        <title>Pedidos</title>
+        <title>Ventas</title>
         <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,32 +101,35 @@
                         <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
                     </div>
                         <br>
-                        <form method="POST" action="consultaPedidos.jsp" onsubmit="return">
+                        <form method="POST" action="Ventas.jsp" onsubmit="return">
                             <div id="titulo" class="col-12">
-                                <span class="number">1</span>Búsqueda pedidos</div>
+                                <span class="number">1</span>Búsqueda venta</div>
                             <br>
-                            <input type="text" name="req_folio" placeholder="ingrese id producto" id="req_folio" required>
+                            <input type="text" name="id_ordenventa" placeholder="ingrese id venta" id="id_ordenventa" required>
                             <br> <center><input type="submit" value="Buscar" style="background-color: #3498DB" name="Buscar" class="btn"></center>
                         </form>
                         
                     </div>                       
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
+                    <div style="background-color: #f4f7f8;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-style-5"><!-- Seccion central --> 
                         <form method="POST" action="../../ReportesExcel" target="">
+                            <div id="titulo" class="col-12">
+                                <span class="number">2</span>Tabla venta</div>
                             <div class="table-responsive"><table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">id pedido</th>
-                                            <th scope="col">id producto</th>
-                                            <th scope="col">cantidad</th>
-                                            <th scope="col">fecha de pedido</th>
+                                            <th scope="col">id venta</th>
+                                            <th scope="col">id intermediario</th>
+                                            <th scope="col">total de pago</th>
+                                            <th scope="col">fecha de entrega</th>
+                                            <th scope="col">Descripcion</th>
                                             
                                         </tr>
                                     </thead>
                                     <jsp:useBean id="interTablaPed" scope="page" class="pw.scm.pojo.QuerySCM"/>
                                     <%
-                                        ResultSet rsTablaPed = interTablaPed.consultaPedido();
+                                        ResultSet rsTablaPed = interTablaPed.consultaVentaV();
                                     %> 
                                     <tbody>
                                         <%
@@ -136,6 +139,7 @@
                                             <td><%=rsTablaPed.getString(1)%></td>
                                             <td><%=rsTablaPed.getString(2)%></td>
                                             <td><%=rsTablaPed.getString(3)%></td>
+                                            <td><%=rsTablaPed.getString(4)%></td>
                                             <td><%=rsTablaPed.getString(4)%></td>
                                             
                                         </tr>
@@ -152,10 +156,10 @@
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
-                        <form method="POST" action="../../eliminarPedido">
-                            <span id="titulo"><span class="number">3</span>Eliminar por id del pedido</span>
+                        <form method="POST" action="../../eliminarVenta">
+                            <span id="titulo"><span class="number">3</span>Eliminar por id de Venta</span>
                             <br><br>
-                            <input type="text" name="req_folioE" placeholder="Eliminar pedido" id="req_folioE" required>
+                            <input type="text" name="id_ordenventaE" placeholder="Eliminar pedido" id="id_ordenventaE" required>
                         <br> <center><input type="submit" value="Eliminar" style="background-color: #3498DB" name="Buscar" class="btn"></center>
                         </form>
                     </div> 

@@ -114,6 +114,20 @@ public class QuerySCM {
                   return rs;
         }
     
+    public ResultSet consultaVentaV() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_ordenventa, id_intermc, total_pago, fecha_entrega, descripcion from ordenventa;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
     public boolean eliminar_Pedido(String req_folioE) throws SQLException, ClassNotFoundException{
          boolean agregado=false;
          
@@ -133,4 +147,27 @@ public class QuerySCM {
                     } 
                  return agregado;
         }
+    
+    public boolean eliminar_VentaV(String id_ordenventaE) throws SQLException, ClassNotFoundException{
+         boolean agregado=false;
+         
+                 openDB();
+                 try{
+                 if(conn!=null){
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("delete from ordenventa where id_ordenventa='"+id_ordenventaE+"';");
+                    ResultSet rs= ps.executeQuery();
+                    agregado=true;
+                 }
+                 closeDB();
+                 } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    } 
+                 return agregado;
+        }
+    
+    
+    
 }
