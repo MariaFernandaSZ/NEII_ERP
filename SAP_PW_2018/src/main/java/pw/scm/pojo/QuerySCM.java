@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 import pw.sap.db.Conexion;
+import pw.sap.pojo.Compras.Genera_IDCom;
 
 /**
  *
@@ -96,5 +97,40 @@ public class QuerySCM {
                     
                     closeDB();
                   return rs;
+        }
+    
+    
+    public ResultSet consultaPedido() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select req_folio, id_producto, req_cantidad, req_fecha from requisicion;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
+    public boolean eliminar_Pedido(String req_folioE) throws SQLException, ClassNotFoundException{
+         boolean agregado=false;
+         
+                 openDB();
+                 try{
+                 if(conn!=null){
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("delete from requisicion where req_folio='"+req_folioE+"';");
+                    ResultSet rs= ps.executeQuery();
+                    agregado=true;
+                 }
+                 closeDB();
+                 } catch (SQLException e) {
+                        agregado=false;
+                        e.printStackTrace();
+                    } 
+                 return agregado;
         }
 }

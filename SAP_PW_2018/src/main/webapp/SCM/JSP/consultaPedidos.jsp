@@ -11,12 +11,12 @@
 %>
 <html>
     <head>
-        <title>Mayorista</title>
+        <title>Pedidos</title>
         <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
-        <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
+        <link href="../../css/estilos.css" rel="stylesheet" type="text/CSS">
+        <link href="../../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>        
         <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -69,6 +69,7 @@
                         <li class="nav-item">
                             <a href="Ventas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_agenda_grande.png" /><p>Ventas</p></a>                        </li>
                         
+                        
                         <li class="nav-item">
                             <a href="mayorista.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_area_terceros.png" /><p>Mayoristas</p></a>                        </li>
                         
@@ -97,20 +98,63 @@
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
                         
-                        <form method="POST" action="consultamayorista.jsp" onsubmit="return">
-                            
-                            
+                        <form method="POST" action="consultaPedidos.jsp" onsubmit="return">
+                            <div id="titulo" class="col-12">
+                                <span class="number">1</span>Búsqueda pedidos</div>
+                            <br>
+                            <input type="text" name="req_folio" placeholder="ingrese id producto" id="req_folio" required>
+                            <br> <center><input type="submit" value="Buscar" style="background-color: #3498DB" name="Buscar" class="btn"></center>
                         </form>
                         
                     </div>                       
 
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
-                        
+                        <form method="POST" action="../../ReportesExcel" target="">
+                            <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id pedido</th>
+                                            <th scope="col">id producto</th>
+                                            <th scope="col">cantidad</th>
+                                            <th scope="col">fecha de pedido</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaPed" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        ResultSet rsTablaPed = interTablaPed.consultaPedido();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaPed.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaPed.getString(1)%></td>
+                                            <td><%=rsTablaPed.getString(2)%></td>
+                                            <td><%=rsTablaPed.getString(3)%></td>
+                                            <td><%=rsTablaPed.getString(4)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>  
+                                    <br>
+                                    
+                            
+
+                        </form>
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
-                        
+                        <form method="POST" action="../../eliminarPedido">
+                            <span id="titulo"><span class="number">3</span>Eliminar por id del pedido</span>
+                            <br><br>
+                            <input type="text" name="req_folioE" placeholder="Eliminar pedido" id="req_folioE" required>
+                        <br> <center><input type="submit" value="Eliminar" style="background-color: #3498DB" name="Buscar" class="btn"></center>
+                        </form>
                     </div> 
                         
                 </div>

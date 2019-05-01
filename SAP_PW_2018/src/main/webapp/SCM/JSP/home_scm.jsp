@@ -98,7 +98,10 @@
                 <div class="row">
                     
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
-                        
+                        <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
+                    </div>
+                        <br>
                         <div id="titulo" class="col-12">
                                 <span class="number">1</span>Recibiendo pedidos</div>
                             <br>
@@ -133,44 +136,7 @@
                                         %>
                                     </tbody>
                                 </table></div> 
-                                    <br>
                                     
-                                    
-                                    <div id="titulo" class="col-12">
-                                <span class="number">2</span>Ventas</div>
-                            <br>
-                            
-                        <div class="table-responsive"><table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">id venta</th>
-                                            <th scope="col">total pago</th>
-                                            <th scope="col">descripcion</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <jsp:useBean id="interTablaV" scope="page" class="pw.scm.pojo.QuerySCM"/>
-                                    <%
-                                        
-                                        ResultSet rsTablaV = interTablaV.consultaVenta();
-
-                                    %> 
-                                    <tbody>
-                                        <%
-                                            while (rsTablaV.next()) {
-                                        %>
-                                        <tr id="modalInter">
-                                            <td><%=rsTablaV.getString(1)%></td>
-                                            <td><%=rsTablaV.getString(2)%></td>
-                                            <td><%=rsTablaV.getString(3)%></td>
-                                            
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-                                </table></div> 
-                                    <br>
                         
                     </div>                       
 
@@ -178,7 +144,7 @@
                     <div style="background-color: #f4f7f8;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-style-5"><!-- Seccion central --> 
                         
                         <div id="titulo" class="col-12">
-                                <span class="number">3</span>Inventario</div>
+                                <span class="number">2</span>Inventario</div>
                             <br>
                             
                         <div class="table-responsive"><table class="table table-striped">
@@ -258,6 +224,45 @@
                                         %>
                                     </tbody>
                                 </table></div>
+                                    
+                                    <br>
+                                    
+                                    
+                                    <div id="titulo" class="col-12">
+                                <span class="number">3</span>Ventas</div>
+                            <br>
+                            
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id venta</th>
+                                            <th scope="col">total pago</th>
+                                            <th scope="col">descripcion</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaV" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTablaV = interTablaV.consultaVenta();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaV.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaV.getString(1)%></td>
+                                            <td><%=rsTablaV.getString(2)%></td>
+                                            <td><%=rsTablaV.getString(3)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div> 
+                                    
                     </div> 
                         
                 </div>
