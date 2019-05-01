@@ -11,12 +11,12 @@
 %>
 <html>
     <head>
-        <title>Mayorista</title>
+        <title>Mayoristas</title>
         <meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" integrity="sha256-CfcERD4Ov4+lKbWbYqXD6aFM9M51gN4GUEtDhkWABMo=" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../css/estilos.css" rel="stylesheet" type="text/CSS">
-        <link href="../css/laterales.css" rel="stylesheet" type="text/CSS">
+        <link href="../../css/estilos.css" rel="stylesheet" type="text/CSS">
+        <link href="../../css/laterales.css" rel="stylesheet" type="text/CSS">
         <link rel="stylesheet" type="text/css" href="../css/tablacliente.css">
         <link href="../../Recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>        
         <script src="../Recursos/bootstrap/librerias/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -69,6 +69,7 @@
                         <li class="nav-item">
                             <a href="Ventas.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_agenda_grande.png" /><p>Ventas</p></a>                        </li>
                         
+                        
                         <li class="nav-item">
                             <a href="mayorista.jsp" class="nav-link text-white" aria-haspopup="true" aria-expanded="false"><img class="ic" border="0" height="25" width="25" src="../../archivos/img/ic_area_terceros.png" /><p>Mayoristas</p></a>                        </li>
                         
@@ -96,21 +97,130 @@
                 </div>
                 <div class="row">
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"> <!-- Seccion izquierda -->
-                        
-                        <form method="POST" action="consultamayorista.jsp" onsubmit="return">
+                        <div  class="row" style="height: 200px;">    
+                        <img class="imagen" border="0" height="auto" width="50%" src="../../archivos/img/img_logo_2.png" />
+                    </div>
+                        <br>
+                        <div id="titulo" class="col-12">
+                                <span class="number">1</span>Ventas a mayoristas</div>
+                            <br>
                             
-                            
-                        </form>
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id venta</th>
+                                            <th scope="col">id cliente</th>
+                                            <th scope="col">id producto</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTabla" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTabla = interTabla.consultaVentaMayorista();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTabla.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTabla.getString(1)%></td>
+                                            <td><%=rsTabla.getString(2)%></td>
+                                            <td><%=rsTabla.getString(3)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div> 
                         
                     </div>                       
 
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><!-- Seccion central --> 
-                        
+                    <div style="background-color: #f4f7f8;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-style-5"><!-- Seccion central --> 
+                        <form method="POST" action="../../ReportesExcel" target="">
+                            <div id="titulo" class="col-12">
+                                <span class="number">2</span>Tabla Mayoristas</div>
+                            <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id cliente</th>
+                                            <th scope="col">fecha de venta</th>
+                                            <th scope="col">id venta</th>
+                                            <th scope="col">id producto</th>
+                                            <th scope="col">id promoción</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaCM" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        ResultSet rsTablaCM = interTablaCM.consultaClienteMayorista();
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaCM.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaCM.getString(1)%></td>
+                                            <td><%=rsTablaCM.getString(2)%></td>
+                                            <td><%=rsTablaCM.getString(3)%></td>
+                                            <td><%=rsTablaCM.getString(4)%></td>
+                                            <td><%=rsTablaCM.getString(5)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div>  
+                                    <br>
+                                    
+                            
+
+                        </form>
                     </div>
 
                     <div style="background-color: #f4f7f8;" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 form-style-5"><!-- Seccion derecha -->
                         
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15066.650723951145!2d-99.53953589999999!3d19.25352735!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2smx!4v1556736404281!5m2!1ses!2smx" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        
+                        <br>
+                        <div id="titulo" class="col-12">
+                                <span class="number">3</span>Promociones</div>
+                            <br>
+                            
+                        <div class="table-responsive"><table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">id promoción</th>
+                                            <th scope="col">tipo promoción</th>
+                                            <th scope="col">descripción</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <jsp:useBean id="interTablaPROMO" scope="page" class="pw.scm.pojo.QuerySCM"/>
+                                    <%
+                                        
+                                        ResultSet rsTablaPROMO = interTablaPROMO.consultaPROMO();
+
+                                    %> 
+                                    <tbody>
+                                        <%
+                                            while (rsTablaPROMO.next()) {
+                                        %>
+                                        <tr id="modalInter">
+                                            <td><%=rsTablaPROMO.getString(1)%></td>
+                                            <td><%=rsTablaPROMO.getString(2)%></td>
+                                            <td><%=rsTablaPROMO.getString(3)%></td>
+                                            
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
+                                </table></div> 
                     </div> 
                         
                 </div>

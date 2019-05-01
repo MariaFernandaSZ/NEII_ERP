@@ -168,6 +168,77 @@ public class QuerySCM {
                  return agregado;
         }
     
+    public ResultSet consultaVentaMayorista() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_ordenventa, id_cliente, id_producto from venta_mayorista;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
+    public ResultSet consultaVentaMinorista() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_ordenventa, id_cliente, id_producto from venta_minorista;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
+    public ResultSet consultaClienteMayorista() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_cliente, fecha_ventam, id_ordenventa, id_producto, id_promocion from venta_mayorista;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
+    public ResultSet consultaClienteMinorista() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_cliente, fecha_ventam, id_ordenventa, id_producto, id_promocion from venta_minorista;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
+    
+    public ResultSet consultaPROMO() throws SQLException, ClassNotFoundException{
+         
+                 openDB();
+                  PreparedStatement ps;
+                    
+                     ps = conn.prepareStatement("select id_promocion, tipo_promocion, descripcion from promocion;");
+                    ResultSet rs= ps.executeQuery();
+          
+                    System.out.println(ps);
+                    
+                    closeDB();
+                  return rs;
+        }
+    
     
     
 }
