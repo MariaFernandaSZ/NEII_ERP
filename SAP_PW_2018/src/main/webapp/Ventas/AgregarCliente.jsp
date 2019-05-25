@@ -103,7 +103,6 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="form-style-5">
                         <form onsubmit="return validaRegistraCliente();" action="../Clientes" method="POST">
-
                             <span id="titulo"><span class="number" style="background-color:#045FB4">1</span>Registra cliente</span><br>
                             <br><input type="text" onkeypress="return soloLetras(event)" id="nomCli" name="nomCli" placeholder="Nombre del cliente">
                             <input type="text" id="direc" name="direc" placeholder="Dirección">

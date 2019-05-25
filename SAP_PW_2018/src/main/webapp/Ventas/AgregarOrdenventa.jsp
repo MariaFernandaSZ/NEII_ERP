@@ -104,6 +104,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                     <center><h1>Datos Generales Orden de Venta</h1></center>
                     <div class="form-style-5">
+                        <!--  action="../OrdenVenta"-->
                         <form action="../OrdenVenta" method="POST">
                             <div class="row">
                             <div class="col-xs-12 col-md-12">

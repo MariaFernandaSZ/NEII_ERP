@@ -9,7 +9,7 @@ package pw.sap.pojo.Ventas;
  *
  * @author asus
  */
-public class OrdenVenta {
+public class OrdenVentaO {
     
     int id_ordenventa;
     String fecha;

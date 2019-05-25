@@ -119,6 +119,13 @@
                                 </form>
                             </center>
                     </div>
+                    <div class="form-style-5">
+                        <span id="titulo"><span class="number" style="background-color:#045FB4">3</span>Solicitar transporte</span>
+                        <br>
+                            <center>
+                                <a href="../Transporte/servicio.html" ><button style="background-color:#045FB4" name="buscar" class="btn btn-primary">Solicitar</button></a>
+                            </center>
+                    </div>
                 </div>
                 <!-- Seccion central TABLA -->
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">

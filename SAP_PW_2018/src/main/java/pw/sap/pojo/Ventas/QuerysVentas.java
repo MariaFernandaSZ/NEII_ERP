@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.Properties;
 import pw.sap.db.Conexion;
 import pw.sap.pojo.Ventas.Producto;
-import pw.sap.pojo.Ventas.OrdenVenta;
+import pw.sap.pojo.Ventas.OrdenVentaO;
 import pw.sap.pojo.Ventas.Clientes;
 
 /**
@@ -389,7 +389,7 @@ public class QuerysVentas {
       public static LinkedList opcionesOrdenVenta() throws SQLException, ClassNotFoundException {        
         Connection conn;
         Class.forName("org.postgresql.Driver");
-       LinkedList <OrdenVenta> l=new LinkedList<>();
+       LinkedList <OrdenVentaO> l=new LinkedList<>();
         Properties connProp = new Properties();
         connProp.put("user", "postgres");
         connProp.put("password", "root");
@@ -398,7 +398,7 @@ public class QuerysVentas {
         stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT id_ordenventa FROM orden_venta");
             while (rs.next()) {
-                OrdenVenta o=new OrdenVenta();
+                OrdenVentaO o=new OrdenVentaO();
                 o.setId_ordenventa(rs.getInt("id_ordenventa"));              
                 l.add(o);
             }                    

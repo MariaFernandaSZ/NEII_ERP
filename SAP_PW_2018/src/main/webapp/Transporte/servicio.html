@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Servicio Transportes</title>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/estilos.css">
+        <script src="js/jquery-3.4.0.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/jsons/servicios_clientes.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/bootbox/bootbox.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/validaciones/servicios_val.js"></script>
+        <style type="text/css">
+
+            .contenedor div{
+                padding: 20px;
+            }
+            .pointer {cursor: pointer;}
+
+            .modal {
+                overflow-y:auto;
+            }
+
+        </style>
+
+    </head>
+    <body style="background-color: #B4BFCF">
+
+        <div class="align-items-center mb-4 mt-4">
+            <h1 class="h3 mb-0 text-gray-800" style="text-align: center;">Servicios</h1>
+        </div>
+        <div class="container" >
+            <form action="../ConexionServidorTransporte" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCli">RFC</label>
+                        <input type="text" class="form-control" id="cliente_rfc" name="cliente_rfc" value="">
+                    </div>                             
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="inputModelo">Tipo de Vehículo</label>
+                        <select id="tipo-vehiculo" name="tipo-vehiculo" class="form-control" onchange="habilitarBusqueda(this.value);">
+                            <option selected value="0" >Elige...</option>
+                            <option value="1">Camion</option>
+                            <option value="2">Autobus</option>
+                            <option value="3">Auto</option>
+                            <option value="4">Barco</option>
+                            <option value="5">Avion</option>
+                        </select>
+                    </div>  
+                    <div class="form-group col-md-6">
+                        <label for="inputDateInicio">Fecha inicio viaje</label>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha inicio">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputPesoCarga">Carga del viaje</label>
+                        <input type="number" class="form-control" id="carga" name="carga" placeholder="Kg." disabled="true"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPasa">Pasajeros en viaje</label>
+                        <input type="number" class="form-control" id="pasajeros" name="pasajeros" placeholder="0" disabled="true"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputPesoCarga">Origen</label>
+                        <input type="text" class="form-control" id="origen" name="origen" placeholder="Coordenadas o nombre origen">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputPasa">Destino</label>
+                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Coordenadas o nombre destino">
+                    </div>
+                </div>
+                
+                <-- parte para el primer web service-->
+                
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-success col-md-12 solicitar_servicio">Solicitar servicio</button>
+                        <input type="submit" value="prueba"/>
+                    </div>
+                </div>
+           
+            </form>
+            
+            <form>    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputChofer">Chofer</label>
+                        <input type="hidden" name="id_chofer" id="id_chofer">
+                        <input type="text" class="form-control" id="txtChofer" name="chofer" readonly="true">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputFechaFin">Fecha aprox. de termino</label>
+                        <input type="date" class="form-control" id="txtFecha_fin" name="fecha-fin" readonly="true">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputModelo">Vehículo Modelo</label>
+                        <input type="text" class="form-control" id="txtModelo" name="modelo" readonly="true">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputModelo">Vehículo Matricula</label>
+                        <input type="text" class="form-control" id="txtMatricula" name="matricula" readonly="true">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputKm">Kilometraje recorrido</label>
+                        <input type="number" class="form-control" id="txtKilometraje" name="kilometraje" placeholder="Km." readonly="true">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCombustible">Costo de combustible</label>
+                        <input type="text" class="form-control" id="txtCosto_combustible" name="costo-combustible" placeholder="$0000.00" readonly="true">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCasetas">Costo de casetas</label>
+                        <input type="text" class="form-control" id="txtCosto_casetas" name="costo-casetas" placeholder="$0000.00" readonly="true">
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-12">
+                        <label for="inputMonto">Costo TOTAL</label>
+                        <input type="text" class="form-control" id="txtCosto_total" name="costo-total" placeholder="$0000.00" readonly="true">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Agregar</button>
+
+            </form>
+            </br>
+        </div>
+
+    </body>
+</html>
